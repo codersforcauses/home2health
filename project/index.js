@@ -11,10 +11,11 @@ app.use(express.json());
 app.post('/email', (req, res) => {
     const {
         name,
+        organisation,
         email,
         message
     } = req.body;
-    sendMail(name, email, message, function(err, data) {
+    sendMail(name, organisation, email, message, function(err, data) {
         if (err) {
             res.json({
                 message: err,
