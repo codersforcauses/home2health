@@ -1,11 +1,16 @@
-import Link from 'next/link';
+import React, { Component } from "react";
+import Layout from "../components/Layout";
 
-import Layout from '../components/Layout';
-
-export default function Index() {
+class Index extends Component {
+  render() {
     return (
-        <Layout>
-            <p>Welcome to /</p>
-        </Layout>
+      <Layout>
+        <div className="card-panel teal lighten-2">
+          <p> welcome to index.js </p>
+        </div>
+      </Layout>
     );
+  }
 }
+
+export default Index;

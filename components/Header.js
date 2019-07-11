@@ -1,10 +1,19 @@
-import Link from 'next/link';
+import React, { Component } from "react";
+import Link from "next/link";
 
-export default function Index() {
-  return (
-    <div>
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
-    </div>
-  );
+class Header extends Component {
+  render() {
+    return (
+      <div>
+        <Link href="/">
+          <a>Home</a>
+        </Link>
+        <Link href="/about">
+          <a>About</a>
+        </Link>
+      </div>
+    );
+  }
 }
+
+export default Header;
