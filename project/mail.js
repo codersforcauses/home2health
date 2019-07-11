@@ -12,13 +12,20 @@ const transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 })
-const sendMail = (name, email, message, cb) => {
+const sendMail = (name, organisation, email, message, cb) => {
+    var final_subject;
+    if (organisation == "") {
+        final_subject = name + " sent a message via Home2Health";
+    }
+    else {
+        final_subject = name + " from " + organisation + " sent a message via Home2Health"
+    }
     const mailOptions = {
         from: name + "<" + email + ">",
         to: process.env.NODEMAILER_TO,
-        subject: name + " sent a message via Home2Health",
+        subject: final_subject,
         text: message
-    }
+    };
     transporter.sendMail(mailOptions, function(err, data) {
         if (err) {
             cb(err, null);

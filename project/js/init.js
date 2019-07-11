@@ -17,6 +17,7 @@ $(".dropdown-trigger").dropdown({
 $('#send-message-button').on('click', (e) => {
     e.preventDefault();
     const name = $("#contact_name").val().trim();
+    const organisation = $("#contact_organisation").val().trim();
     const email = $("#contact_email").val().trim();
     const message = $("#contact_message").val().trim();
     if (name == "") {
@@ -31,6 +32,7 @@ $('#send-message-button').on('click', (e) => {
     } else {
         const data = {
             name,
+            organisation,
             email,
             message
         };
