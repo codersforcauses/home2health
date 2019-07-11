@@ -6,7 +6,6 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        <Meta />
         <Header />
         {this.props.children}
       </div>
