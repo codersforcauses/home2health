@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Header from "./Header";
-import "../public/stylesheets/materialize.min.css";
+import Head from './Meta';
 
 class Layout extends Component {
   render() {
     return (
       <div>
+        <Head />
         <Header />
         {this.props.children}
       </div>
