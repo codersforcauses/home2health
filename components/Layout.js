@@ -1,10 +1,17 @@
-import Header from './Header';
+import React, { Component } from "react";
+import Header from "./Header";
+import Head from './Meta';
 
-const Layout = (props) => (
-    <div>
+class Layout extends Component {
+  render() {
+    return (
+      <div>
+        <Head />
         <Header />
-        {props.children}
-    </div>
-);
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 export default Layout;
