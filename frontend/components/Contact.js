@@ -111,8 +111,8 @@ const Contact = () => {
                 Send
               </button>
             ) : (
-              <div id="progress-bar">
-                <div class="indeterminate progess" />
+              <div id="progress-bar" class="progress">
+                <div class="indeterminate" />
               </div>
             )}
           </div>
