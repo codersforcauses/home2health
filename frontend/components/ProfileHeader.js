@@ -9,17 +9,15 @@ export default props => (
     <div class="col m9">
       <div style={{ marginLeft: '1rem' }}>
         <div class="section">
-          <div class="row">
-            <h1 style={{ marginTop: 0, marginBottom: 0 }}>John Doe</h1>
+          <div class="row" style={{marginBottom: 0}}>
+            <h3 style={{ marginTop: 0, marginBottom: 0 }}>{props.info.name}</h3>
           </div>
           <div class="row">
-            <h6 style={{ marginTop: 0, marginBottom: 0 }}>
-              Professor, BSc Calcutta, MSc Kanpur, MTech PhD IIT Madras
-            </h6>
+            <p style={{ marginTop: 0, marginBottom: 0 }}>{props.info.title}
+            </p>
           </div>
           <div class="row" style={{ marginBottom: 0 }}>
-            <h6 style={{ marginTop: 0, marginBottom: 0 }}>
-              Professor at University of Western Australia
+            <h6 style={{ marginTop: 0, marginBottom: 0 }}>{props.info.profession} at {props.info.workplace}
             </h6>
           </div>
         </div>
