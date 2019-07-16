@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Layout from '../../components/Layout'
 import ProfileHeader from '../../components/ProfileHeader'
+import ProfileContent from '../../components/ProfileContent'
 
 class Index extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class Index extends Component {
       <Layout>
         <div class="container">
           <ProfileHeader info={this.state} />
+          <ProfileContent />
         </div>
       </Layout>
     )
