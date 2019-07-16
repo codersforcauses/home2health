@@ -4,24 +4,8 @@ import ProfileAbout from './ProfileAbout'
 class ProfileContent extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      toggleTab: {
-        toggleAbout: true,
-        togglePosts: false,
-        toggleComments: false
-      }
+    this.state = {}
     }
-
-    this.handleTabChange = this.handleTabChange.bind(this)
-  }
-
-  handleTabChange(tab) {
-    // this.setState({ toggleAbout: false, togglePosts: false, toggleComments: false })
-    let { toggleTab } = this.state;
-    Object.keys(toggleTab).forEach(key => toggleTab[key] = false);
-    toggleTab = {...toggleTab, [tab]: true}
-    this.setState({ toggleTab })
-  }
 
   render() {
     return (
@@ -30,21 +14,21 @@ class ProfileContent extends Component {
           <div class="col s12" style={{padding: 0}}>
             <ul class="tabs" style={{ borderTopLeftRadius: '1rem', borderTopRightRadius: '1rem' }}>
               <li class="tab col s4 grey lighten-1">
-                <a href="#about" onClick={(e) => this.handleTabChange('toggleAbout', e)}>Profile</a>
+                <a href="#about">Profile</a>
               </li>
               <li class="tab col s4 grey lighten-1">
-                <a href="#posts" onClick={(e) => this.handleTabChange('togglePosts', e)}>Posts</a>
+                <a href="#posts">Posts</a>
               </li>
               <li class="tab col s4 grey lighten-1">
-                <a href="#comments" onClick={(e) => this.handleTabChange('toggleComments', e)}>Comments</a>
+                <a href="#comments">Comments</a>
               </li>
             </ul>
-            <div id="about" class="blue">
+            <div id="about">
                 <ProfileAbout />
             </div>
-            <div id="posts" class="green">
+            <div id="posts">
             </div>
-            <div id="comments" class="red">
+            <div id="comments">
             </div>
           </div>
         </div>
