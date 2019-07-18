@@ -25,7 +25,6 @@ class Index extends Component {
               </h5>
             </div>
             <div class="row center">
-              {' '}
               <a
                 href="http://materializecss.com/getting-started.html"
                 class="btn-large waves-effect waves-light"
