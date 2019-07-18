@@ -25,7 +25,7 @@ export default props => (
         <div class="section">
           <div class="row" style={{ marginBottom: 0 }}>
             <h6 style={{ marginTop: 0, marginBottom: 0 }}>
-              Email WWW Twitter Facebook
+              Contact:
             </h6>
           </div>
         </div>

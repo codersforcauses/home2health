@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import ProfileAbout from './ProfileAbout'
+import ProfilePosts from './ProfilePosts'
 
 class ProfileContent extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class ProfileContent extends Component {
                 <ProfileAbout />
             </div>
             <div id="posts">
+              <ProfilePosts />
             </div>
             <div id="comments">
             </div>
