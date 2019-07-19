@@ -1,9 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Link from "next/link";
 import { Post } from "./post";
-import LongPost  from "../pages/LongPost";
-
-
 
 let PostSample = [
 	{
@@ -64,48 +61,46 @@ class Posts extends React.Component {
 	render() {
 		return (
 			<div>
-				<Router>
-					{/* POST PREVIEW LIST*/}
-					<div styles="margin:auto">
-						{PostSample.map(post => (
-							<Post
-								postid={post.postid}
-								key={post.postid}
-								title={post.title}
-								author={post.author}
-								date={post.date}
-								details={post.details}
-								categ={post.categ}
-							/>
-						))}
-					</div>
+				{/* POST PREVIEW LIST*/}
+				<div styles="margin:auto">
+					{PostSample.map(post => (
+						<Post
+							postid={post.postid}
+							key={post.postid}
+							title={post.title}
+							author={post.author}
+							date={post.date}
+							details={post.details}
+							categ={post.categ}
+						/>
+					))}
+				</div>
 
-					{/* PAGINATION */}
+				{/* PAGINATION */}
 
-					<ul className="pagination center-align">
-						<li
-							className={
-								this.state.CurrentCollection == 1 ? "disabled" : "waves-effect"
-							}
-						>
-							<a href="#!">
-								<i className="material-icons">chevron_left</i>
-							</a>
-						</li>
-						{this.createPagination()}
-						<li
-							className={
-								this.state.CurrentCollection == this.state.pages
-									? "disabled"
-									: "waves-effect"
-							}
-						>
-							<a href="#!">
-								<i className="material-icons">chevron_right</i>
-							</a>
-						</li>
-					</ul>
-				</Router>
+				<ul className="pagination center-align">
+					<li
+						className={
+							this.state.CurrentCollection == 1 ? "disabled" : "waves-effect"
+						}
+					>
+						<a href="#!">
+							<i className="material-icons">chevron_left</i>
+						</a>
+					</li>
+					{this.createPagination()}
+					<li
+						className={
+							this.state.CurrentCollection == this.state.pages
+								? "disabled"
+								: "waves-effect"
+						}
+					>
+						<a href="#!">
+							<i className="material-icons">chevron_right</i>
+						</a>
+					</li>
+				</ul>
 			</div>
 		);
 	}

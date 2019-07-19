@@ -1,10 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Link from "next/link";
 
 import "../css/materialize.min.css";
 import "./post.css";
-
-import { LongPost } from "../pages/LongPost";
 
 /*
     title: Indicates title of post
@@ -49,7 +47,9 @@ export const Post = ({
 					</div>
 					<div className="card-action">
 						<a href="#">Read more</a>
-						<Link to={`/posts/${postid}`}>Read More</Link>
+						<Link href={`/LongPost/${postid}`}>
+							<a>Read More</a>
+						</Link>
 					</div>
 				</div>
 			</div>
