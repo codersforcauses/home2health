@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 const PostItem = props => {
   return (
-    <div class="card" style={{boxShadow: '0 0 0 0'}}>
+    <div class="card grey lighten-5" style={{boxShadow: '0 0 0 0'}}>
       <div class="card-content">
         <div class="card-title">
           <a href="#">
@@ -32,9 +32,9 @@ class ProfilePosts extends Component {
   render() {
     return (
       <div class="container" style={{ width: '90%' }}>
-        {this.state.posts.map(post => (
+        {(this.state.posts.length) ? this.state.posts.map(post => (
           <PostItem title={post.title} body={post.body} />
-        ))}
+        )) : <h5 class="center-align" style={{marginTop: "5em", marginBottom: "5em"}}>It's so cold and lonely here...</h5>}
       </div>
     )
   }
