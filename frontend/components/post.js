@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import "../css/materialize.min.css";
+import "../public/stylesheets/materialize.min.css";
 import "./post.css";
 
 /*
@@ -15,6 +15,7 @@ import "./post.css";
 */
 
 export const Post = ({
+	//Default Values
 	postid = 0,
 	title = "Title Missing",
 	author = "Author Missing",

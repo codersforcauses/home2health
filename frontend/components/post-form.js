@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/materialize.min.css";
+import "../public/stylesheets/materialize.min.css";
 import "./post-form.css";
 
 const Form = () => {
@@ -7,18 +7,19 @@ const Form = () => {
 		<div class="card white darken-1 form">
 			<div class="row">
 				<form class="col s12" onSubmit={submitHandler}>
+					{/*Title*/}
 					<div class="row">
 						<div class="input-field col s6">
 							<input id="input_text" type="text" data-length="10" />
 							<label for="input_text">Title</label>
 						</div>
-
+						{/*Content*/}
 						<div class="input-field col s12">
 							<textarea id="textarea1" class="materialize-textarea" />
 							<label for="textarea1">Content</label>
 						</div>
 					</div>
-
+					{/*File Attachment*/}
 					<div class="file-field input-field">
 						<div class="btn">
 							<i class="material-icons left">attach_file</i>
@@ -33,11 +34,11 @@ const Form = () => {
 							/>
 						</div>
 					</div>
-
+					{/*Categories Input*/}
 					<div class="chips chips-autocomplete input-field">
 						<input class="input" />
 					</div>
-
+					{/*Functional buttons*/}
 					<div class="form-btns">
 						<button
 							class="btn waves-effect waves-light form-btn"
