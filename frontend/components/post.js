@@ -47,7 +47,7 @@ export const Post = ({
 					</div>
 					<div className="card-action">
 						<a href="#">Read more</a>
-						<Link href={`/LongPost/${postid}`}>
+						<Link href={`/post?postid=${postid}`}>
 							<a>Read More</a>
 						</Link>
 					</div>
