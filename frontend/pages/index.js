@@ -5,7 +5,7 @@ import Contact from '../components/Contact'
 class Index extends Component {
   render() {
     return (
-      <Layout>
+      <>
         <div class="section no-pad-bot" id="index-banner">
           <div class="container">
             <br />
@@ -84,7 +84,7 @@ class Index extends Component {
           </div>
         </div>
         <Contact />
-      </Layout>
+      </>
     )
   }
 }
