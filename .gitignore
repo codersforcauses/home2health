@@ -64,3 +64,6 @@ typings/
 .next
 
 node_modules
+
+# Pretty colours
+.vscode
