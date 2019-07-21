@@ -5,7 +5,7 @@ class Header extends Component {
   componentDidMount() {
     const M = require("materialize-css");
     M.AutoInit();
-    const elems = document.querySelector('.dropdown-trigger')
+    const elems = document.querySelectorAll('.dropdown-trigger')
     M.Dropdown.init(elems, {coverTrigger: false});
   }
 
