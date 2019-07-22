@@ -67,3 +67,4 @@ node_modules
 
 # Pretty colours
 .vscode
+package-lock\.json
