@@ -18,13 +18,13 @@ nav {
   box-shadow: none;
   border-bottom: 1px solid #d6d8da !important;
 }
+nav .brand-logo {
+  font-size: 1.5rem;
+}
 nav .brand-logo,
 nav ul a,
 nav a.sidenav-trigger {
   color: #0f6489;
-}
-nav ul a {
-  font-weight: 700;
 }
 body {
   font-family: Lato, sans-serif;
