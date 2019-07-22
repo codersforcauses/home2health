@@ -5,6 +5,13 @@ import '../public/stylesheets/style.css'
 import Footer from './Footer'
 
 class Layout extends Component {
+  componentDidMount() {
+    const M = require("materialize-css");
+    M.AutoInit();
+    const elems = document.querySelectorAll('.dropdown-trigger')
+    M.Dropdown.init(elems, {coverTrigger: false});
+  }
+  
   render() {
     return (
       <Fragment>

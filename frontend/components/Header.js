@@ -2,13 +2,6 @@ import React, { Component } from "react";
 import Link from "next/link";
 
 class Header extends Component {
-  componentDidMount() {
-    const M = require("materialize-css");
-    M.AutoInit();
-    const elems = document.querySelectorAll('.dropdown-trigger')
-    M.Dropdown.init(elems, {coverTrigger: false});
-  }
-
   render() {
     return (
       <nav class="lighten-1 white" id="header">
