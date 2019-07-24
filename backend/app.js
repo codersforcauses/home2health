@@ -1,27 +1,20 @@
-const createError = require('http-errors')
-const express = require('express')
-const path = require('path')
-const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-const sendMail = require('./mail')
 const cors = require('cors')
+const path = require('path')
+const logger = require('morgan')
+const express = require('express')
 const mongoose = require('mongoose')
+const sendMail = require('./mail')
+const createError = require('http-errors')
+const cookieParser = require('cookie-parser')
+
 require('dotenv').config()
+require('./db')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const emailRouter = require('./routes/email')
 
 const app = express()
-
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
-
-const db = mongoose.connection
-
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', () => {
-  console.log(`connected to database at ${process.env.MONGO_URI}`)
-})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
