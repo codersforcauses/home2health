@@ -26,7 +26,7 @@ const gracefulShutdown = (msg, callback) => {
 
 process.on('SIGUSR2', () => {
   gracefulShutdown('Nodemon Shutdown', () => {
-    process.kill(process.pid, 'SIGUSR2')
+    process.exit(0)
   })
 })
 
