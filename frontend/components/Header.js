@@ -7,7 +7,7 @@ class Header extends Component {
       <nav class="lighten-1 white" id="header">
         <div class="nav-wrapper container">
           <Link href="/">
-            <a id="logo-container" href="/" class="brand-logo">
+            <a id="logo-container" class="brand-logo">
               Home2Health
             </a>
           </Link>
@@ -58,15 +58,16 @@ class Header extends Component {
               </a>
               <ul id="memberDropdown" class="dropdown-content">
                 <li>
-                  <a href=".">About membership</a>
+                  <a href=".">Discussion board</a>
                 </li>
                 <li class="divider" />
+
                 <li>
                   <a href=".">Become a member</a>
                 </li>
                 <li class="divider" />
                 <li>
-                  <a href=".">Discussion board</a>
+                  <a href=".">About membership</a>
                 </li>
               </ul>
             </li>
@@ -101,40 +102,31 @@ class Header extends Component {
           <ul id="nav-mobile" class="sidenav">
             <li>
               <a
-                class="dropdown-trigger"
+                class="dropdown-trigger dropdownMobile"
                 href="#"
                 data-target="happeningDropdownMobile"
               >
                 What's happening in Australia?
               </a>
-              <ul
-                id="happeningDropdownMobile"
-                class="dropdown-content dropdownMobile"
-              >
+              <ul id="happeningDropdownMobile" class="dropdown-content">
                 <li>
                   <a href=".">Housing first programs</a>
                 </li>
-                <li class="divider" />
                 <li>
                   <a href=".">Hospital programs</a>
                 </li>
-                <li class="divider" />
                 <li>
                   <a href=".">GP services</a>
                 </li>
-                <li class="divider" />
                 <li>
                   <a href=".">Dual diagnosis services</a>
                 </li>
-                <li class="divider" />
                 <li>
                   <a href=".">Peer worker programs</a>
                 </li>
-                <li class="divider" />
                 <li>
                   <a href=".">Outreach</a>
                 </li>
-                <li class="divider" />
                 <li>
                   <a href=".">Medical recovery centre</a>
                 </li>
@@ -142,7 +134,7 @@ class Header extends Component {
             </li>
             <li>
               <a
-                class="dropdown-trigger"
+                class="dropdown-trigger dropdownMobile"
                 href="#"
                 data-target="memberDropdownMobile"
               >
@@ -150,21 +142,19 @@ class Header extends Component {
               </a>
               <ul id="memberDropdownMobile" class="dropdown-content">
                 <li>
-                  <a href=".">About membership</a>
+                  <a href=".">Discussion board</a>
                 </li>
-                <li class="divider" />
                 <li>
                   <a href=".">Become a member</a>
                 </li>
-                <li class="divider" />
                 <li>
-                  <a href=".">Discussion board</a>
+                  <a href=".">About membership</a>
                 </li>
               </ul>
             </li>
             <li>
               <a
-                class="dropdown-trigger"
+                class="dropdown-trigger dropdownMobile"
                 href="#"
                 data-target="blogDropdownMobile"
               >
@@ -172,20 +162,21 @@ class Header extends Component {
               </a>
               <ul id="blogDropdownMobile" class="dropdown-content">
                 <li>
-                  <a href="/post">Posts</a>
+                  <a href="/posts">Posts</a>
                 </li>
-                <li class="divider" />
                 <li>
-                  <a href="/post/form">Create Form</a>
+                  <a href="/posts/form">Create Form</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#">News</a>
+              <Link href="#">
+                <a class="navitem">News</a>
+              </Link>
             </li>
             <li>
               <Link href="#">
-                <a>Login</a>
+                <a class="navitem">Login</a>
               </Link>
             </li>
           </ul>

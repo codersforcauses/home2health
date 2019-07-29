@@ -24,8 +24,13 @@ nav .brand-logo {
 }
 nav .brand-logo,
 nav ul a,
-nav a.sidenav-trigger {
+nav a.sidenav-trigger,
+nav a.dropdown-trigger,
+nav a.navitem {
   color: #0f6489;
+}
+.sidenav {
+  background-color: #c1ffe3;
 }
 body {
   font-family: Lato, sans-serif;

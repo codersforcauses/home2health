@@ -13,9 +13,13 @@ class Layout extends Component {
     // only constrain width to that of activator only for 'What's Happening in Australia?' dropdown
     const elemHappening = document.querySelector('.theHappening')
     M.Dropdown.init(elemHappening, { coverTrigger: false })
-    const elemDropdownMobile = document.querySelector(
-      '.happeningDropdownMobile'
-    )
+
+    /* Mobile */
+    const elemDropdownMobile = document.querySelectorAll('.dropdownMobile')
+    M.Dropdown.init(elemDropdownMobile, {
+      constrainWidth: true,
+      coverTrigger: false
+    })
   }
 
   render() {
