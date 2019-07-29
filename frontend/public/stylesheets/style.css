@@ -20,6 +20,7 @@ nav {
 }
 nav .brand-logo {
   font-size: 1.5rem;
+  font-weight: 600;
 }
 nav .brand-logo,
 nav ul a,

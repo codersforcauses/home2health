@@ -6,12 +6,18 @@ import Footer from './Footer'
 
 class Layout extends Component {
   componentDidMount() {
-    const M = require("materialize-css");
-    M.AutoInit();
+    const M = require('materialize-css')
+    M.AutoInit()
     const elems = document.querySelectorAll('.dropdown-trigger')
-    M.Dropdown.init(elems, {coverTrigger: false});
+    M.Dropdown.init(elems, { constrainWidth: false, coverTrigger: false })
+    // only constrain width to that of activator only for 'What's Happening in Australia?' dropdown
+    const elemHappening = document.querySelector('.theHappening')
+    M.Dropdown.init(elemHappening, { coverTrigger: false })
+    const elemDropdownMobile = document.querySelector(
+      '.happeningDropdownMobile'
+    )
   }
-  
+
   render() {
     return (
       <Fragment>
