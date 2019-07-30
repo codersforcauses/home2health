@@ -1,20 +1,20 @@
-const createError = require('http-errors')
-const express = require('express')
-const path = require('path')
-const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-const sendMail = require('./mail')
 const cors = require('cors')
+const path = require('path')
+const logger = require('morgan')
+const express = require('express')
+const mongoose = require('mongoose')
+const sendMail = require('./mail')
+const createError = require('http-errors')
+const cookieParser = require('cookie-parser')
+
+require('dotenv').config()
+require('./db')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const emailRouter = require('./routes/email')
 
 const app = express()
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'pug')
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -40,7 +40,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500)
-  res.render('error')
+  res.json(err)
 })
 
 module.exports = app

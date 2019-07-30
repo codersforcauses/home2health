@@ -50,7 +50,7 @@ export default class Login extends Component {
           <FormControl
             autoFocus
             type = "tel"
-            value = this {this.state.confirmationCode}
+            value = {this.state.confirmationCode}
             onChange = {this.handleChange}
             />
             <HelpBlock> Please check your email for the verification code </HelpBlock>

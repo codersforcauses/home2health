@@ -63,8 +63,7 @@ typings/
 # next.js build output
 .next
 
-node_modules
-
 # Pretty colours
 .vscode
-package-lock\.json
+
+package-lock.json
