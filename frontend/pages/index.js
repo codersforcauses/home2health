@@ -1,90 +1,82 @@
-import React, { Component } from 'react'
-import Layout from '../components/Layout'
+import React, { Component, Fragment } from 'react'
+import Link from 'next/link'
 import Contact from '../components/Contact'
 
 class Index extends Component {
   render() {
     return (
-      <>
-        <div class="section no-pad-bot" id="index-banner">
-          <div class="container">
-            <br />
-            <br />
-            <div class="row valign-wrapper">
-              <div class="col s12 m12">
-                <h2 class="header center">Let's talk about homelessness.</h2>
+      <Fragment>
+        <div className="section" id="index-banner">
+          <div className="container">
+            <div className="row">
+              <div className="col s12 m8">
+                <h3>Let's talk about homelessness.</h3>
               </div>
             </div>
-            <div class="row center">
-              <h5 class="header col s12 light">
+            <div className="row">
+              <h5 className="col s12 m8" style={{ fontSize: '1.25rem' }}>
                 There has been a growing number of homeless health programs and
-                research in Australia recently.
-                <br />
-                This is a space to share ideas and learn what else is happening
-                in homelessness and health in Australia.
+                research in Australia recently. This is a space to share ideas
+                and learn what else is happening in homelessness and health in
+                Australia.
               </h5>
             </div>
-            <div class="row center">
-              <a
-                href="http://materializecss.com/getting-started.html"
-                class="btn-large waves-effect waves-light"
-              >
-                Log in
-              </a>
-              <a
-                href="http://materializecss.com/getting-started.html"
-                class="btn-large waves-effect waves-light"
-              >
-                Sign up
-              </a>
+            <div className="row" style={{ marginBottom: '1rem' }}>
+              <div className="col s12">
+                <Link href="#">
+                  <a
+                    className="btn-flat waves-effect waves-light"
+                    style={{ marginRight: '1rem' }}
+                  >
+                    Log in
+                  </a>
+                </Link>
+                <Link href="#">
+                  <a className="btn waves-effect waves-light">Sign up</a>
+                </Link>
+              </div>
             </div>
-            <br />
-            <br />
           </div>
         </div>
-        <div class="section grey lighten-1">
-          <div class="container">
-            <br />
-            <br />
-            <h2 class="header center">Our partners</h2>
+        <div className="section grey lighten-1">
+          <div className="container">
+            <h4 className="center">Our partners</h4>
           </div>
-          <div class="container">
-            <div class="row">
-              <div class="col s12 m3 l3 partner-div">
+          <div className="container">
+            <div className="row valign-wrapper">
+              <div className="col s6 m3 l3 partner-div ">
                 <img
                   alt="Royal Perth Hospital logo"
-                  class="partner-img"
+                  className="partner-img"
                   src="/static/partner-rph.jpeg"
                 />
               </div>
-              <div class="col s12 m3 l3 partner-div">
+              <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="Coders for Causes logo"
-                  class="partner-img"
+                  className="partner-img"
                   src="/static/partner-cfc.png"
                 />
               </div>
-              <div class="col s12 m3 l3 partner-div">
+              <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="Homeless Healthcare logo"
-                  class="partner-img"
+                  className="partner-img"
                   src="/static/partner-hh.png"
                 />
               </div>
-              <div class="col s12 m3 l3 partner-div">
+              <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="UWA logo"
-                  class="partner-img"
+                  className="partner-img"
                   src="/static/partner-uwa.jpeg"
                 />
               </div>
             </div>
-            <br />
-            <br />
           </div>
         </div>
         <Contact />
-      </>
+      </Fragment>
     )
   }
 }
