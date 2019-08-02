@@ -1,9 +1,9 @@
-/*jshint esversion: 6 */
+{/*Need to configure code in accordance with ESLint, particularly setting up the different buttons for the logins....*/}
 
 import React, { Component } from 'react'
-import './Registration.css'
+import Link from 'next/link';
 
-export default class Login extends Component {
+export default class Login extends React.Component {
   constructor(props) {
     super(props)
 
@@ -24,43 +24,40 @@ export default class Login extends Component {
     return this.state.confirmationCode.length > 0; 
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    })
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = async event => {
+  handleSubmit(event) {
     event.preventDefault();
     this.setState({ isLoading: true });
     this.setState({ newUser: "test" });
-    this.setState({ isLoading: false});
+    this.setState({ isLoading: false });
   }
 
-  handleConfirmationSubmit = async event => {
+  handleConfirmationSubmit(event) {
     event.preventDefault();
-    this.setState({ isLoading: true});
+    this.setState({ isLoading: true });
   }
 
   renderConfirmationForm() {
     return (
-      <form onSubmit = {this.handleConfirmationSubmit}>
+      <form onSubmit = { this.handleConfirmationSubmit }>
         <FormGroup controlID = "confirmationCode" bcSize = "large">
           <ControlLabel>Confirmation Code</ControlLabel>
           <FormControl
-            autoFocus
             type = "tel"
-            value = {this.state.confirmationCode}
-            onChange = {this.handleChange}
+            value = { this.state.confirmationCode }
+            onChange = { this.handleChange }
             />
             <HelpBlock> Please check your email for the verification code </HelpBlock>
         </FormGroup>
         <LoaderButton
           block
           bsSize = "large"
-          disabled = {!this.validateConfirmationForm()}
+          disabled = { !this.validateConfirmationForm() }
           type = "submit"
-          isLoading = {this.state.isLoading}
+          isLoading = { this.state.isLoading }
           text  = "Verify"
           loadingText = "Verifying....."
         />
@@ -70,30 +67,30 @@ export default class Login extends Component {
 
   renderForm() {
     return (
-      <form onSubmit = {this.handleSubmit}>
+      <form onSubmit = { this.handleSubmit} >
         <FormGroup controlID = "email" bsSize = "large">
           <ControlLabel>Email</ControlLabel>
           <FormControl
           autoFocus
           type = "email"
-          value={this.state.email}
-          onChange={this.handleChange}
+          value={ this.state.email }
+          onChange={ this.handleChange }
           />
         </FormGroup>
         <FormGroup controlID = "password" bsSize = "large">
           <ControlLabel>Password</ControlLabel>
           <FormControl
-          value={this.state.password}
-          onChange={this.handleChange}
+          value={ this.state.password }
+          onChange={ this.handleChange }
           type = "password"
           />
           </FormGroup>
           <LoaderButton
             block
             bsSize = "large"
-            disabled = {!this.validateForm()}
+            disabled = { !this.validateForm() }
             type = "submit"
-            isLoading = {this.state.isLoading}
+            isLoading = { this.state.isLoading }
             text = "Registration"
             loadingText = "Registering....."
             />
@@ -107,6 +104,11 @@ export default class Login extends Component {
         {this.state.newUser === null
         ? this.renderForm()
         : this.renderConfirmationForm()}
+        <Link href="#"> 
+            <button className=" col s12 offset-m2 m8 btn waves-effect waves-light" disabled={ !this.validateForm }>
+              Login
+            </button>
+          </Link>
       </div>
     );
   }
