@@ -12,6 +12,9 @@
 .icon-block .material-icons {
   font-size: inherit;
 }
+h5 {
+  font-size: 1.25rem;
+}
 nav {
   box-shadow: none;
   border-bottom: 1px solid #d6d8da !important;
@@ -35,6 +38,9 @@ body {
 }
 .grey.lighten-1 {
   background-color: rgb(247, 246, 244) !important;
+}
+.contactrow {
+  margin: 0 0;
 }
 footer.page-footer {
   background-color: #0f6489;

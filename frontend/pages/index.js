@@ -8,13 +8,15 @@ class Index extends Component {
       <Fragment>
         <div className="section" id="index-banner">
           <div className="container">
-            <div className="row">
+            <div className="row" style={{ marginBottom: 0 }}>
               <div className="col s12 m8">
-                <h3>Let's talk about homelessness.</h3>
+                <h3 style={{ marginBottom: 0 }}>
+                  Let's talk about homelessness.
+                </h3>
               </div>
             </div>
-            <div className="row">
-              <h5 className="col s12 m8" style={{ fontSize: '1.25rem' }}>
+            <div className="row" style={{ marginTop: '20px' }}>
+              <h5 className="col s12 m8" style={{ margin: '0 0' }}>
                 There has been a growing number of homeless health programs and
                 research in Australia recently. This is a space to share ideas
                 and learn what else is happening in homelessness and health in
@@ -43,8 +45,11 @@ class Index extends Component {
             <h4 className="center">Our partners</h4>
           </div>
           <div className="container">
-            <div className="row valign-wrapper">
-              <div className="col s6 m3 l3 partner-div ">
+            <div className="row">
+              <div
+                className="col s6 m3 l3"
+                style={{ backgroundColor: 'white', height: 'auto' }}
+              >
                 <img
                   alt="Royal Perth Hospital logo"
                   className="partner-img"
