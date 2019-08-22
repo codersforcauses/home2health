@@ -5,7 +5,6 @@ const router = express.Router()
 /* GET users listing. */
 router.post('/', (req, res) => {
   const { name, organisation, email, message } = req.body
-  console.log(name, organisation, email, message)
   sendMail(name, organisation, email, message, function(err, data) {
     if (err) {
       res.json({
