@@ -40,7 +40,7 @@ export default class Login extends React.Component {
           </div>
           {/* Placeholder "#" used until backend is created..... */}
           <Link href="#"> 
-            <button className=" col s12 offset-m2 m8 btn waves-effect waves-light" disabled={!this.validateForm}>
+            <button className=" col s2 offset-m2 btn waves-effect waves-light" disabled={!this.validateForm}>
               Login
             </button>
           </Link>

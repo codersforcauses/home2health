@@ -1,4 +1,4 @@
-{/*Need to configure code in accordance with ESLint, particularly setting up the different buttons for the logins....*/}
+{/*Need to combine with Auth0 functionality for email and password confirmation*/}
 
 import React, { Component } from 'react'
 import Link from 'next/link';
@@ -13,11 +13,13 @@ export default class Login extends React.Component {
       confirmPassword: "",
       confirmationCode: "",
       newUser: null
-    };
-  }
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  };
 
   validateForm() {
-    return (this.state.email.length > 0 && this.state.password.length > 0 && this,state,password == this.state.confirmPassword); // ensures that the correct input is in the sectino, modify to add autho0 verification
+    return (this.state.email.length > 0 && this.state.password.length > 0 && this.state.password == this.state.confirmPassword); // ensures that the correct input is in the section, modify to add autho0 verification
   }
 
   validateConfirmationForm() {
@@ -25,7 +27,7 @@ export default class Login extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value })
+    this.setState({[ event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
@@ -43,58 +45,48 @@ export default class Login extends React.Component {
   renderConfirmationForm() {
     return (
       <form onSubmit = { this.handleConfirmationSubmit }>
-        <FormGroup controlID = "confirmationCode" bcSize = "large">
+        <div controlID = "confirmationCode">
           <ControlLabel>Confirmation Code</ControlLabel>
-          <FormControl
-            type = "tel"
+        </div>
+            {/* type = "tel"
             value = { this.state.confirmationCode }
             onChange = { this.handleChange }
-            />
-            <HelpBlock> Please check your email for the verification code </HelpBlock>
-        </FormGroup>
-        <LoaderButton
-          block
-          bsSize = "large"
-          disabled = { !this.validateConfirmationForm() }
-          type = "submit"
-          isLoading = { this.state.isLoading }
-          text  = "Verify"
-          loadingText = "Verifying....."
-        />
+            text = "Please check your email for the verification code"
+            */}
+            <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+            </button>
       </form>
     );
   }
 
   renderForm() {
     return (
-      <form onSubmit = { this.handleSubmit} >
-        <FormGroup controlID = "email" bsSize = "large">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
-          autoFocus
-          type = "email"
-          value={ this.state.email }
-          onChange={ this.handleChange }
-          />
-        </FormGroup>
-        <FormGroup controlID = "password" bsSize = "large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
-          value={ this.state.password }
-          onChange={ this.handleChange }
-          type = "password"
-          />
-          </FormGroup>
-          <LoaderButton
-            block
-            bsSize = "large"
+      <div className="container">
+        <form className="row" onSubmit={this.handleSubmit} style={{'marginTop': '7rem'}}>
+          <div className="col s12 offset-m2 m8 input-field">
+            <input name="email" type="email" className="validate" value={this.state.email} onChange={this.handleChange} />
+            <label htmlFor="email"> Email </label>
+        </div>
+        <div className="col s12 offset-m2 m8 input-field">
+            <input name="password" type="password" className="validate" value={this.state.password} onChange={this.handleChange} />
+            <label htmlFor="password"> Password </label>
+        </div>
+        <Link href="#"> 
+            <button className=" col s2 offset-m2 btn waves-effect waves-light" disabled={ !this.validateForm }>
+              Register
+            </button>
+        </Link>
+        {/* <button>
             disabled = { !this.validateForm() }
             type = "submit"
             isLoading = { this.state.isLoading }
             text = "Registration"
             loadingText = "Registering....."
-            />
-            </form>
+          </button>
+        */}
+          </form>
+        </div>
     );
   }
 
@@ -104,11 +96,6 @@ export default class Login extends React.Component {
         {this.state.newUser === null
         ? this.renderForm()
         : this.renderConfirmationForm()}
-        <Link href="#"> 
-            <button className=" col s12 offset-m2 m8 btn waves-effect waves-light" disabled={ !this.validateForm }>
-              Login
-            </button>
-          </Link>
       </div>
     );
   }
