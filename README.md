@@ -1,4 +1,4 @@
-# home2health
+# Home2Health
 
 > In 2012, the ABS estimated that there were an estimated 9,595 homeless people - living in a temporary or improvised dwelling, sleeping out, or in tents - in Western Australia, with the national figure at 116, 000 (ABS 2016).  
 >
