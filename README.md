@@ -41,13 +41,8 @@ $ yarn dev # @ /backend
 
 ## The Team
 
-* [noobling](https://github.com/noobling) - Tech Lead | Developer
-  * Mentoring
+* [noobling](https://github.com/noobling) - Tech Lead | Developer | Mentor
 * [innocentmm](https://github.com/innocentmm) - Project Manager | Developer
-  * Login and Registration page
 * [JKKim98](https://github.com/JKKim98) - Project Manager | Developer
-  * Profile page and list page
 * [frinzekt](https://github.com/frinzekt) - Developer
-  * Forum posts
 * [shazzatherazza](https://github.com/shazzatherazza) - Developer
-  * Landing page and Contact Us form
