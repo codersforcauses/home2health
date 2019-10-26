@@ -4,6 +4,24 @@
 >
 > This project is concerned with aiding two researchers, Shannen Vallesi - a Research Officer with the School of Population and Health at UWA - Associate Professor and Senior Research Fellow, Lisa Wood -  and their colleagues in creating a multi-purpose website to not only host their research, but to create a forum for discussion, and collaboration, for professionals and individuals, to tackle the growing issues surrounding homelessness and health in Australia, and beyond. There are over 80 different individuals and organisations who are interested in the outcome of this project.  
 
+## Build Setup
+* Make sure you have Node v12 or higher and yarn installed.
+* Get the `.env` files from a member of the team and place it in the root of `/backend` and `/frontend` appropriately.
+
+``` bash
+# install dependencies
+$ yarn install # @ /frontend
+
+# serve frontend with hot reload at localhost:3000
+$ yarn dev # @ /frontend
+
+# build frontend for production and launch server
+$ yarn build && yarn start # @ /frontend
+
+# start backend server
+$ yarn dev # @ /backend
+```
+
 ## Tech Stack
 
 * React
