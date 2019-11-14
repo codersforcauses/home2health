@@ -91,13 +91,18 @@ class Header extends Component {
               </ul>
             </li>
             <li>
-              <a href="#">News</a>
+              <a href="">News</a>
             </li>
             <li>
-              <Link href="#">
+              <Link href="/login">
                 <a>Login</a>
               </Link>
             </li>
+            <li>
+            <Link href="/registration">
+                <a>Registration</a>
+          </Link>
+          </li>
           </ul>
           <ul id="nav-mobile" className="sidenav">
             <li>
@@ -175,8 +180,13 @@ class Header extends Component {
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link href="login">
                 <a className="navitem">Login</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="registration">
+                <a className="navitem">Registration</a>
               </Link>
             </li>
           </ul>
