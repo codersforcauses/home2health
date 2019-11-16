@@ -7,7 +7,8 @@ export default class Login extends React.Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      count:0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -15,12 +16,12 @@ export default class Login extends React.Component {
   }
 
   validateForm() {
-    return (this.state.email.length > 0 && this.state.password.length > 0) // ensures that the correct input is in the sectino, modify to add autho0 verification
+    return (this.state.email.length > 0 && this.state.password.length > 0 && this.state.count > 0) // ensures that the correct input is in the section, modify to add autho0 verification
   }
 
   handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
+    this.setState({ [event.target.name]: event.target.value}, {count: this.state.count + 1});
+  } // ensures that the validateForm function has passed at least once
 
   handleSubmit(event) {
     event.preventDefault();

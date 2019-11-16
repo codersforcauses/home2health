@@ -180,12 +180,12 @@ class Header extends Component {
               </Link>
             </li>
             <li>
-              <Link href="login">
+              <Link href="/login">
                 <a className="navitem">Login</a>
               </Link>
             </li>
             <li>
-              <Link href="registration">
+              <Link href="/registration">
                 <a className="navitem">Registration</a>
               </Link>
             </li>

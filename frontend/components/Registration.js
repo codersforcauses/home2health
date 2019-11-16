@@ -62,11 +62,19 @@ export default class Registration extends React.Component {
         <form className="row" onSubmit={this.handleSubmit} style={{'marginTop': '7rem'}}>
           <div className="col s12 offset-m2 m8 input-field">
             <input name="email" type="email" className="validate" value={this.state.email} onChange={this.handleChange} />
-            <label htmlFor="email"> Email </label>
+            <label htmlFor="email"> Email (Required) </label>
+        </div>
+        <div className="col s12 offset-m2 m8 input-field">
+            <input name="email" type="email" className="validate" value={this.state.email} onChange={this.handleChange} />
+            <label htmlFor="email"> Confirm Email (Required) </label>
         </div>
         <div className="col s12 offset-m2 m8 input-field">
             <input name="password" type="password" className="validate" value={this.state.password} onChange={this.handleChange} />
-            <label htmlFor="password"> Password </label>
+            <label htmlFor="password"> Password (Required) </label>
+        </div>
+        <div className="col s12 offset-m2 m8 input-field">
+            <input name="password" type="password" className="validate" value={this.state.password} onChange={this.handleChange} />
+            <label htmlFor="password"> Confirm Password (Required) </label>
         </div>
         <Link href="#"> 
             <button className=" col s2 offset-m2 btn waves-effect waves-light" disabled={ !this.validateForm }>
