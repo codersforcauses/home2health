@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import ProfileAbout from '../ProfileAbout'
-import ProfilePosts from '../ProfilePosts'
-import ProfileComments from '../ProfileComments'
 
 const ProfileContent = props => {
   const { profile } = props
