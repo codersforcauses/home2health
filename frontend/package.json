@@ -4,7 +4,7 @@
   "description": "The frontend of the Home2Health website",
   "main": "index.js",
   "repository": "https://github.com/codersforcauses/home2health",
-  "author": "CodersForCauses",
+  "author": "codersforcauses",
   "license": "MIT",
   "private": true,
   "scripts": {
