@@ -53,28 +53,28 @@ class Index extends Component {
                 <img
                   alt="Royal Perth Hospital logo"
                   className="partner-img"
-                  src="/static/partner-rph.jpeg"
+                  src="/logos/partner-rph.jpeg"
                 />
               </div>
               <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="Coders for Causes logo"
                   className="partner-img"
-                  src="/static/partner-cfc.png"
+                  src="/logos/partner-cfc.png"
                 />
               </div>
               <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="Homeless Healthcare logo"
                   className="partner-img"
-                  src="/static/partner-hh.png"
+                  src="/logos/partner-hh.png"
                 />
               </div>
               <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="UWA logo"
                   className="partner-img"
-                  src="/static/partner-uwa.jpeg"
+                  src="/logos/partner-uwa.jpeg"
                 />
               </div>
             </div>
