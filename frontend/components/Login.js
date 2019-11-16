@@ -15,7 +15,7 @@ export default class Login extends React.Component {
   }
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0 // ensures that the correct input is in the sectino, modify to add autho0 verification
+    return (this.state.email.length > 0 && this.state.password.length > 0) // ensures that the correct input is in the sectino, modify to add autho0 verification
   }
 
   handleChange(event) {

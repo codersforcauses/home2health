@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import Link from 'next/link';
 
-export default class Login extends React.Component {
+export default class Registration extends React.Component {
   constructor(props) {
     super(props)
 
@@ -48,11 +48,7 @@ export default class Login extends React.Component {
         <div controlID = "confirmationCode">
           <ControlLabel>Confirmation Code</ControlLabel>
         </div>
-            {/* type = "tel"
-            value = { this.state.confirmationCode }
-            onChange = { this.handleChange }
-            text = "Please check your email for the verification code"
-            */}
+            {/**add auth0 password verification*/}
             <button className="btn waves-effect waves-light" type="submit" name="action">Submit
             <i class="material-icons right">send</i>
             </button>
@@ -77,14 +73,7 @@ export default class Login extends React.Component {
               Register
             </button>
         </Link>
-        {/* <button>
-            disabled = { !this.validateForm() }
-            type = "submit"
-            isLoading = { this.state.isLoading }
-            text = "Registration"
-            loadingText = "Registering....."
-          </button>
-        */}
+        {/** add 'registering loading button */}
           </form>
         </div>
     );
