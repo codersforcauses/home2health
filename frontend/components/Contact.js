@@ -56,7 +56,7 @@ const Contact = () => {
                       required=""
                       onChange={e => setName(e.target.value)}
                     />
-                    <label for="contact_name">Name</label>
+                    <label htmlFor="contact_name">Name</label>
                     <span
                       class="helper-text"
                       data-error="Please enter a valid name"
@@ -72,7 +72,7 @@ const Contact = () => {
                       value={organistation}
                       onChange={e => setOrganistation(e.target.value)}
                     />
-                    <label for="contact_organisation">Organisation</label>
+                    <label htmlFor="contact_organisation">Organisation</label>
                     <span class="helper-text">Optional</span>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ const Contact = () => {
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                     />
-                    <label for="contact_email">Email</label>
+                    <label htmlFor="contact_email">Email</label>
                     <span
                       class="helper-text"
                       data-error="Please enter a valid email"
@@ -101,7 +101,7 @@ const Contact = () => {
                       value={message}
                       onChange={e => setMessage(e.target.value)}
                     />
-                    <label for="contact_message">Message</label>
+                    <label htmlFor="contact_message">Message</label>
                   </div>
                 </div>
               </div>
