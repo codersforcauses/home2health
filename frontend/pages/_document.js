@@ -19,7 +19,7 @@ class MyDocument extends Document {
           />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" />
           <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons|Lato:400,700&display=swap"
             rel="stylesheet"
           />
         </Head>
