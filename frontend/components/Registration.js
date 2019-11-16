@@ -65,7 +65,7 @@ export default class Registration extends React.Component {
             <label htmlFor="email"> Email (Required) </label>
         </div>
         <div className="col s12 offset-m2 m8 input-field">
-            <input name="email" type="email" className="validate" value={this.state.email} onChange={this.handleChange} />
+            <input name="confirmEmail" type="email" className="validate" value={this.state.confirmEmail} onChange={this.handleChange} />
             <label htmlFor="email"> Confirm Email (Required) </label>
         </div>
         <div className="col s12 offset-m2 m8 input-field">
@@ -73,7 +73,7 @@ export default class Registration extends React.Component {
             <label htmlFor="password"> Password (Required) </label>
         </div>
         <div className="col s12 offset-m2 m8 input-field">
-            <input name="password" type="password" className="validate" value={this.state.password} onChange={this.handleChange} />
+            <input name="confirmPassword" type="password" className="validate" value={this.state.confirmPassword} onChange={this.handleChange} />
             <label htmlFor="password"> Confirm Password (Required) </label>
         </div>
         <Link href="#"> 
