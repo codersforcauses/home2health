@@ -1,0 +1,21 @@
+{
+    "id": "001",
+    "first_name": "John",
+    "middle_name": "Von",
+    "last_name": "Doe",
+    "title": "Professor, BSc Example, MSc Example, MTech PhD IIT Example",
+    "profession": "Lecturer",
+    "workplace": "UWA",
+    "img": "",
+    "contact": {
+        "address": "Perth, Western Australia",
+        "phone": "123456789",
+        "email": "example@email.com"
+    },
+    "profiles": {
+        "website": "https://www.johndoe.com",
+        "facebook": "https://www.facebook.com",
+        "twitter": "https://www.twitter.com"
+    },
+    "about": "I'm a man of little words"
+}
