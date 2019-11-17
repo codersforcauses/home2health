@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
