@@ -67,3 +67,7 @@ typings/
 .vscode
 
 package-lock.json
+
+# auth0 script
+
+.env
