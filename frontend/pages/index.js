@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 import Contact from '../components/Contact'
+import Slider from '../components/Slider'
 
 class Index extends Component {
   render() {
@@ -37,6 +38,7 @@ class Index extends Component {
                   <a className="btn waves-effect waves-light">Sign up</a>
                 </Link>
               </div>
+                <Slider />
             </div>
           </div>
         </div>
