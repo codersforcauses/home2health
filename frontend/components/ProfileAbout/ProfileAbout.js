@@ -5,15 +5,33 @@ const ProfileAbout = props => {
   const { about } = profile
 
   return (
-    <div class="container" style={{ width: '90%' }}>
-      <div class="section">
-        <h4 style={{ margin: '1rem 0 0 0' }}>About Me</h4>
-        <div class="container" style={{ width: '90%' }}>
-          <p>{about}</p>
+    <>
+      {style}
+      <div className="grey lighten-1 profileContent">
+        <div className="col s12" style={{ padding: 0 }}>
+          <h4 style={{ margin: '0' }}>About Me</h4>
+          <div>
+            <p>{about}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
+
+const style = (
+  <style jsx>{`
+    .profileContent {
+      padding: 2rem;
+      border-radius: 0.3rem;
+    }
+    h1 {
+      margin: 0;
+    }
+    p {
+      margin: 0.5rem;
+    }
+  `}</style>
+)
 
 export default ProfileAbout
