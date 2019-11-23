@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
+
 import Contact from '../components/Contact'
+import Partners from '../components/Partners'
 
 class Index extends Component {
   render() {
@@ -40,46 +42,7 @@ class Index extends Component {
             </div>
           </div>
         </div>
-        <div className="section grey lighten-1">
-          <div className="container">
-            <h4 className="center">Our partners</h4>
-          </div>
-          <div className="container">
-            <div className="row">
-              <div
-                className="col s6 m3 l3"
-                style={{ backgroundColor: 'white', height: 'auto' }}
-              >
-                <img
-                  alt="Royal Perth Hospital logo"
-                  className="partner-img"
-                  src="/logos/partner-rph.jpeg"
-                />
-              </div>
-              <div className="col s6 m3 l3 partner-div">
-                <img
-                  alt="Coders for Causes logo"
-                  className="partner-img"
-                  src="/logos/partner-cfc.png"
-                />
-              </div>
-              <div className="col s6 m3 l3 partner-div">
-                <img
-                  alt="Homeless Healthcare logo"
-                  className="partner-img"
-                  src="/logos/partner-hh.png"
-                />
-              </div>
-              <div className="col s6 m3 l3 partner-div">
-                <img
-                  alt="UWA logo"
-                  className="partner-img"
-                  src="/logos/partner-uwa.jpeg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <Partners />
         <Contact />
       </Fragment>
     )
