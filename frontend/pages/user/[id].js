@@ -22,11 +22,11 @@ const ProfilePage = () => {
 }
 
 const style = (
-  <style>{`
+  <style jsx="true">{`
     .profile-container {
       margin: 2rem auto;
     }
-    `}</style>
+  `}</style>
 )
 
 export default ProfilePage

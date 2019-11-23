@@ -1,5 +1,6 @@
 import React from 'react'
 import LogoLink from '../LogoLink'
+import ProfileImage from '../ProfileImage'
 
 export default props => {
   const {
@@ -17,28 +18,29 @@ export default props => {
     <>
       {style}
       <div className="row grey lighten-1 profile-summary-wrapper">
-        <div className="col m3 imageWrapper">
-          <img className="responsive-img" src={img} />
+        <div className="col s12 m3 profile-image">
+          <ProfileImage image={img} />
         </div>
-
-        <div className="col m9">
-          <div className="profile-details">
-            <div className="profile-name">
-              <h1>{first_name + ' ' + middle_name + ' ' + last_name}</h1>
-            </div>
-            <div className="profile-title">
-              <p>{title}</p>
-            </div>
-            <div className="profile-profession">
-              <p>
-                {profession} at {workplace}
-              </p>
-            </div>
-            <div className="profile-contact">
-              {profiles.map(profiles => (
-                <LogoLink link={profiles} />
-              ))}
-            </div>
+        <div className="col s12 m9 profile-details">
+          <div className="profile-name">
+            <h2>{first_name + ' ' + middle_name + ' ' + last_name}</h2>
+          </div>
+          <div className="profile-title">
+            <h5>{title}</h5>
+          </div>
+          <div className="profile-profession">
+            <h5>
+              {profession} at {workplace}
+            </h5>
+          </div>
+          <div className="profile-contact">
+            {profiles.map(profile => (
+              <LogoLink
+                key={profile.href}
+                service={profile.service}
+                href={profile.href}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -47,33 +49,39 @@ export default props => {
 }
 
 const style = (
-  <style>{`
+  <style jsx="true">{`
+    @media only screen and (max-width: 600px) {
+      .profile-name h2 {
+        margin: 1rem 0 !important;
+      }
+    }
     .profile-summary-wrapper {
       border-radius: 0.3rem;
       padding: 1rem;
+      border: 2px solid #0f6489;
     }
-    .imageWrapper {
+    .profile-image {
       padding: 0 !important;
+      margin: 0 0 -5px 0;
     }
     .profile-details {
-      margin-left: 1rem;
+      padding: 0 0 0 1rem;
     }
-    .profile-name h1 {
-      font-weight: 600; 
-      margin: 0px;
+    .profile-name h2 {
+      font-weight: 700;
+      margin: 0 0 1rem 0;
     }
-    .profile-title {
-
-    }
-    .profile-profession {
-
-    }
-
-    .section {
-      padding: 10px 0 10px 0;
-    }
-    h1 {
+    .profile-title h5 {
       margin: 0;
+      color: hsl(214, 7%, 47%);
+    }
+    .profile-profession h5 {
+      margin: 0;
+      color: hsl(214, 7%, 47%);
+    }
+    .profile-contact {
+      margin-top: 1rem;
+      display: flex;
     }
   `}</style>
 )

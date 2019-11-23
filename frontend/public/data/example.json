@@ -1,5 +1,5 @@
 {
-  "id": "001",
+  "id": 1,
   "first_name": "John",
   "middle_name": "",
   "last_name": "Doe",
@@ -8,9 +8,9 @@
   "workplace": "University of Western Australia",
   "img": "/images/001.jpg",
   "profiles": [
-    "https://www.facebook.com",
-    "https://www.twitter.com",
-    "email.com"
+    { "service": "facebook", "href": "https://www.facebook.com" },
+    { "service": "twitter", "href": "https://www.twitter.com" },
+    { "service": "email", "href": "https://www.email.com" }
   ],
   "about": "Nothing here yet..."
 }
