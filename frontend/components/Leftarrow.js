@@ -5,7 +5,7 @@ import React from 'react'
 const LeftArrow = (props) => {
   return (
     <div className="backArrow" size="small" onClick={props.goToPrevSlide}>
-      <i class="material-icons">arrow_back</i>
+      <i className="material-icons">arrow_back</i>
     </div>
   );
 }

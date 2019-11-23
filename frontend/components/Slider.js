@@ -10,35 +10,35 @@ export default class Slider extends Component {
   
       this.state = {
         images: [
-          "https://drive.google.com/open?id=1TFI1jp_Yr1erfX5b1Th8thtdY0BsS9Dx,jpg",
-          "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/canyon.jpg",
-          "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/city.jpg",
-          "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg",
-          "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/mountains.jpg",
-          "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/redsky.jpg",
-          "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/sandy-shores.jpg",
-          "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/tree-of-life.jpg"
+          {id: 0, src: "/images/landing/002_Homeless HealthCare_180904_.jpg"},
+          {id: 1, src: "/images/landing/007_Homeless Health Care_180914_.jpg"},
+          {id: 2, src: "/images/landing/After hours team (HHC nurse and Ruah case worker) visiting client in home.jpg"},
+          {id: 3, src: "/images/landing/Dr Amanda Stafford RPH Homeless team with Dr Lisa Wood UWA (2).jpg"},
+          {id: 4, src: "/images/landing/Dr Andrew Davies with patient and nurse.jpg"},
+          {id: 5, src: "/images/landing/flu vaccine 2019.jpg"},
+          {id: 6, src: "/images/landing/HHC nurse on home visit to client housed through 50 Lives.jpg"},
+          {id: 7, src:"/images/landing/IMG_2087.JPG"},
+          {id: 8, src: "/images/landing/IMG_2111.JPG"},
+          {id: 9, src: "/images/landing-images/L1003491.jpg"}
         ],
         currentIndex: 0,
         translateValue: 0
       }
     }
+
+    slideWidth = () => {
+      return document.querySelector('.slide').clientWidth;
+   }
   
     goToPrevSlide = () => {
-        if(this.state.currentIndex === this.state.images.length - 1) {
-            return this.setState({
-              currentIndex: 0,
-              translateValue: 0
-            })
-          }
-          
-          // This will not run if we met the if condition above
-
-          this.setState(prevState => ({
-            currentIndex: this.currentIndex - 1,
-            translateValue: currentIndex.translateValue + - (this.slideWidth())
-          }));
-        }
+      if(this.state.currentIndex === 0)
+        return;
+      
+      this.setState(prevState => ({
+        currentIndex: prevState.currentIndex - 1,
+        translateValue: prevState.translateValue + this.slideWidth()
+      }))
+    }
   
     goToNextSlide = () => {
         if(this.state.currentIndex === this.state.images.length - 1) {

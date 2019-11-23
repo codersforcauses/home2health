@@ -38,9 +38,11 @@ class Index extends Component {
                   <a className="btn waves-effect waves-light">Sign up</a>
                 </Link>
               </div>
-                <Slider />
             </div>
           </div>
+        </div>
+        <div>
+        <Slider />
         </div>
         <div className="section grey lighten-1">
           <div className="container">
@@ -55,28 +57,28 @@ class Index extends Component {
                 <img
                   alt="Royal Perth Hospital logo"
                   className="partner-img"
-                  src="/static/partner-rph.jpeg"
+                  src="/images/partner-rph.jpeg"
                 />
               </div>
               <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="Coders for Causes logo"
                   className="partner-img"
-                  src="/static/partner-cfc.png"
+                  src="/images/partner-cfc.png"
                 />
               </div>
               <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="Homeless Healthcare logo"
                   className="partner-img"
-                  src="/static/partner-hh.png"
+                  src="/images/partner-hh.png"
                 />
               </div>
               <div className="col s6 m3 l3 partner-div">
                 <img
                   alt="UWA logo"
                   className="partner-img"
-                  src="/static/partner-uwa.jpeg"
+                  src="/images/partner-uwa.jpeg"
                 />
               </div>
             </div>
