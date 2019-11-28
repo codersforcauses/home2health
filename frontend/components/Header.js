@@ -78,7 +78,7 @@ class Header extends Component {
               </a>
               <ul id="blogDropdown" class="dropdown-content">
                 <li>
-                  <Link href="/posts">
+                  <Link href="/posts/1">
                     <a>Posts</a>
                   </Link>
                 </li>

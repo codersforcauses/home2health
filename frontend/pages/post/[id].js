@@ -3,6 +3,24 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter, withRouter } from 'next/router'
 
+/*
+The ideal POST REQUEST OF THIS PAGE IS
+{
+  postid: -- (int) - can be taken via router query request
+}
+
+The ideal POST RESPONSE OF THIS PAGE IS
+{
+  {
+    title:--, (string)
+    author: --, (string)
+    date: --, (string - date)
+    post: -- (string - rich text format -> NOTE : Not sure what to use for this one as the post can have various positioning),
+    categ: [], (array of strings)
+  }
+  ... more items for post (n number of post... not yet decided)
+}
+*/
 class LongPost extends React.Component {
   state = {
     data: {
