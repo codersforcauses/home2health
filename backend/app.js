@@ -26,6 +26,8 @@ app.use(cors())
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/email', emailRouter)
+app.use('/post', emailRouter)
+app.use('/posts', emailRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,5 +44,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500)
   res.json(err)
 })
+
 
 module.exports = app
