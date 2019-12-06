@@ -24,7 +24,7 @@ class Index extends Component {
   render() {
     return (
       <Layout>
-        <div class="container">
+        <div className="container">
           <ProfileHeader info={this.state} />
           <ProfileContent />
         </div>

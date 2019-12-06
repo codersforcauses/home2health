@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 
 const CommentItem = props => {
   return (
-    <div class="card grey lighten-5" style={{ boxShadow: '0 0 0 0' }}>
-      <div class="card-content">
-        <div class="card-title">
+    <div className="card grey lighten-5" style={{ boxShadow: '0 0 0 0' }}>
+      <div className="card-content">
+        <div className="card-title">
           <a href="#">{props.title}</a>
         </div>
-        <p class="truncate">{props.body}</p>
+        <p className="truncate">{props.body}</p>
       </div>
     </div>
   )
@@ -29,14 +29,14 @@ class ProfileComments extends Component {
 
   render() {
     return (
-      <div class="container" style={{ width: '90%' }}>
+      <div className="container" style={{ width: '90%' }}>
         {this.state.comments.length ? (
           this.state.comments.map(comment => (
             <CommentItem title={comment.name} body={comment.body} />
           ))
         ) : (
           <h5
-            class="center-align"
+            className="center-align"
             style={{ marginTop: '5em', marginBottom: '5em' }}
           >
             Shhhh

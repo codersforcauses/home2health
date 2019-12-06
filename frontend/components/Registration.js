@@ -50,7 +50,7 @@ export default class Registration extends React.Component {
         </div>
             {/**add auth0 password verification*/}
             <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
+            <i className="material-icons right">send</i>
             </button>
       </form>
     );

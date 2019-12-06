@@ -10,16 +10,16 @@ export default class Slider extends Component {
   
       this.state = {
         images: [
-          {id: 0, src: "/images/landing/002_Homeless HealthCare_180904_.jpg"},
-          {id: 1, src: "/images/landing/007_Homeless Health Care_180914_.jpg"},
-          {id: 2, src: "/images/landing/After hours team (HHC nurse and Ruah case worker) visiting client in home.jpg"},
-          {id: 3, src: "/images/landing/Dr Amanda Stafford RPH Homeless team with Dr Lisa Wood UWA (2).jpg"},
-          {id: 4, src: "/images/landing/Dr Andrew Davies with patient and nurse.jpg"},
-          {id: 5, src: "/images/landing/flu vaccine 2019.jpg"},
-          {id: 6, src: "/images/landing/HHC nurse on home visit to client housed through 50 Lives.jpg"},
-          {id: 7, src:"/images/landing/IMG_2087.JPG"},
-          {id: 8, src: "/images/landing/IMG_2111.JPG"},
-          {id: 9, src: "/images/landing-images/L1003491.jpg"}
+          {id: 0, src: "images/landing/1.jpg"},
+          {id: 1, src: "images/landing/2.jpg"},
+          {id: 2, src: "images/landing/3.jpg"},
+          {id: 3, src: "images/landing/4.jpg"},
+          {id: 4, src: "images/landing/5.jpg"},
+          {id: 5, src: "images/landing/6.jpg"},
+          {id: 6, src: "images/landing/7.jpg"},
+          {id: 7, src: "images/landing/8.jpg"},
+          {id: 8, src: "images/landing/9.jpg"},
+          {id: 9, src: "images/landing/10.jpg"},
         ],
         currentIndex: 0,
         translateValue: 0

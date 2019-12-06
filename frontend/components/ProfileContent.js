@@ -12,16 +12,16 @@ class ProfileContent extends Component {
   render() {
     return (
       <Fragment>
-        <div class="row grey lighten-1" style={{ borderRadius: '1rem' }}>
-          <div class="col s12" style={{padding: 0}}>
-            <ul class="tabs" style={{ borderTopLeftRadius: '1rem', borderTopRightRadius: '1rem' }}>
-              <li class="tab col s4 grey lighten-1">
+        <div className="row grey lighten-1" style={{ borderRadius: '1rem' }}>
+          <div className="col s12" style={{padding: 0}}>
+            <ul className="tabs" style={{ borderTopLeftRadius: '1rem', borderTopRightRadius: '1rem' }}>
+              <li className="tab col s4 grey lighten-1">
                 <a href="#about">Profile</a>
               </li>
-              <li class="tab col s4 grey lighten-1">
+              <li className="tab col s4 grey lighten-1">
                 <a href="#posts">Posts</a>
               </li>
-              <li class="tab col s4 grey lighten-1">
+              <li className="tab col s4 grey lighten-1">
                 <a href="#comments">Comments</a>
               </li>
             </ul>

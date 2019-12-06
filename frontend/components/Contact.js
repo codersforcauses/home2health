@@ -32,10 +32,10 @@ const Contact = () => {
   }
 
   return (
-    <div class="section white">
-      <div class="container">
-        <h4 class="header center">Contact us</h4>
-        <h5 class="header col s12 light center">
+    <div className="section white">
+      <div className="container">
+        <h4 className="header center">Contact us</h4>
+        <h5 className="header col s12 light center">
           Home2Health is a research team from the School of Population and
           Global Health
           <br /> at the University of Western Australia. Please contact us
@@ -43,12 +43,12 @@ const Contact = () => {
         </h5>
       </div>
       {!sentEmail ? (
-        <div class="container">
+        <div className="container">
           <form>
-            <div class="row">
-              <div class="col s12 m10 offset-m1">
-                <div class="row contactrow">
-                  <div class="input-field col s12">
+            <div className="row">
+              <div className="col s12 m10 offset-m1">
+                <div className="row contactrow">
+                  <div className="input-field col s12">
                     <input
                       id="contact_name"
                       type="text"
@@ -56,67 +56,67 @@ const Contact = () => {
                       required=""
                       onChange={e => setName(e.target.value)}
                     />
-                    <label for="contact_name">Name</label>
+                    <label htmlFor="contact_name">Name</label>
                     <span
-                      class="helper-text"
+                      className="helper-text"
                       data-error="Please enter a valid name"
                       data-success=""
                     />
                   </div>
                 </div>
-                <div class="row contactrow">
-                  <div class="input-field col s12">
+                <div className="row contactrow">
+                  <div className="input-field col s12">
                     <input
                       id="contact_organisation"
                       type="text"
                       value={organistation}
                       onChange={e => setOrganistation(e.target.value)}
                     />
-                    <label for="contact_organisation">Organisation</label>
-                    <span class="helper-text">Optional</span>
+                    <label htmlFor="contact_organisation">Organisation</label>
+                    <span className="helper-text">Optional</span>
                   </div>
                 </div>
-                <div class="row contactrow">
-                  <div class="input-field col s12">
+                <div className="row contactrow">
+                  <div className="input-field col s12">
                     <input
                       id="contact_email"
                       type="email"
-                      class="validate"
+                      className="validate"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                     />
-                    <label for="contact_email">Email</label>
+                    <label htmlFor="contact_email">Email</label>
                     <span
-                      class="helper-text"
+                      className="helper-text"
                       data-error="Please enter a valid email"
                       data-success=""
                     />
                   </div>
                 </div>
-                <div class="row contactrow">
-                  <div class="input-field col s12">
+                <div className="row contactrow">
+                  <div className="input-field col s12">
                     <textarea
                       id="contact_message"
-                      class="materialize-textarea"
+                      className="materialize-textarea"
                       value={message}
                       onChange={e => setMessage(e.target.value)}
                     />
-                    <label for="contact_message">Message</label>
+                    <label htmlFor="contact_message">Message</label>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row center">
+            <div className="row center">
               {!loading ? (
                 <button
-                  class="btn waves-effect waves-light"
+                  className="btn waves-effect waves-light"
                   onClick={sendEmail}
                 >
                   Send
                 </button>
               ) : (
-                <div id="progress-bar" class="progress">
-                  <div class="indeterminate" />
+                <div id="progress-bar" className="progress">
+                  <div className="indeterminate" />
                 </div>
               )}
             </div>

@@ -2911,7 +2911,7 @@ $jscomp.polyfill = function (e, r, p, m) {
 
       _this12.id = _this12.$el.attr('id');
       _this12._openingTrigger = undefined;
-      _this12.$overlay = $('<div class="modal-overlay"></div>');
+      _this12.$overlay = $('<div className="modal-overlay"></div>');
       _this12.el.tabIndex = 0;
       _this12._nthModalOpened = 0;
 
@@ -3657,7 +3657,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           if (this.$photocaption) {
             anim.remove(this.$photoCaption[0]);
           }
-          this.$photoCaption = $('<div class="materialbox-caption"></div>');
+          this.$photoCaption = $('<div className="materialbox-caption"></div>');
           this.$photoCaption.text(this.caption);
           $('body').append(this.$photoCaption);
           this.$photoCaption.css({ display: 'inline' });
@@ -4213,7 +4213,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           $tabsContent = $tabsContent.add($currContent);
         });
 
-        var $tabsWrapper = $('<div class="tabs-content carousel carousel-slider"></div>');
+        var $tabsWrapper = $('<div className="tabs-content carousel carousel-slider"></div>');
         $tabsContent.first().before($tabsWrapper);
         $tabsWrapper.append($tabsContent);
         $tabsContent[0].style.display = '';
@@ -6116,7 +6116,7 @@ $jscomp.polyfill = function (e, r, p, m) {
        * @member Modal#options
        * @prop {Number} [throttle=100] - Throttle of scroll handler
        * @prop {Number} [scrollOffset=200] - Offset for centering element when scrolled to
-       * @prop {String} [activeClass='active'] - Class applied to active elements
+       * @prop {String} [activeclassName='active'] - Class applied to active elements
        * @prop {Function} [getActiveElement] - Used to find active element
        */
       _this34.options = $.extend({}, ScrollSpy.defaults, options);
@@ -6693,7 +6693,7 @@ $jscomp.polyfill = function (e, r, p, m) {
             beforeMatch = $el.text().slice(0, matchStart),
             matchText = $el.text().slice(matchStart, matchEnd + 1),
             afterMatch = $el.text().slice(matchEnd + 1);
-        $el.html("<span>" + beforeMatch + "<span class='highlight'>" + matchText + "</span>" + afterMatch + "</span>");
+        $el.html("<span>" + beforeMatch + "<span className='highlight'>" + matchText + "</span>" + afterMatch + "</span>");
         if (img.length) {
           $el.prepend(img);
         }
@@ -6790,7 +6790,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           var _entry = matchingData[i];
           var $autocompleteOption = $('<li></li>');
           if (!!_entry.data) {
-            $autocompleteOption.append("<img src=\"" + _entry.data + "\" class=\"right circle\"><span>" + _entry.key + "</span>");
+            $autocompleteOption.append("<img src=\"" + _entry.data + "\" className=\"right circle\"><span>" + _entry.key + "</span>");
           } else {
             $autocompleteOption.append('<span>' + _entry.key + '</span>');
           }
@@ -6944,7 +6944,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     // Textarea Auto Resize
     var hiddenDiv = $('.hiddendiv').first();
     if (!hiddenDiv.length) {
-      hiddenDiv = $('<div class="hiddendiv common"></div>');
+      hiddenDiv = $('<div className="hiddendiv common"></div>');
       $('body').append(hiddenDiv);
     }
 
@@ -7376,9 +7376,9 @@ $jscomp.polyfill = function (e, r, p, m) {
         var _this42 = this;
 
         if (this.options.indicators) {
-          this.$indicators = $('<ul class="indicators"></ul>');
+          this.$indicators = $('<ul className="indicators"></ul>');
           this.$slides.each(function (el, index) {
-            var $indicator = $('<li class="indicator-item"></li>');
+            var $indicator = $('<li className="indicator-item"></li>');
             _this42.$indicators.append($indicator[0]);
           });
           this.$el.append(this.$indicators[0]);
@@ -8543,7 +8543,7 @@ $jscomp.polyfill = function (e, r, p, m) {
         var windowWidth = window.innerWidth;
         var windowHeight = window.innerHeight;
         var btnRect = this.el.getBoundingClientRect();
-        var backdrop = $('<div class="fab-backdrop"></div>');
+        var backdrop = $('<div className="fab-backdrop"></div>');
         var fabColor = this.$anchor.css('background-color');
         this.$anchor.append(backdrop);
 
@@ -9126,7 +9126,7 @@ $jscomp.polyfill = function (e, r, p, m) {
             arr.push('is-outside-current-month');
             arr.push('is-selection-disabled');
           } else {
-            return '<td class="is-empty"></td>';
+            return '<td className="is-empty"></td>';
           }
         }
         if (opts.isDisabled) {
@@ -9152,17 +9152,17 @@ $jscomp.polyfill = function (e, r, p, m) {
         if (opts.isEndRange) {
           arr.push('is-endrange');
         }
-        return "<td data-day=\"" + opts.day + "\" class=\"" + arr.join(' ') + "\" aria-selected=\"" + ariaSelected + "\">" + ("<button class=\"datepicker-day-button\" type=\"button\" data-year=\"" + opts.year + "\" data-month=\"" + opts.month + "\" data-day=\"" + opts.day + "\">" + opts.day + "</button>") + '</td>';
+        return "<td data-day=\"" + opts.day + "\" className=\"" + arr.join(' ') + "\" aria-selected=\"" + ariaSelected + "\">" + ("<button className=\"datepicker-day-button\" type=\"button\" data-year=\"" + opts.year + "\" data-month=\"" + opts.month + "\" data-day=\"" + opts.day + "\">" + opts.day + "</button>") + '</td>';
       }
     }, {
       key: "renderRow",
       value: function renderRow(days, isRTL, isRowSelected) {
-        return '<tr class="datepicker-row' + (isRowSelected ? ' is-selected' : '') + '">' + (isRTL ? days.reverse() : days).join('') + '</tr>';
+        return '<tr className="datepicker-row' + (isRowSelected ? ' is-selected' : '') + '">' + (isRTL ? days.reverse() : days).join('') + '</tr>';
       }
     }, {
       key: "renderTable",
       value: function renderTable(opts, data, randId) {
-        return '<div class="datepicker-table-wrapper"><table cellpadding="0" cellspacing="0" class="datepicker-table" role="grid" aria-labelledby="' + randId + '">' + this.renderHead(opts) + this.renderBody(data) + '</table></div>';
+        return '<div className="datepicker-table-wrapper"><table cellpadding="0" cellspacing="0" className="datepicker-table" role="grid" aria-labelledby="' + randId + '">' + this.renderHead(opts) + this.renderBody(data) + '</table></div>';
       }
     }, {
       key: "renderHead",
@@ -9188,7 +9188,7 @@ $jscomp.polyfill = function (e, r, p, m) {
             opts = this.options,
             isMinYear = year === opts.minYear,
             isMaxYear = year === opts.maxYear,
-            html = '<div id="' + randId + '" class="datepicker-controls" role="heading" aria-live="assertive">',
+            html = '<div id="' + randId + '" className="datepicker-controls" role="heading" aria-live="assertive">',
             monthHtml = void 0,
             yearHtml = void 0,
             prev = true,
@@ -9198,7 +9198,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           arr.push('<option value="' + (year === refYear ? i - c : 12 + i - c) + '"' + (i === month ? ' selected="selected"' : '') + (isMinYear && i < opts.minMonth || isMaxYear && i > opts.maxMonth ? 'disabled="disabled"' : '') + '>' + opts.i18n.months[i] + '</option>');
         }
 
-        monthHtml = '<select class="datepicker-select orig-select-month" tabindex="-1">' + arr.join('') + '</select>';
+        monthHtml = '<select className="datepicker-select orig-select-month" tabindex="-1">' + arr.join('') + '</select>';
 
         if ($.isArray(opts.yearRange)) {
           i = opts.yearRange[0];
@@ -9214,12 +9214,12 @@ $jscomp.polyfill = function (e, r, p, m) {
           }
         }
 
-        yearHtml = "<select class=\"datepicker-select orig-select-year\" tabindex=\"-1\">" + arr.join('') + "</select>";
+        yearHtml = "<select className=\"datepicker-select orig-select-year\" tabindex=\"-1\">" + arr.join('') + "</select>";
 
         var leftArrow = '<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"/><path d="M0-.5h24v24H0z" fill="none"/></svg>';
-        html += "<button class=\"month-prev" + (prev ? '' : ' is-disabled') + "\" type=\"button\">" + leftArrow + "</button>";
+        html += "<button className=\"month-prev" + (prev ? '' : ' is-disabled') + "\" type=\"button\">" + leftArrow + "</button>";
 
-        html += '<div class="selects-container">';
+        html += '<div className="selects-container">';
         if (opts.showMonthAfterYear) {
           html += yearHtml + monthHtml;
         } else {
@@ -9236,7 +9236,7 @@ $jscomp.polyfill = function (e, r, p, m) {
         }
 
         var rightArrow = '<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"/><path d="M0-.25h24v24H0z" fill="none"/></svg>';
-        html += "<button class=\"month-next" + (next ? '' : ' is-disabled') + "\" type=\"button\">" + rightArrow + "</button>";
+        html += "<button className=\"month-next" + (next ? '' : ' is-disabled') + "\" type=\"button\">" + rightArrow + "</button>";
 
         return html += '</div>';
       }
@@ -9617,7 +9617,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     return Datepicker;
   }(Component);
 
-  Datepicker._template = ['<div class= "modal datepicker-modal">', '<div class="modal-content datepicker-container">', '<div class="datepicker-date-display">', '<span class="year-text"></span>', '<span class="date-text"></span>', '</div>', '<div class="datepicker-calendar-container">', '<div class="datepicker-calendar"></div>', '<div class="datepicker-footer">', '<button class="btn-flat datepicker-clear waves-effect" style="visibility: hidden;" type="button"></button>', '<div class="confirmation-btns">', '<button class="btn-flat datepicker-cancel waves-effect" type="button"></button>', '<button class="btn-flat datepicker-done waves-effect" type="button"></button>', '</div>', '</div>', '</div>', '</div>', '</div>'].join('');
+  Datepicker._template = ['<div className= "modal datepicker-modal">', '<div className="modal-content datepicker-container">', '<div className="datepicker-date-display">', '<span className="year-text"></span>', '<span className="date-text"></span>', '</div>', '<div className="datepicker-calendar-container">', '<div className="datepicker-calendar"></div>', '<div className="datepicker-footer">', '<button className="btn-flat datepicker-clear waves-effect" style="visibility: hidden;" type="button"></button>', '<div className="confirmation-btns">', '<button className="btn-flat datepicker-cancel waves-effect" type="button"></button>', '<button className="btn-flat datepicker-done waves-effect" type="button"></button>', '</div>', '</div>', '</div>', '</div>', '</div>'].join('');
 
   M.Datepicker = Datepicker;
 
@@ -9859,22 +9859,22 @@ $jscomp.polyfill = function (e, r, p, m) {
     }, {
       key: "_pickerSetup",
       value: function _pickerSetup() {
-        var $clearBtn = $("<button class=\"btn-flat timepicker-clear waves-effect\" style=\"visibility: hidden;\" type=\"button\" tabindex=\"" + (this.options.twelveHour ? '3' : '1') + "\">" + this.options.i18n.clear + "</button>").appendTo(this.footer).on('click', this.clear.bind(this));
+        var $clearBtn = $("<button className=\"btn-flat timepicker-clear waves-effect\" style=\"visibility: hidden;\" type=\"button\" tabindex=\"" + (this.options.twelveHour ? '3' : '1') + "\">" + this.options.i18n.clear + "</button>").appendTo(this.footer).on('click', this.clear.bind(this));
         if (this.options.showClearBtn) {
           $clearBtn.css({ visibility: '' });
         }
 
-        var confirmationBtnsContainer = $('<div class="confirmation-btns"></div>');
-        $('<button class="btn-flat timepicker-close waves-effect" type="button" tabindex="' + (this.options.twelveHour ? '3' : '1') + '">' + this.options.i18n.cancel + '</button>').appendTo(confirmationBtnsContainer).on('click', this.close.bind(this));
-        $('<button class="btn-flat timepicker-close waves-effect" type="button" tabindex="' + (this.options.twelveHour ? '3' : '1') + '">' + this.options.i18n.done + '</button>').appendTo(confirmationBtnsContainer).on('click', this.done.bind(this));
+        var confirmationBtnsContainer = $('<div className="confirmation-btns"></div>');
+        $('<button className="btn-flat timepicker-close waves-effect" type="button" tabindex="' + (this.options.twelveHour ? '3' : '1') + '">' + this.options.i18n.cancel + '</button>').appendTo(confirmationBtnsContainer).on('click', this.close.bind(this));
+        $('<button className="btn-flat timepicker-close waves-effect" type="button" tabindex="' + (this.options.twelveHour ? '3' : '1') + '">' + this.options.i18n.done + '</button>').appendTo(confirmationBtnsContainer).on('click', this.done.bind(this));
         confirmationBtnsContainer.appendTo(this.footer);
       }
     }, {
       key: "_clockSetup",
       value: function _clockSetup() {
         if (this.options.twelveHour) {
-          this.$amBtn = $('<div class="am-btn">AM</div>');
-          this.$pmBtn = $('<div class="pm-btn">PM</div>');
+          this.$amBtn = $('<div className="am-btn">AM</div>');
+          this.$pmBtn = $('<div className="pm-btn">PM</div>');
           this.$amBtn.on('click', this._handleAmPmClick.bind(this)).appendTo(this.spanAmPm);
           this.$pmBtn.on('click', this._handleAmPmClick.bind(this)).appendTo(this.spanAmPm);
         }
@@ -9922,7 +9922,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     }, {
       key: "_buildHoursView",
       value: function _buildHoursView() {
-        var $tick = $('<div class="timepicker-tick"></div>');
+        var $tick = $('<div className="timepicker-tick"></div>');
         // Hours view
         if (this.options.twelveHour) {
           for (var i = 1; i < 13; i += 1) {
@@ -9956,7 +9956,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     }, {
       key: "_buildMinutesView",
       value: function _buildMinutesView() {
-        var $tick = $('<div class="timepicker-tick"></div>');
+        var $tick = $('<div className="timepicker-tick"></div>');
         // Minutes view
         for (var i = 0; i < 60; i += 5) {
           var tick = $tick.clone();
@@ -10254,7 +10254,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     return Timepicker;
   }(Component);
 
-  Timepicker._template = ['<div class= "modal timepicker-modal">', '<div class="modal-content timepicker-container">', '<div class="timepicker-digital-display">', '<div class="timepicker-text-container">', '<div class="timepicker-display-column">', '<span class="timepicker-span-hours text-primary"></span>', ':', '<span class="timepicker-span-minutes"></span>', '</div>', '<div class="timepicker-display-column timepicker-display-am-pm">', '<div class="timepicker-span-am-pm"></div>', '</div>', '</div>', '</div>', '<div class="timepicker-analog-display">', '<div class="timepicker-plate">', '<div class="timepicker-canvas"></div>', '<div class="timepicker-dial timepicker-hours"></div>', '<div class="timepicker-dial timepicker-minutes timepicker-dial-out"></div>', '</div>', '<div class="timepicker-footer"></div>', '</div>', '</div>', '</div>'].join('');
+  Timepicker._template = ['<div className= "modal timepicker-modal">', '<div className="modal-content timepicker-container">', '<div className="timepicker-digital-display">', '<div className="timepicker-text-container">', '<div className="timepicker-display-column">', '<span className="timepicker-span-hours text-primary"></span>', ':', '<span className="timepicker-span-minutes"></span>', '</div>', '<div className="timepicker-display-column timepicker-display-am-pm">', '<div className="timepicker-span-am-pm"></div>', '</div>', '</div>', '</div>', '<div className="timepicker-analog-display">', '<div className="timepicker-plate">', '<div className="timepicker-canvas"></div>', '<div className="timepicker-dial timepicker-hours"></div>', '<div className="timepicker-dial timepicker-minutes timepicker-dial-out"></div>', '</div>', '<div className="timepicker-footer"></div>', '</div>', '</div>', '</div>'].join('');
 
   M.Timepicker = Timepicker;
 
@@ -10509,11 +10509,11 @@ $jscomp.polyfill = function (e, r, p, m) {
       }
 
       // Iterate through slides
-      _this61.$indicators = $('<ul class="indicators"></ul>');
+      _this61.$indicators = $('<ul className="indicators"></ul>');
       _this61.$el.find('.carousel-item').each(function (el, i) {
         _this61.images.push(el);
         if (_this61.showIndicators) {
-          var $indicator = $('<li class="indicator-item"></li>');
+          var $indicator = $('<li className="indicator-item"></li>');
 
           // Add active to first by default.
           if (i === 0) {
@@ -11774,7 +11774,7 @@ $jscomp.polyfill = function (e, r, p, m) {
             } else if ($(el).is('optgroup')) {
               // Optgroup.
               var selectOptions = $(el).children('option');
-              $(_this70.dropdownOptions).append($('<li class="optgroup"><span>' + el.getAttribute('label') + '</span></li>')[0]);
+              $(_this70.dropdownOptions).append($('<li className="optgroup"><span>' + el.getAttribute('label') + '</span></li>')[0]);
 
               selectOptions.each(function (el) {
                 var optionEl = _this70._appendOptionWithIcon(_this70.$el, el, 'optgroup-option');
@@ -11800,7 +11800,7 @@ $jscomp.polyfill = function (e, r, p, m) {
         this._setValueToInput();
 
         // Add caret
-        var dropdownIcon = $('<svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+        var dropdownIcon = $('<svg className="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
         this.$el.before(dropdownIcon[0]);
 
         // Initialize dropdown
