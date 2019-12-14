@@ -1,7 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 import Contact from '../components/Contact'
-import Slider from '../components/Slider'
+import ProfileAbout from '../components/ProfileAbout'
+import ProfileComments from '../components/ProfileComments'
+import ProfileContent from '../components/ProfileContent'
+import ProfileHeader from '../components/ProfileHeader'
+import ProfilePosts from '../components/ProfilePosts'
+
 
 class Index extends Component {
   render() {
@@ -26,23 +31,22 @@ class Index extends Component {
             </div>
             <div className="row" style={{ marginBottom: '1rem' }}>
               <div className="col s12">
-                <Link href="/login">
-                  <a
-                    className="btn-flat waves-effect waves-light"
-                    style={{ marginRight: '1rem' }}
-                  >
-                    Log in
-                  </a>
-                </Link>
+                {!ProfileAbout && !ProfileComments && !ProfileContent && !ProfileHeader && !ProfilePosts && (
+                  <Link href="/login">
+                    <a
+                      className="btn-flat waves-effect waves-light btn-large"
+                      style={{ marginRight: '1rem' }}
+                    >
+                      Log In
+                    </a>
+                  </Link>
+                )}
                 <Link href="/Registration">
-                  <a className="btn waves-effect waves-light">Sign up</a>
+                <a className="btn waves-effect waves-light btn-large">Sign up</a>
                 </Link>
               </div>
             </div>
           </div>
-        </div>
-        <div>
-        <Slider />
         </div>
         <div className="section grey lighten-1">
           <div className="container">

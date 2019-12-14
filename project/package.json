@@ -12,6 +12,9 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "nodemailer": "^6.2.1",
-    "nodemailer-mailgun-transport": "^1.4.0"
+    "nodemailer-mailgun-transport": "^1.4.0",
+    "dev": "node ./src/server.js",
+    "build": "next build ./src",
+    "start": "NODE_ENV=production node ./src/server.js"
   }
 }

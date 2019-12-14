@@ -63,7 +63,8 @@ const Form = () => {
 }
 
 const submitHandler = e => {
-  e.preventDefault()
+  e.preventDefault();
+
 }
 
 class PostForm extends React.Component {
@@ -78,6 +79,11 @@ class PostForm extends React.Component {
       CreateForm: !prevState.CreateForm
     }))
   }
+
+  // ensureAuthenticated(req, res, next) {
+  //   if (req.isAuthenticated()) return next()
+  //   res.send(401)
+  // }
 
   render() {
     return (
