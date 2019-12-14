@@ -1,10 +1,24 @@
-.slider {text-decoration: none;
-    height: 500px auto;
+.slider, .slider-wrapper {
     margin: 10px auto 10px auto;
-    width: 500px;
-    position: relative;
+    width: 100%;
+    height: auto;
+    display: block
 }
-
-.RightArrow:before, .LeftArrow:before {
-    color: 1;
-}
+.awssld {
+    --slider-transition-duration: 200ms;
+    --organic-arrow-thickness: 4px;
+    --organic-arrow-border-radius: 0px;
+    --organic-arrow-height: 40px;
+    --organic-arrow-color: #26a69a;
+    --control-button-width: 10%;
+    --control-button-height: 25%;
+    --control-button-background: transparent;
+    --control-bullet-color: #fafafa;
+    --control-bullet-active-color: #d5d5d5;
+    --loader-bar-color: #9c9999;
+    --loader-bar-height: 6px;
+    }
+    .awssld__bullets {
+        height:40px;
+        background-color: #0f6489;
+    }

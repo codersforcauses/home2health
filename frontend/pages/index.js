@@ -37,13 +37,14 @@ class Index extends Component {
                 <Link href="/Registration">
                   <a className="btn waves-effect waves-light">Sign up</a>
                 </Link>
+                <div>
+        <Slider />
+        </div>
               </div>
             </div>
           </div>
         </div>
-        <div>
-        <Slider />
-        </div>
+        
         <div className="section grey lighten-1">
           <div className="container">
             <h4 className="center">Our partners</h4>

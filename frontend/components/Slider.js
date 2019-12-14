@@ -1,8 +1,22 @@
 import React, { Component } from 'react'
-import Slide from '../components/slide'
-import LeftArrow from '../components/LeftArrow'
-import RightArrow from '../components/RightArrow'
+import AwesomeSlider from 'react-awesome-slider';
+import 'react-awesome-slider/dist/styles.css';
+import './slider.css';
 
+const slider = (
+  <AwesomeSlider>
+    <div data-src="images/landing/1.jpg" />
+    <div data-src="images/landing/2.jpg" />
+    <div data-src="images/landing/3.jpg" />
+    <div data-src="images/landing/4.jpg" />
+    <div data-src="images/landing/5.jpg" />
+    <div data-src="images/landing/6.jpg" />
+    <div data-src="images/landing/7.jpg" />
+    <div data-src="images/landing/8.jpg" />
+    <div data-src="images/landing/9.jpg" />
+    <div data-src="images/landing/10.jpg" />
+  </AwesomeSlider>
+);
 
 export default class Slider extends Component {
     constructor(props) {
@@ -59,25 +73,21 @@ export default class Slider extends Component {
       return (
         <div className="slider">
   
-          <div className="slider-wrapper"
-            style={{
-              transform: `translateX(${this.state.translateValue}px)`,
-              transition: 'transform ease-out 0.45s'
-            }}>
-              {
-                this.state.images.map((image, i) => (
-                  <Slide key={i} image={image} />
-                ))
-              }
+          <div className="slider-wrapper">
+              <AwesomeSlider >
+                <div data-src="images/landing/1.jpg" />
+                <div data-src="images/landing/2.jpg" />
+                <div data-src="images/landing/3.jpg" />
+                <div data-src="images/landing/4.jpg" />
+                <div data-src="images/landing/5.jpg" />
+                <div data-src="images/landing/6.jpg" />
+                <div data-src="images/landing/7.jpg" />
+                <div data-src="images/landing/8.jpg" />
+                <div data-src="images/landing/9.jpg" />
+                <div data-src="images/landing/10.jpg" />
+              </AwesomeSlider>
           </div>
   
-          <LeftArrow
-           goToPrevSlide={this.goToPrevSlide}
-          />
-  
-          <RightArrow
-           goToNextSlide={this.goToNextSlide}
-          />
         </div>
       );
     }

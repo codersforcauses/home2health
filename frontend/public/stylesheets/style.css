@@ -47,9 +47,6 @@ footer.page-footer {
   color: white;
   padding: 0;
 }
-#index-banner {
-  height: calc(80vh - 63px);
-}
 #send-message-button {
   background-color: #26a69a;
 }
