@@ -1,0 +1,16 @@
+{
+  "id": 1,
+  "first_name": "John",
+  "middle_name": "",
+  "last_name": "Doe",
+  "title": "Professor, BSc Example, MSc Example, MTech PhD IIT Example",
+  "profession": "Lecturer",
+  "workplace": "University of Western Australia",
+  "img": "/images/001.jpg",
+  "profiles": [
+    { "service": "facebook", "href": "https://www.facebook.com" },
+    { "service": "twitter", "href": "https://www.twitter.com" },
+    { "service": "email", "href": "https://www.email.com" }
+  ],
+  "about": "Nothing here yet..."
+}
