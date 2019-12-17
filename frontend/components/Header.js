@@ -51,7 +51,7 @@ class Header extends Component {
                 </li>
                 <li className="divider" />
                 <li>
-                  <a href="/resources">Resources</a>
+                  <Link href="/resources"><a>Resources</a></Link>
                 </li>
               </ul>
             </li>
