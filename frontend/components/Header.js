@@ -49,6 +49,10 @@ class Header extends Component {
                 <li>
                   <a href=".">Medical recovery centre</a>
                 </li>
+                <li className="divider" />
+                <li>
+                  <Link href="/resources"><a>Resources</a></Link>
+                </li>
               </ul>
             </li>
             <li>
@@ -130,6 +134,9 @@ class Header extends Component {
                 <li>
                   <a href=".">Medical recovery centre</a>
                 </li>
+                <li>
+                  <a href="/resources">Resources</a>
+                </li>
               </ul>
             </li>
             <li>
@@ -174,6 +181,7 @@ class Header extends Component {
                 <a className="navitem">News</a>
               </Link>
             </li>
+            
             <li>
               <Link href="#">
                 <a className="navitem">Login</a>
