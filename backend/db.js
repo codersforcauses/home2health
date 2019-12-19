@@ -44,3 +44,4 @@ process.on('SIGTERM', () => {
 
 // require models
 require('./models/user')
+require('./models/post')
