@@ -37,6 +37,9 @@ class Posts extends React.Component {
   }
 
   componentDidMount() {
+    this.updatePostsDisplay()
+  }
+  updatePostsDisplay() {
     const baseURL = 'http://localhost:5001' //process.env.REACT_APP_BACKEND_URL
     const apiPath = `${baseURL}/post/${this.state.currentCollection}`
     Axios.get(apiPath, {})
@@ -47,6 +50,11 @@ class Posts extends React.Component {
         })
       )
       .catch(err => console.log(err))
+  }
+  changePageCollection = element => {
+    this.setState({ currentCollection: element.target.id }, () =>
+      this.updatePostsDisplay()
+    )
   }
 
   //Creation of Pagination Display With maximum of 10 Page Display
@@ -68,9 +76,9 @@ class Posts extends React.Component {
             this.state.currentCollection == i ? 'active' : 'waves-effect'
           }
         >
-          <Link href={`/posts/[pageNumber]`} as={`/posts/${i}`}>
-            <a>{i}</a>
-          </Link>
+          <a id={i} onClick={element => this.changePageCollection(element)}>
+            {i}
+          </a>
         </li>
       )
       // console.log(this.state.currentCollection + " " + i + " "+ this.state.pages);
