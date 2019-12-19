@@ -8,19 +8,19 @@ import './post.css'
     author: indicates creator of post
     date : when the post is created
     details: content of the post (limit to 500 characters for preview)?
-    categ: categories at which the post categorized as 
+    categories: categories at which the post categorized as 
 
     Plan: Create a preview of the post that is clickable and displayed as a full website
 */
 
 export const Post = ({
   // Default Values
-  postid = 0,
+  _id = 0,
   title = 'Title Missing',
   author = 'Author Missing',
   date = 'Date Missing',
   details = 'Details Missing',
-  categ = ['#something1', 'Something2']
+  categories = ['#something1', 'Something2']
 }) => {
   return (
     <div className="row post">
@@ -29,27 +29,22 @@ export const Post = ({
           <div className="card-content white-text">
             <span className="card-title">{title}</span>
             <blockquote className="subtitle">
-              <p>
-                By:
-                {author}
-                on
-                {date}
-              </p>
+              <p>{`By: ${author} on ${date}`}</p>
             </blockquote>
 
             <p>{details}</p>
           </div>
           <div className="tags">
-            {categ.map((cat, i) => {
+            {categories.map((category, i) => {
               return (
                 <div key={i} className="chip">
-                  {cat}
+                  {category}
                 </div>
               )
             })}
           </div>
           <div className="card-action">
-            <Link href={`/posts/[id]`} as={`/posts/${postid}`}>
+            <Link href={`/post/[id]`} as={`/post/${_id}`}>
               <a>Read More</a>
             </Link>
           </div>

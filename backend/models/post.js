@@ -6,12 +6,12 @@ let postSchema = mongoose.Schema(
       type: String,
       required: true
     },
+    type: {
+      type: String
+    },
     author: {
       type: String,
       required: true
-    },
-    date: {
-      type: Date
     },
     categories: {
       type: Array

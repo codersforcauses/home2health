@@ -1,4 +1,5 @@
 import React from 'react'
+import Axios from 'axios'
 import { Post } from '../../components/post'
 
 import Link from 'next/link'
@@ -13,70 +14,66 @@ The ideal POST REQUEST OF THIS PAGE IS
 
 The ideal POST RESPONSE OF THIS PAGE IS
 {
-  postid:--, (int)
+  _id:--, (int)
   {
     title:--, (string)
     author: --, (string)
     date: --, (string - date)
     details: -- (string - preview details with x maximum characters/words/sentences),
-    categ: [], (array of strings)
+    categories: [], (array of strings)
     img-link: -- (string - link) - later on can be used to have a side picture of the post
   }
   ... more items for post (n number of post... not yet decided)
 }
 
 */
-let PostSample = [
-  {
-    postid: 1,
-    title: 'Healthcare Awareness For 2019',
-    author: 'author1',
-    date: 'date1',
-    details:
-      'Consectetur est consequat incididunt anim ex quis pariatur commodo laborum laborum occaecat anim ea incididunt. Eiusmod ullamco est consequat ipsum aliqua ea qui irure aute commodo voluptate. Nisi incididunt fugiat exercitation et ea consectetur.Tempor minim minim cillum dolor reprehenderit adipisicing et eu veniam incididunt cupidatat duis. Consectetur velit duis anim sint ad commodo deserunt ex anim minim pariatur veniam tempor. Deserunt irure do ullamco amet consequat occaecat esse reprehenderit nulla sit ea. Sunt labore adipisicing commodo laboris sint ullamco.Ex nisi sint esse do nulla Lorem in tempor veniam ea. Id minim sint quis tempor ea in Lorem ullamco eu incididunt labore exercitation nostrud occaecat. Id Lorem ea eiusmod velit ad velit minim irure. Aliqua est mollit eu consectetur dolor cupidatat cupidatat elit.',
-    categ: ['categ1-1', 'categ1-2']
-  },
-  {
-    postid: 2,
-    title:
-      'Something Homelessness title Over Here That Is Convincing that it looks okay',
-    author: 'author2',
-    date: 'date2',
-    details: 'details2',
-    categ: ['categ2-1', 'categ2-2']
-  },
-  {
-    postid: 3,
-    title: 'Title3',
-    author: 'author3',
-    date: 'date3',
-    details: 'details3',
-    categ: ['categ3-1', 'categ3-2']
-  }
-]
 
 class Posts extends React.Component {
   state = {
+    posts: [],
     pages: 10,
-    showNo: 3,
-    CurrentCollection: this.props.router.query.pageNumber
+    maxPage: 100,
+    currentCollection: this.props.router.query.pageNumber
   }
 
-  createPagination = () => {
-    var list = []
+  componentDidMount() {
+    const baseURL = 'http://localhost:5001' //process.env.REACT_APP_BACKEND_URL
+    const apiPath = `${baseURL}/post/${this.state.currentCollection}`
+    Axios.get(apiPath, {})
+      .then(response =>
+        this.setState({
+          posts: response.data.data,
+          maxPage: response.data.maxPage
+        })
+      )
+      .catch(err => console.log(err))
+  }
 
-    for (let i = 1; i <= this.state.pages; i++) {
+  //Creation of Pagination Display With maximum of 10 Page Display
+  createPagination = () => {
+    let list = []
+    const paginationDisplayNo = 10
+    let startPagination = this.state.currentCollection - paginationDisplayNo / 2
+    startPagination = startPagination > 0 ? startPagination : 1 //Changes Pagination for when in middle
+
+    let endPagination = startPagination + paginationDisplayNo - 1
+    endPagination =
+      endPagination < this.state.maxPage ? endPagination : this.state.maxPage
+
+    for (let i = startPagination; i <= endPagination; i++) {
       list.push(
         <li
           key={i}
           className={
-            this.state.CurrentCollection == i ? 'active' : 'waves-effect'
+            this.state.currentCollection == i ? 'active' : 'waves-effect'
           }
         >
-          <a href="#!">{i}</a>
+          <Link href={`/posts/[pageNumber]`} as={`/posts/${i}`}>
+            <a>{i}</a>
+          </Link>
         </li>
       )
-      // console.log(this.state.CurrentCollection + " " + i + " "+ this.state.pages);
+      // console.log(this.state.currentCollection + " " + i + " "+ this.state.pages);
     }
 
     return list
@@ -87,15 +84,15 @@ class Posts extends React.Component {
       <div>
         {/* POST PREVIEW LIST*/}
         <div styles="margin:auto">
-          {PostSample.map(post => (
+          {this.state.posts.map(post => (
             <Post
-              postid={post.postid}
-              key={post.postid}
+              _id={post._id}
+              key={post._id}
               title={post.title}
               author={post.author}
               date={post.date}
               details={post.details}
-              categ={post.categ}
+              categories={post.categories}
             />
           ))}
         </div>

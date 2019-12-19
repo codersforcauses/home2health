@@ -23,7 +23,7 @@ router.get('/:page', (request, response, next) => {
 // GET THE DETAILS OF SPECIFIC PAGES
 router.post('/:_id', (request, response, next) => {
   let currentPostId = request.params._id
-  controller.getPost(currentPostId).then(data => {
+  controller.getSpecificPost(currentPostId).then(data => {
     response.send(data)
   })
 })
