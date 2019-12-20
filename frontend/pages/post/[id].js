@@ -25,13 +25,13 @@ The ideal POST RESPONSE OF THIS PAGE IS
 */
 
 const PostLanding = props => {
-  const { title, author, datetime, previewDetails } = props
+  const { title, author, datetime, previewDetails, headerImageUrl } = props
   return (
     <header
       class="masthead"
       style={{
         backgroundImage: `url(
-        'https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        '${headerImageUrl}'
       )`
       }}
     >
