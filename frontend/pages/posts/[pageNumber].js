@@ -1,6 +1,6 @@
 import React from 'react'
 import Axios from 'axios'
-import { Post } from '../../components/post'
+import { Post, PostPreview } from '../../components/postPreview'
 
 import Link from 'next/link'
 import { useRouter, withRouter } from 'next/router'
@@ -18,8 +18,8 @@ The ideal POST RESPONSE OF THIS PAGE IS
   {
     title:--, (string)
     author: --, (string)
-    date: --, (string - date)
-    details: -- (string - preview details with x maximum characters/words/sentences),
+    datetime: --, (string - datetime)
+    previewDetails: -- (string - preview details with x maximum characters/words/sentences),
     categories: [], (array of strings)
     img-link: -- (string - link) - later on can be used to have a side picture of the post
   }
@@ -52,9 +52,9 @@ class Posts extends React.Component {
       .catch(err => console.log(err))
   }
   changePageCollection = element => {
-    this.setState({ currentCollection: element.target.id }, () =>
+    this.setState({ currentCollection: element.target.id }, () => {
       this.updatePostsDisplay()
-    )
+    })
   }
 
   //Creation of Pagination Display With maximum of 10 Page Display
@@ -89,20 +89,16 @@ class Posts extends React.Component {
 
   render() {
     return (
-      <div>
+      <div class="container">
         {/* POST PREVIEW LIST*/}
-        <div styles="margin:auto">
-          {this.state.posts.map(post => (
-            <Post
-              _id={post._id}
-              key={post._id}
-              title={post.title}
-              author={post.author}
-              date={post.date}
-              details={post.details}
-              categories={post.categories}
-            />
-          ))}
+        <div>
+          {this.state.posts.map(post => {
+            return (
+              <React.Fragment>
+                <PostPreview _id={post._id} key={post._id} {...post} />
+              </React.Fragment>
+            )
+          })}
         </div>
 
         {/* PAGINATION */}

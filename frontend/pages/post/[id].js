@@ -1,8 +1,10 @@
 import React from 'react'
 import Axios from 'axios'
+import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import { useRouter, withRouter } from 'next/router'
 
+import './post.css'
 /*
 The ideal POST REQUEST OF THIS PAGE IS
 {
@@ -14,13 +16,55 @@ The ideal POST RESPONSE OF THIS PAGE IS
   {
     title:--, (string)
     author: --, (string)
-    date: --, (string - date)
+    datetime: --, (string - datetime)
     post: -- (string - rich text format -> NOTE : Not sure what to use for this one as the post can have various positioning),
     categories: [], (array of strings)
   }
   ... more items for post (n number of post... not yet decided)
 }
 */
+
+const PostLanding = props => {
+  const { title, author, datetime, previewDetails } = props
+  return (
+    <header
+      class="masthead"
+      style={{
+        backgroundImage: `url(
+        'https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      )`
+      }}
+    >
+      <div class="overlay"></div>
+      <div class="container white-text">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto">
+            <div class="post-heading">
+              <h1>{title}</h1>
+              <span class="meta">{` Posted By: ${author} on ${datetime}`}</span>
+              <p>{previewDetails}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+const PostArticle = props => {
+  const { content } = props
+  return (
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto">
+            <ReactMarkdown source={content} escapeHtml={false}></ReactMarkdown>
+          </div>
+        </div>
+      </div>
+    </article>
+  )
+}
 class LongPost extends React.Component {
   state = {
     data: {},
@@ -37,17 +81,19 @@ class LongPost extends React.Component {
   }
 
   render() {
-    const { _id, title, author, date, details, categories } = this.state.data
+    const {
+      _id,
+      title,
+      author,
+      datetime,
+      details,
+      categories
+    } = this.state.data
+    console.log(this.state.data)
     return (
       <div>
-        <h1 className="center-align">
-          {title} [#{_id}]
-        </h1>
-        <h2 className="center-align">
-          By: {author} on {date}
-        </h2>
-
-        <p>{details}</p>
+        <PostLanding {...this.state.data}></PostLanding>
+        <PostArticle {...this.state.data}></PostArticle>
       </div>
     )
   }
