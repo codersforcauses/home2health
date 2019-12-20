@@ -22,6 +22,7 @@ export const PostPreview = ({
   previewDetails = 'Preview Details Missing',
   categories = ['#something1', 'Something2']
 }) => {
+  let date = new Date(datetime)
   return (
     <Link href={`/post/[id]`} as={`/post/${_id}`}>
       <a>
@@ -32,7 +33,7 @@ export const PostPreview = ({
             </span>
 
             <blockquote className="subtitle">
-              <p>{` Posted By: ${author} on ${datetime}`}</p>
+              <p>{` Posted By: ${author} on ${date.toDateString()}`}</p>
             </blockquote>
             <p>{previewDetails}</p>
             <div className="tags">

@@ -26,6 +26,7 @@ The ideal POST RESPONSE OF THIS PAGE IS
 
 const PostLanding = props => {
   const { title, author, datetime, previewDetails, headerImageUrl } = props
+  let date = new Date(datetime)
   return (
     <header
       class="masthead"
@@ -41,7 +42,7 @@ const PostLanding = props => {
           <div class="col-md-10 col-lg-8 mx-auto">
             <div class="post-heading">
               <h1>{title}</h1>
-              <span class="meta">{` Posted By: ${author} on ${datetime}`}</span>
+              <span class="meta">{` Posted By: ${author} on ${date.toDateString()}`}</span>
               <p>{previewDetails}</p>
             </div>
           </div>
