@@ -9,6 +9,14 @@ let postSchema = mongoose.Schema(
     type: {
       type: String
     },
+    previewDetails: {
+      type: String,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    },
     author: {
       type: String,
       required: true
@@ -18,6 +26,9 @@ let postSchema = mongoose.Schema(
     },
     comments: {
       type: Array
+    },
+    headerImageUrl: {
+      type: String
     }
   },
   { collection: 'post', timestamps: { createdAt: 'datetime' } }
