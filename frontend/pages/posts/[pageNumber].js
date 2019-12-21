@@ -40,7 +40,7 @@ class Posts extends React.Component {
     this.updatePostsDisplay()
   }
   updatePostsDisplay() {
-    const baseURL = 'http://localhost:5001' //process.env.REACT_APP_BACKEND_URL
+    const baseURL = process.env.API_BACKEND_URL
     const apiPath = `${baseURL}/post/${this.state.currentCollection}`
     Axios.get(apiPath, {})
       .then(response =>

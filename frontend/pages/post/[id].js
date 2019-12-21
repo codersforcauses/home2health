@@ -74,7 +74,7 @@ class LongPost extends React.Component {
 
   componentDidMount() {
     let id = this.props.router.query.id
-    const baseURL = 'http://localhost:5001' //process.env.REACT_APP_BACKEND_URL
+    const baseURL = process.env.API_BACKEND_URL
     const apiPath = `${baseURL}/post/${id}`
     Axios.post(apiPath, {})
       .then(response => this.setState({ data: response.data, loading: false }))
