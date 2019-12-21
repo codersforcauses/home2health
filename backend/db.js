@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 let dbURI = process.env.db_uri || 'mongodb://localhost:27017/home2health'
 if (process.env.NODE_ENV === 'production') dbURI = process.env.MONGO_URI
 
-mongoose.connect(dbURI, { useNewUrlParser: true })
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 
