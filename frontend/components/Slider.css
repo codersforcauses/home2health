@@ -4,23 +4,22 @@
   width: 100%;
   height: auto;
   display: block;
-  border: thick;
 }
 .awssld {
-  --slider-transition-duration: 200ms;
+  --slider-height-percentage: 70%;
+  --slider-transition-duration: 600ms;
   --organic-arrow-thickness: 4px;
   --organic-arrow-border-radius: 0px;
-  --organic-arrow-height: 40px;
-  --organic-arrow-color: #26a69a;
-  --control-button-width: 25%;
-  --control-button-height: 10%;
+  --organic-arrow-height: 20px;
+  --organic-arrow-color: transparent;
   --control-button-background: transparent;
   --control-bullet-color: #fafafa;
   --control-bullet-active-color: #d5d5d5;
-  --loader-bar-color: #9c9999;
+  --loader-bar-color: #646464;
   --loader-bar-height: 6px;
 }
 .awssld__bullets {
-  height: 30px;
-  background-color: #0f6489;
+  height: 40px;
+  background-color: transparent;
+  border: 0 !important;
 }
