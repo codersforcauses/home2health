@@ -27,7 +27,7 @@ class Index extends Component {
               </h5>
             </div>
             <div className="row" style={{ marginBottom: '1rem' }}>
-              <div className="col s12">
+              <div className="col s12" style={{ marginBottom: '10px' }}>
                 <Link href="#">
                   <a
                     className="btn-flat waves-effect waves-light"
