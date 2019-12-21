@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
+
 import Contact from '../components/Contact'
+import Partners from '../components/Partners'
+import Slider from '../components/Slider'
 
 class Index extends Component {
   render() {
@@ -24,7 +27,7 @@ class Index extends Component {
               </h5>
             </div>
             <div className="row" style={{ marginBottom: '1rem' }}>
-              <div className="col s12">
+              <div className="col s12" style={{ marginBottom: '10px' }}>
                 <Link href="#">
                   <a
                     className="btn-flat waves-effect waves-light"
@@ -37,49 +40,11 @@ class Index extends Component {
                   <a className="btn waves-effect waves-light">Sign up</a>
                 </Link>
               </div>
+              <Slider />
             </div>
           </div>
         </div>
-        <div className="section grey lighten-1">
-          <div className="container">
-            <h4 className="center">Our partners</h4>
-          </div>
-          <div className="container">
-            <div className="row">
-              <div
-                className="col s6 m3 l3"
-                style={{ backgroundColor: 'white', height: 'auto' }}
-              >
-                <img
-                  alt="Royal Perth Hospital logo"
-                  className="partner-img"
-                  src="/static/partner-rph.jpeg"
-                />
-              </div>
-              <div className="col s6 m3 l3 partner-div">
-                <img
-                  alt="Coders for Causes logo"
-                  className="partner-img"
-                  src="/static/partner-cfc.png"
-                />
-              </div>
-              <div className="col s6 m3 l3 partner-div">
-                <img
-                  alt="Homeless Healthcare logo"
-                  className="partner-img"
-                  src="/static/partner-hh.png"
-                />
-              </div>
-              <div className="col s6 m3 l3 partner-div">
-                <img
-                  alt="UWA logo"
-                  className="partner-img"
-                  src="/static/partner-uwa.jpeg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        <Partners />
         <Contact />
       </Fragment>
     )

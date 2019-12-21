@@ -1,0 +1,9 @@
+.resourcesLink {
+    width: 100%;
+    display: block;
+    height: auto;
+    border: 1px solid #D9D8DB;
+    margin: 10px;
+    padding-left: 5px;
+    line-height: 50px;
+}
