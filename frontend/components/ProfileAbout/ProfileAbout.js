@@ -24,6 +24,7 @@ const style = (
     .profileContent {
       padding: 2rem;
       border-radius: 0.3rem;
+      border: 2px solid #0f6489;
     }
     h1 {
       margin: 0;
