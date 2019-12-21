@@ -32,8 +32,8 @@ const Contact = () => {
   }
 
   return (
-    <div class="section white">
-      <div class="container">
+    <div classNameName="section white">
+      <div className="container">
         <h4 class="header center">Contact us</h4>
         <h5 class="header col s12 light center">
           Home2Health is a research team from the School of Population and
@@ -43,12 +43,12 @@ const Contact = () => {
         </h5>
       </div>
       {!sentEmail ? (
-        <div class="container">
+        <div className="container">
           <form>
-            <div class="row">
-              <div class="col s12 m10 offset-m1">
-                <div class="row contactrow">
-                  <div class="input-field col s12">
+            <div className="row">
+              <div className="col s12 m10 offset-m1">
+                <div className="row contactrow">
+                  <div className="input-field col s12">
                     <input
                       id="contact_name"
                       type="text"
@@ -64,8 +64,8 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-                <div class="row contactrow">
-                  <div class="input-field col s12">
+                <div className="row contactrow">
+                  <div className="input-field col s12">
                     <input
                       id="contact_organisation"
                       type="text"
@@ -76,8 +76,8 @@ const Contact = () => {
                     <span class="helper-text">Optional</span>
                   </div>
                 </div>
-                <div class="row contactrow">
-                  <div class="input-field col s12">
+                <div className="row contactrow">
+                  <div className="input-field col s12">
                     <input
                       id="contact_email"
                       type="email"
@@ -93,8 +93,8 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-                <div class="row contactrow">
-                  <div class="input-field col s12">
+                <div className="row contactrow">
+                  <div className="input-field col s12">
                     <textarea
                       id="contact_message"
                       class="materialize-textarea"
@@ -106,7 +106,7 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            <div class="row center">
+            <div className="row center">
               {!loading ? (
                 <button
                   class="btn waves-effect waves-light"
@@ -116,7 +116,7 @@ const Contact = () => {
                 </button>
               ) : (
                 <div id="progress-bar" class="progress">
-                  <div class="indeterminate" />
+                  <div className="indeterminate" />
                 </div>
               )}
             </div>
