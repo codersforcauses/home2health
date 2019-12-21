@@ -40,12 +40,18 @@ class Index extends Component {
                   <a className="btn waves-effect waves-light">Sign up</a>
                 </Link>
               </div>
-              <Slider />
             </div>
           </div>
+        <div>
+        <Slider />
         </div>
+        <div>
         <Partners />
+        </div>
+        <div>
         <Contact />
+        </div>
+        </div>
       </Fragment>
     )
   }
