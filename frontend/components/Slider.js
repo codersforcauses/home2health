@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AwesomeSlider from 'react-awesome-slider'
 import 'react-awesome-slider/dist/styles.css'
-import './slider.css'
+import './Slider.css'
 
 export default class Slider extends Component {
   constructor(props) {
