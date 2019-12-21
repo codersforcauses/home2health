@@ -9,6 +9,8 @@ class ProfileAbout extends Component {
     }
   }
 
+  
+
   render() {
     return (
       <div class="container" style={{ width: '90%' }}>
