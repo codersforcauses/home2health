@@ -3,7 +3,7 @@ import React from 'react'
 const Partners = () => (
   <>
     {style}
-    <div className="section grey lighten-1">
+    <div className="section white lighten-1">
       <h4 className="center">Our partners</h4>
       <div className="container">
         <div className="row partner-row partner-row-background">
@@ -44,6 +44,8 @@ const style = (
         align-items: center;
       }
       .partner-img {
+        max-width: 30%;
+        height: auto;
       }
     `}
   </style>
