@@ -46,6 +46,7 @@ footer.page-footer {
   background-color: #0f6489;
   color: white;
   padding: 0;
+  border-top: 80px solid white;
 }
 #index-banner {
   height: calc(80vh - 63px);
@@ -62,5 +63,5 @@ footer.page-footer {
 }
 .partner-img {
   max-height: 50%;
-  max-width: 100%;
+  max-width: 30%;
 }

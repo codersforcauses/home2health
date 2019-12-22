@@ -44,8 +44,6 @@ const style = (
         align-items: center;
       }
       .partner-img {
-        max-width: 30%;
-        height: auto;
       }
     `}
   </style>
