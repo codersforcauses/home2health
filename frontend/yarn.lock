@@ -4755,6 +4755,13 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-awesome-slider@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-awesome-slider/-/react-awesome-slider-2.2.1.tgz#3e3983399b87db12b8b21e28eed0f70f080240e5"
+  integrity sha512-zKDguxTdotuXjdKP/hZrI1Ct5cGv3iaygSHEpbUE9Bp82zKVwANOBvFbyFwlkIxQLLCInkK73KshZWT0B29vXQ==
+  dependencies:
+    web-animation-club "^0.6.0"
+
 react-dom@^16.12.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
@@ -5854,6 +5861,11 @@ wcwidth@^1.0.1:
   integrity sha1-8LDc+RW8X/FSivrbLA4XtTLaL+g=
   dependencies:
     defaults "^1.0.3"
+
+web-animation-club@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/web-animation-club/-/web-animation-club-0.6.0.tgz#c1dd79646b21e4265b5f95ae9cb8b93b73e05e47"
+  integrity sha512-9W+EQu1HiaPLe/7WZlhJ2ULqQ4VL80RPDYW+ZcjfTKp6ayOuT1k3SVO6+tu0VBRmOqueJ/mrG+rjjInIv8Aglg==
 
 webpack-dev-middleware@3.7.0:
   version "3.7.0"

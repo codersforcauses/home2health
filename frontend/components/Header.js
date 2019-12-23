@@ -4,85 +4,89 @@ import Link from 'next/link'
 class Header extends Component {
   render() {
     return (
-      <nav class="lighten-1 white" id="header">
-        <div class="nav-wrapper container">
+      <nav className="lighten-1 white" id="header">
+        <div className="nav-wrapper container">
           <Link href="/">
-            <a id="logo-container" class="brand-logo">
+            <a id="logo-container" className="brand-logo">
               Home2Health
             </a>
           </Link>
-          <ul class="right hide-on-med-and-down">
+          <ul className="right hide-on-med-and-down">
             <li>
               <a
-                class="dropdown-trigger theHappening"
+                className="dropdown-trigger theHappening"
                 href="#"
                 data-target="happeningDropdown"
               >
                 What's happening in Australia?
-                <i class="material-icons right">arrow_drop_down</i>
+                <i className="material-icons right">arrow_drop_down</i>
               </a>
-              <ul id="happeningDropdown" class="dropdown-content">
+              <ul id="happeningDropdown" className="dropdown-content">
                 <li>
                   <a href=".">Housing first programs</a>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
                 <li>
                   <a href=".">Hospital programs</a>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
                 <li>
                   <a href=".">GP services</a>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
                 <li>
                   <a href=".">Dual diagnosis services</a>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
                 <li>
                   <a href=".">Peer worker programs</a>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
                 <li>
                   <a href=".">Outreach</a>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
                 <li>
                   <a href=".">Medical recovery centre</a>
+                </li>
+                <li className="divider" />
+                <li>
+                  <Link href="/resources"><a>Resources</a></Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a class="dropdown-trigger" href="#" data-target="memberDropdown">
+              <a className="dropdown-trigger" href="#" data-target="memberDropdown">
                 Members Area
-                <i class="material-icons right">arrow_drop_down</i>
+                <i className="material-icons right">arrow_drop_down</i>
               </a>
-              <ul id="memberDropdown" class="dropdown-content">
+              <ul id="memberDropdown" className="dropdown-content">
                 <li>
                   <a href=".">Discussion board</a>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
 
                 <li>
                   <a href=".">Become a member</a>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
                 <li>
                   <a href=".">About membership</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a class="dropdown-trigger" href="#" data-target="blogDropdown">
+              <a className="dropdown-trigger" href="#" data-target="blogDropdown">
                 Blog
-                <i class="material-icons right">arrow_drop_down</i>
+                <i className="material-icons right">arrow_drop_down</i>
               </a>
-              <ul id="blogDropdown" class="dropdown-content">
+              <ul id="blogDropdown" className="dropdown-content">
                 <li>
                   <Link href="/posts/1">
                     <a>Posts</a>
                   </Link>
                 </li>
-                <li class="divider" />
+                <li className="divider" />
                 <li>
                   <Link href="/posts/form">
                     <a>Create Form</a>
@@ -99,16 +103,16 @@ class Header extends Component {
               </Link>
             </li>
           </ul>
-          <ul id="nav-mobile" class="sidenav">
+          <ul id="nav-mobile" className="sidenav">
             <li>
               <a
-                class="dropdown-trigger dropdownMobile"
+                className="dropdown-trigger dropdownMobile"
                 href="#"
                 data-target="happeningDropdownMobile"
               >
                 What's happening in Australia?
               </a>
-              <ul id="happeningDropdownMobile" class="dropdown-content">
+              <ul id="happeningDropdownMobile" className="dropdown-content">
                 <li>
                   <a href=".">Housing first programs</a>
                 </li>
@@ -130,17 +134,20 @@ class Header extends Component {
                 <li>
                   <a href=".">Medical recovery centre</a>
                 </li>
+                <li>
+                  <a href="/resources">Resources</a>
+                </li>
               </ul>
             </li>
             <li>
               <a
-                class="dropdown-trigger dropdownMobile"
+                className="dropdown-trigger dropdownMobile"
                 href="#"
                 data-target="memberDropdownMobile"
               >
                 Members Area
               </a>
-              <ul id="memberDropdownMobile" class="dropdown-content">
+              <ul id="memberDropdownMobile" className="dropdown-content">
                 <li>
                   <a href=".">Discussion board</a>
                 </li>
@@ -154,13 +161,13 @@ class Header extends Component {
             </li>
             <li>
               <a
-                class="dropdown-trigger dropdownMobile"
+                className="dropdown-trigger dropdownMobile"
                 href="#"
                 data-target="blogDropdownMobile"
               >
                 Blog
               </a>
-              <ul id="blogDropdownMobile" class="dropdown-content">
+              <ul id="blogDropdownMobile" className="dropdown-content">
                 <li>
                   <a href="/posts">Posts</a>
                 </li>
@@ -171,17 +178,18 @@ class Header extends Component {
             </li>
             <li>
               <Link href="#">
-                <a class="navitem">News</a>
+                <a className="navitem">News</a>
               </Link>
             </li>
+            
             <li>
               <Link href="#">
-                <a class="navitem">Login</a>
+                <a className="navitem">Login</a>
               </Link>
             </li>
           </ul>
-          <a href="#" data-target="nav-mobile" class="sidenav-trigger">
-            <i class="material-icons">menu</i>
+          <a href="#" data-target="nav-mobile" className="sidenav-trigger">
+            <i className="material-icons">menu</i>
           </a>
         </div>
       </nav>
