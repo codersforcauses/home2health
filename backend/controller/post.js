@@ -118,7 +118,6 @@ module.exports = {
   getSpecificPost,
   getTitleContain,
   addPost,
-  addComment,
   deletePost,
   updatePost
 }
