@@ -63,12 +63,18 @@ class Header extends Component {
                 </li>
                 <li className="divider" />
                 <li>
-                  <Link href="/resources"><a>Resources</a></Link>
+                  <Link href="/resources">
+                    <a>Resources</a>
+                  </Link>
                 </li>
               </ul>
             </li>
             <li>
-              <a className="dropdown-trigger" href="#" data-target="memberDropdown">
+              <a
+                className="dropdown-trigger"
+                href="#"
+                data-target="memberDropdown"
+              >
                 Members Area
                 <i className="material-icons right">arrow_drop_down</i>
               </a>
@@ -88,7 +94,11 @@ class Header extends Component {
               </ul>
             </li>
             <li>
-              <a className="dropdown-trigger" href="#" data-target="blogDropdown">
+              <a
+                className="dropdown-trigger"
+                href="#"
+                data-target="blogDropdown"
+              >
                 Blog
                 <i className="material-icons right">arrow_drop_down</i>
               </a>
@@ -217,7 +227,7 @@ class Header extends Component {
                 <a className="navitem">News</a>
               </Link>
             </li>
-            
+
             <li>
               <Link href="#">
                 <a className="navitem">Login</a>
