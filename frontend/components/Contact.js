@@ -32,10 +32,10 @@ const Contact = () => {
   }
 
   return (
-    <div classNameName="section white">
+    <div className="section white">
       <div className="container">
-        <h4 class="header center">Contact us</h4>
-        <h5 class="header col s12 light center">
+        <h4 className="header center">Contact us</h4>
+        <h5 className="header col s12 light center">
           Home2Health is a research team from the School of Population and
           Global Health
           <br /> at the University of Western Australia. Please contact us
@@ -56,9 +56,9 @@ const Contact = () => {
                       required=""
                       onChange={e => setName(e.target.value)}
                     />
-                    <label for="contact_name">Name</label>
+                    <label htmlFor="contact_name">Name</label>
                     <span
-                      class="helper-text"
+                      className="helper-text"
                       data-error="Please enter a valid name"
                       data-success=""
                     />
@@ -72,8 +72,8 @@ const Contact = () => {
                       value={organistation}
                       onChange={e => setOrganistation(e.target.value)}
                     />
-                    <label for="contact_organisation">Organisation</label>
-                    <span class="helper-text">Optional</span>
+                    <label htmlFor="contact_organisation">Organisation</label>
+                    <span className="helper-text">Optional</span>
                   </div>
                 </div>
                 <div className="row contactrow">
@@ -81,13 +81,13 @@ const Contact = () => {
                     <input
                       id="contact_email"
                       type="email"
-                      class="validate"
+                      className="validate"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                     />
-                    <label for="contact_email">Email</label>
+                    <label htmlFor="contact_email">Email</label>
                     <span
-                      class="helper-text"
+                      className="helper-text"
                       data-error="Please enter a valid email"
                       data-success=""
                     />
@@ -97,11 +97,11 @@ const Contact = () => {
                   <div className="input-field col s12">
                     <textarea
                       id="contact_message"
-                      class="materialize-textarea"
+                      className="materialize-textarea"
                       value={message}
                       onChange={e => setMessage(e.target.value)}
                     />
-                    <label for="contact_message">Message</label>
+                    <label htmlFor="contact_message">Message</label>
                   </div>
                 </div>
               </div>
@@ -109,13 +109,13 @@ const Contact = () => {
             <div className="row center">
               {!loading ? (
                 <button
-                  class="btn waves-effect waves-light"
+                  className="btn waves-effect waves-light"
                   onClick={sendEmail}
                 >
                   Send
                 </button>
               ) : (
-                <div id="progress-bar" class="progress">
+                <div id="progress-bar" className="progress">
                   <div className="indeterminate" />
                 </div>
               )}

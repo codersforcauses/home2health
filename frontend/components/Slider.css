@@ -1,0 +1,25 @@
+.slider,
+.slider-wrapper {
+  margin: 10px auto 10px auto;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.awssld {
+  --slider-height-percentage: 70%;
+  --slider-transition-duration: 600ms;
+  --organic-arrow-thickness: 4px;
+  --organic-arrow-border-radius: 0px;
+  --organic-arrow-height: 20px;
+  --organic-arrow-color: transparent;
+  --control-button-background: transparent;
+  --control-bullet-color: #fafafa;
+  --control-bullet-active-color: #d5d5d5;
+  --loader-bar-color: #646464;
+  --loader-bar-height: 6px;
+}
+.awssld__bullets {
+  height: 40px;
+  background-color: transparent;
+  border: 0 !important;
+}

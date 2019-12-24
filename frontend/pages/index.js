@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
+
 import Contact from '../components/Contact'
 import ProfileAbout from '../components/ProfileAbout'
 import ProfileComments from '../components/ProfileComments'
 import ProfileContent from '../components/ProfileContent'
 import ProfileHeader from '../components/ProfileHeader'
 import ProfilePosts from '../components/ProfilePosts'
+import Partners from '../components/Partners'
+import Slider from '../components/Slider'
 
 
 class Index extends Component {
@@ -15,10 +18,29 @@ class Index extends Component {
         <div className="section" id="index-banner">
           <div className="container">
             <div className="row" style={{ marginBottom: 0 }}>
-              <div className="col s12 m8">
+              <div className="col s6">
                 <h3 style={{ marginBottom: 0 }}>
                   Let's talk about homelessness.
                 </h3>
+                <h5 style={{ margin: '1rem 0 0' }}>
+                  There has been a growing number of homeless health programs
+                  and research in Australia recently. This is a space to share
+                  ideas and learn what else is happening in homelessness and
+                  health in Australia.
+                </h5>
+                <div style={{ margin: '1rem 0 0' }}>
+                  <Link href="#">
+                    <a
+                      className="btn-flat waves-effect waves-light"
+                      style={{ marginRight: '1rem' }}
+                    >
+                      Log in
+                    </a>
+                  </Link>
+                  <Link href="#">
+                    <a className="btn waves-effect waves-light">Sign up</a>
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="row" style={{ marginTop: '20px' }}>
@@ -44,13 +66,13 @@ class Index extends Component {
                 <Link href="/Registration">
                 <a className="btn waves-effect waves-light btn-large">Sign up</a>
                 </Link>
+              <div className="col s6 valign-wrapper">
+                <Slider />
               </div>
             </div>
           </div>
-        </div>
-        <div className="section grey lighten-1">
-          <div className="container">
-            <h4 className="center">Our partners</h4>
+          <div>
+            <Partners />
           </div>
           <div className="container">
             <div className="row">
@@ -86,9 +108,10 @@ class Index extends Component {
                 />
               </div>
             </div>
+          <div>
+            <Contact />
           </div>
         </div>
-        <Contact />
       </Fragment>
     )
   }
