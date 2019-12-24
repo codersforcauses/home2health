@@ -3,10 +3,12 @@ import Link from 'next/link'
 
 const LogoLink = props => {
   let icon
+  let href = props.href
 
   switch (props.service) {
     case 'email':
-      icon = 'far fa-envelope'
+      icon = 'fas fa-envelope'
+      href = `mailto:${props.href}`
       break
     case 'twitter':
       icon = 'fab fa-twitter'
@@ -21,9 +23,11 @@ const LogoLink = props => {
   return (
     <>
       {style}
-      <a href={props.href} className="logo-link">
-        <i class={`${icon} fa-2x`}></i>
-      </a>
+      <Link href={href}>
+        <a className="logo-link">
+          <i class={`${icon} fa-2x`}></i>
+        </a>
+      </Link>
     </>
   )
 }

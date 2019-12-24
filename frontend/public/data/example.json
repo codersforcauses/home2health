@@ -10,7 +10,8 @@
   "profiles": [
     { "service": "facebook", "href": "https://www.facebook.com" },
     { "service": "twitter", "href": "https://www.twitter.com" },
-    { "service": "email", "href": "https://www.email.com" }
+    { "service": "email", "href": "john.doe@email.com" },
+    { "service": "testDefault", "href": "def" }
   ],
   "about": "Nothing here yet..."
 }
