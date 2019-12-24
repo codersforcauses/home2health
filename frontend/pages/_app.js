@@ -1,6 +1,10 @@
-import App from 'next/app'
+import App, { Container as NextContainer } from 'next/app'
 import React from 'react'
 import Layout from '../components/Layout'
+
+import ProfileAbout from '../components/ProfileAbout'
+
+const user = ProfileAbout.user
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -8,6 +12,10 @@ class MyApp extends App {
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
+    }
+
+    if (ctx.req && ctx.req.session && ctx.req.session.passport) {
+      pageProps.user = ctx.req.session.passport.user
     }
 
     return { pageProps }
@@ -30,8 +38,20 @@ class MyApp extends App {
     })
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: props.pageProps.user
+    }
+  }
+
   render() {
     const { Component, pageProps } = this.props
+
+    const props = {
+      ...pageProps,
+      user: this.state.user
+    }
 
     return (
       <Layout>

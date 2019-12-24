@@ -1,20 +1,11 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import ProfileAbout from '../components/ProfileAbout'
-import ProfileComments from '../components/ProfileComments'
-import ProfileContent from '../components/ProfileContent'
-import ProfileHeader from '../components/ProfileHeader'
-import ProfilePosts from '../components/ProfilePosts'
+
+const user = ProfileAbout.user
 
 class Header extends Component {
   render() {
-    const notLoggedIn = !(
-      ProfileAbout ||
-      ProfileComments ||
-      ProfileContent ||
-      ProfileHeader ||
-      ProfilePosts
-    )
     return (
       <nav className="lighten-1 white" id="header">
         <div className="nav-wrapper container">
@@ -120,31 +111,20 @@ class Header extends Component {
               <a href="">News</a>
             </li>
             <li>
-              {notLoggedIn && (
-                <Link href="/login">
-                  <a
-                    className="btn-flat waves-effect waves-light"
-                    style={{ marginRight: '1rem' }}
-                  >
-                    Log In
-                  </a>
-                </Link>
-              )}
-
-              {notLoggedIn ? (
+              {user ? (
                 <Link href="./profile">
                   <a className="profile">Profile</a>
                 </Link>
               ) : (
                 <Link href="/logout">
-                  <a className="nav-link">Log Out</a>
+                  <a className="nav-link">Log In</a>
                 </Link>
               )}
             </li>
             <li>
-              {notLoggedIn && (
+              {!user && (
                 <Link href="/registration">
-                  <a>Registration</a>
+                  <a>Sign Up</a>
                 </Link>
               )}
             </li>

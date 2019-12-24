@@ -3,20 +3,10 @@ import Link from 'next/link'
 
 import Contact from '../components/Contact'
 import ProfileAbout from '../components/ProfileAbout'
-import ProfileComments from '../components/ProfileComments'
-import ProfileContent from '../components/ProfileContent'
-import ProfileHeader from '../components/ProfileHeader'
-import ProfilePosts from '../components/ProfilePosts'
 import Partners from '../components/Partners'
 import Slider from '../components/Slider'
 
-const notLoggedIn = !(
-  ProfileAbout &&
-  ProfileComments &&
-  ProfileContent &&
-  ProfileHeader &&
-  ProfilePosts
-)
+const user = ProfileAbout.user
 
 class Index extends Component {
   render() {
@@ -37,17 +27,17 @@ class Index extends Component {
                 </h5>
 
                 <div style={{ margin: '1rem 0 0' }}>
-                  {notLoggedIn && (
+                  {!user && (
                     <Link href="#">
                       <a
-                        className="btn-flat waves-effect waves-light"
+                        className="btn waves-effect waves-light"
                         style={{ marginRight: '1rem' }}
                       >
                         Log in
                       </a>
                     </Link>
                   )}
-                  {notLoggedIn && (
+                  {!user && (
                     <Link href="#">
                       <a className="btn waves-effect waves-light">Sign up</a>
                     </Link>
