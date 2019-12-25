@@ -112,18 +112,22 @@ class Header extends Component {
             </li>
             <li>
               {user ? (
-                <Link href="./profile">
+                <Link href="/ProfileAbout">
                   <a className="profile">Profile</a>
                 </Link>
               ) : (
-                <Link href="/logout">
+                <Link href="/login">
                   <a className="nav-link">Log In</a>
                 </Link>
               )}
             </li>
             <li>
-              {!user && (
-                <Link href="/registration">
+              {user ? (
+                <Link href="/logout">
+                  <a>Log Out</a>
+                </Link>
+              ) : (
+                <Link href="/signup">
                   <a>Sign Up</a>
                 </Link>
               )}

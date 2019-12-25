@@ -27,19 +27,22 @@ class Index extends Component {
                 </h5>
 
                 <div style={{ margin: '1rem 0 0' }}>
-                  {!user && (
-                    <Link href="#">
-                      <a
-                        className="btn waves-effect waves-light"
-                        style={{ marginRight: '1rem' }}
-                      >
-                        Log in
-                      </a>
+                  {user ? (
+                    <Link href="/ProfileAbout">
+                      <a className="btn waves-effect waves-light">Profile</a>
+                    </Link>
+                  ) : (
+                    <Link href="/login">
+                      <a className="btn waves-effect waves-light">Log In</a>
                     </Link>
                   )}
-                  {!user && (
-                    <Link href="#">
-                      <a className="btn waves-effect waves-light">Sign up</a>
+                  {user ? (
+                    <Link href="/ProfileAbout">
+                      <a className="btn waves-effect waves-light">Profile</a>
+                    </Link>
+                  ) : (
+                    <Link href="/signup">
+                      <a className="btn waves-effect waves-light">Sign Up</a>
                     </Link>
                   )}
                 </div>
