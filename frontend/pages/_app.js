@@ -17,16 +17,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 library.add(fab, faEnvelope, faQuestion)
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
-
-    return { pageProps }
-  }
-
   componentDidMount() {
     const M = require('materialize-css')
     M.AutoInit()
