@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const LogoLink = props => {
@@ -30,11 +29,9 @@ const LogoLink = props => {
   return (
     <>
       {style}
-      <Link href={href}>
-        <a className="logo-link">
-          <FontAwesomeIcon icon={icon} size="2x" color={iconColor} />
-        </a>
-      </Link>
+      <a className="logo-link" href={href}>
+        <FontAwesomeIcon icon={icon} size="2x" color={iconColor} />
+      </a>
     </>
   )
 }
