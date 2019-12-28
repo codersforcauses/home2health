@@ -5,10 +5,10 @@ const getSpecificPost = id => {
   return new Promise((resolve, reject) => {
     Post.find({ _id: id }, (err, data) => {
       if (err) {
-        console.log(err)
         reject(err)
+      } else if (data.length === 0) {
+        reject('No Such Post Exist')
       }
-      console.log(data)
       resolve(data[0])
     })
   })
@@ -20,10 +20,8 @@ const getTitleContain = contain => {
   return new Promise((resolve, reject) => {
     Post.find({ title: /.*contain.*/ }, (err, data) => {
       if (err) {
-        console.log(err)
         reject(err)
       }
-      console.log(data)
       resolve(data)
     })
   })
@@ -34,18 +32,15 @@ const getPost = payload => {
   return new Promise((resolve, reject) => {
     Post.find(payload, (err, data) => {
       if (err) {
-        console.log(err)
         reject(err)
       }
-      console.log(data)
       resolve(data[0])
     })
   })
 }
 
 //GET A GROUP OF POSTS IN A SPECIFIC PAGE IN THE PAGINATION
-const getPagePost = page => {
-  const numberOfPost = 10 // WILL GIVE A MAXIMUM OF 10 POST
+const getPagePost = (page, numberOfPost) => {
   return new Promise((resolve, reject) => {
     Post.count({}, (err, count) => {
       Post.find({})
@@ -57,14 +52,12 @@ const getPagePost = page => {
         .limit(numberOfPost)
         .exec((err, data) => {
           if (err) {
-            console.log(err)
             reject(err)
           }
-          console.log(data)
-          console.log(count)
           let api = {
-            data: data,
-            maxPage: Math.ceil(count / numberOfPost)
+            data,
+            maxPage: Math.ceil(count / numberOfPost),
+            numberOfPost
           }
           resolve(api)
         })
@@ -74,9 +67,16 @@ const getPagePost = page => {
 
 //ADDS POST WITH THE EXACT OBJECT PASSED
 const addPost = payload => {
-  let post = new Post(payload)
-
+  // PAYLOAD VALIDATION
   return new Promise((resolve, reject) => {
+    // STUB
+    let post
+    try {
+      post = new Post(payload)
+    } catch (error) {
+      reject(error)
+    }
+
     post.save((err, result) => {
       if (err) {
         reject(err)

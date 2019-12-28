@@ -9,7 +9,7 @@ let postSchema = mongoose.Schema(
     type: {
       type: String
     },
-    previewDetails: {
+    overview: {
       type: String,
       required: true
     },
