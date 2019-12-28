@@ -4,31 +4,9 @@ import { Post, PostPreview } from '../../components/postPreview'
 
 import Link from 'next/link'
 import { useRouter, withRouter } from 'next/router'
-/*
-[page].js shows the specific page cycle of posts.
-
-The ideal POST REQUEST OF THIS PAGE IS
-{
-  pageNo: -- (int)
-}
-
-The ideal POST RESPONSE OF THIS PAGE IS
-{
-  _id:--, (int)
-  {
-    title:--, (string)
-    author: --, (string)
-    datetime: --, (string - datetime)
-    previewDetails: -- (string - preview details with x maximum characters/words/sentences),
-    categories: [], (array of strings)
-    img-link: -- (string - link) - later on can be used to have a side picture of the post
-  }
-  ... more items for post (n number of post... not yet decided)
-}
-
-*/
 
 class Posts extends React.Component {
+  //INITIAL VALUE OF STATE BEFORE API CALL
   state = {
     posts: [],
     pages: 10,
@@ -39,6 +17,8 @@ class Posts extends React.Component {
   componentDidMount() {
     this.updatePostsDisplay()
   }
+
+  // UPDATE THE POST LISTING DISPLAY
   updatePostsDisplay() {
     const baseURL = process.env.API_BACKEND_URL
     const apiPath = `${baseURL}/post/${this.state.currentCollection}`
@@ -46,11 +26,14 @@ class Posts extends React.Component {
       .then(response =>
         this.setState({
           posts: response.data.data,
-          maxPage: response.data.maxPage
+          maxPage: response.data.maxPage,
+          pages: response.data.numberOfPosts
         })
       )
       .catch(err => console.log(err))
   }
+
+  // HANDLES THE CHANING OF PAGES
   changePageCollection = element => {
     this.setState({ currentCollection: element.target.id }, () => {
       this.updatePostsDisplay()
@@ -60,7 +43,7 @@ class Posts extends React.Component {
   //Creation of Pagination Display With maximum of 10 Page Display
   createPagination = () => {
     let list = []
-    const paginationDisplayNo = 10
+    const paginationDisplayNo = this.state.pages
     let startPagination = this.state.currentCollection - paginationDisplayNo / 2
     startPagination = startPagination > 0 ? startPagination : 1 //Changes Pagination for when in middle
 
@@ -89,7 +72,7 @@ class Posts extends React.Component {
 
   render() {
     return (
-      <div class="container">
+      <div className="container">
         {/* POST PREVIEW LIST*/}
         <div>
           {this.state.posts.map(post => {
