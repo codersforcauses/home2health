@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-
+import ReactMarkdown from 'react-markdown'
 import './postPreview.css'
 
 /*
@@ -19,8 +19,9 @@ export const PostPreview = ({
   title = 'Title Missing',
   author = 'Author Missing',
   datetime = 'datetime Missing',
-  previewDetails = 'Preview Details Missing',
+  overview = 'Preview Details Missing',
   categories = ['#something1', 'Something2']
+  
 }) => {
   let date = new Date(datetime)
   return (
@@ -29,13 +30,23 @@ export const PostPreview = ({
         <div class="card hoverable post-preview blue-text text-darken-4">
           <div className="card-content ">
             <span className="card-title">
-              <strong>{title}</strong>
+              <strong>
+                <ReactMarkdown
+                  source={title}
+                  escapeHtml={false}
+                ></ReactMarkdown>
+              </strong>
             </span>
 
             <blockquote className="subtitle">
               <p>{` Posted By: ${author} on ${date.toDateString()}`}</p>
             </blockquote>
-            <p>{previewDetails}</p>
+            <p>
+              <ReactMarkdown
+                source={overview}
+                escapeHtml={false}
+              ></ReactMarkdown>
+            </p>
             <div className="tags">
               {categories.map((category, i) => {
                 return (
