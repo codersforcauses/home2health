@@ -6,10 +6,12 @@ const getSpecificPost = id => {
     Post.find({ _id: id }, (err, data) => {
       if (err) {
         reject(err)
-      } else if (data.length === 0) {
+      } else if (data.length === 0 || typeof data == undefined) {
+        // VALIDATION OF NON-EXISTING POST
         reject('No Such Post Exist')
+      } else {
+        resolve(data[0])
       }
-      resolve(data[0])
     })
   })
 }
