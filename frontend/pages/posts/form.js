@@ -1,4 +1,5 @@
 import React from 'react'
+import Router from 'next/router'
 import Axios from 'axios'
 import '../../components/post-form.css'
 
@@ -90,6 +91,9 @@ class PostForm extends React.Component {
     )
       .then(response => {
         M.toast({ html: 'Successfully Created Post', classes: 'rounded green' })
+
+        let postId = response.data._id
+        Router.push(`/post/${postId}`)
       })
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })

@@ -2,7 +2,7 @@ import React from 'react'
 import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
-import { useRouter, withRouter } from 'next/router'
+import Router, { useRouter, withRouter } from 'next/router'
 
 import './post.css'
 const config = {
@@ -20,7 +20,7 @@ const DeleteConfirmation = ({ postId }) => {
           html: 'Successfully Deleted',
           classes: 'rounded green'
         })
-        console.log('deleted')
+        Router.push(`/posts/1`)
       })
       .catch(err => {
         M.toast({
@@ -139,7 +139,7 @@ const PostLandingEdittable = props => {
                   placeholder="a"
                   data={title}
                   config={config}
-                  onChange={(event, editor) => {
+                  onBlur={(event, editor) => {
                     props.directHandleChange('title', editor.getData())
                   }}
                 />
@@ -152,7 +152,7 @@ const PostLandingEdittable = props => {
                   placeholder="a"
                   data={overview}
                   config={config}
-                  onChange={(event, editor) => {
+                  onBlur={(event, editor) => {
                     props.directHandleChange('overview', editor.getData())
                   }}
                 />
@@ -177,7 +177,7 @@ const PostArticleEdittable = props => {
               editor={InlineEditor}
               placeholder="a"
               data={content}
-              onChange={(event, editor) => {
+              onBlur={(event, editor) => {
                 props.directHandleChange('content', editor.getData())
               }}
             />
@@ -264,6 +264,7 @@ class LongPost extends React.Component {
       isEditorLoaded: true
     }) // We just do this to toggle a re-render
 
+    //INITIAL DATA LOAD
     const baseURL = process.env.API_BACKEND_URL
     const apiPath = `${baseURL}/post/${this.state.id}`
     Axios.post(apiPath, {})
@@ -287,20 +288,30 @@ class LongPost extends React.Component {
     const baseURL = process.env.API_BACKEND_URL
     const apiPath = `${baseURL}/post/${id}`
 
+    //PACKAGE THE NEW CHANGE
     let payload = {
       [name]: value
     }
-    console.log(payload)
+
+    //SEND THE NEW CHANGE TO BACKEND
     Axios.patch(apiPath, payload)
       .then(response =>
-        M.toast({ html: 'Successfully Editted', classes: 'rounded' })
+        M.toast({ html: 'Successfully Editted', classes: 'rounded green' })
       )
-      .catch(err => console.log(err))
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+      })
   }
   directHandleChange = (name, value) => {
-    this.setState(prevState => ({ data: { ...prevState.data, [name]: value } }))
-
-    this.updatePost(name, value)
+    if (this.state.data[name] !== value) {
+      //SEND API ONLY IF THE CHANGE IS DIFFERENT
+      // UPDATE STATE AND DATABASE
+      this.setState(prevState => ({
+        data: { ...prevState.data, [name]: value }
+      }))
+      this.updatePost(name, value)
+    }
   }
 
   render() {
