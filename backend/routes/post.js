@@ -56,7 +56,7 @@ router.get('/:_pid', (request, response, next) => {
 })
 
 // ADD NEW POST
-router.put('/', (request, response, next) => {
+router.post('/', (request, response, next) => {
   console.log(request.body)
   controllerPost
     .addPost(request.body)
@@ -102,12 +102,23 @@ router.patch('/:_pid', (request, response, next) => {
     .catch(err => response.status(400).send(err))
 })
 
-// UPDATE SPECIFIC POST
-router.put('/:_pid/:_cid', (request, response, next) => {
+// UPDATE SPECIFIC COMMENT
+router.patch('/:_pid/:_cid', (request, response, next) => {
   request.comment.update(request.body, function(err, result) {
     if (err) return next(err);
     response.json(result);
+  });
 });
-})
+
+// DELETE SPECIFIC COMMENT
+router.delete('/:_pid/:_cid', (request, response, next) => {
+  console.log("test");
+  request.comment.remove(function(err) {
+    request.post.save(function(err, post) {
+      if (err) return next(err);
+      response.json(post);
+    })
+  });
+});
 
 module.exports = router
