@@ -113,7 +113,21 @@ const updatePost = (_id, payload) => {
     })
   })
 }
-
+// ADD COMMENT
+const addComment = (_id, payload) => {
+  return new Promise((resolve, reject) => {
+    getSpecificPost(_id)
+    .then(post => {
+      post.comments.push(payload);
+      post.save(function(err, question) {
+        if (err) reject(err);
+        else resolve(post)
+    });
+    }
+    
+    )
+  });
+}
 module.exports = {
   getPost,
   getPagePost,
@@ -121,5 +135,6 @@ module.exports = {
   getTitleContain,
   addPost,
   deletePost,
-  updatePost
+  updatePost,
+  addComment
 }

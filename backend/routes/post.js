@@ -8,9 +8,9 @@ const controllerPost = require('../controller/post')
 */
 
 // GET posts for specific pages
-router.get('/:page', (request, response, next) => {
+router.get('/', (request, response, next) => {
   const numberOfPost = 10 // WILL GIVE A MAXIMUM OF 10 POST
-  const page = request.params.page
+  const page = request.query.page
   controllerPost
     .getPagePost(page, numberOfPost)
     .then(data => {
@@ -19,9 +19,9 @@ router.get('/:page', (request, response, next) => {
     .catch(err => response.status(400).send(err))
 })
 
-// GET THE DETAILS OF SPECIFIC PAGES
-router.post('/:_id', (request, response, next) => {
-  let currentPostId = request.params._id
+// GET THE DETAILS OF SPECIFIC POST
+router.get('/:_id', (request, response, next) => {
+  let currentPostId = request.params._id;
   controllerPost
     .getSpecificPost(currentPostId)
     .then(data => {
@@ -42,7 +42,7 @@ router.put('/', (request, response, next) => {
 })
 
 // ADD COMMENT TO POST
-router.put('/:_id', (request, response, next) => {
+router.post('/:_id', (request, response, next) => {
   /*  Comment / Payload / Body Structure
     {author,details,datetime}
   */

@@ -1,5 +1,17 @@
 const mongoose = require('mongoose')
-
+let commentSchema = mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: String,
+      required: true
+    },
+    createdAt: {type: Date, default: Date.now},
+    updatedAt: {type: Date, default: Date.now}
+  });
 let postSchema = mongoose.Schema(
   {
     title: {
@@ -25,7 +37,7 @@ let postSchema = mongoose.Schema(
       type: Array
     },
     comments: {
-      type: Array
+      type: [commentSchema]
     },
     headerImageUrl: {
       type: String
@@ -33,5 +45,6 @@ let postSchema = mongoose.Schema(
   },
   { collection: 'post', timestamps: { createdAt: 'datetime' } }
 )
+
 //timestamps: { createdAt: 'datetime' }
 module.exports = mongoose.model('Post', postSchema)
