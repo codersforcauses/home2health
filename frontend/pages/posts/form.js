@@ -84,7 +84,7 @@ class PostForm extends React.Component {
     let categories = instance.chipsData.map(chip => chip.tag)
 
     console.log(categories)
-    Axios.put(
+    Axios.post(
       apiPath,
       { ...this.state.form, categories, author: 'Author1' }, //REVIEW CHANGE THIS UPON CONNECTION WITH USER
       { headers: { 'Content-Type': 'application/json' } }

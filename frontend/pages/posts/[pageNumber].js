@@ -1,6 +1,7 @@
 import React from 'react'
 import Axios from 'axios'
 import { Post, PostPreview } from '../../components/postPreview'
+import Loader from '../../components/Loader'
 
 import Link from 'next/link'
 import { useRouter, withRouter } from 'next/router'
@@ -11,6 +12,7 @@ class Posts extends React.Component {
     posts: [],
     pages: 10,
     maxPage: 100,
+    loaded: false,
     currentCollection: this.props.router.query.pageNumber
   }
 
@@ -20,14 +22,16 @@ class Posts extends React.Component {
 
   // UPDATE THE POST LISTING DISPLAY
   updatePostsDisplay() {
+    this.setState({ loaded: false })
     const baseURL = process.env.API_BACKEND_URL
-    const apiPath = `${baseURL}/post/${this.state.currentCollection}`
+    const apiPath = `${baseURL}/post?page=${this.state.currentCollection}`
     Axios.get(apiPath, {})
       .then(response =>
         this.setState({
           posts: response.data.data,
           maxPage: response.data.maxPage,
-          pages: response.data.numberOfPosts
+          pages: response.data.numberOfPosts,
+          loaded: true
         })
       )
       .catch(err => console.log(err))
@@ -75,13 +79,17 @@ class Posts extends React.Component {
       <div className="container">
         {/* POST PREVIEW LIST*/}
         <div>
-          {this.state.posts.map(post => {
-            return (
-              <React.Fragment>
-                <PostPreview _id={post._id} key={post._id} {...post} />
-              </React.Fragment>
-            )
-          })}
+          {this.state.loaded ? (
+            this.state.posts.map(post => {
+              return (
+                <React.Fragment>
+                  <PostPreview _id={post._id} key={post._id} {...post} />
+                </React.Fragment>
+              )
+            })
+          ) : (
+            <Loader></Loader>
+          )}
         </div>
 
         {/* PAGINATION */}

@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Router, { useRouter, withRouter } from 'next/router'
 
 import './post.css'
+import Loader from '../../components/Loader'
+
 const config = {
   toolbar: ['undo', 'redo'],
   autoParagraph: false
@@ -248,7 +250,7 @@ const PostArticle = props => {
 class LongPost extends React.Component {
   state = {
     data: {},
-    loading: true,
+    loaded: false,
     isEditorLoaded: false,
     user: 'Author1',
     id: this.props.router.query.id
@@ -267,11 +269,11 @@ class LongPost extends React.Component {
     //INITIAL DATA LOAD
     const baseURL = process.env.API_BACKEND_URL
     const apiPath = `${baseURL}/post/${this.state.id}`
-    Axios.post(apiPath, {})
+    Axios.get(apiPath, {})
       .then(response =>
         this.setState({
           data: response.data,
-          loading: false
+          loaded: true
         })
       )
       .catch(err => {
@@ -316,7 +318,7 @@ class LongPost extends React.Component {
 
   render() {
     const { author } = this.state.data
-    return (
+    return this.state.loaded ? (
       <div>
         {this.state.user === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
           <React.Fragment>
@@ -342,6 +344,8 @@ class LongPost extends React.Component {
         )}
         <ModalSetting postId={this.state.id}></ModalSetting>
       </div>
+    ) : (
+      <Loader></Loader>
     )
   }
 }
