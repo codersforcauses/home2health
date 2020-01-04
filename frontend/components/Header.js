@@ -89,7 +89,7 @@ class Header extends Component {
                 <li className="divider" />
                 <li>
                   <Link href="/posts/form">
-                    <a>Create Form</a>
+                    <a>Create Post</a>
                   </Link>
                 </li>
               </ul>
