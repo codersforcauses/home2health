@@ -23,17 +23,6 @@ class PostModalSetting extends React.Component {
           <h4>Post Other Settings</h4>
           <ul class="collection">
             <li class="collection-item avatar">
-              <i class="material-icons circle">folder</i>
-              <span class="title">Title</span>
-              <p>
-                First Line
-                <br /> Second Line
-              </p>
-              <a href="#!" class="secondary-content">
-                <i class="material-icons">grade</i>
-              </a>
-            </li>
-            <li class="collection-item avatar">
               <i class="material-icons circle green">assessment</i>
               <span class="title">Category Tags</span>
               <div className="chips chips-autocomplete ">
@@ -54,7 +43,7 @@ class PostModalSetting extends React.Component {
                 <span class="title">Delete</span>
               </a>
               <p>This will delete the entire post</p>
-              <PostDeleteConfirmation {...postId}></PostDeleteConfirmation>
+              <PostDeleteConfirmation postId={postId}></PostDeleteConfirmation>
             </li>
           </ul>
         </div>
