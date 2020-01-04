@@ -107,7 +107,7 @@ class Posts extends React.Component {
           {this.createPagination()}
           <li
             className={
-              this.state.CurrentCollection == this.state.pages
+              this.state.CurrentCollection === this.state.pages
                 ? 'disabled'
                 : 'waves-effect'
             }
