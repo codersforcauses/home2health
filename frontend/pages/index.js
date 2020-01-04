@@ -9,8 +9,8 @@ class Index extends Component {
   render() {
     return (
       <Fragment>
-        <div className="section" id="index-banner">
-          <div className="container">
+        <div className="container">
+          <div className="section">
             <div className="row" style={{ marginBottom: 0 }}>
               <div className="col s6">
                 <h3 style={{ marginBottom: 0 }}>

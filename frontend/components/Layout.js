@@ -9,17 +9,9 @@ class Layout extends Component {
     return (
       <Fragment>
         <Head />
-        <div
-          style={{
-            display: 'flex',
-            minHeight: '100vh',
-            flexDirection: 'column'
-          }}
-        >
-          <Header />
-          <div style={{ flex: '1 0 auto' }}>{this.props.children}</div>
-          <Footer />
-        </div>
+        <Header />
+        {this.props.children}
+        <Footer />
       </Fragment>
     )
   }
