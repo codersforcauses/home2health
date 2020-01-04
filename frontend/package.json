@@ -27,7 +27,7 @@
     "react": "^16.12.0",
     "react-awesome-slider": "^2.2.1",
     "react-dom": "^16.12.0",
-    "react-markdown": "^4.2.2"
+    "react-markdown": "^4.2.2",
     "uid-safe": "^2.1.5"
   }
 }

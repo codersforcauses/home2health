@@ -104,10 +104,10 @@ passport.use(strategy);
 app.use(passport.initialize());
 app.use(passport.session());
 
-var userInViews = require('./lib/middleware/userInViews');
-var authRouter = require('./routes/auth');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var userInViews = require('./lib/middleware/userInViews');
+// var authRouter = require('./routes/auth');
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 
 app.use(userInViews());
 app.use('/', authRouter);
