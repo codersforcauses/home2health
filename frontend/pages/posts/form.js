@@ -75,7 +75,7 @@ class PostForm extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    const baseURL = process.env.API_BACKEND_URL
+    const baseURL = process.env.REACT_APP_BACKEND_URL
     const apiPath = `${baseURL}/post`
 
     //Extract all values of the chips (categories)
