@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import AwesomeSlider from 'react-awesome-slider'
 import withAutoplay from 'react-awesome-slider/dist/autoplay'
 import 'react-awesome-slider/dist/styles.css'
-import './Slider.css'
+import './slider.css'
 
 const Slider = props => {
   const AutoplaySlider = withAutoplay(AwesomeSlider)
