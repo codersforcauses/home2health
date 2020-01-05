@@ -6,6 +6,8 @@ const mongoose = require('mongoose')
 const sendMail = require('./mail')
 const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const port = process.env.PORT || 5000
 
 require('dotenv').config()
@@ -25,10 +27,26 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors())
 
+// use sessions for tracking logins
+app.use(session({
+  secret: 'home2health secret key',
+  resave: true,
+  saveUnitialized: false,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  })
+}));
+// make user ID available in templates
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.session.userId;
+  next();
+});
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/email', emailRouter)
 app.use('/post', postRouter)
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

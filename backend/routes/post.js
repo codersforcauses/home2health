@@ -3,6 +3,8 @@ var router = express.Router()
 const controllerPost = require('../controller/post')
 const Post = require('../models/post')
 const Comment = require('../models/comment')
+var mid = require('../middleware');
+var mongoose = require('mongoose');
 /*
   Post.js is used to find the specific post to display in post page (GET)
   
@@ -58,8 +60,8 @@ router.get('/:_pid', (request, response, next) => {
 })
 
 // ADD NEW POST
-router.post('/', (request, response, next) => {
-  console.log(request.body)
+router.post('/', mid.requiresLogin, (request, response, next) => {
+  request.body.author = mongoose.Types.ObjectId(request.session.userId);
   controllerPost
     .addPost(request.body)
     .then(data => {
@@ -69,12 +71,13 @@ router.post('/', (request, response, next) => {
 })
 
 // ADD COMMENT TO POST
-router.post('/:_pid', (request, response, next) => {
+router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
   /*  Comment / Payload / Body Structure
     {author,details,datetime}
   */
   var comment = new Comment(request.body);
   comment.post = request.post;
+  comment.author = mongoose.Types.ObjectId(request.session.userId);
   comment.save(function(err, comment) {
     if (err) return next(err);;
     request.post.comments.push(comment);
@@ -88,7 +91,12 @@ router.post('/:_pid', (request, response, next) => {
 })
 
 // DELETE SPECIFIC POST
-router.delete('/:_pid', (request, response, next) => {
+router.delete('/:_pid', mid.requiresLogin, (request, response, next) => {
+  if (request.session.userId != request.post.author) {
+    var err = new Error('You are not the author of this post/comment.');
+    err.status = 401;
+    return next(err);
+  }
   let currentPostId = request.params._pid
   controllerPost
     .deletePost(currentPostId)
@@ -99,7 +107,12 @@ router.delete('/:_pid', (request, response, next) => {
 })
 
 // UPDATE SPECIFIC POST
-router.patch('/:_pid', (request, response, next) => {
+router.patch('/:_pid', mid.requiresLogin, (request, response, next) => {
+  if (request.session.userId != request.post.author) {
+    var err = new Error('You are not the author of this post/comment.');
+    err.status = 401;
+    return next(err);
+  }
   let currentPostId = request.params._pid
   controllerPost
     .updatePost(currentPostId, request.body)
@@ -110,7 +123,13 @@ router.patch('/:_pid', (request, response, next) => {
 })
 
 // UPDATE SPECIFIC COMMENT
-router.patch('/:_pid/:_cid', (request, response, next) => {
+router.patch('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
+  if (request.session.userId != request.post.author) {
+    var err = new Error('You are not the author of this post/comment.');
+    err.status = 401;
+    return next(err);
+  }
+  
   request.comment.update(request.body, function(err, result) {
     if (err) return next(err);
     response.json(result);
@@ -118,7 +137,12 @@ router.patch('/:_pid/:_cid', (request, response, next) => {
 });
 
 // DELETE SPECIFIC COMMENT
-router.delete('/:_pid/:_cid', (request, response, next) => {
+router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
+  if (request.session.userId != request.post.author) {
+    var err = new Error('You are not the author of this post/comment.');
+    err.status = 401;
+    return next(err);
+  }
   request.comment.remove(function(err) {
     if (err) return next(err);
     Post.update({ _id: request.params._pid }, { "$pull": { "comments": { "_id": request.params._cid } }}, { safe: true, multi: true }, function(err, post) {
