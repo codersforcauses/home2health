@@ -3,6 +3,7 @@ var router = express.Router()
 const controllerPost = require('../controller/post')
 const Post = require('../models/post')
 const Comment = require('../models/comment')
+const User = require('../models/user')
 var mid = require('../middleware');
 var mongoose = require('mongoose');
 /*
@@ -65,7 +66,20 @@ router.post('/', mid.requiresLogin, (request, response, next) => {
   controllerPost
     .addPost(request.body)
     .then(data => {
-      response.send(data)
+      User.findById(request.session.userId, function(err, doc) {
+        if (err) return next(err);
+        if (!doc) {
+            err = new Error("User Not Found");
+            err.status = 404;
+            return next(err);
+        }
+        doc.posts.push(mongoose.Types.ObjectId(data._id));
+        doc.save(function(err, user) {
+          if (err) return next(err);
+          response.status(201);
+          response.json(data);
+        })
+      });
     })
     .catch(err => response.status(400).send(err))
 })
@@ -84,7 +98,20 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
     request.post.save(function(err, post) {
       if (err) return next(err);
       response.status(201);
-      response.json(comment);
+      User.findById(request.session.userId, function(err, doc) {
+        if (err) return next(err);
+        if (!doc) {
+            err = new Error("User Not Found");
+            err.status = 404;
+            return next(err);
+        }
+        doc.comments.push(comment._id);
+        doc.save(function(err, user) {
+          if (err) return next(err);
+          response.status(201);
+          response.json(post);
+        })
+      });
     });
     
   });
@@ -101,7 +128,20 @@ router.delete('/:_pid', mid.requiresLogin, (request, response, next) => {
   controllerPost
     .deletePost(currentPostId)
     .then(data => {
-      response.send(data)
+      User.findById(request.session.userId, function(err, doc) {
+        if (err) return next(err);
+        if (!doc) {
+            err = new Error("User Not Found");
+            err.status = 404;
+            return next(err);
+        }
+        doc.posts.pull(request.params._pid);
+        doc.save(function(err, user) {
+          if (err) return next(err);
+          response.status(201);
+          response.json(data);
+        })
+      });
     })
     .catch(err => response.status(400).send(err))
 })
@@ -145,10 +185,24 @@ router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
   }
   request.comment.remove(function(err) {
     if (err) return next(err);
-    Post.update({ _id: request.params._pid }, { "$pull": { "comments": { "_id": request.params._cid } }}, { safe: true, multi: true }, function(err, post) {
+    request.post.comments.pull(request.params._cid);
+    request.post.save(function(err, post) {
       if (err) return next(err);
       //do something smart
-      response.json(post);
+      User.findById(request.session.userId, function(err, doc) {
+        if (err) return next(err);
+        if (!doc) {
+            err = new Error("User Not Found");
+            err.status = 404;
+            return next(err);
+        }
+        doc.comments.pull(request.params._cid);
+        doc.save(function(err, user) {
+          if (err) return next(err);
+          response.status(201);
+          response.json(post);
+        })
+      });
     });
   });
 });

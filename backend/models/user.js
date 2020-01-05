@@ -5,6 +5,8 @@ var UserSchema = new mongoose.Schema({
     name: {type: String, required: true, trim: true},
     password: {type: String, required: true},
     posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
+    imagePath: String
 });
 // authenticate input against database documents
 UserSchema.statics.authenticate = function(email, password, callback) {
