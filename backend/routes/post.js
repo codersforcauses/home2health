@@ -81,7 +81,7 @@ router.post('/:_pid', (request, response, next) => {
     request.post.save(function(err, post) {
       if (err) return next(err);
       response.status(201);
-      response.json(comment);
+      response.json(post);
     });
     
   });
@@ -121,12 +121,14 @@ router.patch('/:_pid/:_cid', (request, response, next) => {
 router.delete('/:_pid/:_cid', (request, response, next) => {
   request.comment.remove(function(err) {
     if (err) return next(err);
-    Post.update({ _id: request.params._pid }, { "$pull": { "comments": { "_id": request.params._cid } }}, { safe: true, multi: true }, function(err, post) {
+    request.post.comments.pull(request.params._cid);
+    request.post.save(function(err, post) {
       if (err) return next(err);
-      //do something smart
+      response.status(201);
       response.json(post);
     });
   });
 });
 
 module.exports = router
+
