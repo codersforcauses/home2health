@@ -45,5 +45,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500)
   res.json(err)
 })
+// listen on port 5001
+app.listen(5001, function () {
+  console.log('Express app listening on port 5001');
+});
 
 module.exports = app
