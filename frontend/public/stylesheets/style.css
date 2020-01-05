@@ -15,6 +15,15 @@
 h5 {
   font-size: 1.25rem;
 }
+
+h6 {
+  font-size: 1.25rem;
+}
+
+h7 {
+  font-size: 2.25rem;
+}
+
 nav {
   box-shadow: none;
   border-bottom: 1px solid #d6d8da !important;
@@ -64,4 +73,8 @@ footer.page-footer {
 .partner-img {
   max-height: 50%;
   max-width: 30%;
+}
+.logo-img {
+  max-height: 300px;
+  max-width: 800px;
 }

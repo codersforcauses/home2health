@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Link from 'next/link'
 
 import Contact from '../components/Contact'
@@ -8,7 +8,7 @@ import Slider from '../components/Slider'
 class Index extends Component {
   render() {
     return (
-      <Fragment>
+      <>
         <div className="section" id="index-banner">
           <div className="container">
             <div className="row" style={{ marginBottom: 0 }}>
@@ -48,7 +48,7 @@ class Index extends Component {
             <Contact />
           </div>
         </div>
-      </Fragment>
+      </>
     )
   }
 }
