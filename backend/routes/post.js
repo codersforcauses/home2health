@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 const controllerPost = require('../controller/post')
 const Post = require('../models/post')
+const Comment = require('../models/comment')
 /*
   Post.js is used to find the specific post to display in post page (GET)
   
@@ -21,15 +22,16 @@ router.param("_pid", function(req, res, next, id) {
   });
 });
 router.param("_cid", function(req, res, next, id) {
-  req.comment = req.post.comments.id(id);
-  if (!req.comment) {
-      var err = new Error("Comment Not Found");    
-      err.status = 404;
-      return next(err);
-  }
-  else {
-      next();
-  }
+  Comment.findById(id, function(err, doc) {
+      if (err) return next(err);
+      if (!doc) {
+          err = new Error("Comment Not Found");
+          err.status = 404;
+          return next(err);
+      }
+      req.comment = doc;
+      return next();
+  });
 });
 
 // GET posts for specific pages
@@ -71,13 +73,18 @@ router.post('/:_pid', (request, response, next) => {
   /*  Comment / Payload / Body Structure
     {author,details,datetime}
   */
-  let currentPostId = request.params._pid
-  controllerPost
-    .addComment(currentPostId, request.body)
-    .then(data => {
-      response.send(data)
-    })
-    .catch(err => response.status(400).send(err))
+  var comment = new Comment(request.body);
+  comment.post = request.post;
+  comment.save(function(err, comment) {
+    if (err) return next(err);;
+    request.post.comments.push(comment);
+    request.post.save(function(err, post) {
+      if (err) return next(err);
+      response.status(201);
+      response.json(comment);
+    });
+    
+  });
 })
 
 // DELETE SPECIFIC POST
@@ -112,12 +119,13 @@ router.patch('/:_pid/:_cid', (request, response, next) => {
 
 // DELETE SPECIFIC COMMENT
 router.delete('/:_pid/:_cid', (request, response, next) => {
-  console.log("test");
   request.comment.remove(function(err) {
-    request.post.save(function(err, post) {
+    if (err) return next(err);
+    Post.update({ _id: request.params._pid }, { "$pull": { "comments": { "_id": request.params._cid } }}, { safe: true, multi: true }, function(err, post) {
       if (err) return next(err);
+      //do something smart
       response.json(post);
-    })
+    });
   });
 });
 
