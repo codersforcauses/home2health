@@ -18,7 +18,7 @@ const Contact = () => {
     if (validEmail()) {
       setLoading(true)
       try {
-        await Axios.post(`${process.env.REACT_APP_BACKEND_URL}/email`, {
+        await Axios.post(`${process.env.API_BACKEND_URL}/email`, {
           name,
           organistation,
           email,
