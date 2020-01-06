@@ -48,13 +48,12 @@ router.get('/', (request, response, next) => {
 
 // GET THE DETAILS OF SPECIFIC POST
 router.get('/:_pid', (request, response, next) => {
-  let currentPostId = request.params._pid
-  controllerPost
-    .getSpecificPost(currentPostId)
-    .then(data => {
-      response.send(data)
-    })
-    .catch(err => response.status(400).send(err))
+  response.send(request.post)
+})
+
+// GET THE DETAILS OF SPECIFIC COMMENT
+router.get('/:_pid/:_cid', (request, response, next) => {
+  response.send(request.comment)
 })
 
 // ADD NEW POST
@@ -77,10 +76,10 @@ router.post('/:_pid', (request, response, next) => {
   comment.post = request.post
   comment.save(function(err, comment) {
     if (err) return next(err)
-    postParam.comments.push(comment)
+    postParam.comments.push(comment._id)
     postParam.save(function(err, post) {
       if (err) return next(err)
-      response.status(201).json(request.post)
+      response.status(201).json(post)
     })
   })
 })
