@@ -16,6 +16,6 @@
     }
   ],
   "env": {
-    "API_BACKEND_URL": "https://home2health.herokuapp.com"
+    "API_BACKEND_URL": "@h2h_api_backend_url"
   }
 }
