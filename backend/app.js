@@ -43,8 +43,8 @@ app.use(function(err, req, res, next) {
   res.json(err)
 })
 
-app.listen(process.env.PORT || 5001, function() {
-  console.log('Express app listening on port 5001')
-})
+// app.listen(process.env.PORT || 5001, function() {
+//   console.log('Express app listening on port 5001')
+// })
 
 module.exports = app
