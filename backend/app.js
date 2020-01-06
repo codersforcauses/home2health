@@ -45,6 +45,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500)
   res.json(err)
 })
+// listen on port 
+app.listen(port, function () {
+  console.log('Express app listening on port ' + port);
+});
 
 // app.listen(process.env.PORT || 5001, function() {
 //   console.log('Express app listening on port 5001')
