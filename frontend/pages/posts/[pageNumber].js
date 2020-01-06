@@ -23,7 +23,7 @@ class Posts extends React.Component {
   // UPDATE THE POST LISTING DISPLAY
   updatePostsDisplay() {
     this.setState({ loaded: false })
-    const baseURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post?page=${this.state.currentCollection}`
     Axios.get(apiPath, {})
       .then(response =>

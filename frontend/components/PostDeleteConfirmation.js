@@ -3,7 +3,7 @@ import Axios from 'axios'
 import Router from 'next/router'
 export const PostDeleteConfirmation = ({ postId }) => {
   const deletePost = _id => {
-    const baseURL = process.env.REACT_APP_BACKEND_URL 
+    const baseURL = process.env.API_BACKEND_URL
     const apiPath = `${baseURL}/post/${_id}`
     console.log(apiPath)
     Axios.delete(apiPath, {})

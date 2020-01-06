@@ -66,7 +66,7 @@ class PostForm extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    const baseURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
 
     const apiPath = `${baseURL}/post`
 
