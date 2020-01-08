@@ -2,96 +2,16 @@ import React from 'react'
 import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
-import Router, { useRouter, withRouter } from 'next/router'
+import { useRouter, withRouter } from 'next/router'
 
 import './post.css'
 import Loader from '../../components/Loader'
+import postCategoryConfig from '../../components/postCategoryConfig'
+import PostModalSetting from '../../components/PostModalSetting'
 
 const config = {
   toolbar: ['undo', 'redo'],
   autoParagraph: false
-}
-const DeleteConfirmation = ({ postId }) => {
-  const deletePost = _id => {
-    const baseURL = process.env.API_BACKEND_URL
-    const apiPath = `${baseURL}/post/${_id}`
-    console.log(apiPath)
-    Axios.delete(apiPath, {})
-      .then(response => {
-        M.toast({
-          html: 'Successfully Deleted',
-          classes: 'rounded green'
-        })
-        Router.push(`/posts/1`)
-      })
-      .catch(err => {
-        M.toast({
-          html: 'Oops, Something Went Wrong',
-          classes: 'rounded red'
-        })
-        console.log(err)
-      })
-  }
-  return (
-    // <!-- Modal Structure -->
-    <div id="confirmationModal" class="modal">
-      <div class="modal-content">
-        <h4>Are you sure?</h4>
-        <p>This will delete the entire post</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">
-          No
-        </a>
-        <a
-          class="modal-close waves-effect waves-red btn-flat"
-          onClick={e => deletePost(postId)}
-        >
-          Yes
-        </a>
-      </div>
-    </div>
-  )
-}
-const ModalSetting = postId => {
-  return (
-    <div id="settingsModal" class="modal bottom-sheet">
-      <div class="modal-content">
-        <h4>Post Other Settings</h4>
-        <ul class="collection">
-          <li class="collection-item avatar">
-            <i class="material-icons circle">folder</i>
-            <span class="title">Title</span>
-            <p>
-              First Line
-              <br /> Second Line
-            </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
-          </li>
-          <li class="collection-item avatar">
-            <i class="material-icons circle green">assessment</i>
-            <span class="title">Category Tags</span>
-            <p>
-              First Line
-              <br /> Second Line
-            </p>
-            <a href="#!" class="secondary-content">
-              <i class="material-icons">grade</i>
-            </a>
-          </li>
-          <li class="collection-item avatar">
-            <i class="material-icons circle red">delete</i>
-            <a class="modal-trigger" href="#confirmationModal">
-              <span class="title">Delete</span>
-            </a>
-            <DeleteConfirmation {...postId}></DeleteConfirmation>
-          </li>
-        </ul>
-      </div>
-    </div>
-  )
 }
 //EDITTABLE VERSION OF POST LANDING COMPONENT
 const PostLandingEdittable = props => {
@@ -267,7 +187,7 @@ class LongPost extends React.Component {
     }) // We just do this to toggle a re-render
 
     //INITIAL DATA LOAD
-    const baseURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post/${this.state.id}`
     Axios.get(apiPath, {})
       .then(response =>
@@ -285,25 +205,44 @@ class LongPost extends React.Component {
       })
   }
 
-  updatePost = (name, value) => {
+  // General Updater to Server
+  sendUpdateToServer = payload => {
     let id = this.state.id
-    const baseURL = process.env.REACT_APP_BACKEND_URL
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post/${id}`
 
+    //SEND THE NEW CHANGE TO BACKEND
+    Axios.patch(apiPath, payload)
+      .then(response =>
+        M.toast({
+          html: 'Successfully Editted',
+          classes: 'rounded green'
+        })
+      )
+      .catch(err => {
+        M.toast({
+          html: 'Oops, Something Went Wrong',
+          classes: 'rounded red'
+        })
+        console.log(err)
+      })
+  }
+  updatePost = (name, value) => {
     //PACKAGE THE NEW CHANGE
     let payload = {
       [name]: value
     }
 
-    //SEND THE NEW CHANGE TO BACKEND
-    Axios.patch(apiPath, payload)
-      .then(response =>
-        M.toast({ html: 'Successfully Editted', classes: 'rounded green' })
-      )
-      .catch(err => {
-        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
-        console.log(err)
-      })
+    //Send Request To Server
+    this.sendUpdateToServer(payload)
+  }
+
+  updateCategories = chipsObject => {
+    let categories = chipsObject.chipsData.map(chip => chip.tag)
+    let payload = {
+      categories
+    }
+    this.sendUpdateToServer(payload)
   }
   directHandleChange = (name, value) => {
     if (this.state.data[name] !== value) {
@@ -342,7 +281,11 @@ class LongPost extends React.Component {
             <PostArticle {...this.state.data}></PostArticle>
           </React.Fragment>
         )}
-        <ModalSetting postId={this.state.id}></ModalSetting>
+        <PostModalSetting
+          postId={this.state.id}
+          categories={this.state.data.categories}
+          onChangeHandler={this.updateCategories}
+        ></PostModalSetting>
       </div>
     ) : (
       <Loader></Loader>

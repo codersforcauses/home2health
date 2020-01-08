@@ -2,6 +2,7 @@ import React from 'react'
 import Router from 'next/router'
 import Axios from 'axios'
 import '../../components/post-form.css'
+import postCategoryConfig from '../../components/postCategoryConfig'
 
 class PostForm extends React.Component {
   state = {
@@ -23,17 +24,7 @@ class PostForm extends React.Component {
     let instances = M.FormSelect.init(elems)
 
     elems = document.querySelectorAll('.chips')
-    instances = M.Chips.init(elems, {
-      autocompleteOptions: {
-        data: {
-          Apple: null,
-          Microsoft: null,
-          Google: null
-        },
-        limit: Infinity,
-        minLength: 1
-      }
-    })
+    instances = M.Chips.init(elems, postCategoryConfig)
   }
   formValid = ({ formErrors, ...rest }) => {
     let valid = true
@@ -75,7 +66,7 @@ class PostForm extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    const baseURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
 
     const apiPath = `${baseURL}/post`
 

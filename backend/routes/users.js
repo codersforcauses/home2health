@@ -75,11 +75,6 @@ router.post('/register', mid.loggedOut, function(req, res, next) {
 			}
 		})
   }
-  else {
-    var err = new Error('All fields required.');
-    err.status = 400;
-    return next(err);
-  }
-});
+})
 
-module.exports = router;
+module.exports = router

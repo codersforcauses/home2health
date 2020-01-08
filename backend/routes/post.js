@@ -12,30 +12,30 @@ var mongoose = require('mongoose');
   It is also used to create new posts (POST)
 */
 
-router.param("_pid", function(req, res, next, id) {
+router.param('_pid', function(req, res, next, id) {
   Post.findById(id, function(err, doc) {
-      if (err) return next(err);
-      if (!doc) {
-          err = new Error("Post Not Found");
-          err.status = 404;
-          return next(err);
-      }
-      req.post = doc;
-      return next();
-  });
-});
-router.param("_cid", function(req, res, next, id) {
+    if (err) return next(err)
+    if (!doc) {
+      err = new Error('Post Not Found')
+      err.status = 404
+      return next(err)
+    }
+    req.post = doc
+    return next()
+  })
+})
+router.param('_cid', function(req, res, next, id) {
   Comment.findById(id, function(err, doc) {
-      if (err) return next(err);
-      if (!doc) {
-          err = new Error("Comment Not Found");
-          err.status = 404;
-          return next(err);
-      }
-      req.comment = doc;
-      return next();
-  });
-});
+    if (err) return next(err)
+    if (!doc) {
+      err = new Error('Comment Not Found')
+      err.status = 404
+      return next(err)
+    }
+    req.comment = doc
+    return next()
+  })
+})
 
 // GET posts for specific pages
 router.get('/', (request, response, next) => {
@@ -51,13 +51,12 @@ router.get('/', (request, response, next) => {
 
 // GET THE DETAILS OF SPECIFIC POST
 router.get('/:_pid', (request, response, next) => {
-  let currentPostId = request.params._pid;
-  controllerPost
-    .getSpecificPost(currentPostId)
-    .then(data => {
-      response.send(data)
-    })
-    .catch(err => response.status(400).send(err))
+  response.send(request.post)
+})
+
+// GET THE DETAILS OF SPECIFIC COMMENT
+router.get('/:_pid/:_cid', (request, response, next) => {
+  response.send(request.comment)
 })
 
 // ADD NEW POST
@@ -89,15 +88,16 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
   /*  Comment / Payload / Body Structure
     {author,details,datetime}
   */
-  var comment = new Comment(request.body);
-  comment.post = request.post;
+
+  var postParam = request.post
+  var comment = new Comment(request.body)
+  comment.post = request.post
   comment.author = mongoose.Types.ObjectId(request.session.userId);
   comment.save(function(err, comment) {
-    if (err) return next(err);;
-    request.post.comments.push(comment);
-    request.post.save(function(err, post) {
-      if (err) return next(err);
-      response.status(201);
+    if (err) return next(err)
+    postParam.comments.push(comment._id)
+    postParam.save(function(err, post) {
+      if (err) return next(err)
       User.findById(request.session.userId, function(err, doc) {
         if (err) return next(err);
         if (!doc) {
@@ -108,13 +108,11 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
         doc.comments.push(comment._id);
         doc.save(function(err, user) {
           if (err) return next(err);
-          response.status(201);
-          response.json(post);
+          response.status(201).json(post);
         })
       });
-    });
-    
-  });
+    })
+  })
 })
 
 // DELETE SPECIFIC POST
@@ -169,11 +167,11 @@ router.patch('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
     err.status = 401;
     return next(err);
   }
-  
-  request.comment.update(request.body, function(err, result) {
-    if (err) return next(err);
-    response.json(result);
-  });
+  var commentParam = request.comment
+  commentParam.update(request.body, function(err, result) {
+    if (err) return next(err)
+    response.json(result)
+  })
 });
 
 // DELETE SPECIFIC COMMENT
@@ -183,12 +181,13 @@ router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
     err.status = 401;
     return next(err);
   }
-  request.comment.remove(function(err) {
-    if (err) return next(err);
-    request.post.comments.pull(request.params._cid);
-    request.post.save(function(err, post) {
-      if (err) return next(err);
-      //do something smart
+  var postParam = request.post
+  var commentParam = request.comment
+  commentParam.remove(function(err) {
+    if (err) return next(err)
+    postParam.comments.pull(request.params._cid)
+    postParam.save(function(err, post) {
+      if (err) return next(err)
       User.findById(request.session.userId, function(err, doc) {
         if (err) return next(err);
         if (!doc) {
@@ -199,12 +198,11 @@ router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
         doc.comments.pull(request.params._cid);
         doc.save(function(err, user) {
           if (err) return next(err);
-          response.status(201);
-          response.json(post);
+          response.status(201).json(post);
         })
       });
-    });
-  });
+    })
+  })
 });
 
 module.exports = router
