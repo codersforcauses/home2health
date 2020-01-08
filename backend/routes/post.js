@@ -61,9 +61,10 @@ router.get('/:_pid/:_cid', (request, response, next) => {
 
 // ADD NEW POST
 router.post('/', mid.requiresLogin, (request, response, next) => {
-  request.body.author = mongoose.Types.ObjectId(request.session.userId)
+  var post = request.body
+  post.author = mongoose.Types.ObjectId(request.session.userId)
   controllerPost
-    .addPost(request.body)
+    .addPost(post)
     .then(data => {
       User.findById(request.session.userId, function(err, doc) {
         if (err) return next(err)
