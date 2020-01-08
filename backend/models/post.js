@@ -18,7 +18,7 @@ let postSchema = mongoose.Schema(
     },
     author: {
       type: mongoose.Schema.Types.ObjectId, ref: 'User',
-      //required: true
+      required: true
     },
     categories: {
       type: Array
