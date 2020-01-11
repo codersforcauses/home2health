@@ -8,14 +8,17 @@
       "use": "@now/next"
     }
   ],
+  "build": {
+    "env": {
+      "API_BACKEND_URL": "https://home2health.herokuapp.com"
+    }
+  },
 
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/frontend/$1"
+      "dest": "/frontend/$1",
+      "continue": true
     }
-  ],
-  "env": {
-    "API_BACKEND_URL": "@h2h_api_backend_url"
-  }
+  ]
 }
