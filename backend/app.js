@@ -48,9 +48,9 @@ app.use(function(err, req, res, next) {
 
 module.exports = app
 
-// auth0 configuration 
+// auth0 configuration
 
-var session = require('express-session');
+var session = require('express-session')
 
 // config express-session
 var sess = {
@@ -58,11 +58,11 @@ var sess = {
   cookie: {},
   resave: false,
   saveUninitialized: true
-};
+}
 
 if (app.get('env') === 'production') {
   // Use secure cookies in production (requires SSL/TLS)
-  sess.cookie.secure = true;
+  sess.cookie.secure = true
 
   // Uncomment the line below if your application is behind a proxy (like on Heroku)
   // or if you're encountering the error message:
@@ -70,17 +70,17 @@ if (app.get('env') === 'production') {
   // app.set('trust proxy', 1);
 }
 
-app.use(session(sess));
+app.use(session(sess))
 
 // auth0 passport configuration (authentication middleware)
 
 // Load environment variables from .env
-var dotenv = require('dotenv');
-dotenv.config();
+var dotenv = require('dotenv')
+dotenv.config()
 
 // Load Passport
-var passport = require('passport');
-var Auth0Strategy = require('passport-auth0');
+var passport = require('passport')
+var Auth0Strategy = require('passport-auth0')
 
 // Configure Passport to use Auth0
 var strategy = new Auth0Strategy(
@@ -91,25 +91,25 @@ var strategy = new Auth0Strategy(
     callbackURL:
       process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
   },
-  function (accessToken, refreshToken, extraParams, profile, done) {
+  function(accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token
     // profile has all the information from the user
-    return done(null, profile);
+    return done(null, profile)
   }
-);
+)
 
-passport.use(strategy);
+passport.use(strategy)
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 
 // var userInViews = require('./lib/middleware/userInViews');
 // var authRouter = require('./routes/auth');
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
-app.use(userInViews());
-app.use('/', authRouter);
-app.use('/', indexRouter);
-app.use('/', usersRouter);
+app.use(userInViews())
+app.use('/', authRouter)
+app.use('/', indexRouter)
+app.use('/', usersRouter)

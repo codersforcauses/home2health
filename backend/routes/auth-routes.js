@@ -1,4 +1,4 @@
-import ProfileAbout from '../components/ProfileAbout'
+import ProfileAbout from '../../frontend/components/ProfileAbout'
 import Link from 'next/link'
 
 const user = ProfileAbout.user
