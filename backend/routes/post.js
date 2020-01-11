@@ -12,6 +12,17 @@ var mongoose = require('mongoose')
   It is also used to create new posts (POST)
 */
 
+function getCurrentUser(request, response, next) {
+  return new Promise(async (resolve, reject) => {
+    const doc = await User.findById(request.session.userId)
+    if (!doc) {
+      err = new Error('User Not Found')
+      err.status = 404
+      reject(err)
+    }
+    resolve(doc)
+  })
+}
 router.param('_pid', function(req, res, next, id) {
   Post.findById(id, function(err, doc) {
     if (err) return next(err)
@@ -65,23 +76,16 @@ router.post('/', mid.requiresLogin, (request, response, next) => {
   post.author = mongoose.Types.ObjectId(request.session.userId)
   controllerPost
     .addPost(post)
-    .then(data => {
-      User.findById(request.session.userId, function(err, doc) {
+    .then(async function(data) {
+      const user = await getCurrentUser(request, response, next)
+      user.posts.push(mongoose.Types.ObjectId(data._id))
+      user.save(function(err, user) {
         if (err) return next(err)
-        if (!doc) {
-          err = new Error('User Not Found')
-          err.status = 404
-          return next(err)
-        }
-        doc.posts.push(mongoose.Types.ObjectId(data._id))
-        doc.save(function(err, user) {
-          if (err) return next(err)
-          response.status(201)
-          response.json(data)
-        })
+        response.status(201)
+        response.json(data)
       })
     })
-    .catch(err => response.status(400).send(err))
+    .catch(err => response.status(err.status || 500).send(err))
 })
 
 // ADD COMMENT TO POST
@@ -97,21 +101,18 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
   comment.save(function(err, comment) {
     if (err) return next(err)
     postParam.comments.push(comment._id)
-    postParam.save(function(err, post) {
+    postParam.save(async function(err, post) {
       if (err) return next(err)
-      User.findById(request.session.userId, function(err, doc) {
-        if (err) return next(err)
-        if (!doc) {
-          err = new Error('User Not Found')
-          err.status = 404
-          return next(err)
-        }
-        doc.comments.push(comment._id)
-        doc.save(function(err, user) {
+      try {
+        const user = await getCurrentUser(request, response, next)
+        user.comments.push(comment._id)
+        user.save(function(err, user) {
           if (err) return next(err)
           response.status(201).json(post)
         })
-      })
+      } catch (err) {
+        return next(err)
+      }
     })
   })
 })
@@ -126,23 +127,16 @@ router.delete('/:_pid', mid.requiresLogin, (request, response, next) => {
   let currentPostId = request.params._pid
   controllerPost
     .deletePost(currentPostId)
-    .then(data => {
-      User.findById(request.session.userId, function(err, doc) {
+    .then(async function(data) {
+      const user = await getCurrentUser(request, response, next)
+      user.posts.pull(request.params._pid)
+      user.save(function(err, user) {
         if (err) return next(err)
-        if (!doc) {
-          err = new Error('User Not Found')
-          err.status = 404
-          return next(err)
-        }
-        doc.posts.pull(request.params._pid)
-        doc.save(function(err, user) {
-          if (err) return next(err)
-          response.status(201)
-          response.json(data)
-        })
+        response.status(201)
+        response.json(data)
       })
     })
-    .catch(err => response.status(400).send(err))
+    .catch(err => response.status(err.status || 500).send(err))
 })
 
 // UPDATE SPECIFIC POST
@@ -187,21 +181,18 @@ router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
   commentParam.remove(function(err) {
     if (err) return next(err)
     postParam.comments.pull(request.params._cid)
-    postParam.save(function(err, post) {
+    postParam.save(async function(err, post) {
       if (err) return next(err)
-      User.findById(request.session.userId, function(err, doc) {
-        if (err) return next(err)
-        if (!doc) {
-          err = new Error('User Not Found')
-          err.status = 404
-          return next(err)
-        }
-        doc.comments.pull(request.params._cid)
-        doc.save(function(err, user) {
+      try {
+        const user = await getCurrentUser(request, response, next)
+        user.comments.pull(request.params._cid)
+        user.save(function(err, user) {
           if (err) return next(err)
           response.status(201).json(post)
         })
-      })
+      } catch (err) {
+        return next(err)
+      }
     })
   })
 })
