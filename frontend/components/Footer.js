@@ -1,11 +1,11 @@
 const Footer = () => {
   return (
-    <footer class="page-footer">
+    <footer className="page-footer">
       <div class="footer-copyright">
-        <div class="container">
+        <div className="container">
           Made by{' '}
           <a
-            class="orange-text text-lighten-3"
+            className="orange-text text-lighten-3"
             href="https://codersforcauses.org"
           >
             Coders for Causes
