@@ -1,53 +1,82 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import Form from '../components/Form'
-
+import { Consumer } from '../Context'
+import Router from 'next/router'
 export default class UserSignIn extends Component {
   state = {
-    username: '',
+    email: '',
     password: '',
     errors: []
   }
 
   render() {
-    const { username, password, errors } = this.state
+    const { email, password, errors } = this.state
 
     return (
-      <div className="bounds">
-        <div className="grid-33 centered signin">
-          <h1>Sign In</h1>
-          <Form
-            cancel={this.cancel}
-            errors={errors}
-            submit={this.submit}
-            submitButtonText="Sign In"
-            elements={() => (
-              <React.Fragment>
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  value={username}
-                  onChange={this.change}
-                  placeholder="User Name"
+      <Consumer>
+        {context => {
+          let submit = () => {
+            const { email, password } = this.state
+            context.actions
+              .signIn(email, password)
+              .then(user => {
+                if (user === null) {
+                  this.setState(() => {
+                    return { errors: ['Sign-in was unsuccessful'] }
+                  })
+                } else {
+                  Router.push('/profile')
+                  console.log(`SUCCESS! ${email} is now signed in!`)
+                }
+              })
+              .catch(err => {
+                console.log(err)
+                Router.push('/error')
+              })
+          }
+          let cancel = () => {
+            Router.push('/')
+          }
+          return (
+            <div className="bounds">
+              <div className="grid-33 centered signin">
+                <h1>Sign In</h1>
+                <Form
+                  cancel={cancel}
+                  errors={errors}
+                  submit={submit}
+                  submitButtonText="Sign In"
+                  elements={() => (
+                    <React.Fragment>
+                      <input
+                        id="email"
+                        name="email"
+                        type="text"
+                        value={email}
+                        onChange={this.change}
+                        placeholder="User Name"
+                      />
+                      <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        value={password}
+                        onChange={this.change}
+                        placeholder="Password"
+                      />
+                    </React.Fragment>
+                  )}
                 />
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={this.change}
-                  placeholder="Password"
-                />
-              </React.Fragment>
-            )}
-          />
-          <p>
-            Don't have a user account? <Link to="/signup">Click here</Link> to
-            sign up!
-          </p>
-        </div>
-      </div>
+                <p>
+                  Don't have a user account?{' '}
+                  <Link to="/signup">Click here</Link> to sign up!
+                </p>
+              </div>
+            </div>
+          )
+        }}
+      </Consumer>
     )
   }
 
@@ -66,3 +95,5 @@ export default class UserSignIn extends Component {
 
   cancel = () => {}
 }
+
+/**/

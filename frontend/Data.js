@@ -1,7 +1,13 @@
 import config from './config'
 
 export default class Data {
-  api(path, method = 'GET', body = null) {
+  api(
+    path,
+    method = 'GET',
+    body = null,
+    requiresAuth = false,
+    credentials = null
+  ) {
     const url = config.apiBaseUrl + path
 
     const options = {
@@ -14,12 +20,21 @@ export default class Data {
     if (body !== null) {
       options.body = JSON.stringify(body)
     }
+    if (requiresAuth) {
+      const encodedCredentials = btoa(
+        `${credentials.email}:${credentials.password}`
+      )
+      options.headers['Authorization'] = `Basic ${encodedCredentials}`
+    }
 
     return fetch(url, options)
   }
 
-  async getUser() {
-    const response = await this.api(`/users/profile`, 'GET', null)
+  async signInUser(email, password) {
+    const response = await this.api(`users/login`, 'POST', null, true, {
+      email,
+      password
+    })
     if (response.status === 200) {
       return response.json().then(data => data)
     } else if (response.status === 401) {
@@ -30,15 +45,15 @@ export default class Data {
   }
 
   async createUser(user) {
-    const response = await this.api('/users/register', 'POST', user)
-    if (response.status === 201) {
+    const response = await this.api('users/register', 'POST', user)
+    if (response.status === 200) {
       return []
     } else if (response.status === 400) {
       return response.json().then(data => {
         return data.errors
       })
     } else {
-      throw new Error()
+      throw new Error(response.message)
     }
   }
 }

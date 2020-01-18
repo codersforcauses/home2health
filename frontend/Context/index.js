@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Data from './Data'
+import Data from '../Data'
 const AppContext = React.createContext()
 
 export class Provider extends Component {
@@ -7,9 +7,20 @@ export class Provider extends Component {
     super()
     this.data = new Data()
   }
+  state = {
+    authenticatedUser: null
+  }
 
   render() {
-    const value = { data: this.data }
+    const { authenticatedUser } = this.state
+
+    const value = {
+      authenticatedUser,
+      data: this.data,
+      actions: {
+        signIn: this.signIn
+      }
+    }
     return (
       <AppContext.Provider value={value}>
         {this.props.children}
@@ -17,7 +28,17 @@ export class Provider extends Component {
     )
   }
 
-  signIn = async () => {}
+  signIn = async (email, password) => {
+    const user = await this.data.signInUser(email, password)
+    if (user !== null) {
+      this.setState(() => {
+        return {
+          authenticatedUser: user
+        }
+      })
+    }
+    return user
+  }
 
   signOut = () => {}
 }
