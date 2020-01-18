@@ -37,29 +37,39 @@ export default class Data {
   }
 
   async signInUser(email, password) {
-    const response = await this.api(`users/login`, 'POST', null, true, {
-      email,
-      password
-    })
-    if (response.status === 200) {
-      return response.data
-    } else if (response.status === 401) {
+    try {
+      const response = await this.api(`users/login`, 'POST', null, true, {
+        email,
+        password
+      })
+      if (response.status === 200) {
+        return response.data
+      } else if (response.status === 401) {
+        return null
+      } else {
+        throw new Error()
+      }
+    } catch (e) {
       return null
-    } else {
-      throw new Error()
     }
   }
 
   async createUser(user) {
-    const response = await this.api('users/register', 'POST', user)
-    if (response.status === 200) {
-      return []
-    } else if (response.status === 400) {
-      return response.json().then(data => {
-        return data.errors
-      })
-    } else {
-      throw new Error(response.message)
+    try {
+      console.log('ye')
+      const response = await this.api('users/register', 'POST', user)
+      console.log('ye')
+      if (response.status === 200) {
+        return []
+      } else if (response.status === 400) {
+        return response.json().then(data => {
+          return data.errors
+        })
+      } else {
+        throw new Error(response.message)
+      }
+    } catch (e) {
+      return e.response.data.errors
     }
   }
 }
