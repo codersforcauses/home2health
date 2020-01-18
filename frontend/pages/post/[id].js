@@ -88,7 +88,7 @@ const PostLandingEdittable = props => {
 }
 //EDITTABLE VERSION OF POST ARTICLE COMPONENT
 const PostArticleEdittable = props => {
-  const { content, CKEditor, InlineEditor } = props
+  const { content, CKEditor, InlineEditor, ClassicEditor } = props
   return (
     <article>
       <div className="container">
@@ -96,7 +96,7 @@ const PostArticleEdittable = props => {
           <div className="col-md-10 col-lg-8 mx-auto">
             <CKEditor
               name="content"
-              editor={InlineEditor}
+              editor={ClassicEditor}
               placeholder="a"
               data={content}
               onBlur={(event, editor) => {
@@ -181,6 +181,7 @@ class LongPost extends React.Component {
     //(From : https://github.com/ckeditor/ckeditor5-react/issues/36)
     this.CKEditor = require('@ckeditor/ckeditor5-react')
     this.InlineEditor = require('@ckeditor/ckeditor5-build-inline')
+    this.ClassicEditor = require('@sarhanm/ckeditor5-build-classic-full-with-base64-upload')
 
     this.setState({
       isEditorLoaded: true
@@ -272,6 +273,7 @@ class LongPost extends React.Component {
               CKEditor={this.CKEditor}
               InlineEditor={this.InlineEditor}
               directHandleChange={this.directHandleChange}
+              ClassicEditor={this.ClassicEditor}
             ></PostArticleEdittable>
           </React.Fragment>
         ) : (
