@@ -8,29 +8,28 @@ const Post = require('../models/post')
   It is also used to create new posts (POST)
 */
 
-router.param("_pid", function(req, res, next, id) {
+router.param('_pid', function(req, res, next, id) {
   Post.findById(id, function(err, doc) {
-      if (err) return next(err);
-      if (!doc) {
-          err = new Error("Post Not Found");
-          err.status = 404;
-          return next(err);
-      }
-      req.post = doc;
-      return next();
-  });
-});
-router.param("_cid", function(req, res, next, id) {
-  req.comment = req.post.comments.id(id);
+    if (err) return next(err)
+    if (!doc) {
+      err = new Error('Post Not Found')
+      err.status = 404
+      return next(err)
+    }
+    req.post = doc
+    return next()
+  })
+})
+router.param('_cid', function(req, res, next, id) {
+  req.comment = req.post.comments.id(id)
   if (!req.comment) {
-      var err = new Error("Comment Not Found");    
-      err.status = 404;
-      return next(err);
+    var err = new Error('Comment Not Found')
+    err.status = 404
+    return next(err)
+  } else {
+    next()
   }
-  else {
-      next();
-  }
-});
+})
 
 // GET posts for specific pages
 router.get('/', (request, response, next) => {
@@ -46,7 +45,7 @@ router.get('/', (request, response, next) => {
 
 // GET THE DETAILS OF SPECIFIC POST
 router.get('/:_pid', (request, response, next) => {
-  let currentPostId = request.params._pid;
+  let currentPostId = request.params._pid
   controllerPost
     .getSpecificPost(currentPostId)
     .then(data => {
@@ -57,7 +56,7 @@ router.get('/:_pid', (request, response, next) => {
 
 // ADD NEW POST
 router.post('/', (request, response, next) => {
-  console.log(request.body)
+
   controllerPost
     .addPost(request.body)
     .then(data => {
@@ -105,20 +104,19 @@ router.patch('/:_pid', (request, response, next) => {
 // UPDATE SPECIFIC COMMENT
 router.patch('/:_pid/:_cid', (request, response, next) => {
   request.comment.update(request.body, function(err, result) {
-    if (err) return next(err);
-    response.json(result);
-  });
-});
+    if (err) return next(err)
+    response.json(result)
+  })
+})
 
 // DELETE SPECIFIC COMMENT
 router.delete('/:_pid/:_cid', (request, response, next) => {
-  console.log("test");
   request.comment.remove(function(err) {
     request.post.save(function(err, post) {
-      if (err) return next(err);
-      response.json(post);
+      if (err) return next(err)
+      response.json(post)
     })
-  });
-});
+  })
+})
 
 module.exports = router

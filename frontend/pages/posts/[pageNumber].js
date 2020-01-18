@@ -68,7 +68,7 @@ class Posts extends React.Component {
           </a>
         </li>
       )
-      // console.log(this.state.currentCollection + " " + i + " "+ this.state.pages);
+
     }
 
     return list
