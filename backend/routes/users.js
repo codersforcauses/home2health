@@ -26,7 +26,6 @@ router.get('/logout', mid.requiresLogin, function(req, res, next) {
 // POST /login
 router.post('/login', mid.loggedOut, function(req, res, next) {
   const credentials = auth(req)
-  console.log(credentials)
 
   if (credentials) {
     User.authenticate(credentials.name, credentials.pass, function(
@@ -39,7 +38,7 @@ router.post('/login', mid.loggedOut, function(req, res, next) {
         return next(err)
       } else {
         req.session.userId = user._id
-        return res.json(user)
+        return res.redirect('/users/profile')
       }
     })
   } else {
@@ -85,7 +84,7 @@ router.post(
         return next(error)
       } else {
         req.session.userId = user._id
-        return res.json(user)
+        return res.redirect('/users/profile')
       }
     })
   }

@@ -1,5 +1,5 @@
 import config from './config'
-
+import axios from 'axios'
 export default class Data {
   api(
     path,
@@ -27,7 +27,13 @@ export default class Data {
       options.headers['Authorization'] = `Basic ${encodedCredentials}`
     }
 
-    return fetch(url, options)
+    return axios({
+      url: url,
+      method: options.method,
+      headers: options.headers,
+      data: body,
+      withCredentials: true
+    })
   }
 
   async signInUser(email, password) {
@@ -36,7 +42,7 @@ export default class Data {
       password
     })
     if (response.status === 200) {
-      return response.json().then(data => data)
+      return response.data
     } else if (response.status === 401) {
       return null
     } else {
