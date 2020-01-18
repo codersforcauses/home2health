@@ -16,7 +16,7 @@ class PostForm extends React.Component {
     // SSR doesn't fire ComponentDidMount, so we import CKEditor inside of it and store it as a component prop
     //(From : https://github.com/ckeditor/ckeditor5-react/issues/36)
     this.CKEditor = require('@ckeditor/ckeditor5-react')
-    this.ClassicEditor = require('@ckeditor/ckeditor5-build-classic')
+    this.ClassicEditor = require('@sarhanm/ckeditor5-build-classic-full-with-base64-upload')
     this.setState({ isServer: false }) // We just do this to toggle a re-render
 
     // MATERIALIZE INITIALIZE
