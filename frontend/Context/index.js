@@ -59,18 +59,4 @@ export class Provider extends Component {
 
 export const Consumer = AppContext.Consumer
 
-/**
- * A higher-order component that wraps the provided component in a Context Consumer component.
- * @param {class} Component - A React component.
- * @returns {function} A higher-order component.
- */
-
-export default function withContext(Component) {
-  return function ContextComponent(props) {
-    return (
-      <AppContext.Consumer>
-        {context => <Component {...props} context={context} />}
-      </AppContext.Consumer>
-    )
-  }
-}
+export default AppContext

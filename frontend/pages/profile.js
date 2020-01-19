@@ -1,21 +1,33 @@
 import React, { Component } from 'react'
-import { Consumer } from '../Context'
+import AppContext, { Consumer } from '../Context'
 import Router from 'next/router'
-class Profile extends Component {
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+
+export default class Profile extends Component {
+  static contextType = AppContext
+  componentDidMount() {
+    const context = this.context
+    console.log(context)
+    if (!context.authenticatedUser) {
+      Router.replace('/login')
+      console.log("You shouldn't be able to access this page")
+    }
+  }
   render() {
-    console.log(this.props)
     return (
       <Consumer>
         {context => {
-          if (!context.authenticatedUser) {
-            console.log("You shouldn't be able to access this page")
-          } else {
+          if (context.authenticatedUser) {
             return (
               <div className="bounds">
                 <div className="grid-100">
                   <h1>
                     You are authenticated! {context.authenticatedUser.name}
                   </h1>
+                  <Link href="/">
+                    <a>Go to home page</a>
+                  </Link>
                 </div>
               </div>
             )
@@ -25,4 +37,3 @@ class Profile extends Component {
     )
   }
 }
-export default Profile

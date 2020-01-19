@@ -57,9 +57,6 @@ export default class Data {
     try {
       const response = await this.api(`users/logout`, 'GET', null)
       if (response.status === 200) {
-        console.log('ye')
-        console.log(response.data)
-        console.log('namaha')
         return response.data
       } else if (response.status === 401) {
         return null
