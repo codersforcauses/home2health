@@ -2,7 +2,6 @@ import App from 'next/app'
 import React from 'react'
 import Layout from '../components/Layout'
 import { Provider } from '../Context'
-import Data from '../Data'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -36,7 +35,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <Provider value={{ data: 'yeah' }}>
+      <Provider>
         <Layout>
           <Component {...pageProps} />
         </Layout>

@@ -12,15 +12,20 @@ router.get('/', function(req, res, next) {
 // GET /logout
 router.get('/logout', mid.requiresLogin, function(req, res, next) {
   if (req.session) {
+    console.log(req.session)
     // delete session object
     req.session.destroy(function(err) {
       if (err) {
+        console.log(err)
         return next(err)
       } else {
         // What goes here?
-        return res.redirect('/')
+        console.log('deleted')
+        return res.json({ error: 'No errors!' })
       }
     })
+  } else {
+    return res.status(500).json({ error: "Couldn't delete session" })
   }
 })
 // POST /login

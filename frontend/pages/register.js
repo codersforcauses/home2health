@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Form from '../components/Form'
 //import withContext from '../Context'
 import { Consumer } from '../Context'
+import Router from 'next/router'
 
 export default class UserSignUp extends Component {
   state = {
@@ -33,9 +34,22 @@ export default class UserSignUp extends Component {
                 if (errors.length) {
                   this.setState({ errors })
                 } else {
-                  console.log(
-                    `${email} is successfully signed up and authenticated!`
-                  )
+                  context.actions
+                    .signIn(email, password)
+                    .then(user => {
+                      if (user === null) {
+                        this.setState(() => {
+                          return { errors: ['Sign-in was unsuccessful'] }
+                        })
+                      } else {
+                        Router.push('/profile')
+                        console.log(`SUCCESS! ${email} is now signed in!`)
+                      }
+                    })
+                    .catch(err => {
+                      console.log(err)
+                      Router.push('/error')
+                    })
                 }
               })
               .catch(err => {

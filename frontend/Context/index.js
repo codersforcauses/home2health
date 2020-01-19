@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Data from '../Data'
+import Cookies from 'js-cookie'
 const AppContext = React.createContext()
 
 export class Provider extends Component {
@@ -8,7 +9,7 @@ export class Provider extends Component {
     this.data = new Data()
   }
   state = {
-    authenticatedUser: null
+    authenticatedUser: Cookies.getJSON('authenticatedUser') || null
   }
 
   render() {
@@ -18,7 +19,8 @@ export class Provider extends Component {
       authenticatedUser,
       data: this.data,
       actions: {
-        signIn: this.signIn
+        signIn: this.signIn,
+        signOut: this.signOut
       }
     }
     return (
@@ -36,11 +38,23 @@ export class Provider extends Component {
           authenticatedUser: user
         }
       })
+      Cookies.set('authenticatedUser', JSON.stringify(user), { expires: 1 })
     }
     return user
   }
 
-  signOut = () => {}
+  signOut = async () => {
+    try {
+      this.setState({ authenticatedUser: null })
+      const signOut = await this.data.signOutUser()
+      if (signOut == null) {
+        throw new Error('Error in signing out')
+      }
+      Cookies.remove('authenticatedUser')
+    } catch (e) {
+      console.log(e)
+    }
+  }
 }
 
 export const Consumer = AppContext.Consumer

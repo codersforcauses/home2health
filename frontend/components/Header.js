@@ -114,10 +114,10 @@ class Header extends Component {
                   <li>
                     {authUser ? (
                       <React.Fragment>
-                        <Link to="/logout">Log Out</Link>
+                        <Link href="/logout">Log Out</Link>
                       </React.Fragment>
                     ) : (
-                      <Link href="#">
+                      <Link href="login">
                         <a>Login</a>
                       </Link>
                     )}
@@ -208,12 +208,12 @@ class Header extends Component {
                   <li>
                     {authUser ? (
                       <React.Fragment>
-                        <Link href="#">
+                        <Link href="/logout">
                           <a className="navitem">Log Out</a>
                         </Link>
                       </React.Fragment>
                     ) : (
-                      <Link href="#">
+                      <Link href="/login">
                         <a className="navitem">Login</a>
                       </Link>
                     )}

@@ -53,12 +53,28 @@ export default class Data {
       return null
     }
   }
+  async signOutUser() {
+    try {
+      const response = await this.api(`users/logout`, 'GET', null)
+      if (response.status === 200) {
+        console.log('ye')
+        console.log(response.data)
+        console.log('namaha')
+        return response.data
+      } else if (response.status === 401) {
+        return null
+      } else {
+        throw new Error()
+      }
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
 
   async createUser(user) {
     try {
-      console.log('ye')
       const response = await this.api('users/register', 'POST', user)
-      console.log('ye')
       if (response.status === 200) {
         return []
       } else if (response.status === 400) {

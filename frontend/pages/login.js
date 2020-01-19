@@ -70,7 +70,7 @@ export default class UserSignIn extends Component {
                 />
                 <p>
                   Don't have a user account?{' '}
-                  <Link to="/signup">Click here</Link> to sign up!
+                  <Link to="/register">Click here</Link> to sign up!
                 </p>
               </div>
             </div>
