@@ -105,7 +105,7 @@ export default class UserSignUp extends Component {
                   />
                   <p>
                     Already have a user account?{' '}
-                    <Link to="/signin">Click here</Link> to sign in!
+                    <Link href="/login">Click here</Link> to sign in!
                   </p>
                 </div>
               </div>

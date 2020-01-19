@@ -28,7 +28,6 @@ router.get('/logout', mid.requiresLogin, function(req, res, next) {
 // POST /login
 router.post('/login', mid.loggedOut, function(req, res, next) {
   const credentials = auth(req)
-  console.log(credentials)
   if (credentials) {
     User.authenticate(credentials.name, credentials.pass, function(
       error,

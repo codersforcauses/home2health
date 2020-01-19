@@ -117,7 +117,7 @@ class Header extends Component {
                         <Link href="/logout">Log Out</Link>
                       </React.Fragment>
                     ) : (
-                      <Link href="login">
+                      <Link href="/login">
                         <a>Login</a>
                       </Link>
                     )}

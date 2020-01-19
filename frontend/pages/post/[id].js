@@ -135,7 +135,15 @@ const PostLanding = props => {
                   escapeHtml={false}
                 ></ReactMarkdown>
               </h1>
-              <span className="meta">{` Posted By: ${author} on ${date.toDateString()}`}</span>
+              {author ? (
+                <span className="meta">{` Posted By: ${
+                  author.name
+                } on ${date.toDateString()}`}</span>
+              ) : (
+                <span className="meta">
+                  {` Posted By: [deleted author] on ${date.toDateString()}`}
+                </span>
+              )}
               <p>
                 <ReactMarkdown
                   source={overview}
@@ -190,12 +198,13 @@ class LongPost extends React.Component {
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
     const apiPath = `${baseURL}/post/${this.state.id}`
     Axios.get(apiPath, {})
-      .then(response =>
+      .then(response => {
+        console.log(response.data)
         this.setState({
           data: response.data,
           loaded: true
         })
-      )
+      })
       .catch(err => {
         M.toast({
           html: 'Oops, Something Went Wrong',

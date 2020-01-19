@@ -7,7 +7,7 @@ export default LogOut => {
       {context => {
         context.actions
           .signOut()
-          .then(Router.push('/'))
+          .then(Router.replace('/'))
           .catch(err => console.log(err))
       }}
     </Consumer>

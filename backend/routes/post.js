@@ -23,6 +23,12 @@ function getCurrentUser(request, response, next) {
     resolve(doc)
   })
 }
+function getUser(request, response, next, id) {
+  return new Promise(async (resolve, reject) => {
+    const doc = await User.findById(id)
+    resolve(doc)
+  })
+}
 router.param('_pid', function(req, res, next, id) {
   Post.findById(id, function(err, doc) {
     if (err) return next(err)
@@ -61,9 +67,11 @@ router.get('/', (request, response, next) => {
 })
 
 // GET THE DETAILS OF SPECIFIC POST
-router.get('/:_pid', (request, response, next) => {
-  console.log(request.post.author.name)
-  response.send(request.post)
+router.get('/:_pid', async (request, response, next) => {
+  let body = request.post.toObject()
+  const user = await getUser(request, response, next, request.post.author)
+  body.author = user
+  response.send(body)
 })
 
 // GET THE DETAILS OF SPECIFIC COMMENT

@@ -90,7 +90,7 @@ class PostForm extends React.Component {
       })
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
-        console.log(err)
+        //(err)
       })
   }
 

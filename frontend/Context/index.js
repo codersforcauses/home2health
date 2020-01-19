@@ -49,7 +49,7 @@ export class Provider extends Component {
         }
       })
       this.setState({ from: null })
-      Cookies.set('authenticatedUser', JSON.stringify(user), { expires: 1 })
+      Cookies.set('authenticatedUser', JSON.stringify(user), {})
     }
     return user
   }
