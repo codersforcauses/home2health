@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import AppContext, { Consumer } from '../Context'
 import Router from 'next/router'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 export default class Profile extends Component {
   static contextType = AppContext
   componentDidMount() {
     const context = this.context
-    console.log(context)
+    const { pathname } = Router
     if (!context.authenticatedUser) {
-      Router.replace('/login')
-      console.log("You shouldn't be able to access this page")
+      context.actions.redirectToSignIn(pathname)
     }
   }
   render() {

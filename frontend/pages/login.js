@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import Form from '../components/Form'
-import { Consumer } from '../Context'
+import AppContext, { Consumer } from '../Context'
 import Router from 'next/router'
 export default class UserSignIn extends Component {
   state = {
     email: '',
     password: '',
     errors: []
+  }
+  static contextType = AppContext
+  componentDidMount() {
+    const context = this.context
+    if (context.authenticatedUser) {
+      Router.push('/profile')
+    }
   }
 
   render() {
@@ -26,7 +33,7 @@ export default class UserSignIn extends Component {
                     return { errors: ['Sign-in was unsuccessful'] }
                   })
                 } else {
-                  Router.push('/profile')
+                  Router.push(context.from)
                   console.log(`SUCCESS! ${email} is now signed in!`)
                 }
               })
@@ -70,7 +77,7 @@ export default class UserSignIn extends Component {
                 />
                 <p>
                   Don't have a user account?{' '}
-                  <Link to="/register">Click here</Link> to sign up!
+                  <Link href="/register">Click here</Link> to sign up!
                 </p>
               </div>
             </div>

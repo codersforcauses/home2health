@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 import Form from '../components/Form'
-//import withContext from '../Context'
-import { Consumer } from '../Context'
+import AppContext, { Consumer } from '../Context'
 import Router from 'next/router'
 
 export default class UserSignUp extends Component {
@@ -12,7 +11,13 @@ export default class UserSignUp extends Component {
     password: '',
     errors: []
   }
-
+  static contextType = AppContext
+  componentDidMount() {
+    const context = this.context
+    if (context.authenticatedUser) {
+      Router.push('/profile')
+    }
+  }
   render() {
     const { name, email, password, errors } = this.state
 
