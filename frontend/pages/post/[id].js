@@ -187,7 +187,7 @@ class LongPost extends React.Component {
     }) // We just do this to toggle a re-render
 
     //INITIAL DATA LOAD
-    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
     const apiPath = `${baseURL}/post/${this.state.id}`
     Axios.get(apiPath, {})
       .then(response =>
@@ -208,7 +208,7 @@ class LongPost extends React.Component {
   // General Updater to Server
   sendUpdateToServer = payload => {
     let id = this.state.id
-    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
     const apiPath = `${baseURL}/post/${id}`
 
     //SEND THE NEW CHANGE TO BACKEND

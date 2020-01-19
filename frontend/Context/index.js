@@ -23,7 +23,8 @@ export class Provider extends Component {
       actions: {
         signIn: this.signIn,
         signOut: this.signOut,
-        redirectToSignIn: this.redirectToSignIn
+        redirectToSignIn: this.redirectToSignIn,
+        createPost: this.createPost
       },
       from: from || '/profile'
     }
@@ -51,6 +52,11 @@ export class Provider extends Component {
       Cookies.set('authenticatedUser', JSON.stringify(user), { expires: 1 })
     }
     return user
+  }
+
+  createPost = async body => {
+    const post = await this.data.createPost(body)
+    return post
   }
 
   signOut = async () => {

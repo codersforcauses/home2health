@@ -62,6 +62,7 @@ router.get('/', (request, response, next) => {
 
 // GET THE DETAILS OF SPECIFIC POST
 router.get('/:_pid', (request, response, next) => {
+  console.log(request.post.author.name)
   response.send(request.post)
 })
 
@@ -80,12 +81,16 @@ router.post('/', mid.requiresLogin, (request, response, next) => {
       const user = await getCurrentUser(request, response, next)
       user.posts.push(mongoose.Types.ObjectId(data._id))
       user.save(function(err, user) {
+        console.log(err)
         if (err) return next(err)
         response.status(201)
         response.json(data)
       })
     })
-    .catch(err => response.status(err.status || 500).send(err))
+    .catch(err => {
+      console.log(err)
+      response.status(err.status || 500).send(err)
+    })
 })
 
 // ADD COMMENT TO POST
