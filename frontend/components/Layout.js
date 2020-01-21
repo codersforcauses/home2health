@@ -8,13 +8,28 @@ class Layout extends Component {
   render() {
     return (
       <Fragment>
+        {style}
         <Head />
         <Header />
-        {this.props.children}
+        <main>{this.props.children}</main>
         <Footer />
       </Fragment>
     )
   }
 }
+
+const style = (
+  <style jsx="true">{`
+    #__next {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+  `}</style>
+)
 
 export default Layout
