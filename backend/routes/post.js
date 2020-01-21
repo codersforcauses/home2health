@@ -36,7 +36,7 @@ router.get('/', (request, response, next) => {
   const numberOfPost = 10 // WILL GIVE A MAXIMUM OF 10 POST
   const page = request.query.page
   controllerPost
-    .getPagePost(page, numberOfPost, request.body.searchFilter)
+    .getPagePost(page, numberOfPost, request.query.searchFilter)
     .then(data => {
       response.send(data)
     })

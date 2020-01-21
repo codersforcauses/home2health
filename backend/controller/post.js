@@ -43,39 +43,37 @@ const getPost = payload => {
 
 //GET A GROUP OF POSTS IN A SPECIFIC PAGE IN THE PAGINATION
 const getPagePost = (page, numberOfPost, searchFilter) => {
+  console.log(searchFilter)
   return new Promise((resolve, reject) => {
-    Post.count({}, (err, count) => {
-      let searchResults
-      if (searchFilter) {
-        searchResults = Post.find(
-          { $text: { $search: searchFilter } },
-          { content: 0, score: { $meta: 'textScore' } }
-        )
-      } else {
-        searchResults = Post.find(
-          {},
-          { content: 0, score: { $meta: 'textScore' } }
-        )
-      }
-      searchResults
-        .sort({
-          datetime: -1,
-          title: 1
-        }) // SORT BY DATE (most recent), title (ascending)
-        .skip((page - 1) * numberOfPost) // skips the first few pages (starting page = 1)
-        .limit(numberOfPost)
-        .exec((err, data) => {
-          if (err) {
-            reject(err)
-          }
+    let searchQuery = searchFilter ? { $text: { $search: searchFilter } } : {}
+    let searchCount
+
+    //IF THERE IS A SEARCH FILTER, SEARCH DEPENDING ON TEST SCORE, OTHERWISE LIST EVERYTHING
+    // REQUIRES INDEX CREATION: db.post.createIndex({title:"text",overview:"text",content:"text",categories:"text"})
+    Post.find(searchQuery, {
+      content: 0,
+      score: { $meta: 'textScore' }
+    })
+      .sort({
+        datetime: -1,
+        title: 1
+      }) // SORT BY DATE (most recent), title (ascending)
+      .skip((page - 1) * numberOfPost) // skips the first few pages (starting page = 1)
+      .limit(numberOfPost)
+      .exec((err, data) => {
+        if (err) {
+          reject(err)
+        }
+        Post.count(searchQuery, (err, count) => {
           let api = {
             data,
             maxPage: Math.ceil(count / numberOfPost),
             numberOfPost
           }
+
           resolve(api)
         })
-    })
+      })
   })
 }
 
@@ -136,6 +134,17 @@ const addComment = (_id, payload) => {
     })
   })
 }
+
+//GET ALL POSSIBLE VALUES OF CATEGORIES
+const getAllCategories = () => {
+  return new Promise((resolve, reject) => {
+    Post.distinct('categories', (err, result) => {
+      if (err) reject(err)
+      else resolve(result)
+    })
+  })
+}
+
 module.exports = {
   getPost,
   getPagePost,
@@ -144,5 +153,6 @@ module.exports = {
   addPost,
   deletePost,
   updatePost,
-  addComment
+  addComment,
+  getAllCategories
 }
