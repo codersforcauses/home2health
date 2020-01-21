@@ -42,10 +42,22 @@ const getPost = payload => {
 }
 
 //GET A GROUP OF POSTS IN A SPECIFIC PAGE IN THE PAGINATION
-const getPagePost = (page, numberOfPost) => {
+const getPagePost = (page, numberOfPost, searchFilter) => {
   return new Promise((resolve, reject) => {
     Post.count({}, (err, count) => {
-      Post.find({})
+      let searchResults
+      if (searchFilter) {
+        searchResults = Post.find(
+          { $text: { $search: searchFilter } },
+          { content: 0, score: { $meta: 'textScore' } }
+        )
+      } else {
+        searchResults = Post.find(
+          {},
+          { content: 0, score: { $meta: 'textScore' } }
+        )
+      }
+      searchResults
         .sort({
           datetime: -1,
           title: 1
