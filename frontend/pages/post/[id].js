@@ -199,7 +199,6 @@ class LongPost extends React.Component {
     const apiPath = `${baseURL}/post/${this.state.id}`
     Axios.get(apiPath, {})
       .then(response => {
-        console.log(response.data)
         this.setState({
           data: response.data,
           loaded: true

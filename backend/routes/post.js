@@ -12,23 +12,6 @@ var mongoose = require('mongoose')
   It is also used to create new posts (POST)
 */
 
-function getCurrentUser(request, response, next) {
-  return new Promise(async (resolve, reject) => {
-    const doc = await User.findById(request.session.userId)
-    if (!doc) {
-      err = new Error('User Not Found')
-      err.status = 404
-      reject(err)
-    }
-    resolve(doc)
-  })
-}
-function getUser(request, response, next, id) {
-  return new Promise(async (resolve, reject) => {
-    const doc = await User.findById(id)
-    resolve(doc)
-  })
-}
 router.param('_pid', function(req, res, next, id) {
   Post.findById(id, function(err, doc) {
     if (err) return next(err)
@@ -69,7 +52,7 @@ router.get('/', (request, response, next) => {
 // GET THE DETAILS OF SPECIFIC POST
 router.get('/:_pid', async (request, response, next) => {
   let body = request.post.toObject()
-  const user = await getUser(request, response, next, request.post.author)
+  const user = await User.getUser(request, response, next, request.post.author)
   body.author = user
   response.send(body)
 })
@@ -86,7 +69,7 @@ router.post('/', mid.requiresLogin, (request, response, next) => {
   controllerPost
     .addPost(post)
     .then(async function(data) {
-      const user = await getCurrentUser(request, response, next)
+      const user = await User.getCurrentUser(request, response, next)
       user.posts.push(mongoose.Types.ObjectId(data._id))
       user.save(function(err, user) {
         console.log(err)
@@ -117,7 +100,7 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
     postParam.save(async function(err, post) {
       if (err) return next(err)
       try {
-        const user = await getCurrentUser(request, response, next)
+        const user = await User.getCurrentUser(request, response, next)
         user.comments.push(comment._id)
         user.save(function(err, user) {
           if (err) return next(err)
@@ -141,7 +124,7 @@ router.delete('/:_pid', mid.requiresLogin, (request, response, next) => {
   controllerPost
     .deletePost(currentPostId)
     .then(async function(data) {
-      const user = await getCurrentUser(request, response, next)
+      const user = await User.getCurrentUser(request, response, next)
       user.posts.pull(request.params._pid)
       user.save(function(err, user) {
         if (err) return next(err)
@@ -155,7 +138,7 @@ router.delete('/:_pid', mid.requiresLogin, (request, response, next) => {
 // UPDATE SPECIFIC POST
 router.patch('/:_pid', mid.requiresLogin, (request, response, next) => {
   if (request.session.userId != request.post.author) {
-    var err = new Error('You are not the author of this post/comment.')
+    var err = new Error('You are not the author of this post.')
     err.status = 401
     return next(err)
   }
@@ -170,8 +153,8 @@ router.patch('/:_pid', mid.requiresLogin, (request, response, next) => {
 
 // UPDATE SPECIFIC COMMENT
 router.patch('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
-  if (request.session.userId != request.post.author) {
-    var err = new Error('You are not the author of this post/comment.')
+  if (request.session.userId != request.comment.author) {
+    var err = new Error('You are not the author of this comment.')
     err.status = 401
     return next(err)
   }
@@ -184,8 +167,8 @@ router.patch('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
 
 // DELETE SPECIFIC COMMENT
 router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
-  if (request.session.userId != request.post.author) {
-    var err = new Error('You are not the author of this post/comment.')
+  if (request.session.userId != request.comment.author) {
+    var err = new Error('You are not the author of this comment.')
     err.status = 401
     return next(err)
   }
@@ -197,7 +180,7 @@ router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
     postParam.save(async function(err, post) {
       if (err) return next(err)
       try {
-        const user = await getCurrentUser(request, response, next)
+        const user = await User.getCurrentUser(request, response, next)
         user.comments.pull(request.params._cid)
         user.save(function(err, user) {
           if (err) return next(err)

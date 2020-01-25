@@ -42,5 +42,23 @@ UserSchema.pre('save', function(next) {
     next()
   }
 })
+
+UserSchema.statics.getUser = function(request, response, next, id) {
+  return new Promise(async (resolve, reject) => {
+    const doc = await User.findById(id)
+    resolve(doc)
+  })
+}
+UserSchema.statics.getCurrentUser = function(request, response, next) {
+  return new Promise(async (resolve, reject) => {
+    const doc = await User.findById(request.session.userId)
+    if (!doc) {
+      err = new Error('User Not Found')
+      err.status = 404
+      reject(err)
+    }
+    resolve(doc)
+  })
+}
 var User = mongoose.model('User', UserSchema)
 module.exports = User

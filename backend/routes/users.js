@@ -17,8 +17,7 @@ router.get('/logout', mid.requiresLogin, function(req, res, next) {
       if (err) {
         return next(err)
       } else {
-        // What goes here?
-        return res.json({ error: 'No errors!' })
+        return res.status(204).json({})
       }
     })
   } else {
@@ -26,7 +25,7 @@ router.get('/logout', mid.requiresLogin, function(req, res, next) {
   }
 })
 // POST /login
-router.post('/login', mid.loggedOut, function(req, res, next) {
+router.post('/login', mid.isLoggedOut, function(req, res, next) {
   const credentials = auth(req)
   if (credentials) {
     User.authenticate(credentials.name, credentials.pass, function(
@@ -39,7 +38,7 @@ router.post('/login', mid.loggedOut, function(req, res, next) {
         return next(err)
       } else {
         req.session.userId = user._id
-        return res.redirect('/users/profile')
+        return res.json(user)
       }
     })
   } else {
@@ -62,7 +61,7 @@ router.post(
       .exists({ checkNull: true, checkFalsy: true })
       .withMessage('Please provide a value for "password"')
   ],
-  mid.loggedOut,
+  mid.isLoggedOut,
   function(req, res, next) {
     const errors = validationResult(req)
 
@@ -85,7 +84,7 @@ router.post(
         return next(error)
       } else {
         req.session.userId = user._id
-        return res.redirect('/users/profile')
+        return res.json(user)
       }
     })
   }

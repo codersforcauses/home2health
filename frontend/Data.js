@@ -1,4 +1,3 @@
-import config from './config'
 import axios from 'axios'
 export default class Data {
   api(
@@ -8,8 +7,8 @@ export default class Data {
     requiresAuth = false,
     credentials = null
   ) {
-    const url = config.apiBaseUrl + path
-
+    const url =
+      (process.env.API_BACKEND_URL || 'http://localhost:5000') + '/' + path
     const options = {
       method,
       headers: {
@@ -56,7 +55,7 @@ export default class Data {
   async signOutUser() {
     try {
       const response = await this.api(`users/logout`, 'GET', null)
-      if (response.status === 200) {
+      if (response.status === 204) {
         return response.data
       } else if (response.status === 401) {
         return null

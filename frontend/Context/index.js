@@ -61,7 +61,12 @@ export class Provider extends Component {
 
   signOut = async () => {
     try {
-      this.setState({ authenticatedUser: null })
+      this.setState(() => {
+        if (this.state.authenticatedUser == null) {
+          return null
+        }
+        return { authenticatedUser: null }
+      })
       const signOut = await this.data.signOutUser()
       if (signOut == null) {
         throw new Error('Error in signing out')

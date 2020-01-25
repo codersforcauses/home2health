@@ -18,72 +18,67 @@ export default class UserSignIn extends Component {
   }
 
   render() {
+    const context = this.context
     const { email, password, errors } = this.state
+    let submit = () => {
+      const { email, password } = this.state
+      context.actions
+        .signIn(email, password)
+        .then(user => {
+          if (user === null) {
+            this.setState(() => {
+              return { errors: ['Sign-in was unsuccessful'] }
+            })
+          } else {
+            Router.push(context.from)
+            console.log(`SUCCESS! ${email} is now signed in!`)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          Router.push('/error')
+        })
+    }
+    let cancel = () => {
+      Router.push('/')
+    }
 
     return (
-      <Consumer>
-        {context => {
-          let submit = () => {
-            const { email, password } = this.state
-            context.actions
-              .signIn(email, password)
-              .then(user => {
-                if (user === null) {
-                  this.setState(() => {
-                    return { errors: ['Sign-in was unsuccessful'] }
-                  })
-                } else {
-                  Router.push(context.from)
-                  console.log(`SUCCESS! ${email} is now signed in!`)
-                }
-              })
-              .catch(err => {
-                console.log(err)
-                Router.push('/error')
-              })
-          }
-          let cancel = () => {
-            Router.push('/')
-          }
-          return (
-            <div className="bounds">
-              <div className="grid-33 centered signin">
-                <h1>Sign In</h1>
-                <Form
-                  cancel={cancel}
-                  errors={errors}
-                  submit={submit}
-                  submitButtonText="Sign In"
-                  elements={() => (
-                    <React.Fragment>
-                      <input
-                        id="email"
-                        name="email"
-                        type="text"
-                        value={email}
-                        onChange={this.change}
-                        placeholder="User Name"
-                      />
-                      <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        value={password}
-                        onChange={this.change}
-                        placeholder="Password"
-                      />
-                    </React.Fragment>
-                  )}
+      <div className="bounds">
+        <div className="grid-33 centered signin">
+          <h1>Sign In</h1>
+          <Form
+            cancel={cancel}
+            errors={errors}
+            submit={submit}
+            submitButtonText="Sign In"
+            elements={() => (
+              <React.Fragment>
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  value={email}
+                  onChange={this.change}
+                  placeholder="User Name"
                 />
-                <p>
-                  Don't have a user account?{' '}
-                  <Link href="/register">Click here</Link> to sign up!
-                </p>
-              </div>
-            </div>
-          )
-        }}
-      </Consumer>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={password}
+                  onChange={this.change}
+                  placeholder="Password"
+                />
+              </React.Fragment>
+            )}
+          />
+          <p>
+            Don't have a user account? <Link href="/register">Click here</Link>{' '}
+            to sign up!
+          </p>
+        </div>
+      </div>
     )
   }
 
