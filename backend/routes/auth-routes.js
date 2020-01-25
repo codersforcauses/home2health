@@ -1,8 +1,3 @@
-import ProfileAbout from '../../frontend/components/ProfileAbout'
-import Link from 'next/link'
-
-const user = ProfileAbout.user
-
 const express = require('express')
 const passport = require('passport')
 

@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const emailRouter = require('./routes/email')
 const postRouter = require('./routes/post')
+const authRouter = require('./routes/auth-routes.js')
 
 const app = express()
 
@@ -25,10 +26,11 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors())
 
-app.use('/', indexRouter)
+app.use('/index', indexRouter)
 app.use('/users', usersRouter)
 app.use('/email', emailRouter)
 app.use('/post', postRouter)
+app.use('/auth', authRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,7 +56,7 @@ var session = require('express-session')
 
 // config express-session
 var sess = {
-  secret: 'pY1Mv4ERgy8MF5Fp5727yJwIchMydEwpPkJiAwyWVXG88bHMyzszYXKSAgde1gXK',
+  secret: process.env.AUTH0_CLIENT_SECRET,
   cookie: {},
   resave: false,
   saveUninitialized: true
@@ -109,7 +111,7 @@ app.use(passport.session())
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
-app.use(userInViews())
-app.use('/', authRouter)
-app.use('/', indexRouter)
-app.use('/', usersRouter)
+// app.use(userInViews())
+// app.use('/routes/auth-routes', authRouter)
+// app.use('/', indexRouter)
+// app.use('/', usersRouter)
