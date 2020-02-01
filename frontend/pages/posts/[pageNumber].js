@@ -70,8 +70,8 @@ class Posts extends React.Component {
     return list
   }
 
-  handleChangeSearch = e => {
-    this.setState({ searchFilter: e.target.value })
+  handleChangeSearch = value => {
+    this.setState({ searchFilter: value })
   }
   handleSubmitSearch = () => {
     this.updatePostsDisplay(this.state.currentCollection)

@@ -10,7 +10,12 @@ export const SearchBar = ({ handleChange, handleSubmit, initialValue }) => (
     }}
   >
     <div class="">
-      <form>
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          handleSubmit()
+        }}
+      >
         <div class="input-field">
           <i class="material-icons prefix blue-text text-darken-4">search</i>
           <input
@@ -20,7 +25,7 @@ export const SearchBar = ({ handleChange, handleSubmit, initialValue }) => (
             type="search"
             placeholder="Search"
             required
-            onChange={handleChange}
+            onChange={e => handleChange(e.target.value)}
             value={initialValue}
           />
           {/* <label for="search" class="blue-text text-darken-2">
