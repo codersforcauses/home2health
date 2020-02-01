@@ -8,7 +8,7 @@ import Slider from '../components/Slider'
 class Index extends Component {
   render() {
     return (
-      <Fragment>
+      <>
         <div className="container">
           <div className="section">
             <div className="row" style={{ marginBottom: 0 }}>
