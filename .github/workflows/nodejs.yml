@@ -17,14 +17,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install and build frontend
+    - name: yarn install and build frontend
       working-directory: frontend
       run: |
-        npm install
-        npm run build
+        yarn install
+        yarn build
       env:
         CI: true
-    - name: npm install backend
+    - name: yarn install backend
       working-directory: backend
       run: |
-        npm install
+        yarn install

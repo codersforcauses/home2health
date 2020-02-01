@@ -1,11 +1,13 @@
-.post {
+.post-preview {
     text-decoration: none;
     margin: 0px auto 0px auto;
-    width: 80vw;
+    border-style: none;
+    width: 100%;
 }
 
 .subtitle {
     margin-top: 0px;
+    border-left: 5px solid rgb(15, 100, 137)
 }
 
 .details {
@@ -13,5 +15,6 @@
 }
 
 .tags {
+    margin-top: 10px;
     margin-left: 10px;
 }

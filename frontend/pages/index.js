@@ -8,9 +8,9 @@ import Slider from '../components/Slider'
 class Index extends Component {
   render() {
     return (
-      <>
-        <div className="section" id="index-banner">
-          <div className="container">
+      <Fragment>
+        <div className="container">
+          <div className="section">
             <div className="row" style={{ marginBottom: 0 }}>
               <div className="col s6">
                 <h3 style={{ marginBottom: 0 }}>
@@ -23,7 +23,7 @@ class Index extends Component {
                   health in Australia.
                 </h5>
                 <div style={{ margin: '1rem 0 0' }}>
-                  <Link href="#">
+                  <Link href="/login">
                     <a
                       className="btn-flat waves-effect waves-light"
                       style={{ marginRight: '1rem' }}
@@ -31,7 +31,7 @@ class Index extends Component {
                       Log in
                     </a>
                   </Link>
-                  <Link href="#">
+                  <Link href="/register">
                     <a className="btn waves-effect waves-light">Sign up</a>
                   </Link>
                 </div>

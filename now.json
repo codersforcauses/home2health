@@ -1,0 +1,24 @@
+{
+  "name": "home2health",
+  "version": 2,
+  "public": true,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@now/next"
+    }
+  ],
+  "build": {
+    "env": {
+      "API_BACKEND_URL": "https://home2health.herokuapp.com"
+    }
+  },
+
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1",
+      "continue": true
+    }
+  ]
+}

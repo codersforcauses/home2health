@@ -6,6 +6,9 @@ const mongoose = require('mongoose')
 const sendMail = require('./mail')
 const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const port = process.env.PORT || 5000
 
 require('dotenv').config()
 require('./db')
@@ -13,6 +16,7 @@ require('./db')
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const emailRouter = require('./routes/email')
+const postRouter = require('./routes/post')
 
 const app = express()
 
@@ -21,11 +25,32 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(cors())
-
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true
+  })
+)
+// use sessions for tracking logins
+app.use(
+  session({
+    secret: process.env.SECRET_KEY,
+    resave: true,
+    saveUnitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+  })
+)
+// make user ID available in templates
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.session.userId
+  next()
+})
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/email', emailRouter)
+app.use('/post', postRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,5 +67,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500)
   res.json(err)
 })
+// listen on port
+app.listen(port, function() {
+  console.log('Express app listening on port ' + port)
+})
+
+// app.listen(process.env.PORT || 5001, function() {
+//   console.log('Express app listening on port 5001')
+// })
 
 module.exports = app
