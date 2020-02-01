@@ -135,7 +135,15 @@ const PostLanding = props => {
                   escapeHtml={false}
                 ></ReactMarkdown>
               </h1>
-              <span className="meta">{` Posted By: ${author} on ${date.toDateString()}`}</span>
+              {author ? (
+                <span className="meta">{` Posted By: ${
+                  author.name
+                } on ${date.toDateString()}`}</span>
+              ) : (
+                <span className="meta">
+                  {` Posted By: [deleted author] on ${date.toDateString()}`}
+                </span>
+              )}
               <p>
                 <ReactMarkdown
                   source={overview}
@@ -187,15 +195,15 @@ class LongPost extends React.Component {
     }) // We just do this to toggle a re-render
 
     //INITIAL DATA LOAD
-    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
     const apiPath = `${baseURL}/post/${this.state.id}`
     Axios.get(apiPath, {})
-      .then(response =>
+      .then(response => {
         this.setState({
           data: response.data,
           loaded: true
         })
-      )
+      })
       .catch(err => {
         M.toast({
           html: 'Oops, Something Went Wrong',
@@ -208,7 +216,7 @@ class LongPost extends React.Component {
   // General Updater to Server
   sendUpdateToServer = payload => {
     let id = this.state.id
-    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
     const apiPath = `${baseURL}/post/${id}`
 
     //SEND THE NEW CHANGE TO BACKEND

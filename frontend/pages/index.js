@@ -23,7 +23,7 @@ class Index extends Component {
                   health in Australia.
                 </h5>
                 <div style={{ margin: '1rem 0 0' }}>
-                  <Link href="#">
+                  <Link href="/login">
                     <a
                       className="btn-flat waves-effect waves-light"
                       style={{ marginRight: '1rem' }}
@@ -31,7 +31,7 @@ class Index extends Component {
                       Log in
                     </a>
                   </Link>
-                  <Link href="#">
+                  <Link href="/register">
                     <a className="btn waves-effect waves-light">Sign up</a>
                   </Link>
                 </div>
