@@ -28,7 +28,10 @@ export default () => {
         in Perth. The collaborative includes 28 different organisations in Perth
         (with backbone support from
         <em>
-          <a href="https://www.ruah.org.au/"> Ruah Community Services</a>
+          <a href="https://www.ruah.org.au/" style={{ color: '#0f6489' }}>
+            {' '}
+            Ruah Community Services
+          </a>
         </em>
         ) , including homelessness services, housing agencies, health providers,
         and mental health and community services.
