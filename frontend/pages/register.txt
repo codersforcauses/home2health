@@ -66,11 +66,9 @@ export default class UserSignUp extends Component {
           }
           return (
             <Fragment>
-              <div className="container" style={{ width: '50rem' }}>
-                <div
-                  className="grid-33 centered signin"
-                  style={{ marginTop: '10rem' }}
-                >
+              <div className="bounds">
+                <div className="grid-33 centered signin">
+                  <h1>Sign Up</h1>
                   <Form
                     cancel={this.cancel}
                     errors={errors}
@@ -92,7 +90,7 @@ export default class UserSignUp extends Component {
                           type="text"
                           value={email}
                           onChange={this.change}
-                          placeholder="Email"
+                          placeholder="User Name"
                         />
                         <input
                           id="password"

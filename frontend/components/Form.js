@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default props => {
-  const { cancel, errors, submit, submitButtonText, elements } = props
+  const { errors, submit, submitButtonText, elements } = props
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -19,11 +19,11 @@ export default props => {
       <form onSubmit={handleSubmit}>
         {elements()}
         <div className="pad-bottom">
-          <button className="button" type="submit">
+          <button
+            className=" col s2 offset-m2 btn waves-effect waves-light"
+            type="submit"
+          >
             {submitButtonText}
-          </button>
-          <button className="button button-secondary" onClick={handleCancel}>
-            Cancel
           </button>
         </div>
       </form>
@@ -38,7 +38,7 @@ function ErrorsDisplay({ errors }) {
     errorsDisplay = (
       <div>
         <h2 className="validation--errors--label">Validation errors</h2>
-        <div className="validation-errors">
+        <div className="validation-errors ">
           <ul>
             {errors.map((error, i) => (
               <li key={i}>{error}</li>

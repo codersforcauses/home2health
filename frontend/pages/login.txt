@@ -44,13 +44,14 @@ export default class UserSignIn extends Component {
     }
 
     return (
-      <div className="container" style={{ width: '50rem' }}>
-        <div className="grid-33 centered signin" style={{ marginTop: '10rem' }}>
+      <div className="bounds">
+        <div className="grid-33 centered signin">
+          <h1>Sign In</h1>
           <Form
             cancel={cancel}
             errors={errors}
             submit={submit}
-            submitButtonText="Login"
+            submitButtonText="Sign In"
             elements={() => (
               <React.Fragment>
                 <input
@@ -59,7 +60,7 @@ export default class UserSignIn extends Component {
                   type="text"
                   value={email}
                   onChange={this.change}
-                  placeholder="Email"
+                  placeholder="User Name"
                 />
                 <input
                   id="password"
@@ -72,11 +73,11 @@ export default class UserSignIn extends Component {
               </React.Fragment>
             )}
           />
+          <p>
+            Don't have a user account? <Link href="/register">Click here</Link>{' '}
+            to sign up!
+          </p>
         </div>
-        <p>
-          Don't have a user account? <Link href="/register">Click here</Link> to
-          sign up!
-        </p>
       </div>
     )
   }
