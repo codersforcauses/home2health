@@ -8,7 +8,9 @@ const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-const port = process.env.PORT || 5000
+const port = process.env.PORT | 5000
+
+
 
 require('dotenv').config()
 require('./db')
@@ -36,7 +38,7 @@ app.use(
   session({
     secret: process.env.SECRET_KEY,
     resave: true,
-    saveUnitialized: false,
+    saveUninitialized: false,
     store: new MongoStore({
       mongooseConnection: mongoose.connection
     })

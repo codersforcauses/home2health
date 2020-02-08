@@ -140,7 +140,9 @@ class Header extends Component {
                         <a href=".">Housing first programs</a>
                       </li>
                       <li>
-                        <a href=".">Hospital programs</a>
+                        <Link href="/hospitalProgram">
+                          <a>Hospital Programs</a>
+                        </Link>
                       </li>
                       <li>
                         <a href=".">GP services</a>
