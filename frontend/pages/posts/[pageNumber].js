@@ -16,7 +16,11 @@ class Posts extends React.Component {
   }
 
   componentDidMount() {
-    this.updatePostsDisplay(this.props.router.query.pageNumber)
+    //Forcing Asynchronous Order To Be Executed Last So Router Parameter is not Undefined
+    setTimeout(
+      () => this.updatePostsDisplay(this.props.router.query.pageNumber),
+      0
+    )
   }
 
   // UPDATE THE POST LISTING DISPLAY
