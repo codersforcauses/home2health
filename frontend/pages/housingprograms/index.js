@@ -53,8 +53,9 @@ export default () => {
               <div className="card-image">
                 <img
                   alt="50 Lifes 50 Homes logo"
-                  src="/50Homes50Lifes/50HomesDoc.png"
+                  src="/50Homes50Lifes/logo2-50L.png"
                   width="200px"
+                  height="162px"
                 />
               </div>
               <div className="card-action">
@@ -69,8 +70,9 @@ export default () => {
               <div className="card-image">
                 <img
                   alt="50 Lifes 50 Homes logo"
-                  src="/50Homes50Lifes/50HomesDoc.png"
+                  src="/50Homes50Lifes/InfoGraphics50H.png"
                   width="200px"
+                  height="162px"
                 />
               </div>
               <div className="card-action">
@@ -88,6 +90,7 @@ export default () => {
                   alt="50 Lifes 50 Homes logo"
                   src="/50Homes50Lifes/50HomesDoc.png"
                   width="200px"
+                  height="162px"
                 />
               </div>
               <div className="card-action">
@@ -105,8 +108,9 @@ export default () => {
               <div className="card-image">
                 <img
                   alt="50 Lifes 50 Homes logo"
-                  src="/50Homes50Lifes/50HomesDoc.png"
+                  src="/50Homes50Lifes/logo2-50H.png"
                   width="200px"
+                  height="162px"
                 />
               </div>
               <div className="card-action">
@@ -121,8 +125,9 @@ export default () => {
               <div className="card-image">
                 <img
                   alt="50 Lifes 50 Homes logo"
-                  src="/50Homes50Lifes/50HomesDoc.png"
+                  src="/images/landing/9.jpg"
                   width="200px"
+                  height="162px"
                 />
               </div>
               <div className="card-action">
@@ -137,8 +142,9 @@ export default () => {
               <div className="card-image">
                 <img
                   alt="50 Lifes 50 Homes logo"
-                  src="/50Homes50Lifes/50HomesDoc.png"
+                  src="/50Homes50Lifes/fb_img.png"
                   width="200px"
+                  height="162px"
                 />
               </div>
               <div className="card-action">
