@@ -16,7 +16,6 @@ class PostForm extends React.Component {
     // SSR doesn't fire ComponentDidMount, so we import CKEditor inside of it and store it as a component prop
     //(From : https://github.com/ckeditor/ckeditor5-react/issues/36)
     this.CKEditor = require('@ckeditor/ckeditor5-react')
-
     this.CustomBuild = require('@frinzekt/ckeditor5-build-classicinlinebase64')
     this.ClassicEditor = this.CustomBuild.ClassicEditor
 

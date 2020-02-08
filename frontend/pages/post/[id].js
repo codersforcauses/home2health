@@ -194,19 +194,25 @@ class LongPost extends React.Component {
     this.InlineEditor = this.CustomBuild.InlineEditor
     this.ClassicEditor = this.CustomBuild.ClassicEditor
 
+    //Forcing Asynchronous Order To Be Executed Last So Router Parameter is not Undefined
+    setTimeout(() => this.initialLoad(), 0)
+  }
+  // componentDidUpdate() {
+  //   this.initialLoad()
+  // }
+
+  initialLoad = () => {
     const id = this.props.router.query.id
-    this.setState({
-      isEditorLoaded: true,
-      id
-    }) // We just do this to toggle a re-render
 
     //INITIAL DATA LOAD
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post/${id}`
+
     Axios.get(apiPath, {})
       .then(response =>
         this.setState({
           data: response.data,
+          id,
           loaded: true
         })
       )
@@ -222,6 +228,7 @@ class LongPost extends React.Component {
   // General Updater to Server
   sendUpdateToServer = payload => {
     let id = this.state.id
+
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post/${id}`
 
@@ -311,3 +318,7 @@ class LongPost extends React.Component {
 }
 
 export default withRouter(LongPost)
+
+// if (typeof window !== 'undefined') {
+//   import
+// }
