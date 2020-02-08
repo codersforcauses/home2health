@@ -1,10 +1,10 @@
 import React from 'react'
 import Router from 'next/router'
-import Axios from 'axios'
 import '../../components/post-form.css'
 import postCategoryConfig from '../../components/postCategoryConfig'
-
+import AppContext, { Consumer } from '../../Context'
 class PostForm extends React.Component {
+  static contextType = AppContext
   state = {
     form: {},
     isServer: true,
@@ -13,6 +13,11 @@ class PostForm extends React.Component {
   }
 
   componentDidMount() {
+    const context = this.context
+    const { pathname } = Router
+    if (!context.authenticatedUser) {
+      context.actions.redirectToSignIn(pathname)
+    }
     // SSR doesn't fire ComponentDidMount, so we import CKEditor inside of it and store it as a component prop
     //(From : https://github.com/ckeditor/ckeditor5-react/issues/36)
     this.CKEditor = require('@ckeditor/ckeditor5-react')
@@ -68,7 +73,7 @@ class PostForm extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
 
     const apiPath = `${baseURL}/post`
 
@@ -77,12 +82,8 @@ class PostForm extends React.Component {
     let instance = M.Chips.getInstance(categorySelector)
     let categories = instance.chipsData.map(chip => chip.tag)
 
-    console.log(categories)
-    Axios.post(
-      apiPath,
-      { ...this.state.form, categories, author: 'Author1' }, //REVIEW CHANGE THIS UPON CONNECTION WITH USER
-      { headers: { 'Content-Type': 'application/json' } }
-    )
+    this.context.actions
+      .createPost({ ...this.state.form, categories })
       .then(response => {
         M.toast({ html: 'Successfully Created Post', classes: 'rounded green' })
 
@@ -91,7 +92,7 @@ class PostForm extends React.Component {
       })
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
-        console.log(err)
+        //(err)
       })
   }
 

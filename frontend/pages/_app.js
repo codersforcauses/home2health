@@ -1,6 +1,7 @@
 import App from 'next/app'
 import React from 'react'
 import Layout from '../components/Layout'
+import { Provider } from '../Context'
 
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -38,9 +39,11 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Provider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     )
   }
 }
