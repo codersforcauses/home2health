@@ -146,7 +146,9 @@ class Header extends Component {
                         <a href=".">GP services</a>
                       </li>
                       <li>
-                        <a href=".">Dual diagnosis services</a>
+                        <Link href="/Dual-Diagnosis-Services">
+                          <a>Dual diagnosis services</a>
+                        </Link>
                       </li>
                       <li>
                         <a href=".">Peer worker programs</a>
