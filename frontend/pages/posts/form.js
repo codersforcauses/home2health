@@ -15,8 +15,7 @@ class PostForm extends React.Component {
   componentDidMount() {
     const context = this.context
     const { pathname } = Router
-
-    if (!context.authenticatedUser && typeof window !== 'undefined') {
+    if (!context.authenticatedUser) {
       context.actions.redirectToSignIn(pathname)
     }
     // SSR doesn't fire ComponentDidMount, so we import CKEditor inside of it and store it as a component prop
