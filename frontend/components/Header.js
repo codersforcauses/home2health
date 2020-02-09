@@ -31,7 +31,9 @@ class Header extends Component {
                       </li>
                       <li className="divider" />
                       <li>
-                        <a href=".">Hospital programs</a>
+                        <Link href="/HospitalPrograms">
+                          <a>Hospital Programs</a>
+                        </Link>
                       </li>
                       <li className="divider" />
                       <li>
@@ -140,7 +142,7 @@ class Header extends Component {
                         <a href=".">Housing first programs</a>
                       </li>
                       <li>
-                        <Link href="/hospitalProgram">
+                        <Link href="/hospitalPrograms">
                           <a>Hospital Programs</a>
                         </Link>
                       </li>
