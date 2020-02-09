@@ -25,7 +25,11 @@ class MyDocument extends Document {
           <script
             src="https://kit.fontawesome.com/4cbc89a501.js"
             crossorigin="anonymous"
-          ></script>
+          />
+          <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />
