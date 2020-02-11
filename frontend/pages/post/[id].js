@@ -13,6 +13,10 @@ const config = {
   toolbar: ['undo', 'redo'],
   autoParagraph: false
 }
+
+//REGEX HTML STRIPPER FOR TITLE AND OVERVIEW EDIT
+const stripHTML = string => string.replace(/<[^>]*>?/gm, '')
+
 //EDITTABLE VERSION OF POST LANDING COMPONENT
 const PostLandingEdittable = props => {
   const {
@@ -62,7 +66,10 @@ const PostLandingEdittable = props => {
                   data={title}
                   config={config}
                   onBlur={(event, editor) => {
-                    props.directHandleChange('title', editor.getData())
+                    props.directHandleChange(
+                      'title',
+                      stripHTML(editor.getData())
+                    )
                   }}
                 />
               </h1>
@@ -75,7 +82,10 @@ const PostLandingEdittable = props => {
                   data={overview}
                   config={config}
                   onBlur={(event, editor) => {
-                    props.directHandleChange('overview', editor.getData())
+                    props.directHandleChange(
+                      'overview',
+                      stripHTML(editor.getData())
+                    )
                   }}
                 />
               </p>
@@ -88,7 +98,7 @@ const PostLandingEdittable = props => {
 }
 //EDITTABLE VERSION OF POST ARTICLE COMPONENT
 const PostArticleEdittable = props => {
-  const { content, CKEditor, InlineEditor } = props
+  const { content, CKEditor, InlineEditor, ClassicEditor } = props
   return (
     <article>
       <div className="container">
@@ -96,7 +106,7 @@ const PostArticleEdittable = props => {
           <div className="col-md-10 col-lg-8 mx-auto">
             <CKEditor
               name="content"
-              editor={InlineEditor}
+              editor={ClassicEditor}
               placeholder="a"
               data={content}
               onBlur={(event, editor) => {
@@ -181,26 +191,36 @@ class LongPost extends React.Component {
     loaded: false,
     isEditorLoaded: false,
     user: 'Author1',
-    id: this.props.router.query.id
+    id: 1
   }
 
   componentDidMount() {
     // SSR doesn't fire ComponentDidMount, so we import CKEditor inside of it and store it as a component prop
     //(From : https://github.com/ckeditor/ckeditor5-react/issues/36)
     this.CKEditor = require('@ckeditor/ckeditor5-react')
-    this.InlineEditor = require('@ckeditor/ckeditor5-build-inline')
+    this.CustomBuild = require('@frinzekt/ckeditor5-build-classicinlinebase64')
+    this.InlineEditor = this.CustomBuild.InlineEditor
+    this.ClassicEditor = this.CustomBuild.ClassicEditor
 
-    this.setState({
-      isEditorLoaded: true
-    }) // We just do this to toggle a re-render
+    //Forcing Asynchronous Order To Be Executed Last So Router Parameter is not Undefined
+    setTimeout(() => this.initialLoad(), 0)
+  }
+  // componentDidUpdate() {
+  //   this.initialLoad()
+  // }
+
+  initialLoad = () => {
+    const id = this.props.router.query.id
 
     //INITIAL DATA LOAD
-    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
-    const apiPath = `${baseURL}/post/${this.state.id}`
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
+    const apiPath = `${baseURL}/post/${id}`
+
     Axios.get(apiPath, {})
       .then(response => {
         this.setState({
           data: response.data,
+          id,
           loaded: true
         })
       })
@@ -216,7 +236,8 @@ class LongPost extends React.Component {
   // General Updater to Server
   sendUpdateToServer = payload => {
     let id = this.state.id
-    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
+
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post/${id}`
 
     //SEND THE NEW CHANGE TO BACKEND
@@ -253,6 +274,8 @@ class LongPost extends React.Component {
     this.sendUpdateToServer(payload)
   }
   directHandleChange = (name, value) => {
+    let strippedValue = value
+    strippedValue.replace(/<[^>]*>?/gm, '')
     if (this.state.data[name] !== value) {
       //SEND API ONLY IF THE CHANGE IS DIFFERENT
       // UPDATE STATE AND DATABASE
@@ -280,6 +303,7 @@ class LongPost extends React.Component {
               CKEditor={this.CKEditor}
               InlineEditor={this.InlineEditor}
               directHandleChange={this.directHandleChange}
+              ClassicEditor={this.ClassicEditor}
             ></PostArticleEdittable>
           </React.Fragment>
         ) : (
@@ -302,3 +326,7 @@ class LongPost extends React.Component {
 }
 
 export default withRouter(LongPost)
+
+// if (typeof window !== 'undefined') {
+//   import
+// }

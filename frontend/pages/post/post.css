@@ -4,7 +4,8 @@ header.masthead {
     background-color: #6c757d;
     background-attachment: scroll;
     position: relative;
-    background-size: cover
+    background-size: cover;
+    height: 40vh
 }
 
 header.masthead .overlay {
@@ -20,7 +21,7 @@ header.masthead .overlay {
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
-    padding: 200px 0 150px;
+    padding: 50px 0 50px;
     color: #fff
 }
 
@@ -29,7 +30,7 @@ header.masthead .site-heading {
     header.masthead .page-heading,
     header.masthead .post-heading,
     header.masthead .site-heading {
-        padding: 200px 0
+        padding: 10px 0
     }
 }
 

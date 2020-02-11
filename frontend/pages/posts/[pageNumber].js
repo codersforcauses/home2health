@@ -1,10 +1,9 @@
-import React from 'react'
 import Axios from 'axios'
-import { Post, PostPreview } from '../../components/postPreview'
+import Router, { withRouter } from 'next/router'
+import React from 'react'
 import Loader from '../../components/Loader'
-
-import Link from 'next/link'
-import { useRouter, withRouter } from 'next/router'
+import { PostPreview } from '../../components/postPreview'
+import { SearchBar } from '../../components/SearchBar'
 
 class Posts extends React.Component {
   //INITIAL VALUE OF STATE BEFORE API CALL
@@ -13,21 +12,26 @@ class Posts extends React.Component {
     pages: 10,
     maxPage: 100,
     loaded: false,
-    currentCollection: this.props.router.query.pageNumber
+    searchFilter: ''
   }
 
   componentDidMount() {
-    this.updatePostsDisplay()
+    //Forcing Asynchronous Order To Be Executed Last So Router Parameter is not Undefined
+    setTimeout(
+      () => this.updatePostsDisplay(this.props.router.query.pageNumber),
+      0
+    )
   }
 
   // UPDATE THE POST LISTING DISPLAY
-  updatePostsDisplay() {
+  updatePostsDisplay(pageNumber) {
     this.setState({ loaded: false })
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
-    const apiPath = `${baseURL}/post?page=${this.state.currentCollection}`
+    const apiPath = `${baseURL}/post?page=${pageNumber}&searchFilter=${this.state.searchFilter}`
     Axios.get(apiPath, {})
       .then(response =>
         this.setState({
+          currentCollection: pageNumber,
           posts: response.data.data,
           maxPage: response.data.maxPage,
           pages: response.data.numberOfPosts,
@@ -39,16 +43,15 @@ class Posts extends React.Component {
 
   // HANDLES THE CHANING OF PAGES
   changePageCollection = element => {
-    this.setState({ currentCollection: element.target.id }, () => {
-      this.updatePostsDisplay()
-    })
+    Router.push(`/posts/[pageNumber]`, `/posts/${element.target.id}`)
+    this.updatePostsDisplay(element.target.id)
   }
 
   //Creation of Pagination Display With maximum of 10 Page Display
-  createPagination = () => {
+  createPagination = currentCollection => {
     let list = []
     const paginationDisplayNo = this.state.pages
-    let startPagination = this.state.currentCollection - paginationDisplayNo / 2
+    let startPagination = currentCollection - paginationDisplayNo / 2
     startPagination = startPagination > 0 ? startPagination : 1 //Changes Pagination for when in middle
 
     let endPagination = startPagination + paginationDisplayNo - 1
@@ -59,19 +62,23 @@ class Posts extends React.Component {
       list.push(
         <li
           key={i}
-          className={
-            this.state.currentCollection == i ? 'active' : 'waves-effect'
-          }
+          className={currentCollection == i ? 'active' : 'waves-effect'}
         >
           <a id={i} onClick={element => this.changePageCollection(element)}>
             {i}
           </a>
         </li>
       )
-      // console.log(this.state.currentCollection + " " + i + " "+ this.state.pages);
     }
 
     return list
+  }
+
+  handleChangeSearch = value => {
+    this.setState({ searchFilter: value })
+  }
+  handleSubmitSearch = () => {
+    this.updatePostsDisplay(this.state.currentCollection)
   }
 
   render() {
@@ -80,43 +87,50 @@ class Posts extends React.Component {
         {/* POST PREVIEW LIST*/}
         <div>
           {this.state.loaded ? (
-            this.state.posts.map(post => {
-              return (
-                <React.Fragment>
-                  <PostPreview _id={post._id} key={post._id} {...post} />
-                </React.Fragment>
-              )
-            })
+            <React.Fragment>
+              <SearchBar
+                handleChange={this.handleChangeSearch}
+                handleSubmit={this.handleSubmitSearch}
+                initialValue={this.state.searchFilter}
+              ></SearchBar>
+              {this.state.posts.map(post => (
+                <PostPreview _id={post._id} key={post._id} {...post} />
+              ))}
+              {/* EVALUATION OF DISPLAY IF LISTING IS EMPTY */}
+              {Object.keys(this.state.posts).length ? (
+                <ul className="pagination center-align">
+                  <li
+                    className={
+                      this.state.currentCollection == 1
+                        ? 'disabled'
+                        : 'waves-effect'
+                    }
+                  >
+                    <a href="#!">
+                      <i className="material-icons">chevron_left</i>
+                    </a>
+                  </li>
+                  {this.createPagination(this.state.currentCollection)}
+                  <li
+                    className={
+                      this.state.currentCollection === this.state.pages
+                        ? 'disabled'
+                        : 'waves-effect'
+                    }
+                  >
+                    <a href="#!">
+                      <i className="material-icons">chevron_right</i>
+                    </a>
+                  </li>
+                </ul>
+              ) : (
+                <div>Your Search Results Did Not Match Any Documents</div>
+              )}
+            </React.Fragment>
           ) : (
             <Loader></Loader>
           )}
         </div>
-
-        {/* PAGINATION */}
-
-        <ul className="pagination center-align">
-          <li
-            className={
-              this.state.CurrentCollection == 1 ? 'disabled' : 'waves-effect'
-            }
-          >
-            <a href="#!">
-              <i className="material-icons">chevron_left</i>
-            </a>
-          </li>
-          {this.createPagination()}
-          <li
-            className={
-              this.state.CurrentCollection === this.state.pages
-                ? 'disabled'
-                : 'waves-effect'
-            }
-          >
-            <a href="#!">
-              <i className="material-icons">chevron_right</i>
-            </a>
-          </li>
-        </ul>
       </div>
     )
   }
