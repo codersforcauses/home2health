@@ -39,7 +39,38 @@ class Header extends Component {
                       </li>
                       <li className="divider" />
                       <li>
-                        <a href=".">Dual diagnosis services</a>
+                        <a
+                          class="dropdown-button"
+                          data-activates="dropdown2"
+                          data-hover="hover"
+                          data-alignment="left"
+                        >
+                          Dual Diagnosis Services
+                          <span class="right-triangle">&#9656;</span>
+                        </a>
+
+                        <ul
+                          id="dropdown2"
+                          class="dropdown-content dropdown-nested"
+                        >
+                          <li>
+                            <a href="#!">one</a>
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-button"
+                              href="#"
+                              data-activates="dropdown3"
+                              data-hover="hover"
+                              data-alignment="left"
+                            >
+                              two<span class="right-triangle">&#9656;</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#!">three</a>
+                          </li>
+                        </ul>
                       </li>
                       <li className="divider" />
                       <li>
@@ -194,10 +225,14 @@ class Header extends Component {
                     </a>
                     <ul id="blogDropdownMobile" className="dropdown-content">
                       <li>
-                        <a href="/posts">Posts</a>
+                        <Link href="/posts/1">
+                          <a>Posts</a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/posts/form">Create Form</a>
+                        <Link href="/posts/form">
+                          <a>Create Post</a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
