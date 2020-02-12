@@ -42,28 +42,38 @@ const getPost = payload => {
 }
 
 //GET A GROUP OF POSTS IN A SPECIFIC PAGE IN THE PAGINATION
-const getPagePost = (page, numberOfPost) => {
+const getPagePost = (page, numberOfPost, searchFilter) => {
+  console.log(searchFilter)
   return new Promise((resolve, reject) => {
-    Post.count({}, (err, count) => {
-      Post.find({})
-        .sort({
-          datetime: -1,
-          title: 1
-        }) // SORT BY DATE (most recent), title (ascending)
-        .skip((page - 1) * numberOfPost) // skips the first few pages (starting page = 1)
-        .limit(numberOfPost)
-        .exec((err, data) => {
-          if (err) {
-            reject(err)
-          }
+    let searchQuery = searchFilter ? { $text: { $search: searchFilter } } : {}
+    let searchCount
+
+    //IF THERE IS A SEARCH FILTER, SEARCH DEPENDING ON TEST SCORE, OTHERWISE LIST EVERYTHING
+    // REQUIRES INDEX CREATION: db.post.createIndex({title:"text",overview:"text",content:"text",categories:"text"})
+    Post.find(searchQuery, {
+      content: 0,
+      score: { $meta: 'textScore' }
+    })
+      .sort({
+        datetime: -1,
+        title: 1
+      }) // SORT BY DATE (most recent), title (ascending)
+      .skip((page - 1) * numberOfPost) // skips the first few pages (starting page = 1)
+      .limit(numberOfPost)
+      .exec((err, data) => {
+        if (err) {
+          reject(err)
+        }
+        Post.count(searchQuery, (err, count) => {
           let api = {
             data,
             maxPage: Math.ceil(count / numberOfPost),
             numberOfPost
           }
+
           resolve(api)
         })
-    })
+      })
   })
 }
 
@@ -71,7 +81,6 @@ const getPagePost = (page, numberOfPost) => {
 const addPost = payload => {
   // PAYLOAD VALIDATION
   return new Promise((resolve, reject) => {
-    // STUB
     let post
     try {
       post = new Post(payload)
@@ -116,18 +125,26 @@ const updatePost = (_id, payload) => {
 // ADD COMMENT
 const addComment = (_id, payload) => {
   return new Promise((resolve, reject) => {
-    getSpecificPost(_id)
-    .then(post => {
-      post.comments.push(payload);
+    getSpecificPost(_id).then(post => {
+      post.comments.push(payload)
       post.save(function(err, question) {
-        if (err) reject(err);
+        if (err) reject(err)
         else resolve(post)
-    });
-    }
-    
-    )
-  });
+      })
+    })
+  })
 }
+
+//GET ALL POSSIBLE VALUES OF CATEGORIES
+const getAllCategories = () => {
+  return new Promise((resolve, reject) => {
+    Post.distinct('categories', (err, result) => {
+      if (err) reject(err)
+      else resolve(result)
+    })
+  })
+}
+
 module.exports = {
   getPost,
   getPagePost,
@@ -136,5 +153,6 @@ module.exports = {
   addPost,
   deletePost,
   updatePost,
-  addComment
+  addComment,
+  getAllCategories
 }
