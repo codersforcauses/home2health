@@ -2,6 +2,20 @@ import React, { Component } from 'react'
 import Link from 'next/link'
 import { Consumer } from '../Context'
 class Header extends Component {
+  state = {
+    hover: false
+  }
+  handleEnterHover = () => {
+    this.setState({
+      hover: true
+    })
+  }
+  handleLeaveHover = () => {
+    this.setState({
+      hover: false
+    })
+  }
+
   render() {
     return (
       <Consumer>
@@ -30,11 +44,64 @@ class Header extends Component {
                         <a href=".">Housing first programs</a>
                       </li>
                       <li className="divider" />
-                      <li>
-                        <Link href="/HospitalPrograms">
-                          <a>Hospital Programs</a>
-                        </Link>
-                      </li>
+                      <ul className="collapsible">
+                        <li
+                          onMouseEnter={this.handleEnterHover}
+                          onMouseLeave={this.handleLeaveHover}
+                        >
+                          <div
+                            className="collapsible-header"
+                            id="hospitalPrograms"
+                            // color="#26a69a"
+                          >
+                            Hospital Programs
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <Link href="/RoyalPerthHospital">
+                              <a>Royal Perth Hospital</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>St Vincent's Hospital Melbourne</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>St Vincent's Hospital Sydney</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>Katherine Hospital</a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
                       <li className="divider" />
                       <li>
                         <a href=".">GP services</a>
@@ -134,6 +201,7 @@ class Header extends Component {
                     >
                       What's happening in Australia?
                     </a>
+
                     <ul
                       id="happeningDropdownMobile"
                       className="dropdown-content"
@@ -141,11 +209,64 @@ class Header extends Component {
                       <li>
                         <a href=".">Housing first programs</a>
                       </li>
-                      <li>
-                        <Link href="/hospitalPrograms">
-                          <a>Hospital Programs</a>
-                        </Link>
-                      </li>
+                      <ul className="collapsible">
+                        <li
+                          onMouseEnter={this.handleEnterHover}
+                          onMouseLeave={this.handleLeaveHover}
+                        >
+                          <div
+                            className="collapsible-header"
+                            id="hospitalPrograms"
+                            color=""
+                          >
+                            Hospital Programs
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <Link href="/RoyalPerthHospital">
+                              <a>Royal Perth Hospital</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>St Vincent's Hospital Melbourne</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>St Vincent's Hospital Sydney</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>Katherine Hospital</a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
                       <li>
                         <a href=".">GP services</a>
                       </li>
