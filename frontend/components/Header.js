@@ -2,6 +2,19 @@ import React, { Component } from 'react'
 import Link from 'next/link'
 import { Consumer } from '../Context'
 class Header extends Component {
+  state = {
+    hover: false
+  }
+  handleEnterHover = () => {
+    this.setState({
+      hover: true
+    })
+  }
+  handleLeaveHover = () => {
+    this.setState({
+      hover: false
+    })
+  }
   render() {
     return (
       <Consumer>
@@ -40,8 +53,30 @@ class Header extends Component {
                         <a href=".">GP services</a>
                       </li>
                       <li className="divider" />
-                      <li>
-                        <a
+
+                      <ul class="collapsible">
+                        <li
+                          onMouseEnter={this.handleEnterHover}
+                          onMouseLeave={this.handleLeaveHover}
+                        >
+                          <div
+                            className="collapsible-header"
+                            id="dual-diagnosis-services"
+                          >
+                            Dual Diagnosis Services
+                          </div>
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${this.state.hover ? 'block' : 'none'}`
+                            }}
+                          >
+                            <a href="">HODDS</a>
+                            <a href="">CHOPS</a>
+                          </div>
+                        </li>
+                      </ul>
+                      {/* <a
                           class="dropdown-button"
                           data-activates="dropdown2"
                           data-hover="hover"
@@ -49,31 +84,8 @@ class Header extends Component {
                         >
                           Dual Diagnosis Services
                           <span class="right-triangle">&#9656;</span>
-                        </a>
+                        </a> */}
 
-                        <ul
-                          id="dropdown2"
-                          class="dropdown-content dropdown-nested"
-                        >
-                          <li>
-                            <a href="#!">one</a>
-                          </li>
-                          <li>
-                            <a
-                              class="dropdown-button"
-                              href="#"
-                              data-activates="dropdown3"
-                              data-hover="hover"
-                              data-alignment="left"
-                            >
-                              two<span class="right-triangle">&#9656;</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#!">three</a>
-                          </li>
-                        </ul>
-                      </li>
                       <li className="divider" />
                       <li>
                         <a href=".">Peer worker programs</a>
