@@ -891,6 +891,34 @@
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-inline/-/ckeditor5-build-inline-16.0.0.tgz#58d165795fc0068a3289f7597f542f4a3aafd2e6"
   integrity sha512-qfrMSPtx+gZT3RXHUuLIQmtVY9u0Zmsfygo8X6v69De/4TU/C6jNCeS9Rk2b/C6SVT3S1hzEEsMqHxdajcqVgg==
 
+"@ckeditor/ckeditor5-core@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-core/-/ckeditor5-core-16.0.0.tgz#c9ff37b883ca293ac5998e04a89e2ac613042e09"
+  integrity sha512-JKYnoXgfULjfAGRgVmf9/at3gGikfzKwGp4O8RpE3NYGeb/xH6hSgj2mUE9QwqyAY5at1QLnio5ZvU2HiWL4pA==
+  dependencies:
+    "@ckeditor/ckeditor5-engine" "^16.0.0"
+    "@ckeditor/ckeditor5-utils" "^16.0.0"
+    lodash-es "^4.17.10"
+
+"@ckeditor/ckeditor5-editor-inline@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-editor-inline/-/ckeditor5-editor-inline-16.0.0.tgz#cf0a43fb4023292e859b3d4f3084ee10641e1a18"
+  integrity sha512-PYbRsDdC2QQ+KzZH8W1MLRl2rQJo88ke8Qyy4zoe2u0pvRMj5w5aW7FzaRDxydVm93khRe8rRkFFnUmjUXUzHA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^16.0.0"
+    "@ckeditor/ckeditor5-engine" "^16.0.0"
+    "@ckeditor/ckeditor5-ui" "^16.0.0"
+    "@ckeditor/ckeditor5-utils" "^16.0.0"
+    lodash-es "^4.17.10"
+
+"@ckeditor/ckeditor5-engine@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-engine/-/ckeditor5-engine-16.0.0.tgz#68d8fabb4fa31541c9870cc94b021c5cb0f72d4f"
+  integrity sha512-2p0DT/1B+UyVAwNkkaNaG4wGkrR0TNQuPJ1c5TEMWb9NVk3mhIOJ+6lPVl0ApP3tmMALol+pLmXLX5aht6Ewnw==
+  dependencies:
+    "@ckeditor/ckeditor5-utils" "^16.0.0"
+    lodash-es "^4.17.10"
+
 "@ckeditor/ckeditor5-react@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-react/-/ckeditor5-react-2.0.0.tgz#05c00d17840b54e1126aee97ffe25a1dd2713d4b"
@@ -898,36 +926,61 @@
   dependencies:
     prop-types "^15.6.1"
 
+"@ckeditor/ckeditor5-ui@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-ui/-/ckeditor5-ui-16.0.0.tgz#b656202e407ec1d6aebbdb96568e73dacc771cef"
+  integrity sha512-7mwIRajaN9Mf6S5ZkqWAOt/Rqy6GNS3WxhwaayMym7b1XI4oVIrxEKoun3DoKnKp3bTBMcWdQFJfsRvja2X2hA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^16.0.0"
+    "@ckeditor/ckeditor5-utils" "^16.0.0"
+    lodash-es "^4.17.10"
+
+"@ckeditor/ckeditor5-upload@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-upload/-/ckeditor5-upload-16.0.0.tgz#361b3cc3a9f3e463f7504ff6f7b355ae175785b4"
+  integrity sha512-GjOENKi53TLeV0+zRIuPabMchDTeOMcgTwV4I0VKHrEbPY4YmVbdoz3BO8KpGhA9/KK7se/JR59yHTviPgbFNA==
+  dependencies:
+    "@ckeditor/ckeditor5-core" "^16.0.0"
+    "@ckeditor/ckeditor5-ui" "^16.0.0"
+    "@ckeditor/ckeditor5-utils" "^16.0.0"
+
+"@ckeditor/ckeditor5-utils@^16.0.0":
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-utils/-/ckeditor5-utils-16.0.0.tgz#9f7851d0271deebe3db3a5f8f1ca1c1ad6cfdcbc"
+  integrity sha512-EMrKmVmxfyuttGlbZI0eK7stYigbo2kFCasN0m2apg/Pn4Dwil0pennWuJ964zvZ8te1Pyt33cweQZlYzSqvYQ==
+  dependencies:
+    lodash-es "^4.17.10"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@fortawesome/fontawesome-common-types@^0.2.26":
-  version "0.2.26"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.26.tgz#6e0b13a752676036f8196f8a1500d53a27b4adc1"
-  integrity sha512-CcM/fIFwZlRdiWG/25xE/wHbtyUuCtqoCTrr6BsWw7hH072fR++n4L56KPydAr3ANgMJMjT8v83ZFIsDc7kE+A==
+"@fortawesome/fontawesome-common-types@^0.2.27":
+  version "0.2.27"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.27.tgz#19706345859fc46adf3684ed01d11b40903b87e9"
+  integrity sha512-97GaByGaXDGMkzcJX7VmR/jRJd8h1mfhtA7RsxDBN61GnWE/PPCZhOdwG/8OZYktiRUF0CvFOr+VgRkJrt6TWg==
 
 "@fortawesome/fontawesome-svg-core@^1.2.26":
-  version "1.2.26"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.26.tgz#671569271d6b532cdea5e3deb8ff16f8b7ac251d"
-  integrity sha512-3Dfd/v2IztP1TxKOxZiB5+4kaOZK9mNy0KU1vVK7nFlPWz3gzxrCWB+AloQhQUoJ8HhGqbzjliK89Vl7PExGbw==
+  version "1.2.27"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.27.tgz#e4db8e3be81a40988213507c3e3d0c158a6641a3"
+  integrity sha512-sOD3DKynocnHYpuw2sLPnTunDj7rLk91LYhi2axUYwuGe9cPCw7Bsu9EWtVdNJP+IYgTCZIbyARKXuy5K/nv+Q==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.26"
+    "@fortawesome/fontawesome-common-types" "^0.2.27"
 
 "@fortawesome/free-brands-svg-icons@^5.12.0":
-  version "5.12.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.12.0.tgz#b0c78627f811ac030ee0ac88df376567cf74119d"
-  integrity sha512-50uCFzVUki3wfmFmrMNLFhOt8dP6YZ53zwR4dK9FR7Lwq1IVHXnSBb8MtGLe3urLJ2sA+CSu7Pc7s3i6/zLxmA==
+  version "5.12.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.12.1.tgz#67977addd15e21e57aa1ed71cd2ddecdfaa88647"
+  integrity sha512-IYUYcgGsQuwiIHjRGfeSTCIQKUSZMb6FsV6mDj78K0D+YzGJkM4cvEBBUMHtnla5D2HCxncMI/9JX5YIk2GHeQ==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.26"
+    "@fortawesome/fontawesome-common-types" "^0.2.27"
 
 "@fortawesome/free-solid-svg-icons@^5.12.0":
-  version "5.12.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.12.0.tgz#8decac5844e60453cc0c7c51437d1461df053a35"
-  integrity sha512-CnpsWs6GhTs9ekNB3d8rcO5HYqRkXbYKf2YNiAlTWbj5eVlPqsd/XH1F9If8jkcR1aegryAbln/qYeKVZzpM0g==
+  version "5.12.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.12.1.tgz#76b6f958a3471821ff146f8f955e6d7cfe87147c"
+  integrity sha512-k3MwRFFUhyL4cuCJSaHDA0YNYMELDXX0h8JKtWYxO5XD3Dn+maXOMrVAAiNGooUyM2v/wz/TOaM0jxYVKeXX7g==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.26"
+    "@fortawesome/fontawesome-common-types" "^0.2.27"
 
 "@fortawesome/react-fontawesome@^0.1.8":
   version "0.1.8"
@@ -3417,6 +3470,11 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash-es@^4.17.10:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
