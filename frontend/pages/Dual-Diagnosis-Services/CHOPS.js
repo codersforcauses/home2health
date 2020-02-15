@@ -21,6 +21,10 @@ export default () => {
           intensive wrap around support to individuals facing complex barriers
           to exiting homelessness. This project is due to commence in 2019.
         </p>
+        <p>
+          More details{' '}
+          <a href="/research_papers/SVHM_-_CHOPS_Infographic.pdf">here</a>
+        </p>
       </div>
       <div className="row">
         <div className="col m5 s12">
