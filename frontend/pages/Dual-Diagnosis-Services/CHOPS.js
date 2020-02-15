@@ -1,12 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
+import LinksCard from '../../components/LinkCards'
+import { LinkCards } from './../../components/LinkCards'
 
 export default () => {
-  const m0 = {
-    marginLeft: 0,
-    marginRight: 0,
-    marginTop: 50
-  }
   return (
     <div className="container">
       <div className="row">
@@ -21,11 +18,18 @@ export default () => {
           intensive wrap around support to individuals facing complex barriers
           to exiting homelessness. This project is due to commence in 2019.
         </p>
-        <p>
-          More details{' '}
-          <a href="/research_papers/SVHM_-_CHOPS_Infographic.pdf">here</a>
-        </p>
+        <p>More details below:</p>
       </div>
+      <LinkCards
+        cardDetails={[
+          {
+            alt: '50 Lifes 50 Homes logo',
+            src: '/images/Dual-Diagnosis-Services/CHOPS_Infographic_1.png',
+            link: '/research_papers/SVHM_-_CHOPS_Infographic.pdf',
+            reportTitle: 'CHOPS Infographic'
+          }
+        ]}
+      ></LinkCards>
       <div className="row">
         <div className="col m5 s12">
           <img
