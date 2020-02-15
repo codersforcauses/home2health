@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { LinkCards } from '../../components/LinkCards'
 
 export default () => {
   const m0 = {
@@ -8,71 +9,46 @@ export default () => {
     marginTop: 50
   }
 
-  const Card = ({ alt, src, link, reportTitle, date }) => (
-    <div className="col m4 s6">
-      <div className="card">
-        <div className="card-image">
-          <img alt={alt} src={src} width="200px" height="162px" />
-        </div>
-        <div className="card-action">
-          <a href={link}>
-            {reportTitle}
-            <br />
-            {date ? `(${date})` : ''}
-          </a>
-        </div>
-      </div>
-    </div>
-  )
-  const Cards = () => {
-    const cardDetails = [
-      {
-        alt: '50 Lifes 50 Homes logo',
-        src: '/50Homes50Lifes/logo2-50L.png',
-        link: '/50Homes50Lifes/50_Lives_First_Report_June_2017.pdf',
-        reportTitle: '50 Lives 50 Homes Report 1 (June 2017)'
-      },
-      {
-        alt: '50 Lifes 50 Homes logo',
-        src: '/50Homes50Lifes/InfoGraphics50H.png',
-        link: '/50Homes50Lifes/50_Lives_Infographic_June_2017.pdf',
-        reportTitle: '50 Lives 50 Homes Infographic (June 2017)'
-      },
-      {
-        alt: '50 Lifes 50 Homes logo',
-        src: '/50Homes50Lifes/50HomesDoc.png',
-        link: '/50Homes50Lifes/50_Lives_Snapshot_April_2018.pdf',
-        reportTitle: '50 Lives 50 Homes Snapshot Report ',
-        date: 'Apr 2018'
-      },
-      {
-        alt: '50 Lifes 50 Homes logo',
-        src: '/50Homes50Lifes/logo2-50L.png',
-        link: '/50Homes50Lifes/50_Lives_Second_Report_Sept_2018.pdf',
-        reportTitle: '50 Lives 50 Homes Report 2 (Sept 2018)'
-      },
-      {
-        alt: '50 Lifes 50 Homes logo',
-        src: '/images/landing/9.jpg',
-        link: 'Hospital Collaboration Paper (Wood et al 2018)',
-        reportTitle: 'Hospital Collaboration Paper (Wood et al 2018)'
-      },
-      {
-        alt: '50 Lifes 50 Homes logo',
-        src: '/50Homes50Lifes/fb_img.png',
-        link: 'https://www.facebook.com/50Lives50HomesPerth/',
-        reportTitle: 'Our Facebook Page'
-      }
-    ]
+  const cardDetails = [
+    {
+      alt: '50 Lifes 50 Homes logo',
+      src: '/50Homes50Lifes/logo2-50L.png',
+      link: '/50Homes50Lifes/50_Lives_First_Report_June_2017.pdf',
+      reportTitle: '50 Lives 50 Homes Report 1 (June 2017)'
+    },
+    {
+      alt: '50 Lifes 50 Homes logo',
+      src: '/50Homes50Lifes/InfoGraphics50H.png',
+      link: '/50Homes50Lifes/50_Lives_Infographic_June_2017.pdf',
+      reportTitle: '50 Lives 50 Homes Infographic (June 2017)'
+    },
+    {
+      alt: '50 Lifes 50 Homes logo',
+      src: '/50Homes50Lifes/50HomesDoc.png',
+      link: '/50Homes50Lifes/50_Lives_Snapshot_April_2018.pdf',
+      reportTitle: '50 Lives 50 Homes Snapshot Report ',
+      date: 'Apr 2018'
+    },
+    {
+      alt: '50 Lifes 50 Homes logo',
+      src: '/50Homes50Lifes/logo2-50L.png',
+      link: '/50Homes50Lifes/50_Lives_Second_Report_Sept_2018.pdf',
+      reportTitle: '50 Lives 50 Homes Report 2 (Sept 2018)'
+    },
+    {
+      alt: '50 Lifes 50 Homes logo',
+      src: '/images/landing/9.jpg',
+      link: 'Hospital Collaboration Paper (Wood et al 2018)',
+      reportTitle: 'Hospital Collaboration Paper (Wood et al 2018)'
+    },
+    {
+      alt: '50 Lifes 50 Homes logo',
+      src: '/50Homes50Lifes/fb_img.png',
+      link: 'https://www.facebook.com/50Lives50HomesPerth/',
+      reportTitle: 'Our Facebook Page'
+    }
+  ]
 
-    return (
-      <div class="row">
-        {cardDetails.map((card, i) => (
-          <Card {...card} key={i}></Card>
-        ))}
-      </div>
-    )
-  }
   return (
     <div className="container">
       <img
@@ -113,7 +89,7 @@ export default () => {
         See below for more information:
       </p>
       <div style={{ textAlign: 'center' }}>
-        <Cards></Cards>
+        <LinkCards cardDetails={cardDetails}></LinkCards>
       </div>
       <h4 style={{ marginBottom: 0 }}>Early Initiative: 20 Lifes 20 Homes</h4>
       <p style={{ margin: '1rem 0 0' }}>
