@@ -53,6 +53,10 @@ router.get('/', (request, response, next) => {
 router.get('/:_pid', async (request, response, next) => {
   let body = request.post.toObject()
   const user = await User.getUser(request, response, next, request.post.author)
+  for (let i = 0; i < body.comments.length; i++) {
+    console.log("om");
+    body.comments[i] = await Comment.getComment(request, response, next, body.comments[i])
+  }
   body.author = user
   response.send(body)
 })

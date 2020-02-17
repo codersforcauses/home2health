@@ -196,6 +196,7 @@ class Comments extends React.Component {
 
   componentDidMount() {
     const context = this.context
+
   }
   formValid = ({ formErrors, ...rest }) => {
     let valid = true
@@ -241,11 +242,11 @@ class Comments extends React.Component {
     const { comment } = this.state
     let submitHandler = () => {
       this.context.actions
-        .createComment({ content: this.state.comment, author: this.props.author, post: this.props.post })
+        .createComment({ content: comment, author: this.props.author, post: this.props.post })
         .then(response => {
           M.toast({ html: 'Successfully Created Comment', classes: 'rounded green' })
-  
-          console.log(response)
+          this.context.data.comments.push(response.data)
+          console.log(this.context)
         })
         .catch(err => {
           M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
@@ -254,25 +255,37 @@ class Comments extends React.Component {
         })
     }
     return (
-      <Form
-            submit={submitHandler}
-            submitButtonText="Sign In"
-            errors={this.state.errors}
-            elements={() => (
-              <React.Fragment>
-              <input
-                        id="comment"
-                        name="comment"
-                        type="text"
-                        value={comment}
-                        onChange={this.change}
-                        placeholder="User Name"
-                      />
-            </React.Fragment>
-            )}
-          />
+      <React.Fragment><Form
+      submit={submitHandler}
+      submitButtonText="Create comment"
+      errors={this.state.errors}
+      elements={() => (
+        <React.Fragment>
+        <textarea
+                  id="comment"
+                  name="comment"
+                  type="text"
+                  value={comment}
+                  onChange={this.change}
+                  placeholder="Comment"
+                  cancel={this.cancel}
+                />
+      </React.Fragment>
+      )}
+    /> {this.context.data.comments.map(comment => <div>{comment.content}</div>)}</React.Fragment>
+      
       
     )
+  }
+  cancel = event => {
+    const name = event.target.name
+    const value = event.target.value
+
+    this.setState(() => {
+      return {
+        [name]: ""
+      }
+    })
   }
   change = event => {
     const name = event.target.name
@@ -397,6 +410,7 @@ class LongPost extends React.Component {
     if (this.state.authenticatedUser) {
       userId = this.state.authenticatedUser._id
     }
+    this.context.data = this.state.data;
     return this.state.loaded ? (
       <div>
         {userId === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
@@ -423,7 +437,7 @@ class LongPost extends React.Component {
             <PostArticle {...this.state.data}></PostArticle>
           </React.Fragment>
         )}
-        {this.state.authenticatedUser ? <Comments author={this.state.authenticatedUser._id} post={this.state.data._id}></Comments>:<div>Sign in please</div>}
+        {this.state.authenticatedUser ? <Comments author={this.state.authenticatedUser._id} post={this.state.data._id} data={this.state.data}></Comments>:<div>Sign in please</div>}
         <PostModalSetting
           postId={this.state.id}
           categories={this.state.data.categories}
