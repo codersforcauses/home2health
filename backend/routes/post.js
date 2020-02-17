@@ -92,19 +92,21 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
 
   let postParam = request.post
   let comment = new Comment(request.body)
+  comment.content = request.body.content
   comment.post = request.post
   comment.author = mongoose.Types.ObjectId(request.session.userId)
   comment.save(function(err, comment) {
     if (err) return next(err)
     postParam.comments.push(comment._id)
     postParam.save(async function(err, post) {
+      
       if (err) return next(err)
       try {
         const user = await User.getCurrentUser(request, response, next)
         user.comments.push(comment._id)
         user.save(function(err, user) {
           if (err) return next(err)
-          response.status(201).json(post)
+          response.status(201).json(comment)
         })
       } catch (err) {
         return next(err)

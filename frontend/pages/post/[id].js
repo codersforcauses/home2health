@@ -2,12 +2,14 @@ import React from 'react'
 import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
+import Form from '../../components/Form'
 import { useRouter, withRouter } from 'next/router'
 
 import './post.css'
 import Loader from '../../components/Loader'
 import postCategoryConfig from '../../components/postCategoryConfig'
 import PostModalSetting from '../../components/PostModalSetting'
+import AppContext, { Consumer } from '../../Context'
 
 const config = {
   toolbar: ['undo', 'redo'],
@@ -184,6 +186,106 @@ const PostArticle = props => {
   )
 }
 
+// POST CONTENT COMPONENT
+class Comments extends React.Component {
+  static contextType = AppContext
+  state = {
+    comment: '',
+    errors: []
+  }
+
+  componentDidMount() {
+    const context = this.context
+  }
+  formValid = ({ formErrors, ...rest }) => {
+    let valid = true
+
+    // validate form errors being empty
+    // if val.length > 0 THEN EXECUTE valid=false
+    //THIS PART COULD BE IMPLEMENTED IN THE PHASE OF THE HANDLECHANGE BY USING MULTIPLE LOGICAL STATEMENTS
+    Object.values(formErrors).forEach(val => {
+      val.length > 0 && (valid = false)
+    })
+
+    // validate the form was filled out
+    //THIS IS NOT ALWAYS NEEDED
+    Object.values(rest).forEach(val => {
+      val === null && (valid = false)
+    })
+
+    return valid
+  }
+
+  handleChange = e => {
+    e.preventDefault()
+    const { name, value } = e.target
+    let formErrors = this.state.formErrors
+
+    switch (name) {
+      default:
+        break
+    }
+    this.setState(prevState => ({
+      formErrors,
+      form: { ...prevState.form, [name]: value }
+    }))
+  }
+
+  directHandleChange = (name, value) => {
+    this.setState(prevState => ({ form: { ...prevState.form, [name]: value } }))
+  }
+
+  
+
+  render() {
+    const { comment } = this.state
+    let submitHandler = () => {
+      this.context.actions
+        .createComment({ content: this.state.comment, author: this.props.author, post: this.props.post })
+        .then(response => {
+          M.toast({ html: 'Successfully Created Comment', classes: 'rounded green' })
+  
+          console.log(response)
+        })
+        .catch(err => {
+          M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+          console.log(err);
+          //(err)
+        })
+    }
+    return (
+      <Form
+            submit={submitHandler}
+            submitButtonText="Sign In"
+            errors={this.state.errors}
+            elements={() => (
+              <React.Fragment>
+              <input
+                        id="comment"
+                        name="comment"
+                        type="text"
+                        value={comment}
+                        onChange={this.change}
+                        placeholder="User Name"
+                      />
+            </React.Fragment>
+            )}
+          />
+      
+    )
+  }
+  change = event => {
+    const name = event.target.name
+    const value = event.target.value
+
+    this.setState(() => {
+      return {
+        [name]: value
+      }
+    })
+  }
+}
+
 //STATEFUL OBJECT FOR A POST
 class LongPost extends React.Component {
   state = {
@@ -193,7 +295,7 @@ class LongPost extends React.Component {
     user: 'Author1',
     id: 1
   }
-
+  static contextType = AppContext
   componentDidMount() {
     // SSR doesn't fire ComponentDidMount, so we import CKEditor inside of it and store it as a component prop
     //(From : https://github.com/ckeditor/ckeditor5-react/issues/36)
@@ -201,7 +303,7 @@ class LongPost extends React.Component {
     this.CustomBuild = require('@frinzekt/ckeditor5-build-classicinlinebase64')
     this.InlineEditor = this.CustomBuild.InlineEditor
     this.ClassicEditor = this.CustomBuild.ClassicEditor
-
+    this.setState({authenticatedUser: this.context.authenticatedUser});
     //Forcing Asynchronous Order To Be Executed Last So Router Parameter is not Undefined
     setTimeout(() => this.initialLoad(), 0)
   }
@@ -213,7 +315,7 @@ class LongPost extends React.Component {
     const id = this.props.router.query.id
 
     //INITIAL DATA LOAD
-    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
+    const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
     const apiPath = `${baseURL}/post/${id}`
 
     Axios.get(apiPath, {})
@@ -287,10 +389,17 @@ class LongPost extends React.Component {
   }
 
   render() {
-    const { author } = this.state.data
+    let author;
+    let userId;
+    if (this.state.data.author) {
+      author = this.state.data.author._id
+    }
+    if (this.state.authenticatedUser) {
+      userId = this.state.authenticatedUser._id
+    }
     return this.state.loaded ? (
       <div>
-        {this.state.user === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
+        {userId === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
           <React.Fragment>
             <PostLandingEdittable
               {...this.state.data}
@@ -305,6 +414,7 @@ class LongPost extends React.Component {
               directHandleChange={this.directHandleChange}
               ClassicEditor={this.ClassicEditor}
             ></PostArticleEdittable>
+            <div>{state}</div>
           </React.Fragment>
         ) : (
           //VIEW-ONLY VERSION
@@ -313,6 +423,7 @@ class LongPost extends React.Component {
             <PostArticle {...this.state.data}></PostArticle>
           </React.Fragment>
         )}
+        {this.state.authenticatedUser ? <Comments author={this.state.authenticatedUser._id} post={this.state.data._id}></Comments>:<div>Sign in please</div>}
         <PostModalSetting
           postId={this.state.id}
           categories={this.state.data.categories}
