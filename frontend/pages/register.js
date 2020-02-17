@@ -66,41 +66,49 @@ export default class UserSignUp extends Component {
           }
           return (
             <Fragment>
-              <div className="bounds">
+              <div className="container">
                 <div className="grid-33 centered signin">
                   <h1>Sign Up</h1>
                   <Form
                     cancel={this.cancel}
                     errors={errors}
                     submit={submit}
-                    submitButtonText="Sign Up"
+                    submitButtonText="Register"
                     elements={() => (
-                      <React.Fragment>
-                        <input
-                          id="name"
-                          name="name"
-                          type="text"
-                          value={name}
-                          onChange={this.change}
-                          placeholder="Name"
-                        />
-                        <input
-                          id="email"
-                          name="email"
-                          type="text"
-                          value={email}
-                          onChange={this.change}
-                          placeholder="User Name"
-                        />
-                        <input
-                          id="password"
-                          name="password"
-                          type="password"
-                          value={password}
-                          onChange={this.change}
-                          placeholder="Password"
-                        />
-                      </React.Fragment>
+                      <Fragment>
+                        <div className="input-field">
+                          <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={name}
+                            onChange={this.change}
+                          />
+                          <label for="name">Name</label>
+                        </div>
+                        <div className="input-field">
+                          <input
+                            className="input-field "
+                            id="email"
+                            name="email"
+                            type="text"
+                            value={email}
+                            onChange={this.change}
+                          />
+                          <label for="email">Email</label>
+                        </div>
+                        <div className="input-field">
+                          <input
+                            className="input-field "
+                            id="password"
+                            name="password"
+                            type="password"
+                            value={password}
+                            onChange={this.change}
+                          />
+                          <label for="password">Password</label>
+                        </div>
+                      </Fragment>
                     )}
                   />
                   <p>
