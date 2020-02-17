@@ -5,7 +5,6 @@ export const PostDeleteConfirmation = ({ postId }) => {
   const deletePost = _id => {
     const baseURL = process.env.API_BACKEND_URL
     const apiPath = `${baseURL}/post/${_id}`
-    console.log(apiPath)
     Axios.delete(apiPath, {})
       .then(response => {
         M.toast({
