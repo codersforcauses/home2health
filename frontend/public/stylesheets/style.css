@@ -105,3 +105,11 @@ footer.page-footer {
 .right-triangle {
   float: right;
 }
+
+.extender {
+  float: right
+}
+
+.collapsible-body .links {
+  padding: 10px 0px 10px 0px
+}

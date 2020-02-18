@@ -25,7 +25,7 @@ class Index extends Component {
                 <div style={{ margin: '1rem 0 0' }}>
                   <Link href="/login">
                     <a
-                      className="btn-flat waves-effect waves-light"
+                      className="btn waves-effect waves-light"
                       style={{ marginRight: '1rem' }}
                     >
                       Log in
