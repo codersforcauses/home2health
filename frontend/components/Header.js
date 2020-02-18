@@ -3,16 +3,16 @@ import Link from 'next/link'
 import { Consumer } from '../Context'
 class Header extends Component {
   state = {
-    hover: false
+    hospitalProgramsHover: false
   }
-  handleEnterHover = () => {
+  handleEnterHover = hoverName => {
     this.setState({
-      hover: true
+      [hoverName + 'Hover']: true
     })
   }
-  handleLeaveHover = () => {
+  handleLeaveHover = hoverName => {
     this.setState({
-      hover: false
+      [hoverName + 'Hover']: false
     })
   }
 
@@ -46,58 +46,52 @@ class Header extends Component {
                       <li className="divider" />
                       <ul className="collapsible">
                         <li
-                          onMouseEnter={this.handleEnterHover}
-                          onMouseLeave={this.handleLeaveHover}
+                          onMouseEnter={() =>
+                            this.handleEnterHover('hospitalPrograms')
+                          }
+                          onMouseLeave={() =>
+                            this.handleLeaveHover('hospitalPrograms')
+                          }
                         >
                           <div
                             className="collapsible-header"
                             id="hospitalPrograms"
+                            style={{ color: '#26a69a' }}
                             // color="#26a69a"
                           >
                             Hospital Programs
+                            <span class="extender">&#9662;</span>
                           </div>
 
                           <div
                             className="collapsible-body"
                             style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`,
+                              padding: 10
                             }}
                           >
                             <Link href="/RoyalPerthHospital">
-                              <a>Royal Perth Hospital</a>
+                              <a className="links">Royal Perth Hospital</a>
                             </Link>
-                          </div>
-
-                          <div
-                            className="collapsible-body"
-                            style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
-                            }}
-                          >
+                            <li className="divider" />
                             <Link href="#">
-                              <a>St Vincent's Hospital Melbourne</a>
+                              <a className="links">
+                                St Vincent's Hospital Melbourne
+                              </a>
                             </Link>
-                          </div>
-
-                          <div
-                            className="collapsible-body"
-                            style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
-                            }}
-                          >
+                            <li className="divider" />
                             <Link href="#">
-                              <a>St Vincent's Hospital Sydney</a>
+                              <a className="links">
+                                St Vincent's Hospital Sydney
+                              </a>
                             </Link>
-                          </div>
-
-                          <div
-                            className="collapsible-body"
-                            style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
-                            }}
-                          >
+                            <li className="divider" />
                             <Link href="#">
-                              <a>Katherine Hospital</a>
+                              <a className="links">Katherine Hospital</a>
                             </Link>
                           </div>
                         </li>
@@ -225,7 +219,11 @@ class Header extends Component {
                           <div
                             className="collapsible-body"
                             style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`
                             }}
                           >
                             <Link href="/RoyalPerthHospital">
@@ -236,7 +234,11 @@ class Header extends Component {
                           <div
                             className="collapsible-body"
                             style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`
                             }}
                           >
                             <Link href="#">
@@ -247,7 +249,11 @@ class Header extends Component {
                           <div
                             className="collapsible-body"
                             style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`
                             }}
                           >
                             <Link href="#">
@@ -258,7 +264,11 @@ class Header extends Component {
                           <div
                             className="collapsible-body"
                             style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`
                             }}
                           >
                             <Link href="#">
