@@ -77,26 +77,26 @@ class Header extends Component {
                             <Link href="/RoyalPerthHospital">
                               <a className="links">Royal Perth Hospital</a>
                             </Link>
-                            <li className="divider" />
+                            <p className="divider" />
                             <Link href="#">
                               <a className="links">
                                 St Vincent's Hospital Melbourne
                               </a>
                             </Link>
-                            <li className="divider" />
+                            <p className="divider" />
                             <Link href="#">
                               <a className="links">
                                 St Vincent's Hospital Sydney
                               </a>
                             </Link>
-                            <li className="divider" />
+                            <p className="divider" />
                             <Link href="#">
                               <a className="links">Katherine Hospital</a>
                             </Link>
                           </div>
                         </li>
                       </ul>
-                      <li className="divider" />
+
                       <li>
                         <a href=".">GP services</a>
                       </li>
