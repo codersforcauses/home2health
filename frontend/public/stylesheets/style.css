@@ -80,6 +80,7 @@ footer.page-footer {
   max-height: 50%;
   max-width: 30%;
 }
+
 .logo-img {
   max-height: 300px;
   max-width: 800px;
@@ -112,4 +113,9 @@ footer.page-footer {
 
 .collapsible-body .links {
   /* padding: 10px 0px 10px 0px */
+}
+
+.collapsible {
+  margin: 0px;
+  border: 0px
 }

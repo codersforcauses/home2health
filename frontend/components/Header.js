@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { Consumer } from '../Context'
 class Header extends Component {
   state = {
-    hospitalProgramsHover: false
+    hospitalProgramsHover: false,
+    dualDiagnosisServicesHover: false
   }
   handleEnterHover = hoverName => {
     this.setState({
@@ -59,7 +60,6 @@ class Header extends Component {
                             className="collapsible-header"
                             id="hospitalPrograms"
                             style={{ color: '#26a69a' }}
-                            // color="#26a69a"
                           >
                             Hospital Programs
                             <span class="extender">&#9662;</span>
@@ -106,23 +106,39 @@ class Header extends Component {
 
                       <ul class="collapsible">
                         <li
-                          onMouseEnter={this.handleEnterHover}
-                          onMouseLeave={this.handleLeaveHover}
+                          onMouseEnter={() =>
+                            this.handleEnterHover('dualDiagnosisServices')
+                          }
+                          onMouseLeave={() =>
+                            this.handleLeaveHover('dualDiagnosisServices')
+                          }
                         >
                           <div
                             className="collapsible-header"
                             id="dual-diagnosis-services"
+                            style={{ color: '#26a69a' }}
                           >
                             Dual Diagnosis Services
+                            <span class="extender">&#9662;</span>
                           </div>
                           <div
                             className="collapsible-body"
                             style={{
-                              display: `${this.state.hover ? 'block' : 'none'}`
+                              display: `${
+                                this.state.dualDiagnosisServicesHover
+                                  ? 'block'
+                                  : 'none'
+                              }`,
+                              padding: 10
                             }}
                           >
-                            <a href="">HODDS</a>
-                            <a href="">CHOPS</a>
+                            <Link href="/Dual-Diagnosis-Services/HODDS">
+                              <a className="links">HODDS</a>
+                            </Link>
+                            <p className="divider" />
+                            <Link href="/Dual-Diagnosis-Services/CHOPS">
+                              <a className="links">CHOPS</a>
+                            </Link>
                           </div>
                         </li>
                       </ul>
