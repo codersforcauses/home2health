@@ -30,22 +30,6 @@ export default () => {
           }
         ]}
       ></LinkCards>
-      <div className="row">
-        <div className="col m5 s12">
-          <img
-            src="/images/Dual-Diagnosis-Services/CHOPS_Infographic_1.png"
-            alt="Chops Infographic_1"
-            style={{ width: '105%' }}
-          />
-        </div>
-        <div className="col m5 offset-m2 s12 ">
-          <img
-            src="/images/Dual-Diagnosis-Services/CHOPS_Infographic_2.png"
-            alt="Chops Infographic_2"
-            style={{ width: '105%' }}
-          />
-        </div>
-      </div>
     </div>
   )
 }
