@@ -2,6 +2,21 @@ import React, { Component } from 'react'
 import Link from 'next/link'
 import { Consumer } from '../Context'
 class Header extends Component {
+  state = {
+    hospitalProgramsHover: false,
+    dualDiagnosisServicesHover: false
+  }
+  handleEnterHover = hoverName => {
+    this.setState({
+      [hoverName + 'Hover']: true
+    })
+  }
+  handleLeaveHover = hoverName => {
+    this.setState({
+      [hoverName + 'Hover']: false
+    })
+  }
+
   render() {
     return (
       <Consumer>
@@ -27,20 +42,116 @@ class Header extends Component {
                     </a>
                     <ul id="happeningDropdown" className="dropdown-content">
                       <li>
-                        <a href=".">Housing first programs</a>
+                        <Link href="/housingprograms">
+                          <a>Housing first programs</a>
+                        </Link>
                       </li>
                       <li className="divider" />
-                      <li>
-                        <a href=".">Hospital programs</a>
-                      </li>
-                      <li className="divider" />
+                      <ul className="collapsible">
+                        <li
+                          onMouseEnter={() =>
+                            this.handleEnterHover('hospitalPrograms')
+                          }
+                          onMouseLeave={() =>
+                            this.handleLeaveHover('hospitalPrograms')
+                          }
+                        >
+                          <div
+                            className="collapsible-header"
+                            id="hospitalPrograms"
+                            style={{ color: '#26a69a' }}
+                          >
+                            Hospital Programs
+                            <span class="extender">&#9662;</span>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`,
+                              padding: 10
+                            }}
+                          >
+                            <Link href="/RoyalPerthHospital">
+                              <a className="links">Royal Perth Hospital</a>
+                            </Link>
+                            <p className="divider" />
+                            <Link href="#">
+                              <a className="links">
+                                St Vincent's Hospital Melbourne
+                              </a>
+                            </Link>
+                            <p className="divider" />
+                            <Link href="#">
+                              <a className="links">
+                                St Vincent's Hospital Sydney
+                              </a>
+                            </Link>
+                            <p className="divider" />
+                            <Link href="#">
+                              <a className="links">Katherine Hospital</a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+
                       <li>
                         <a href=".">GP services</a>
                       </li>
                       <li className="divider" />
-                      <li>
-                        <a href=".">Dual diagnosis services</a>
-                      </li>
+
+                      <ul class="collapsible">
+                        <li
+                          onMouseEnter={() =>
+                            this.handleEnterHover('dualDiagnosisServices')
+                          }
+                          onMouseLeave={() =>
+                            this.handleLeaveHover('dualDiagnosisServices')
+                          }
+                        >
+                          <div
+                            className="collapsible-header"
+                            id="dual-diagnosis-services"
+                            style={{ color: '#26a69a' }}
+                          >
+                            Dual Diagnosis Services
+                            <span class="extender">&#9662;</span>
+                          </div>
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${
+                                this.state.dualDiagnosisServicesHover
+                                  ? 'block'
+                                  : 'none'
+                              }`,
+                              padding: 10
+                            }}
+                          >
+                            <Link href="/Dual-Diagnosis-Services/HODDS">
+                              <a className="links">HODDS</a>
+                            </Link>
+                            <p className="divider" />
+                            <Link href="/Dual-Diagnosis-Services/CHOPS">
+                              <a className="links">CHOPS</a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+                      {/* <a
+                          class="dropdown-button"
+                          data-activates="dropdown2"
+                          data-hover="hover"
+                          data-alignment="left"
+                        >
+                          Dual Diagnosis Services
+                          <span class="right-triangle">&#9656;</span>
+                        </a> */}
+
                       <li className="divider" />
                       <li>
                         <a href=".">Peer worker programs</a>
@@ -132,6 +243,7 @@ class Header extends Component {
                     >
                       What's happening in Australia?
                     </a>
+
                     <ul
                       id="happeningDropdownMobile"
                       className="dropdown-content"
@@ -139,14 +251,87 @@ class Header extends Component {
                       <li>
                         <a href=".">Housing first programs</a>
                       </li>
-                      <li>
-                        <a href=".">Hospital programs</a>
-                      </li>
+                      <ul className="collapsible">
+                        <li
+                          onMouseEnter={this.handleEnterHover}
+                          onMouseLeave={this.handleLeaveHover}
+                        >
+                          <div
+                            className="collapsible-header"
+                            id="hospitalPrograms"
+                            color=""
+                          >
+                            Hospital Programs
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`
+                            }}
+                          >
+                            <Link href="/RoyalPerthHospital">
+                              <a>Royal Perth Hospital</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>St Vincent's Hospital Melbourne</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>St Vincent's Hospital Sydney</a>
+                            </Link>
+                          </div>
+
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${
+                                this.state.hospitalProgramsHover
+                                  ? 'block'
+                                  : 'none'
+                              }`
+                            }}
+                          >
+                            <Link href="#">
+                              <a>Katherine Hospital</a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
                       <li>
                         <a href=".">GP services</a>
                       </li>
                       <li>
-                        <a href=".">Dual diagnosis services</a>
+                        <Link href="/Dual-Diagnosis-Services">
+                          <a>Dual diagnosis services</a>
+                        </Link>
                       </li>
                       <li>
                         <a href=".">Peer worker programs</a>
@@ -192,10 +377,14 @@ class Header extends Component {
                     </a>
                     <ul id="blogDropdownMobile" className="dropdown-content">
                       <li>
-                        <a href="/posts">Posts</a>
+                        <Link href="/posts/1">
+                          <a>Posts</a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/posts/form">Create Form</a>
+                        <Link href="/posts/form">
+                          <a>Create Post</a>
+                        </Link>
                       </li>
                     </ul>
                   </li>

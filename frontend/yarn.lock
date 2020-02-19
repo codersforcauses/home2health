@@ -989,6 +989,14 @@
   dependencies:
     prop-types "^15.5.10"
 
+"@frinzekt/ckeditor5-build-classicinlinebase64@^16.0.1":
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/@frinzekt/ckeditor5-build-classicinlinebase64/-/ckeditor5-build-classicinlinebase64-16.0.1.tgz#fba799bb54505751b554096349e75161f3ef362e"
+  integrity sha512-GgNNBvDRjkUkjtdhh4d8m1NlFpYAoyAAknEeRlTFD7fpwUyMHB7S7awVr+kZWIiAD8D3pp8qT5ecG8N9KdIdZg==
+  dependencies:
+    "@ckeditor/ckeditor5-editor-inline" "^16.0.0"
+    "@ckeditor/ckeditor5-upload" "^16.0.0"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"

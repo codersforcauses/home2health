@@ -1,0 +1,36 @@
+
+          <div className="col s4">
+            <a href="/50Homes50Lifes/50_Lives_First_Report_June_2017.pdf">
+            <a href="/50Homes50Lifes/50_Lives_Infographic_June_2017.pdf">
+            <a href="/50Homes50Lifes/50_Lives_Second_Report_Sept_2018.pdf">
+            <a href="/50Homes50Lifes/50_Lives_Snapshot_April_2018.pdf">
+
+
+
+
+<div className="row" style={{ marginBottom: 30 }}>
+
+          <div className="col s4">
+            <a href="/50Homes50Lifes/50_Lives_First_Report_June_2017.pdf">
+              <img
+                alt="50 Lifes 50 Homes logo"
+                src="/50Homes50Lifes/50HomesDoc.png"
+                width="200px"
+              />
+            </a>
+          </div>
+          <div className="col s4">
+            <a href="/50Homes50Lifes/50_Lives_First_Report_June_2017.pdf">
+              <img
+                alt="50 Lifes 50 Homes logo"
+                src="/50Homes50Lifes/50HomesDoc.png"
+                width="200px"
+              />
+            </a>
+          </div>
+        </div>
+
+
+ Meaning ??
+
+         style={{ margin: '1rem 0 0' }}
