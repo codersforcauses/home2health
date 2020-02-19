@@ -191,12 +191,13 @@ class Comments extends React.Component {
   static contextType = AppContext
   state = {
     comment: '',
-    errors: []
+    errors: [],
+    comments: this.props.comments,
+    authenticatedUser: this.props.authenticatedUser
   }
-
-  componentDidMount() {
-    const context = this.context
-
+  componentWillReceiveProps({ comments, authenticatedUser }) {
+    this.setState({ comments: comments, authenticatedUser })
+    this.render()
   }
   formValid = ({ formErrors, ...rest }) => {
     let valid = true
@@ -217,75 +218,49 @@ class Comments extends React.Component {
     return valid
   }
 
-  handleChange = e => {
-    e.preventDefault()
-    const { name, value } = e.target
-    let formErrors = this.state.formErrors
-
-    switch (name) {
-      default:
-        break
-    }
-    this.setState(prevState => ({
-      formErrors,
-      form: { ...prevState.form, [name]: value }
-    }))
-  }
-
-  directHandleChange = (name, value) => {
-    this.setState(prevState => ({ form: { ...prevState.form, [name]: value } }))
-  }
-
-  
-
   render() {
     const { comment } = this.state
-    let submitHandler = () => {
-      this.context.actions
-        .createComment({ content: comment, author: this.props.author, post: this.props.post })
-        .then(response => {
-          M.toast({ html: 'Successfully Created Comment', classes: 'rounded green' })
-          this.context.data.comments.push(response.data)
-          console.log(this.context)
-        })
-        .catch(err => {
-          M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
-          console.log(err);
-          //(err)
-        })
-    }
     return (
-      <React.Fragment><Form
-      submit={submitHandler}
-      submitButtonText="Create comment"
-      errors={this.state.errors}
-      elements={() => (
-        <React.Fragment>
-        <textarea
+      <React.Fragment>
+        {this.state.authenticatedUser ? (
+          <Form
+            submit={() => this.props.createComment(comment)}
+            submitButtonText="Create comment"
+            errors={this.state.errors}
+            elements={() => (
+              <React.Fragment>
+                <textarea
                   id="comment"
                   name="comment"
                   type="text"
                   value={comment}
                   onChange={this.change}
                   placeholder="Comment"
-                  cancel={this.cancel}
                 />
-      </React.Fragment>
-      )}
-    /> {this.context.data.comments.map(comment => <div>{comment.content}</div>)}</React.Fragment>
-      
-      
-    )
-  }
-  cancel = event => {
-    const name = event.target.name
-    const value = event.target.value
+              </React.Fragment>
+            )}
+          />
+        ) : (
+          <div>
+            <b>Please sign in</b>
+            <br />
+            <br />
+          </div>
+        )}
 
-    this.setState(() => {
-      return {
-        [name]: ""
-      }
-    })
+        {this.state.comments.map(comment => (
+          <div>
+            {comment.content}
+            <br />
+            {comment.authorName}
+            <br />
+            {comment.createdAt}
+            <br />
+            <br />
+          </div>
+        ))}
+      </React.Fragment>
+    )
   }
   change = event => {
     const name = event.target.name
@@ -316,7 +291,7 @@ class LongPost extends React.Component {
     this.CustomBuild = require('@frinzekt/ckeditor5-build-classicinlinebase64')
     this.InlineEditor = this.CustomBuild.InlineEditor
     this.ClassicEditor = this.CustomBuild.ClassicEditor
-    this.setState({authenticatedUser: this.context.authenticatedUser});
+    this.setState({ authenticatedUser: this.context.authenticatedUser })
     //Forcing Asynchronous Order To Be Executed Last So Router Parameter is not Undefined
     setTimeout(() => this.initialLoad(), 0)
   }
@@ -335,6 +310,7 @@ class LongPost extends React.Component {
       .then(response => {
         this.setState({
           data: response.data,
+          comments: response.data.comments,
           id,
           loaded: true
         })
@@ -400,17 +376,43 @@ class LongPost extends React.Component {
       this.updatePost(name, value)
     }
   }
+  createComment = comment => {
+    this.context.actions
+      .createComment({
+        content: comment,
+        author: this.state.authenticatedUser._id,
+        post: this.state.data._id
+      })
+      .then(response => {
+        M.toast({
+          html: 'Successfully Created Comment',
+          classes: 'rounded green'
+        })
+        this.setState(prevState => ({
+          comments: [...prevState.comments, response.data]
+        }))
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+        //(err)
+      })
+  }
 
   render() {
-    let author;
-    let userId;
+    let author
+    let userId
     if (this.state.data.author) {
       author = this.state.data.author._id
     }
     if (this.state.authenticatedUser) {
       userId = this.state.authenticatedUser._id
     }
-    this.context.data = this.state.data;
+    this.setState(prevState => {
+      comments: this.state.data.comments
+    })
+    console.log(this.state.comments)
+    console.log(this.state.data.comments)
     return this.state.loaded ? (
       <div>
         {userId === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
@@ -437,7 +439,12 @@ class LongPost extends React.Component {
             <PostArticle {...this.state.data}></PostArticle>
           </React.Fragment>
         )}
-        {this.state.authenticatedUser ? <Comments author={this.state.authenticatedUser._id} post={this.state.data._id} data={this.state.data}></Comments>:<div>Sign in please</div>}
+
+        <Comments
+          comments={this.state.comments}
+          createComment={this.createComment}
+          authenticatedUser={this.state.authenticatedUser}
+        ></Comments>
         <PostModalSetting
           postId={this.state.id}
           categories={this.state.data.categories}

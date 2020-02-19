@@ -54,8 +54,27 @@ router.get('/:_pid', async (request, response, next) => {
   let body = request.post.toObject()
   const user = await User.getUser(request, response, next, request.post.author)
   for (let i = 0; i < body.comments.length; i++) {
-    console.log("om");
-    body.comments[i] = await Comment.getComment(request, response, next, body.comments[i])
+    const comment = await Comment.getComment(
+      request,
+      response,
+      next,
+      body.comments[i]
+    )
+    body.comments[i] = comment.toObject()
+    const author = await User.getUser(
+      request,
+      response,
+      next,
+      body.comments[i].author
+    )
+    body.comments[i].authorName = author.name
+    // body.comments[i].author = await User.getUser(
+    //   request,
+    //   response,
+    //   next,
+    //   body.comments[i].author
+    // )
+    // body.comments[i].author = body.comments[i].author.name
   }
   body.author = user
   response.send(body)
@@ -103,13 +122,14 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
     if (err) return next(err)
     postParam.comments.push(comment._id)
     postParam.save(async function(err, post) {
-      
       if (err) return next(err)
       try {
         const user = await User.getCurrentUser(request, response, next)
         user.comments.push(comment._id)
         user.save(function(err, user) {
           if (err) return next(err)
+          comment = comment.toObject()
+          comment.authorName = user.name
           response.status(201).json(comment)
         })
       } catch (err) {
