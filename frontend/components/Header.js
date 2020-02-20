@@ -342,7 +342,7 @@ class Header extends Component {
                         <a href=".">Outreach</a>
                       </li>
                       <li>
-                        <a href=".">Medical recovery centre</a>
+                        <a href=".">Medical Recovery Centre</a>
                       </li>
                       <li>
                         <a href="/resources">Resources</a>
