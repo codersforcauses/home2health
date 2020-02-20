@@ -337,7 +337,9 @@ class Header extends Component {
                         <a href=".">Peer worker programs</a>
                       </li>
                       <li>
-                        <a href=".">Outreach</a>
+                        <Link href="/outreach">
+                          <a>Outreach</a>
+                        </Link>
                       </li>
                       <li>
                         <a href=".">Medical recovery centre</a>
