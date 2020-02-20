@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { LinkCards } from '../../components/LinkCards'
+
 const MedicalRecoveryCentre = () => {
   return (
     <>
@@ -28,40 +30,32 @@ const TheCottage = () => {
           The aim is to provide holistic, recuperative care to clients with a
           nursing need, as an alternative to staying in hospital.
         </p>
-        The Cottage focuses on building rapport and trust between clients and
-        staff, enabling staff to establish a safe environment and platform from
-        which they can address clients’ health issues.
+        <p>
+          The Cottage focuses on building rapport and trust between clients and
+          staff, enabling staff to establish a safe environment and platform
+          from which they can address clients’ health issues.
+        </p>
       </blockquote>
-      <div className="row flex-container">
-        <div className="col s12 m3 card-margin">
-          <a
-            href="https://drive.google.com/open?id=1bNTOFku6OnhaZta7gEB9BE9ZQhGzcV3X"
-            target="_blank"
-          >
-            <div class="card ">
-              <div class="card-image">
-                <img src="/images/the-cottage-infographic-preview.png" />
-              </div>
-              <div className="card-action">The Cottage Infographic</div>
-            </div>
-          </a>
-        </div>
-        <div className="col s12 m3 card-margin">
-          <a
-            href="https://drive.google.com/open?id=1VhauhRFC6ftOIkMhGsXw6QUjGPOTyJQA"
-            target="_blank"
-          >
-            <div class="card">
-              <div class="card-image">
-                <img src="/images/the-cottage-gazey-preview.png" />
-              </div>
-              <div className="card-action">
-                The Cottage: Providing Medical Respite Care (Gazey et al 2018)
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
+
+      <LinkCards
+        cardDetails={[
+          {
+            alt: 'The Cottage Infographic Preview Image',
+            src: '/images/the-cottage-infographic-preview.png',
+            link:
+              'https://drive.google.com/open?id=1bNTOFku6OnhaZta7gEB9BE9ZQhGzcV3X',
+            reportTitle: 'The Cottage Infographic'
+          },
+          {
+            alt: 'The Cottage Gazey Preview Image',
+            src: '/images/the-cottage-gazey-preview.png',
+            link:
+              'https://drive.google.com/open?id=1VhauhRFC6ftOIkMhGsXw6QUjGPOTyJQA',
+            reportTitle:
+              'The Cottage: Providing Medical Respite Care (Gazey et al 2018)'
+          }
+        ]}
+      />
     </>
   )
 }
