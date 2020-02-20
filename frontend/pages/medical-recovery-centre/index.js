@@ -19,15 +19,15 @@ const TheCottage = () => {
     <>
       <h2>The Cottage</h2>
       <blockquote>
-        The Cottage is a supportive, home like environment where Complex Care
-        Services and Hospital in the Home (HITH) services are provided to people
-        who are homeless or at risk of homelessness.
-        <br />
-        <br />
-        The aim is to provide holistic, recuperative care to clients with a
-        nursing need, as an alternative to staying in hospital.
-        <br />
-        <br />
+        <p>
+          The Cottage is a supportive, home like environment where Complex Care
+          Services and Hospital in the Home (HITH) services are provided to
+          people who are homeless or at risk of homelessness.
+        </p>
+        <p>
+          The aim is to provide holistic, recuperative care to clients with a
+          nursing need, as an alternative to staying in hospital.
+        </p>
         The Cottage focuses on building rapport and trust between clients and
         staff, enabling staff to establish a safe environment and platform from
         which they can address clients’ health issues.
@@ -70,7 +70,9 @@ const TierneyHouse = () => {
   return (
     <>
       <h2>Tierney House</h2>
-      <blockquote>TBA</blockquote>
+      <blockquote>
+        <p>TBA</p>
+      </blockquote>
     </>
   )
 }
@@ -80,8 +82,10 @@ const TBAPerth = () => {
     <>
       <h2>TBA Perth</h2>
       <blockquote>
-        The recent Sustainable Health Review recommended the establishment of
-        MRC in Perth.
+        <p>
+          The recent Sustainable Health Review recommended the establishment of
+          MRC in Perth.
+        </p>
       </blockquote>
     </>
   )
