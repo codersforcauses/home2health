@@ -195,9 +195,8 @@ class Comments extends React.Component {
     comments: this.props.comments,
     authenticatedUser: this.props.authenticatedUser
   }
-  componentWillReceiveProps({ comments, authenticatedUser }) {
-    this.setState({ comments: comments, authenticatedUser })
-    this.render()
+  static getDerivedStateFromProps({ comments, authenticatedUser }) {
+    return { comments, authenticatedUser }
   }
   formValid = ({ formErrors, ...rest }) => {
     let valid = true
@@ -411,8 +410,6 @@ class LongPost extends React.Component {
     this.setState(prevState => {
       comments: this.state.data.comments
     })
-    console.log(this.state.comments)
-    console.log(this.state.data.comments)
     return this.state.loaded ? (
       <div>
         {userId === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
@@ -430,7 +427,6 @@ class LongPost extends React.Component {
               directHandleChange={this.directHandleChange}
               ClassicEditor={this.ClassicEditor}
             ></PostArticleEdittable>
-            <div>{state}</div>
           </React.Fragment>
         ) : (
           //VIEW-ONLY VERSION
