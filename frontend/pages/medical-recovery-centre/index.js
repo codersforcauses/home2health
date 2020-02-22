@@ -20,22 +20,20 @@ const TheCottage = () => {
   return (
     <>
       <h2>The Cottage</h2>
-      <blockquote>
-        <p>
-          The Cottage is a supportive, home like environment where Complex Care
-          Services and Hospital in the Home (HITH) services are provided to
-          people who are homeless or at risk of homelessness.
-        </p>
-        <p>
-          The aim is to provide holistic, recuperative care to clients with a
-          nursing need, as an alternative to staying in hospital.
-        </p>
-        <p>
-          The Cottage focuses on building rapport and trust between clients and
-          staff, enabling staff to establish a safe environment and platform
-          from which they can address clients’ health issues.
-        </p>
-      </blockquote>
+      <p>
+        The Cottage is a supportive, home like environment where Complex Care
+        Services and Hospital in the Home (HITH) services are provided to people
+        who are homeless or at risk of homelessness.
+      </p>
+      <p>
+        The aim is to provide holistic, recuperative care to clients with a
+        nursing need, as an alternative to staying in hospital.
+      </p>
+      <p>
+        The Cottage focuses on building rapport and trust between clients and
+        staff, enabling staff to establish a safe environment and platform from
+        which they can address clients’ health issues.
+      </p>
 
       <LinkCards
         cardDetails={[
@@ -64,9 +62,7 @@ const TierneyHouse = () => {
   return (
     <>
       <h2>Tierney House</h2>
-      <blockquote>
-        <p>TBA</p>
-      </blockquote>
+      <p>TBA</p>
     </>
   )
 }
@@ -75,12 +71,10 @@ const TBAPerth = () => {
   return (
     <>
       <h2>TBA Perth</h2>
-      <blockquote>
-        <p>
-          The recent Sustainable Health Review recommended the establishment of
-          MRC in Perth.
-        </p>
-      </blockquote>
+      <p>
+        The recent Sustainable Health Review recommended the establishment of
+        MRC in Perth.
+      </p>
     </>
   )
 }
