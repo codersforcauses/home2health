@@ -101,4 +101,21 @@ export default class Data {
       return e.response.data.errors
     }
   }
+  async createComment(comment) {
+    try {
+      const response = await this.api('post/' + comment.post, 'POST', comment)
+      if (response.status === 201) {
+        return response
+      } else if (response.status === 400) {
+        return response.json().then(data => {
+          return data.errors
+        })
+      } else {
+        throw new Error(response.message)
+      }
+    } catch (e) {
+      console.log(e)
+      return e.response.data.errors
+    }
+  }
 }

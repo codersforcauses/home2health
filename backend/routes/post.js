@@ -53,6 +53,29 @@ router.get('/', (request, response, next) => {
 router.get('/:_pid', async (request, response, next) => {
   let body = request.post.toObject()
   const user = await User.getUser(request, response, next, request.post.author)
+  for (let i = 0; i < body.comments.length; i++) {
+    const comment = await Comment.getComment(
+      request,
+      response,
+      next,
+      body.comments[i]
+    )
+    body.comments[i] = comment.toObject()
+    const author = await User.getUser(
+      request,
+      response,
+      next,
+      body.comments[i].author
+    )
+    body.comments[i].authorName = author.name
+    // body.comments[i].author = await User.getUser(
+    //   request,
+    //   response,
+    //   next,
+    //   body.comments[i].author
+    // )
+    // body.comments[i].author = body.comments[i].author.name
+  }
   body.author = user
   response.send(body)
 })
@@ -92,6 +115,7 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
 
   let postParam = request.post
   let comment = new Comment(request.body)
+  comment.content = request.body.content
   comment.post = request.post
   comment.author = mongoose.Types.ObjectId(request.session.userId)
   comment.save(function(err, comment) {
@@ -104,7 +128,9 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
         user.comments.push(comment._id)
         user.save(function(err, user) {
           if (err) return next(err)
-          response.status(201).json(post)
+          comment = comment.toObject()
+          comment.authorName = user.name
+          response.status(201).json(comment)
         })
       } catch (err) {
         return next(err)
