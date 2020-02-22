@@ -118,4 +118,46 @@ export default class Data {
       return e.response.data.errors
     }
   }
+  async deleteComment(postID, commentID) {
+    try {
+      const response = await this.api(
+        'post/' + postID + '/' + commentID,
+        'DELETE',
+        null
+      )
+      if (response.status === 204) {
+        return response
+      } else if (response.status === 400) {
+        return response.json().then(data => {
+          return data.errors
+        })
+      } else {
+        throw new Error(response.message)
+      }
+    } catch (e) {
+      console.log(e)
+      return e.response.data.errors
+    }
+  }
+  async editComment(postID, commentID, comment) {
+    try {
+      const response = await this.api(
+        'post/' + postID + '/' + commentID,
+        'PATCH',
+        { content: comment }
+      )
+      if (response.status === 200) {
+        return response
+      } else if (response.status === 400) {
+        return response.json().then(data => {
+          return data.errors
+        })
+      } else {
+        throw new Error(response.message)
+      }
+    } catch (e) {
+      console.log(e)
+      return e.response.data.errors
+    }
+  }
 }

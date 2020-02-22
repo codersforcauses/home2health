@@ -3,6 +3,7 @@ import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import Form from '../../components/Form'
+import Comment from '../../components/Comment'
 import { useRouter, withRouter } from 'next/router'
 
 import './post.css'
@@ -248,15 +249,25 @@ class Comments extends React.Component {
         )}
 
         {this.state.comments.map(comment => (
-          <div>
-            {comment.content}
-            <br />
-            {comment.authorName}
-            <br />
-            {comment.createdAt}
-            <br />
-            <br />
-          </div>
+          <Comment
+            content={comment.content}
+            authorName={comment.authorName}
+            createdAt={comment.createdAt}
+            canEditOrDelete={
+              this.state.authenticatedUser &&
+              comment.author == this.state.authenticatedUser._id
+            }
+            deleteComment={() =>
+              this.props.deleteComment(this.props.postID, comment._id)
+            }
+            editComment={async editValue =>
+              await this.props.editComment(
+                this.props.postID,
+                comment._id,
+                editValue
+              )
+            }
+          ></Comment>
         ))}
       </React.Fragment>
     )
@@ -398,6 +409,50 @@ class LongPost extends React.Component {
       })
   }
 
+  deleteComment = (postID, commentID) => {
+    this.context.actions
+      .deleteComment(postID, commentID)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Deleted Comment',
+          classes: 'rounded green'
+        })
+        this.setState(prevState => ({
+          comments: prevState.comments.filter(
+            comment => comment._id != commentID
+          )
+        }))
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+        //(err)
+      })
+  }
+  editComment = async (postID, commentID, comment) => {
+    await this.context.actions
+      .editComment(postID, commentID, comment)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Edited Comment',
+          classes: 'rounded green'
+        })
+        let comments = this.state.comments
+        for (let i = 0; i < comments.length; i++) {
+          if (comments[i]._id == commentID) {
+            comments[i].content = comment
+          }
+          this.setState({ comments: comments })
+        }
+        this.setState({})
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+        //(err)
+      })
+  }
+
   render() {
     let author
     let userId
@@ -439,7 +494,10 @@ class LongPost extends React.Component {
         <Comments
           comments={this.state.comments}
           createComment={this.createComment}
+          deleteComment={this.deleteComment}
+          editComment={this.editComment}
           authenticatedUser={this.state.authenticatedUser}
+          postID={this.state.id}
         ></Comments>
         <PostModalSetting
           postId={this.state.id}

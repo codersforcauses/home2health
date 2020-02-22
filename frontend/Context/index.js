@@ -25,7 +25,9 @@ export class Provider extends Component {
         signOut: this.signOut,
         redirectToSignIn: this.redirectToSignIn,
         createPost: this.createPost,
-        createComment: this.createComment
+        createComment: this.createComment,
+        deleteComment: this.deleteComment,
+        editComment: this.editComment
       },
       from: from || '/profile'
     }
@@ -62,6 +64,15 @@ export class Provider extends Component {
   createComment = async body => {
     const comment = await this.data.createComment(body)
     return comment
+  }
+
+  deleteComment = async (postID, commentID) => {
+    const response = await this.data.deleteComment(postID, commentID)
+    return response
+  }
+  editComment = async (postID, commentID, comment) => {
+    const response = await this.data.editComment(postID, commentID, comment)
+    return response
   }
 
   signOut = async () => {
