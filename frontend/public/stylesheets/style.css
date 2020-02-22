@@ -32,6 +32,7 @@ nav .brand-logo,
 nav ul a,
 nav a.sidenav-trigger,
 nav a.dropdown-trigger,
+nav .collapsible,
 nav a.navitem {
   color: #0f6489;
 }
