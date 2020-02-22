@@ -23,7 +23,7 @@ export default props => {
         </div>
         <div className="col s12 m9 profile-details">
           <div className="profile-name">
-            <h2>{first_name + ' ' + middle_name + ' ' + last_name}</h2>
+            <h3>{first_name + ' ' + middle_name + ' ' + last_name}</h3>
           </div>
           <div className="profile-title">
             <h5>{title}</h5>
@@ -67,9 +67,10 @@ const style = (
     .profile-details {
       padding: 0 0 0 1rem;
     }
-    .profile-name h2 {
+    .profile-name h3 {
       font-weight: 700;
       margin: 0 0 1rem 0;
+      color: #0f6489;
     }
     .profile-title h5 {
       margin: 0;

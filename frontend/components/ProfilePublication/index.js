@@ -15,7 +15,7 @@ class ProfilePublication extends Component {
         {style}
         <div className="grey lighten-1 profileContent">
           <div className="col s12" style={{ padding: 0 }}>
-            <h4 style={{ margin: '0' }}>Publications</h4>
+            <h4 style={{ margin: '0', color: '#0f6489' }}>Publications</h4>
             <div>
               {datas.map(data => (
                 <Publication data={data} />

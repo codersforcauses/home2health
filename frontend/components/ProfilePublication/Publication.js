@@ -7,11 +7,18 @@ class Publication extends Component {
         {/* {style} */}
         <a
           href="{this.props.data.link}"
-          style={{ fontSize: 20, textDecorationLine: 'underline' }}
+          style={{
+            fontSize: 17,
+            textDecorationLine: 'underline',
+            display: 'inline-block',
+            marginTop: '0.5em'
+          }}
         >
           {this.props.data.title}
         </a>
-        <p>{this.props.data.desc}</p>
+        <p style={{ display: 'block', marginBlockStart: '0em' }}>
+          {this.props.data.desc}
+        </p>
         {/* [
         {
           publicationName: '1st publication',
