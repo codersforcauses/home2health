@@ -162,7 +162,9 @@ class Header extends Component {
                       </li>
                       <li className="divider" />
                       <li>
-                        <a href=".">Medical recovery centre</a>
+                        <Link href="/medical-recovery-centre">
+                          <a>Medical recovery centre</a>
+                        </Link>
                       </li>
                       <li className="divider" />
                       <li>
@@ -340,7 +342,7 @@ class Header extends Component {
                         <a href=".">Outreach</a>
                       </li>
                       <li>
-                        <a href=".">Medical recovery centre</a>
+                        <a href=".">Medical Recovery Centre</a>
                       </li>
                       <li>
                         <a href="/resources">Resources</a>
