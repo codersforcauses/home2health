@@ -1,11 +1,11 @@
-var express = require('express')
-var router = express.Router()
+let express = require('express')
+let router = express.Router()
 const controllerPost = require('../controller/post')
 const Post = require('../models/post')
 const Comment = require('../models/comment')
 const User = require('../models/user')
-var mid = require('../middleware')
-var mongoose = require('mongoose')
+let mid = require('../middleware')
+let mongoose = require('mongoose')
 /*
   Post.js is used to find the specific post to display in post page (GET)
   
@@ -42,7 +42,7 @@ router.get('/', (request, response, next) => {
   const numberOfPost = 10 // WILL GIVE A MAXIMUM OF 10 POST
   const page = request.query.page
   controllerPost
-    .getPagePost(page, numberOfPost)
+    .getPagePost(page, numberOfPost, request.query.searchFilter)
     .then(data => {
       response.send(data)
     })
@@ -64,7 +64,7 @@ router.get('/:_pid/:_cid', (request, response, next) => {
 
 // ADD NEW POST
 router.post('/', mid.requiresLogin, (request, response, next) => {
-  var post = request.body
+  let post = request.body
   post.author = mongoose.Types.ObjectId(request.session.userId)
   controllerPost
     .addPost(post)
@@ -90,8 +90,8 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
     {author,details,datetime}
   */
 
-  var postParam = request.post
-  var comment = new Comment(request.body)
+  let postParam = request.post
+  let comment = new Comment(request.body)
   comment.post = request.post
   comment.author = mongoose.Types.ObjectId(request.session.userId)
   comment.save(function(err, comment) {
@@ -116,7 +116,7 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
 // DELETE SPECIFIC POST
 router.delete('/:_pid', mid.requiresLogin, (request, response, next) => {
   if (request.session.userId != request.post.author) {
-    var err = new Error('You are not the author of this post/comment.')
+    let err = new Error('You are not the author of this post/comment.')
     err.status = 401
     return next(err)
   }
@@ -138,7 +138,7 @@ router.delete('/:_pid', mid.requiresLogin, (request, response, next) => {
 // UPDATE SPECIFIC POST
 router.patch('/:_pid', mid.requiresLogin, (request, response, next) => {
   if (request.session.userId != request.post.author) {
-    var err = new Error('You are not the author of this post.')
+    let err = new Error('You are not the author of this post.')
     err.status = 401
     return next(err)
   }
@@ -154,11 +154,11 @@ router.patch('/:_pid', mid.requiresLogin, (request, response, next) => {
 // UPDATE SPECIFIC COMMENT
 router.patch('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
   if (request.session.userId != request.comment.author) {
-    var err = new Error('You are not the author of this comment.')
+    let err = new Error('You are not the author of this comment.')
     err.status = 401
     return next(err)
   }
-  var commentParam = request.comment
+  let commentParam = request.comment
   commentParam.update(request.body, function(err, result) {
     if (err) return next(err)
     response.json(result)
@@ -168,12 +168,12 @@ router.patch('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
 // DELETE SPECIFIC COMMENT
 router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
   if (request.session.userId != request.comment.author) {
-    var err = new Error('You are not the author of this comment.')
+    let err = new Error('You are not the author of this comment.')
     err.status = 401
     return next(err)
   }
-  var postParam = request.post
-  var commentParam = request.comment
+  let postParam = request.post
+  let commentParam = request.comment
   commentParam.remove(function(err) {
     if (err) return next(err)
     postParam.comments.pull(request.params._cid)

@@ -15,13 +15,15 @@ class PostForm extends React.Component {
   componentDidMount() {
     const context = this.context
     const { pathname } = Router
-    if (!context.authenticatedUser) {
+    if (!context.authenticatedUser && typeof window !== 'undefined') {
       context.actions.redirectToSignIn(pathname)
     }
     // SSR doesn't fire ComponentDidMount, so we import CKEditor inside of it and store it as a component prop
     //(From : https://github.com/ckeditor/ckeditor5-react/issues/36)
     this.CKEditor = require('@ckeditor/ckeditor5-react')
-    this.ClassicEditor = require('@ckeditor/ckeditor5-build-classic')
+    this.CustomBuild = require('@frinzekt/ckeditor5-build-classicinlinebase64')
+    this.ClassicEditor = this.CustomBuild.ClassicEditor
+
     this.setState({ isServer: false }) // We just do this to toggle a re-render
 
     // MATERIALIZE INITIALIZE
@@ -86,7 +88,7 @@ class PostForm extends React.Component {
         M.toast({ html: 'Successfully Created Post', classes: 'rounded green' })
 
         let postId = response.data._id
-        Router.push(`/post/${postId}`)
+        Router.push(`/post/[id]`, `/post/${postId}`)
       })
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
@@ -159,10 +161,6 @@ class PostForm extends React.Component {
                       editor={this.ClassicEditor}
                       placeholder="a"
                       data=""
-                      onInit={editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log('Editor is ready to use!', editor)
-                      }}
                       onChange={(event, editor) =>
                         this.directHandleChange('content', editor.getData())
                       }

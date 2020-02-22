@@ -21,11 +21,10 @@ export const PostPreview = ({
   datetime = 'datetime Missing',
   overview = 'Preview Details Missing',
   categories = ['#something1', 'Something2']
-  
 }) => {
   let date = new Date(datetime)
   return (
-    <Link href={`/post/[id]`} as={`/post/${_id}`}>
+    <Link prefetch as={`/post/${_id}`} href={`/post/[id]`}>
       <a>
         <div class="card hoverable post-preview blue-text text-darken-4">
           <div className="card-content ">

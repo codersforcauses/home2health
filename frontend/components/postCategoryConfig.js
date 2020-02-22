@@ -7,7 +7,7 @@ const postCategoryConfig = {
     },
     limit: Infinity,
     minLength: 1
-  } 
+  }
 }
 
 export default postCategoryConfig
