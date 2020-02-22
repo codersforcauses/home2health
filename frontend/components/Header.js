@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import { Consumer } from '../Context'
+
 class Header extends Component {
   render() {
     return (
@@ -35,7 +36,9 @@ class Header extends Component {
                       </li>
                       <li className="divider" />
                       <li>
-                        <a href=".">GP services</a>
+                        <Link href="/gp-services">
+                        <a>GP services</a>
+                        </Link>
                       </li>
                       <li className="divider" />
                       <li>
