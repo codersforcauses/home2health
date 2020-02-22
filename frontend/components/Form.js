@@ -19,11 +19,9 @@ export default props => {
       <form onSubmit={handleSubmit}>
         {elements()}
         <div className="pad-bottom">
-          <button className="button" type="submit">
+          <button className="btn" type="submit">
             {submitButtonText}
           </button>
-     
-          
         </div>
       </form>
     </div>

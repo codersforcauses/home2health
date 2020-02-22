@@ -2,7 +2,6 @@ import React from 'react'
 import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
-import Form from '../../components/Form'
 import { useRouter, withRouter } from 'next/router'
 
 import './post.css'
@@ -10,6 +9,7 @@ import Loader from '../../components/Loader'
 import postCategoryConfig from '../../components/postCategoryConfig'
 import PostModalSetting from '../../components/PostModalSetting'
 import AppContext, { Consumer } from '../../Context'
+import { Comments } from '../../components/Comments'
 
 const config = {
   toolbar: ['undo', 'redo'],
@@ -184,93 +184,6 @@ const PostArticle = props => {
       </div>
     </article>
   )
-}
-
-// POST CONTENT COMPONENT
-class Comments extends React.Component {
-  static contextType = AppContext
-  state = {
-    comment: '',
-    errors: [],
-    comments: this.props.comments,
-    authenticatedUser: this.props.authenticatedUser
-  }
-  static getDerivedStateFromProps({ comments, authenticatedUser }) {
-    return { comments, authenticatedUser }
-  }
-  formValid = ({ formErrors, ...rest }) => {
-    let valid = true
-
-    // validate form errors being empty
-    // if val.length > 0 THEN EXECUTE valid=false
-    //THIS PART COULD BE IMPLEMENTED IN THE PHASE OF THE HANDLECHANGE BY USING MULTIPLE LOGICAL STATEMENTS
-    Object.values(formErrors).forEach(val => {
-      val.length > 0 && (valid = false)
-    })
-
-    // validate the form was filled out
-    //THIS IS NOT ALWAYS NEEDED
-    Object.values(rest).forEach(val => {
-      val === null && (valid = false)
-    })
-
-    return valid
-  }
-
-  render() {
-    const { comment } = this.state
-    return (
-      <React.Fragment>
-        {this.state.authenticatedUser ? (
-          <Form
-            submit={() => this.props.createComment(comment)}
-            submitButtonText="Create comment"
-            errors={this.state.errors}
-            elements={() => (
-              <React.Fragment>
-                <textarea
-                  id="comment"
-                  name="comment"
-                  type="text"
-                  value={comment}
-                  onChange={this.change}
-                  placeholder="Comment"
-                />
-              </React.Fragment>
-            )}
-          />
-        ) : (
-          <div>
-            <b>Please sign in</b>
-            <br />
-            <br />
-          </div>
-        )}
-
-        {this.state.comments.map(comment => (
-          <div>
-            {comment.content}
-            <br />
-            {comment.authorName}
-            <br />
-            {comment.createdAt}
-            <br />
-            <br />
-          </div>
-        ))}
-      </React.Fragment>
-    )
-  }
-  change = event => {
-    const name = event.target.name
-    const value = event.target.value
-
-    this.setState(() => {
-      return {
-        [name]: value
-      }
-    })
-  }
 }
 
 //STATEFUL OBJECT FOR A POST
