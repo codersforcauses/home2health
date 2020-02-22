@@ -22,9 +22,8 @@ export default props => {
           <button className="button" type="submit">
             {submitButtonText}
           </button>
-          <button className="button button-secondary" onClick={handleCancel}>
-            Cancel
-          </button>
+     
+          
         </div>
       </form>
     </div>

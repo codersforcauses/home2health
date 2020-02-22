@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
 import { Consumer } from '../Context'
+
 class Header extends Component {
   state = {
-    hospitalProgramsHover: false
+    hospitalProgramsHover: false,
+    dualDiagnosisServicesHover: false
   }
   handleEnterHover = hoverName => {
     this.setState({
@@ -41,7 +43,9 @@ class Header extends Component {
                     </a>
                     <ul id="happeningDropdown" className="dropdown-content">
                       <li>
-                        <a href=".">Housing first programs</a>
+                        <Link href="/housingprograms">
+                          <a>Housing first programs</a>
+                        </Link>
                       </li>
                       <li className="divider" />
                       <ul className="collapsible">
@@ -57,7 +61,6 @@ class Header extends Component {
                             className="collapsible-header"
                             id="hospitalPrograms"
                             style={{ color: '#26a69a' }}
-                            // color="#26a69a"
                           >
                             Hospital Programs
                             <span class="extender">&#9662;</span>
@@ -98,12 +101,60 @@ class Header extends Component {
                       </ul>
 
                       <li>
-                        <a href=".">GP services</a>
+                        <Link href="/gp-services">
+                        <a>GP services</a>
+                        </Link>
                       </li>
                       <li className="divider" />
-                      <li>
-                        <a href=".">Dual diagnosis services</a>
-                      </li>
+
+                      <ul class="collapsible">
+                        <li
+                          onMouseEnter={() =>
+                            this.handleEnterHover('dualDiagnosisServices')
+                          }
+                          onMouseLeave={() =>
+                            this.handleLeaveHover('dualDiagnosisServices')
+                          }
+                        >
+                          <div
+                            className="collapsible-header"
+                            id="dual-diagnosis-services"
+                            style={{ color: '#26a69a' }}
+                          >
+                            Dual Diagnosis Services
+                            <span class="extender">&#9662;</span>
+                          </div>
+                          <div
+                            className="collapsible-body"
+                            style={{
+                              display: `${
+                                this.state.dualDiagnosisServicesHover
+                                  ? 'block'
+                                  : 'none'
+                              }`,
+                              padding: 10
+                            }}
+                          >
+                            <Link href="/Dual-Diagnosis-Services/HODDS">
+                              <a className="links">HODDS</a>
+                            </Link>
+                            <p className="divider" />
+                            <Link href="/Dual-Diagnosis-Services/CHOPS">
+                              <a className="links">CHOPS</a>
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+                      {/* <a
+                          class="dropdown-button"
+                          data-activates="dropdown2"
+                          data-hover="hover"
+                          data-alignment="left"
+                        >
+                          Dual Diagnosis Services
+                          <span class="right-triangle">&#9656;</span>
+                        </a> */}
+
                       <li className="divider" />
                       <li>
                         <a href=".">Peer worker programs</a>
@@ -114,7 +165,9 @@ class Header extends Component {
                       </li>
                       <li className="divider" />
                       <li>
-                        <a href=".">Medical recovery centre</a>
+                        <Link href="/medical-recovery-centre">
+                          <a>Medical recovery centre</a>
+                        </Link>
                       </li>
                       <li className="divider" />
                       <li>
@@ -281,16 +334,20 @@ class Header extends Component {
                         <a href=".">GP services</a>
                       </li>
                       <li>
-                        <a href=".">Dual diagnosis services</a>
+                        <Link href="/Dual-Diagnosis-Services">
+                          <a>Dual diagnosis services</a>
+                        </Link>
                       </li>
                       <li>
                         <a href=".">Peer worker programs</a>
                       </li>
                       <li>
-                        <a href=".">Outreach</a>
+                        <Link href="/outreach">
+                          <a>Outreach</a>
+                        </Link>
                       </li>
                       <li>
-                        <a href=".">Medical recovery centre</a>
+                        <a href=".">Medical Recovery Centre</a>
                       </li>
                       <li>
                         <a href="/resources">Resources</a>
@@ -327,10 +384,14 @@ class Header extends Component {
                     </a>
                     <ul id="blogDropdownMobile" className="dropdown-content">
                       <li>
-                        <a href="/posts">Posts</a>
+                        <Link href="/posts/1">
+                          <a>Posts</a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="/posts/form">Create Form</a>
+                        <Link href="/posts/form">
+                          <a>Create Post</a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
