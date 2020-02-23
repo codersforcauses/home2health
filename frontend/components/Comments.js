@@ -38,7 +38,6 @@ export class Comments extends React.Component {
     const { comment } = this.state
     return (
       <React.Fragment>
-        {style}
         <div className="container">
           <h4>Comments</h4>
           {this.state.authenticatedUser ? (
@@ -105,7 +104,7 @@ export class Comments extends React.Component {
                       <a className="btn-floating waves-effect waves-light ">
                         <i className="large material-icons">more_vert</i>
                       </a>
-                      <ul className="comment-options">
+                      <ul style={{ marginTop: 15 }}>
                         <li>
                           <a className="btn-floating green">
                             <i className="material-icons">mode_edit</i>
@@ -143,11 +142,3 @@ export class Comments extends React.Component {
     })
   }
 }
-
-const style = (
-  <style jsx="true">{`
-    .comment-options {
-      margin-top: 15px;
-    }
-  `}</style>
-)
