@@ -2,6 +2,7 @@ import React from 'react'
 import Form from './Form'
 import AppContext from '../Context'
 // POST CONTENT COMPONENT
+
 export class Comments extends React.Component {
   static contextType = AppContext
   state = {
@@ -12,6 +13,11 @@ export class Comments extends React.Component {
   }
   static getDerivedStateFromProps({ comments, authenticatedUser }) {
     return { comments, authenticatedUser }
+  }
+
+  componentDidMount() {
+    let elems = document.querySelectorAll('.fixed-action-btn')
+    let instances = M.FloatingActionButton.init(elems, { direction: 'left' })
   }
   formValid = ({ formErrors, ...rest }) => {
     let valid = true
@@ -32,6 +38,7 @@ export class Comments extends React.Component {
     const { comment } = this.state
     return (
       <React.Fragment>
+        {style}
         <div className="container">
           <h4>Comments</h4>
           {this.state.authenticatedUser ? (
@@ -41,7 +48,7 @@ export class Comments extends React.Component {
               errors={this.state.errors}
               elements={() => (
                 <React.Fragment>
-                  <div class="input-field col s12">
+                  <div className="input-field col s12">
                     <textarea
                       id="comment"
                       name="comment"
@@ -52,7 +59,8 @@ export class Comments extends React.Component {
                       style={{
                         width: '100%',
                         resize: 'vertical',
-                        minHeight: '150px'
+                        minHeight: '150px',
+                        padding: 15
                       }}
                     />
                   </div>
@@ -64,7 +72,9 @@ export class Comments extends React.Component {
               <p>
                 <b>Please sign in</b>
               </p>
-              <a className="btn">Login</a>
+              <Link href="/login">
+                <a className="btn">Login</a>
+              </Link>
             </div>
           )}
           <br />
@@ -72,27 +82,51 @@ export class Comments extends React.Component {
             const date = new Date(comment.createdAt)
 
             return (
-              <div className="card">
-                <div
-                  className="card-content grey lighten-4"
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                  }}
-                >
-                  <div className="">
-                    <span style={{ marginRight: 10 }}>
-                      <b>{comment.authorName}</b>
-                    </span>
-                    {date.toDateString()}
+              <React.Fragment>
+                <div className="card" key={comment._id}>
+                  <div
+                    className="card-content grey lighten-4"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <div className="">
+                      <span style={{ marginRight: 10 }}>
+                        <b>{comment.authorName}</b>
+                      </span>
+                      {date.toDateString()}
+                    </div>
+                    <div
+                      className="fixed-action-btn horizontal"
+                      style={{ position: 'static' }}
+                    >
+                      <a className="btn-floating waves-effect waves-light ">
+                        <i className="large material-icons">more_vert</i>
+                      </a>
+                      <ul className="comment-options">
+                        <li>
+                          <a className="btn-floating green">
+                            <i className="material-icons">mode_edit</i>
+                          </a>
+                        </li>
+                        <li>
+                          <a className="btn-floating yellow darken-1">
+                            <i className="material-icons">info</i>
+                          </a>
+                        </li>
+                        <li>
+                          <a className="btn-floating red">
+                            <i className="material-icons">delete</i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <a class="btn-floating waves-effect waves-light right-align">
-                    <i class="material-icons">more_vert</i>
-                  </a>
+                  <div className="card-content">{comment.content}</div>
                 </div>
-                <div className="card-content">{comment.content}</div>
-              </div>
+              </React.Fragment>
             )
           })}
         </div>
@@ -109,3 +143,11 @@ export class Comments extends React.Component {
     })
   }
 }
+
+const style = (
+  <style jsx="true">{`
+    .comment-options {
+      margin-top: 15px;
+    }
+  `}</style>
+)
