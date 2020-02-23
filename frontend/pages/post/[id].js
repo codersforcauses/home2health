@@ -438,13 +438,9 @@ class LongPost extends React.Component {
           classes: 'rounded green'
         })
         let comments = this.state.comments
-        for (let i = 0; i < comments.length; i++) {
-          if (comments[i]._id == commentID) {
-            comments[i].content = comment
-          }
-          this.setState({ comments: comments })
-        }
-        this.setState({})
+        const index = comments.findIndex(comment => comment._id == commentID)
+        comments[index].content = comment
+        this.setState({ comments: comments })
       })
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
