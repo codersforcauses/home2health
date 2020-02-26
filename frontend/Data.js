@@ -49,6 +49,10 @@ export default class Data {
         throw new Error()
       }
     } catch (e) {
+      console.error(e)
+      if (e.response && e.response.data) {
+        return e.response.data.errors
+      }
       return null
     }
   }
@@ -63,7 +67,10 @@ export default class Data {
         throw new Error()
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
+      if (e.response && e.response.data) {
+        return e.response.data.errors
+      }
       return null
     }
   }
@@ -81,7 +88,11 @@ export default class Data {
         throw new Error(response.message)
       }
     } catch (e) {
-      return e.response.data.errors
+      console.error(e)
+      if (e.response && e.response.data) {
+        return e.response.data.errors
+      }
+      return null
     }
   }
   async createPost(post) {
@@ -97,8 +108,11 @@ export default class Data {
         throw new Error(response.message)
       }
     } catch (e) {
-      console.log(e)
-      return e.response.data.errors
+      console.error(e)
+      if (e.response && e.response.data) {
+        return e.response.data.errors
+      }
+      return null
     }
   }
   async createComment(comment) {
@@ -114,14 +128,17 @@ export default class Data {
         throw new Error(response.message)
       }
     } catch (e) {
-      console.log(e)
-      return e.response.data.errors
+      console.error(e)
+      if (e.response && e.response.data) {
+        return e.response.data.errors
+      }
+      return null
     }
   }
   async deleteComment(postID, commentID) {
     try {
       const response = await this.api(
-        'post/' + postID + '/' + commentID,
+        `post/${postId}/${commentID}`,
         'DELETE',
         null
       )
@@ -135,17 +152,18 @@ export default class Data {
         throw new Error(response.message)
       }
     } catch (e) {
-      console.log(e)
-      return e.response.data.errors
+      console.error(e)
+      if (e.response && e.response.data) {
+        return e.response.data.errors
+      }
+      return null
     }
   }
   async editComment(postID, commentID, comment) {
     try {
-      const response = await this.api(
-        'post/' + postID + '/' + commentID,
-        'PATCH',
-        { content: comment }
-      )
+      const response = await this.api(`post/${postId}/${commentID}`, 'PATCH', {
+        content: comment
+      })
       if (response.status === 200) {
         return response
       } else if (response.status === 400) {
@@ -156,8 +174,11 @@ export default class Data {
         throw new Error(response.message)
       }
     } catch (e) {
-      console.log(e)
-      return e.response.data.errors
+      console.error(e)
+      if (e.response && e.response.data) {
+        return e.response.data.errors
+      }
+      return null
     }
   }
 }

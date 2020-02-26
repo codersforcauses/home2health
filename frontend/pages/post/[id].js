@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Form from '../../components/Form'
 import Comment from '../../components/Comment'
 import { useRouter, withRouter } from 'next/router'
+import Data from '../../Data'
 
 import './post.css'
 import Loader from '../../components/Loader'
@@ -387,7 +388,7 @@ class LongPost extends React.Component {
     }
   }
   createComment = comment => {
-    this.context.actions
+    new Data()
       .createComment({
         content: comment,
         author: this.state.authenticatedUser._id,
@@ -405,12 +406,11 @@ class LongPost extends React.Component {
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
         console.log(err)
-        //(err)
       })
   }
 
   deleteComment = (postID, commentID) => {
-    this.context.actions
+    new Data()
       .deleteComment(postID, commentID)
       .then(response => {
         M.toast({
@@ -426,11 +426,10 @@ class LongPost extends React.Component {
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
         console.log(err)
-        //(err)
       })
   }
   editComment = async (postID, commentID, comment) => {
-    await this.context.actions
+    await new Data()
       .editComment(postID, commentID, comment)
       .then(response => {
         M.toast({
