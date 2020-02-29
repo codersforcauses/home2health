@@ -20,4 +20,11 @@ commentSchema.method("update", function(updates, callback) {
   Object.assign(this, updates, {updatedAt: new Date()});
   this.save(callback);
 });
-module.exports = mongoose.model('Comment', commentSchema)
+commentSchema.statics.getComment = function(request, response, next, id) {
+  return new Promise(async (resolve, reject) => {
+    const doc = await Comment.findById(id)
+    resolve(doc)
+  })
+}
+var Comment = mongoose.model('Comment', commentSchema)
+module.exports = Comment
