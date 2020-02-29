@@ -187,7 +187,7 @@ router.patch('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
   let commentParam = request.comment
   commentParam.update(request.body, function(err, result) {
     if (err) return next(err)
-    response.status(200).json(result)
+    response.json(result)
   })
 })
 
@@ -210,7 +210,7 @@ router.delete('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
         user.comments.pull(request.params._cid)
         user.save(function(err, user) {
           if (err) return next(err)
-          response.status(204).json(post)
+          response.status(201).json(post)
         })
       } catch (err) {
         return next(err)

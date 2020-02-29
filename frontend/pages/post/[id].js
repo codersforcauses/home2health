@@ -3,7 +3,6 @@ import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import Form from '../../components/Form'
-import Comment from '../../components/Comment'
 import { useRouter, withRouter } from 'next/router'
 import Data from '../../Data'
 
@@ -250,25 +249,15 @@ class Comments extends React.Component {
         )}
 
         {this.state.comments.map(comment => (
-          <Comment
-            content={comment.content}
-            authorName={comment.authorName}
-            createdAt={comment.createdAt}
-            canEditOrDelete={
-              this.state.authenticatedUser &&
-              comment.author == this.state.authenticatedUser._id
-            }
-            deleteComment={() =>
-              this.props.deleteComment(this.props.postID, comment._id)
-            }
-            editComment={async editValue =>
-              await this.props.editComment(
-                this.props.postID,
-                comment._id,
-                editValue
-              )
-            }
-          ></Comment>
+          <div>
+            {comment.content}
+            <br />
+            {comment.authorName}
+            <br />
+            {comment.createdAt}
+            <br />
+            <br />
+          </div>
         ))}
       </React.Fragment>
     )
@@ -489,10 +478,7 @@ class LongPost extends React.Component {
         <Comments
           comments={this.state.comments}
           createComment={this.createComment}
-          deleteComment={this.deleteComment}
-          editComment={this.editComment}
           authenticatedUser={this.state.authenticatedUser}
-          postID={this.state.id}
         ></Comments>
         <PostModalSetting
           postId={this.state.id}

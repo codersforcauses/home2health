@@ -9,58 +9,114 @@
 .icon-block {
   padding: 0 15px;
 }
+
 .icon-block .material-icons {
   font-size: inherit;
 }
+
 h5 {
   font-size: 1.25rem;
 }
+
 nav {
   box-shadow: none;
   border-bottom: 1px solid #d6d8da !important;
 }
+
 nav .brand-logo {
   font-size: 1.5rem;
   font-weight: 600;
 }
+
 nav .brand-logo,
 nav ul a,
 nav a.sidenav-trigger,
 nav a.dropdown-trigger,
+nav .collapsible,
 nav a.navitem {
   color: #0f6489;
 }
+
 .sidenav {
   background-color: #c1ffe3;
 }
+
 body {
   font-family: Lato, sans-serif;
 }
+
 .grey.lighten-1 {
   background-color: rgb(247, 246, 244) !important;
 }
+
 .contactrow {
   margin: 0 0;
 }
+
 footer.page-footer {
   background-color: #0f6489;
   color: white;
   padding: 0;
+  border-top: 80px solid white;
 }
+
 #index-banner {
   height: calc(80vh - 63px);
 }
+
 #send-message-button {
   background-color: #26a69a;
 }
+
 .btn-large {
   text-transform: none;
 }
+
 .partner-div {
   max-height: 50%;
   vertical-align: middle;
 }
+
 .partner-img {
   max-height: 50%;
-  max-width: 100%;
+  max-width: 30%;
+}
+
+.logo-img {
+  max-height: 300px;
+  max-width: 800px;
+}
+
+.card a {
+  color: #0f6489 !important;
+}
+
+.card a:hover {
+  color: #0f648980 !important;
+}
+
+/* Dropdown content For Nested Dropdowns */
+.dropdown-nested {
+  overflow-y: visible;
+}
+
+.dropdown-content .dropdown-content {
+  margin-left: 100%;
+}
+
+.right-triangle {
+  float: right;
+}
+
+.extender {
+  float: right
+}
+
+.collapsible-body .links {
+  /* padding: 10px 0px 10px 0px */
+}
+
+.collapsible {
+  margin: 0px;
+  border: 0px
 }
