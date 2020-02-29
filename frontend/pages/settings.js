@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import SEO from '../components/SEO'
 
 const SettingsPage = props => {
   // react state for these shits
@@ -9,6 +10,7 @@ const SettingsPage = props => {
 
   return (
     <>
+      <SEO title={`Home2Health - Profile`}></SEO>
       <div className="container">
         <div className="row">
           <div style={{ padding: '0 0.75rem' }}>

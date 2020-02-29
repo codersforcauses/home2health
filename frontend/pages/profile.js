@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SEO from "../components/SEO"
 import AppContext, { Consumer } from '../Context'
 import Router from 'next/router'
 import Link from 'next/link'
@@ -15,6 +16,7 @@ export default class Profile extends Component {
   render() {
     return (
       <Consumer>
+        <SEO title={`Home2Health - Profile`}></SEO>
         {context => {
           if (context.authenticatedUser) {
             return (

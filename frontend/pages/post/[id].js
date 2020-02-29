@@ -1,4 +1,5 @@
 import React from 'react'
+import SEO from '../../components/SEO'
 import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
@@ -412,6 +413,7 @@ class LongPost extends React.Component {
     })
     return this.state.loaded ? (
       <div>
+        <SEO title={`Home2Health - ${this.state.data.title}`}></SEO>
         {userId === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
           <React.Fragment>
             <PostLandingEdittable

@@ -1,4 +1,5 @@
 import React from 'react'
+import SEO from '../../components/SEO'
 import Router from 'next/router'
 import '../../components/post-form.css'
 import postCategoryConfig from '../../components/postCategoryConfig'
@@ -99,6 +100,7 @@ class PostForm extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <SEO title={`Home2Health - Create a Post`}></SEO>
         <div className="card white darken-1 form">
           <div className="container" style={{ padding: 10 }}>
             <form className="col s12" onSubmit={this.submitHandler}>
