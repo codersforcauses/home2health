@@ -4,16 +4,50 @@ import { Consumer } from '../Context'
 
 const links = {
   housingFirstPrograms: '/housingprograms',
-  hospitalPrograms: ['/RoyalPerthHospital', '#', '#', '#'],
+  hospitalPrograms: [
+    {
+      link: '/RoyalPerthHospital',
+      name: 'Royal Perth Hospital'
+    },
+    {
+      link: '#',
+      name: "St Vincent's Hospital Melbourne"
+    },
+    {
+      link: '#',
+      name: "St Vincent's Hospital Sydney"
+    },
+    {
+      link: '#',
+      name: 'Katherine Hospital'
+    }
+  ],
   gpServices: '/gp-services',
   dualDiagnosisServices: [
-    '/Dual-Diagnosis-Services/HODDS',
-    '/Dual-Diagnosis-Services/CHOPS'
+    {
+      link: '/Dual-Diagnosis-Services/HODDS',
+      name: 'HODDS'
+    },
+    {
+      link: '/Dual-Diagnosis-Services/CHOPS',
+      name: 'CHOPS'
+    }
   ],
   peerWorkerPrograms: '/peer-worker-programs',
   outreach: '/outreach',
   medicalRecoveryCentre: '/medical-recovery-centre',
   resources: '/resources'
+}
+
+const MultiLinks = ({ linkObjects }) => {
+  return linkObjects.map(({ link, name }, i) => (
+    <React.Fragment key={name}>
+      <Link href={link}>
+        <a className="links">{name}</a>
+      </Link>
+      {linkObjects.length - 1 > i && <p className="divider" />}
+    </React.Fragment>
+  ))
 }
 
 const DesktopHeaderLinks = props => (
@@ -56,21 +90,7 @@ const DesktopHeaderLinks = props => (
               padding: 10
             }}
           >
-            <Link href={links.hospitalPrograms[0]}>
-              <a className="links">Royal Perth Hospital</a>
-            </Link>
-            <p className="divider" />
-            <Link href={links.hospitalPrograms[1]}>
-              <a className="links">St Vincent's Hospital Melbourne</a>
-            </Link>
-            <p className="divider" />
-            <Link href={links.hospitalPrograms[2]}>
-              <a className="links">St Vincent's Hospital Sydney</a>
-            </Link>
-            <p className="divider" />
-            <Link href={links.hospitalPrograms[3]}>
-              <a className="links">Katherine Hospital</a>
-            </Link>
+            <MultiLinks linkObjects={links.hospitalPrograms}></MultiLinks>
           </div>
         </li>
       </ul>
@@ -104,13 +124,7 @@ const DesktopHeaderLinks = props => (
               padding: 10
             }}
           >
-            <Link href={links.dualDiagnosisServices[0]}>
-              <a className="links">HODDS</a>
-            </Link>
-            <p className="divider" />
-            <Link href={links.dualDiagnosisServices[1]}>
-              <a className="links">CHOPS</a>
-            </Link>
+            <MultiLinks linkObjects={links.dualDiagnosisServices}></MultiLinks>
           </div>
         </li>
       </ul>
@@ -231,21 +245,7 @@ const MobileHeaderLinks = props => (
               padding: 10
             }}
           >
-            <Link href={links.hospitalPrograms[0]}>
-              <a className="links">Royal Perth Hospital</a>
-            </Link>
-            <p className="divider" />
-            <Link href={links.hospitalPrograms[1]}>
-              <a className="links">St Vincent's Hospital Melbourne</a>
-            </Link>
-            <p className="divider" />
-            <Link href={links.hospitalPrograms[2]}>
-              <a className="links">St Vincent's Hospital Sydney</a>
-            </Link>
-            <p className="divider" />
-            <Link href={links.hospitalPrograms[3]}>
-              <a className="links">Katherine Hospital</a>
-            </Link>
+            <MultiLinks linkObjects={links.hospitalPrograms}></MultiLinks>
           </div>
         </li>
       </ul>
@@ -276,13 +276,9 @@ const MobileHeaderLinks = props => (
                 padding: 10
               }}
             >
-              <Link href={links.dualDiagnosisServices[0]}>
-                <a className="links">HODDS</a>
-              </Link>
-              <p className="divider" />
-              <Link href={links.dualDiagnosisServices[1]}>
-                <a className="links">CHOPS</a>
-              </Link>
+              <MultiLinks
+                linkObjects={links.dualDiagnosisServices}
+              ></MultiLinks>
             </div>
           </li>
         </ul>
