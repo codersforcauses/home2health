@@ -8,21 +8,28 @@ class Layout extends Component {
   render() {
     return (
       <Fragment>
+        {style}
         <Head />
-        <div
-          style={{
-            display: 'flex',
-            minHeight: '100vh',
-            flexDirection: 'column'
-          }}
-        >
-          <Header />
-          <div style={{ flex: '1 0 auto' }}>{this.props.children}</div>
-          <Footer />
-        </div>
+        <Header />
+        <main>{this.props.children}</main>
+        <Footer />
       </Fragment>
     )
   }
 }
+
+const style = (
+  <style jsx="true">{`
+    #__next {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+  `}</style>
+)
 
 export default Layout

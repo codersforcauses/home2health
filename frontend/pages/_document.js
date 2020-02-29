@@ -22,6 +22,10 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/icon?family=Material+Icons|Lato:400,700&display=swap"
             rel="stylesheet"
           />
+          <script
+            src="https://kit.fontawesome.com/4cbc89a501.js"
+            crossorigin="anonymous"
+          ></script>
         </Head>
         <body>
           <Main />

@@ -5,29 +5,27 @@ const Partners = () => (
     {style}
     <div className="section white lighten-1">
       <h4 className="center">Our partners</h4>
-      <div className="container">
-        <div className="row partner-row partner-row-background">
-          <img
-            alt="Royal Perth Hospital logo"
-            className="partner-img"
-            src="/logos/partner-rph.jpeg"
-          />
-          <img
-            alt="Coders for Causes logo"
-            className="partner-img"
-            src="/logos/partner-cfc.png"
-          />
-          <img
-            alt="Homeless Healthcare logo"
-            className="partner-img"
-            src="/logos/partner-hh.png"
-          />
-          <img
-            alt="UWA logo"
-            className="partner-img"
-            src="/logos/partner-uwa.jpeg"
-          />
-        </div>
+      <div className="row partner-row partner-row-background">
+        <img
+          alt="Royal Perth Hospital logo"
+          className="partner-img"
+          src="/logos/partner-rph.jpeg"
+        />
+        <img
+          alt="Coders for Causes logo"
+          className="partner-img"
+          src="/logos/partner-cfc.png"
+        />
+        <img
+          alt="Homeless Healthcare logo"
+          className="partner-img"
+          src="/logos/partner-hh.png"
+        />
+        <img
+          alt="UWA logo"
+          className="partner-img"
+          src="/logos/partner-uwa.jpeg"
+        />
       </div>
     </div>
   </>
@@ -44,8 +42,6 @@ const style = (
         align-items: center;
       }
       .partner-img {
-        max-width: 30%;
-        height: auto;
       }
     `}
   </style>
