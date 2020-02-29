@@ -5,7 +5,7 @@ import Publication from './Publication'
 const datas = [
   { title: 'Publication1', desc: 'Description1!', link: 'google.com' },
 
-  { title: 'Publication2', desc: 'Description2!', link: 'google.com' }
+  { title: 'Publication2', desc: 'Description2!', link: 'unsplash.com' }
 ]
 
 class ProfilePublication extends Component {
@@ -18,7 +18,7 @@ class ProfilePublication extends Component {
             <h4 style={{ margin: '0', color: '#0f6489' }}>Publications</h4>
             <div>
               {datas.map(data => (
-                <Publication data={data} />
+                <Publication key={data.link} data={data} />
               ))}
             </div>
           </div>

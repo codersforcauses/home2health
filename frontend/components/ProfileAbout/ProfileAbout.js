@@ -20,7 +20,7 @@ const ProfileAbout = props => {
 }
 
 const style = (
-  <style jsx>{`
+  <style jsx="true">{`
     .profileContent {
       padding: 2rem;
       border-radius: 0.3rem;

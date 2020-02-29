@@ -3,10 +3,9 @@ import React, { Component } from 'react'
 class Publication extends Component {
   render() {
     return (
-      <>
-        {/* {style} */}
+      <div>
         <a
-          href="{this.props.data.link}"
+          href={this.props.data.link}
           style={{
             fontSize: 17,
             textDecorationLine: 'underline',
@@ -19,28 +18,9 @@ class Publication extends Component {
         <p style={{ display: 'block', marginBlockStart: '0em' }}>
           {this.props.data.desc}
         </p>
-        {/* [
-        {
-          publicationName: '1st publication',
-          description: 'about the publication one'
-        },
-
-        {
-          publicationName: '2nd publication',
-          description: 'about the publication two'
-        }
-      ] */}
-      </>
+      </div>
     )
   }
 }
-
-// const style = (
-//   <style jsx="true">{`
-//     .publication {
-//       font-size: 30px;
-//     }
-//   `}</style>
-// )
 
 export default Publication
