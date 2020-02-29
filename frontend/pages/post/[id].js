@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import Form from '../../components/Form'
 import { useRouter, withRouter } from 'next/router'
+import Data from '../../Data'
 
 import './post.css'
 import Loader from '../../components/Loader'
@@ -376,7 +377,7 @@ class LongPost extends React.Component {
     }
   }
   createComment = comment => {
-    this.context.actions
+    new Data()
       .createComment({
         content: comment,
         author: this.state.authenticatedUser._id,
@@ -390,6 +391,44 @@ class LongPost extends React.Component {
         this.setState(prevState => ({
           comments: [...prevState.comments, response.data]
         }))
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+      })
+  }
+
+  deleteComment = (postID, commentID) => {
+    new Data()
+      .deleteComment(postID, commentID)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Deleted Comment',
+          classes: 'rounded green'
+        })
+        this.setState(prevState => ({
+          comments: prevState.comments.filter(
+            comment => comment._id != commentID
+          )
+        }))
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+      })
+  }
+  editComment = async (postID, commentID, comment) => {
+    await new Data()
+      .editComment(postID, commentID, comment)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Edited Comment',
+          classes: 'rounded green'
+        })
+        let comments = this.state.comments
+        const index = comments.findIndex(comment => comment._id == commentID)
+        comments[index].content = comment
+        this.setState({ comments: comments })
       })
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
