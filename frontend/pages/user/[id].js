@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import ProfileSummary from '../../components/ProfileSummary'
 import ProfileAbout from '../../components/ProfileAbout'
 
+import ProfilePublication from '../../components/ProfilePublication'
 import profileData from '../../public/data/example.json'
 
 const ProfilePage = () => {
@@ -16,6 +17,7 @@ const ProfilePage = () => {
       <div className="container profile-container">
         <ProfileSummary profile={profileData} />
         <ProfileAbout profile={profileData} />
+        <ProfilePublication />
       </div>
     </>
   )
