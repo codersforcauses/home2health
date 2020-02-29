@@ -21,7 +21,7 @@ class Comment extends Component {
           {this.props.authorName}
           <br />
           {this.props.createdAt}{' '}
-          {this.props.canEditOrDelete ? (
+          {this.props.canEditOrDelete && (
             <React.Fragment>
               <span
                 onClick={() => {
@@ -33,7 +33,7 @@ class Comment extends Component {
                 {this.state.textfieldOpen ? 'Cancel' : 'Edit'}
               </span>
               |<span onClick={this.props.deleteComment}>Delete</span>
-              {this.state.textfieldOpen ? (
+              {this.state.textfieldOpen && (
                 <Form
                   submit={async () => {
                     await this.props.editComment(this.state.editValue)
@@ -54,12 +54,8 @@ class Comment extends Component {
                     </React.Fragment>
                   )}
                 />
-              ) : (
-                <div></div>
               )}
             </React.Fragment>
-          ) : (
-            <React.Fragment></React.Fragment>
           )}
           <br />
           <br />
