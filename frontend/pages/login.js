@@ -46,6 +46,7 @@ export default class UserSignIn extends Component {
     return (
       <div className="container" style={{ width: '50rem' }}>
         <div className="grid-33 centered signin" style={{ marginTop: '10rem' }}>
+          <h4>Log In</h4>
           <Form
             cancel={cancel}
             errors={errors}
@@ -53,22 +54,26 @@ export default class UserSignIn extends Component {
             submitButtonText="Login"
             elements={() => (
               <React.Fragment>
-                <input
-                  id="email"
-                  name="email"
-                  type="text"
-                  value={email}
-                  onChange={this.change}
-                  placeholder="Email"
-                />
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={this.change}
-                  placeholder="Password"
-                />
+                <div className="input-field">
+                  <input
+                    id="email"
+                    name="email"
+                    type="text"
+                    value={email}
+                    onChange={this.change}
+                  />
+                  <label for="email">Email</label>
+                </div>
+                <div className="input-field">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={this.change}
+                  />
+                  <label for="password">Password</label>
+                </div>
               </React.Fragment>
             )}
           />

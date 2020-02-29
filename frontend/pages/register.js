@@ -71,6 +71,7 @@ export default class UserSignUp extends Component {
                   className="grid-33 centered signin"
                   style={{ marginTop: '10rem' }}
                 >
+                  <h4>Sign Up</h4>
                   <Form
                     cancel={this.cancel}
                     errors={errors}
@@ -78,30 +79,38 @@ export default class UserSignUp extends Component {
                     submitButtonText="Sign Up"
                     elements={() => (
                       <React.Fragment>
-                        <input
-                          id="name"
-                          name="name"
-                          type="text"
-                          value={name}
-                          onChange={this.change}
-                          placeholder="Name"
-                        />
-                        <input
-                          id="email"
-                          name="email"
-                          type="text"
-                          value={email}
-                          onChange={this.change}
-                          placeholder="Email"
-                        />
-                        <input
-                          id="password"
-                          name="password"
-                          type="password"
-                          value={password}
-                          onChange={this.change}
-                          placeholder="Password"
-                        />
+                        <div className="input-field">
+                          <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={name}
+                            onChange={this.change}
+                          />
+                          <label for="name">Name</label>
+                        </div>
+                        <div className="input-field">
+                          <input
+                            id="email"
+                            name="email"
+                            type="text"
+                            value={email}
+                            onChange={this.change}
+                            placeholder="Email"
+                          />
+                          <label for="email">Email</label>
+                        </div>
+                        <div className="input-field">
+                          <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            value={password}
+                            onChange={this.change}
+                            placeholder="Password"
+                          />
+                          <label for="password">Password</label>
+                        </div>
                       </React.Fragment>
                     )}
                   />
