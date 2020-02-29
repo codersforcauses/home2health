@@ -61,20 +61,6 @@ router.get('/:_pid', async (request, response, next) => {
       body.comments[i]
     )
     body.comments[i] = comment.toObject()
-    const author = await User.getUser(
-      request,
-      response,
-      next,
-      body.comments[i].author
-    )
-    body.comments[i].authorName = author.name
-    // body.comments[i].author = await User.getUser(
-    //   request,
-    //   response,
-    //   next,
-    //   body.comments[i].author
-    // )
-    // body.comments[i].author = body.comments[i].author.name
   }
   body.author = user
   response.send(body)
@@ -86,13 +72,14 @@ router.get('/:_pid/:_cid', (request, response, next) => {
 })
 
 // ADD NEW POST
-router.post('/', mid.requiresLogin, (request, response, next) => {
+router.post('/', mid.requiresLogin, async (request, response, next) => {
   let post = request.body
   post.author = mongoose.Types.ObjectId(request.session.userId)
+  const user = await User.getCurrentUser(request, response, next)
+  post.authorName = user.name
   controllerPost
     .addPost(post)
-    .then(async function(data) {
-      const user = await User.getCurrentUser(request, response, next)
+    .then(function(data) {
       user.posts.push(mongoose.Types.ObjectId(data._id))
       user.save(function(err, user) {
         console.log(err)
@@ -108,7 +95,7 @@ router.post('/', mid.requiresLogin, (request, response, next) => {
 })
 
 // ADD COMMENT TO POST
-router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
+router.post('/:_pid', mid.requiresLogin, async (request, response, next) => {
   /*  Comment / Payload / Body Structure
     {author,details,datetime}
   */
@@ -118,13 +105,14 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
   comment.content = request.body.content
   comment.post = request.post
   comment.author = mongoose.Types.ObjectId(request.session.userId)
+  const user = await User.getCurrentUser(request, response, next)
+  comment.authorName = user.name
   comment.save(function(err, comment) {
     if (err) return next(err)
     postParam.comments.push(comment._id)
-    postParam.save(async function(err, post) {
+    postParam.save(function(err, post) {
       if (err) return next(err)
       try {
-        const user = await User.getCurrentUser(request, response, next)
         user.comments.push(comment._id)
         user.save(function(err, user) {
           if (err) return next(err)
@@ -184,6 +172,7 @@ router.patch('/:_pid/:_cid', mid.requiresLogin, (request, response, next) => {
     err.status = 401
     return next(err)
   }
+
   let commentParam = request.comment
   commentParam.update(request.body, function(err, result) {
     if (err) return next(err)
