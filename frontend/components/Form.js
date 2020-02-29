@@ -19,14 +19,9 @@ export default props => {
       <form onSubmit={handleSubmit}>
         {elements()}
         <div className="pad-bottom">
-          <button
-            className=" col s2 offset-m2 btn waves-effect waves-light"
-            type="submit"
-          >
+          <button className="  btn waves-effect waves-light" type="submit">
             {submitButtonText}
           </button>
-     
-          
         </div>
       </form>
     </div>
