@@ -17,15 +17,19 @@ let postSchema = mongoose.Schema(
       required: true
     },
     author: {
-      type: mongoose.Schema.Types.ObjectId, ref: 'User',
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true
     },
     categories: {
       type: Array
     },
-    comments: [{
-      type: mongoose.Schema.Types.ObjectId, ref: 'Comment'
-  }],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+      }
+    ],
     headerImageUrl: {
       type: String
     }

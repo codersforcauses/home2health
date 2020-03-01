@@ -38,15 +38,29 @@ router.param('_cid', function(req, res, next, id) {
 })
 
 // GET posts for specific pages
-router.get('/', (request, response, next) => {
-  const numberOfPost = 10 // WILL GIVE A MAXIMUM OF 10 POST
-  const page = request.query.page
-  controllerPost
-    .getPagePost(page, numberOfPost, request.query.searchFilter)
-    .then(data => {
-      response.send(data)
-    })
-    .catch(err => response.status(400).send(err))
+router.get('/', async (request, response, next) => {
+  try {
+    const numberOfPost = 10 // WILL GIVE A MAXIMUM OF 10 POST
+    const page = request.query.page
+    const data = await controllerPost.getPagePost(
+      page,
+      numberOfPost,
+      request.query.searchFilter
+    )
+    for (let i = 0; i < data.data.length; i++) {
+      data.data[i] = data.data[i].toObject()
+      const author = await User.getUser(
+        request,
+        response,
+        next,
+        data.data[i].author
+      )
+      data.data[i].authorName = author.name
+    }
+    response.send(data)
+  } catch (err) {
+    response.status(400).send(err)
+  }
 })
 
 // GET THE DETAILS OF SPECIFIC POST
@@ -68,13 +82,6 @@ router.get('/:_pid', async (request, response, next) => {
       body.comments[i].author
     )
     body.comments[i].authorName = author.name
-    // body.comments[i].author = await User.getUser(
-    //   request,
-    //   response,
-    //   next,
-    //   body.comments[i].author
-    // )
-    // body.comments[i].author = body.comments[i].author.name
   }
   body.author = user
   response.send(body)
@@ -86,25 +93,21 @@ router.get('/:_pid/:_cid', (request, response, next) => {
 })
 
 // ADD NEW POST
-router.post('/', mid.requiresLogin, (request, response, next) => {
-  let post = request.body
-  post.author = mongoose.Types.ObjectId(request.session.userId)
-  controllerPost
-    .addPost(post)
-    .then(async function(data) {
-      const user = await User.getCurrentUser(request, response, next)
-      user.posts.push(mongoose.Types.ObjectId(data._id))
-      user.save(function(err, user) {
-        console.log(err)
-        if (err) return next(err)
-        response.status(201)
-        response.json(data)
-      })
+router.post('/', mid.requiresLogin, async (request, response, next) => {
+  try {
+    let post = request.body
+    post.author = mongoose.Types.ObjectId(request.session.userId)
+    let data = await controllerPost.addPost(post)
+    let user = await User.getCurrentUser(request, response, next)
+    user.posts.push(mongoose.Types.ObjectId(data._id))
+    user = user.save(function(err, user) {
+      if (err) return next(err)
+      response.status(201).json(data)
     })
-    .catch(err => {
-      console.log(err)
-      response.status(err.status || 500).send(err)
-    })
+  } catch (err) {
+    console.log(err)
+    response.status(err.status || 500).send(err)
+  }
 })
 
 // ADD COMMENT TO POST
@@ -140,25 +143,25 @@ router.post('/:_pid', mid.requiresLogin, (request, response, next) => {
 })
 
 // DELETE SPECIFIC POST
-router.delete('/:_pid', mid.requiresLogin, (request, response, next) => {
-  if (request.session.userId != request.post.author) {
-    let err = new Error('You are not the author of this post/comment.')
-    err.status = 401
-    return next(err)
-  }
-  let currentPostId = request.params._pid
-  controllerPost
-    .deletePost(currentPostId)
-    .then(async function(data) {
-      const user = await User.getCurrentUser(request, response, next)
-      user.posts.pull(request.params._pid)
-      user.save(function(err, user) {
-        if (err) return next(err)
-        response.status(201)
-        response.json(data)
-      })
+router.delete('/:_pid', mid.requiresLogin, async (request, response, next) => {
+  try {
+    if (request.session.userId != request.post.author) {
+      let err = new Error('You are not the author of this post/comment.')
+      err.status = 401
+      return next(err)
+    }
+    let currentPostId = request.params._pid
+    const data = controllerPost.deletePost(currentPostId)
+    const user = await User.getCurrentUser(request, response, next)
+    user.posts.pull(request.params._pid)
+    user.save(function(err, user) {
+      if (err) return next(err)
+      response.status(201)
+      response.json(data)
     })
-    .catch(err => response.status(err.status || 500).send(err))
+  } catch (err) {
+    response.status(err.status || 500).send(err)
+  }
 })
 
 // UPDATE SPECIFIC POST

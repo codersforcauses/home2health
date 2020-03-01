@@ -138,7 +138,7 @@ export default class Data {
   async deleteComment(postID, commentID) {
     try {
       const response = await this.api(
-        `post/${postId}/${commentID}`,
+        `post/${postID}/${commentID}`,
         'DELETE',
         null
       )
@@ -161,7 +161,7 @@ export default class Data {
   }
   async editComment(postID, commentID, comment) {
     try {
-      const response = await this.api(`post/${postId}/${commentID}`, 'PATCH', {
+      const response = await this.api(`post/${postID}/${commentID}`, 'PATCH', {
         content: comment
       })
       if (response.status === 200) {
