@@ -3,7 +3,6 @@ import SEO from "../components/SEO"
 import Link from 'next/link'
 import './resources.css'
 
-
 class Resources extends Component {
   render() {
     return (
@@ -29,7 +28,6 @@ class Resources extends Component {
             </div>
           </div>
         </div>
-
       </Fragment>
     )
   }

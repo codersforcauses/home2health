@@ -4,6 +4,7 @@ import Router from 'next/router'
 import '../../components/post-form.css'
 import postCategoryConfig from '../../components/postCategoryConfig'
 import AppContext, { Consumer } from '../../Context'
+import Data from '../../Data'
 class PostForm extends React.Component {
   static contextType = AppContext
   state = {
@@ -82,8 +83,7 @@ class PostForm extends React.Component {
     let categorySelector = document.querySelector('.chips')
     let instance = M.Chips.getInstance(categorySelector)
     let categories = instance.chipsData.map(chip => chip.tag)
-
-    this.context.actions
+    new Data()
       .createPost({ ...this.state.form, categories })
       .then(response => {
         M.toast({ html: 'Successfully Created Post', classes: 'rounded green' })

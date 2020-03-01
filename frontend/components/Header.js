@@ -2,125 +2,163 @@ import React, { Component } from 'react'
 import Link from 'next/link'
 import { Consumer } from '../Context'
 
-const DesktopHeader = props => (
-  <ul className="right hide-on-med-and-down">
-    <li>
-      <a
-        className="dropdown-trigger theHappening"
-        href="#"
-        data-target="happeningDropdown"
-      >
-        What's happening in Australia?
-        <i className="material-icons right">arrow_drop_down</i>
-      </a>
-      <ul id="happeningDropdown" className="dropdown-content">
-        <li>
-          <Link href="/housingprograms">
-            <a>Housing first programs</a>
-          </Link>
-        </li>
-        <li className="divider" />
-        <ul className="collapsible">
-          <li
-            onMouseEnter={() => props.handleEnterHover('hospitalPrograms')}
-            onMouseLeave={() => props.handleLeaveHover('hospitalPrograms')}
+const links = {
+  housingFirstPrograms: '/housingprograms',
+  hospitalPrograms: [
+    {
+      link: '/RoyalPerthHospital',
+      name: 'Royal Perth Hospital'
+    },
+    {
+      link: '#',
+      name: "St Vincent's Hospital Melbourne"
+    },
+    {
+      link: '#',
+      name: "St Vincent's Hospital Sydney"
+    },
+    {
+      link: '#',
+      name: 'Katherine Hospital'
+    }
+  ],
+  gpServices: '/gp-services',
+  dualDiagnosisServices: [
+    {
+      link: '/Dual-Diagnosis-Services/HODDS',
+      name: 'HODDS'
+    },
+    {
+      link: '/Dual-Diagnosis-Services/CHOPS',
+      name: 'CHOPS'
+    }
+  ],
+  peerWorkerPrograms: '/peer-worker-programs',
+  outreach: '/outreach',
+  medicalRecoveryCentre: '/medical-recovery-centre',
+  resources: '/resources'
+}
+
+const MultiLinks = ({ linkObjects }) => {
+  return linkObjects.map(({ link, name }, i) => (
+    <React.Fragment key={name}>
+      <Link href={link}>
+        <a className="links">{name}</a>
+      </Link>
+      {linkObjects.length - 1 > i && <p className="divider" />}
+    </React.Fragment>
+  ))
+}
+
+const DesktopHeaderLinks = props => (
+  <li>
+    <a
+      className="dropdown-trigger theHappening"
+      href="#"
+      data-target="happeningDropdown"
+    >
+      What's happening in Australia?
+      <i className="material-icons right">arrow_drop_down</i>
+    </a>
+    <ul id="happeningDropdown" className="dropdown-content">
+      <li>
+        <Link href={links.housingFirstPrograms}>
+          <a>Housing first programs</a>
+        </Link>
+      </li>
+      <li className="divider" />
+      <ul className="collapsible">
+        <li
+          onMouseEnter={() => props.handleEnterHover('hospitalPrograms')}
+          onMouseLeave={() => props.handleLeaveHover('hospitalPrograms')}
+        >
+          <div
+            className="collapsible-header"
+            id="hospitalPrograms"
+            style={{
+              color: '#26a69a'
+            }}
           >
-            <div
-              className="collapsible-header"
-              id="hospitalPrograms"
-              style={{
-                color: '#26a69a'
-              }}
-            >
-              Hospital Programs
-              <span class="extender">&#9662;</span>
-            </div>
+            Hospital Programs
+            <span class="extender">&#9662;</span>
+          </div>
 
-            <div
-              className="collapsible-body"
-              style={{
-                display: `${props.hospitalProgramsHover ? 'block' : 'none'}`,
-                padding: 10
-              }}
-            >
-              <Link href="/RoyalPerthHospital">
-                <a className="links">Royal Perth Hospital</a>
-              </Link>
-              <p className="divider" />
-              <Link href="#">
-                <a className="links">St Vincent's Hospital Melbourne</a>
-              </Link>
-              <p className="divider" />
-              <Link href="#">
-                <a className="links">St Vincent's Hospital Sydney</a>
-              </Link>
-              <p className="divider" />
-              <Link href="#">
-                <a className="links">Katherine Hospital</a>
-              </Link>
-            </div>
-          </li>
-        </ul>
-
-        <li>
-          <a href=".">GP services</a>
-        </li>
-        <li className="divider" />
-
-        <ul class="collapsible">
-          <li
-            onMouseEnter={() => props.handleEnterHover('dualDiagnosisServices')}
-            onMouseLeave={() => props.handleLeaveHover('dualDiagnosisServices')}
+          <div
+            className="collapsible-body"
+            style={{
+              display: `${props.hospitalProgramsHover ? 'block' : 'none'}`,
+              padding: 10
+            }}
           >
-            <div
-              className="collapsible-header"
-              id="dual-diagnosis-services"
-              style={{
-                color: '#26a69a'
-              }}
-            >
-              Dual Diagnosis Services
-              <span class="extender">&#9662;</span>
-            </div>
-            <div
-              className="collapsible-body"
-              style={{
-                display: `${
-                  props.dualDiagnosisServicesHover ? 'block' : 'none'
-                }`,
-                padding: 10
-              }}
-            >
-              <Link href="/Dual-Diagnosis-Services/HODDS">
-                <a className="links">HODDS</a>
-              </Link>
-              <p className="divider" />
-              <Link href="/Dual-Diagnosis-Services/CHOPS">
-                <a className="links">CHOPS</a>
-              </Link>
-            </div>
-          </li>
-        </ul>
-        <li className="divider" />
-        <li>
-          <a href=".">Peer worker programs</a>
-        </li>
-        <li className="divider" />
-        <li>
-          <a href=".">Outreach</a>
-        </li>
-        <li className="divider" />
-        <li>
-          <a href=".">Medical recovery centre</a>
-        </li>
-        <li className="divider" />
-        <li>
-          <Link href="/resources">
-            <a>Resources</a>
-          </Link>
+            <MultiLinks linkObjects={links.hospitalPrograms}></MultiLinks>
+          </div>
         </li>
       </ul>
-    </li>
+
+      <li>
+        <Link href={links.gpServices}>
+          <a>GP services</a>
+        </Link>
+      </li>
+      <li className="divider" />
+
+      <ul class="collapsible">
+        <li
+          onMouseEnter={() => props.handleEnterHover('dualDiagnosisServices')}
+          onMouseLeave={() => props.handleLeaveHover('dualDiagnosisServices')}
+        >
+          <div
+            className="collapsible-header"
+            id="dual-diagnosis-services"
+            style={{
+              color: '#26a69a'
+            }}
+          >
+            Dual Diagnosis Services
+            <span class="extender">&#9662;</span>
+          </div>
+          <div
+            className="collapsible-body"
+            style={{
+              display: `${props.dualDiagnosisServicesHover ? 'block' : 'none'}`,
+              padding: 10
+            }}
+          >
+            <MultiLinks linkObjects={links.dualDiagnosisServices}></MultiLinks>
+          </div>
+        </li>
+      </ul>
+      <li className="divider" />
+      <li>
+        <Link href={links.peerWorkerPrograms}>
+          <a>Peer worker programs</a>
+        </Link>
+      </li>
+      <li className="divider" />
+      <li>
+        <Link href={links.outreach}>
+          <a>Outreach</a>
+        </Link>
+      </li>
+      <li className="divider" />
+      <li>
+        <Link href={links.medicalRecoveryCentre}>
+          <a>Medical recovery centre</a>
+        </Link>
+      </li>
+      <li className="divider" />
+      <li>
+        <Link href="/resources">
+          <a>Resources</a>
+        </Link>
+      </li>
+    </ul>
+  </li>
+)
+
+const DesktopHeader = props => (
+  <ul className="right hide-on-med-and-down">
+    <DesktopHeaderLinks {...props}></DesktopHeaderLinks>
     <li>
       <a className="dropdown-trigger" href="#" data-target="memberDropdown">
         Members Area
@@ -177,106 +215,105 @@ const DesktopHeader = props => (
   </ul>
 )
 
+const MobileHeaderLinks = props => (
+  <li>
+    <div class="collapsible-header">What's Happening In Australia</div>
+    <div class="collapsible-body">
+      <p>
+        <Link href={links.housingFirstPrograms}>
+          <a>Housing first programs</a>
+        </Link>
+      </p>
+      <p className="divider" />
+      <ul className="collapsible">
+        <li>
+          <div
+            className="collapsible-header"
+            id="hospitalPrograms"
+            style={{
+              color: '#26a69a'
+            }}
+          >
+            Hospital Programs
+            <span class="extender">&#9662;</span>
+          </div>
+
+          <div
+            className="collapsible-body"
+            style={{
+              display: `${props.hospitalProgramsHover ? 'block' : 'none'}`,
+              padding: 10
+            }}
+          >
+            <MultiLinks linkObjects={links.hospitalPrograms}></MultiLinks>
+          </div>
+        </li>
+      </ul>
+      <p>
+        <Link href={links.gpServices}>
+          <a>GP services</a>
+        </Link>
+      </p>
+      <p>
+        <ul class="collapsible">
+          <li>
+            <div
+              className="collapsible-header"
+              id="dual-diagnosis-services"
+              style={{
+                color: '#26a69a'
+              }}
+            >
+              Dual Diagnosis Services
+              <span class="extender">&#9662;</span>
+            </div>
+            <div
+              className="collapsible-body"
+              style={{
+                display: `${
+                  props.dualDiagnosisServicesHover ? 'block' : 'none'
+                }`,
+                padding: 10
+              }}
+            >
+              <MultiLinks
+                linkObjects={links.dualDiagnosisServices}
+              ></MultiLinks>
+            </div>
+          </li>
+        </ul>
+      </p>
+      <p>
+        <Link href={links.peerWorkerPrograms}>
+          <a>Peer worker programs</a>
+        </Link>
+      </p>
+      <p>
+        <Link href={links.outreach}>
+          <a>Outreach</a>
+        </Link>
+      </p>
+      <p>
+        <Link href={links.medicalRecoveryCentre}>
+          <a>Medical recovery centre</a>
+        </Link>
+      </p>
+      <p>
+        <Link href="/resources">
+          <a>Resources</a>
+        </Link>
+      </p>
+    </div>
+  </li>
+)
+
 const MobileHeader = props => (
   <ul id="nav-mobile" className="sidenav">
     <ul class="collapsible">
-      <li>
-        <div class="collapsible-header">What's Happening In Australia</div>
-        <div class="collapsible-body">
-          <p>
-            <Link href="/housingprograms">
-              <a>Housing first programs</a>
-            </Link>
-          </p>
-          <p className="divider" />
-          <ul className="collapsible">
-            <li>
-              <div
-                className="collapsible-header"
-                id="hospitalPrograms"
-                style={{
-                  color: '#26a69a'
-                }}
-              >
-                Hospital Programs
-                <span class="extender">&#9662;</span>
-              </div>
-
-              <div
-                className="collapsible-body"
-                style={{
-                  display: `${props.hospitalProgramsHover ? 'block' : 'none'}`,
-                  padding: 10
-                }}
-              >
-                <Link href="/RoyalPerthHospital">
-                  <a className="links">Royal Perth Hospital</a>
-                </Link>
-                <p className="divider" />
-                <Link href="#">
-                  <a className="links">St Vincent's Hospital Melbourne</a>
-                </Link>
-                <p className="divider" />
-                <Link href="#">
-                  <a className="links">St Vincent's Hospital Sydney</a>
-                </Link>
-                <p className="divider" />
-                <Link href="#">
-                  <a className="links">Katherine Hospital</a>
-                </Link>
-              </div>
-            </li>
-          </ul>
-          <p>
-            <a href=".">GP services</a>
-          </p>
-          <p>
-            <ul class="collapsible">
-              <li>
-                <div
-                  className="collapsible-header"
-                  id="dual-diagnosis-services"
-                  style={{
-                    color: '#26a69a'
-                  }}
-                >
-                  Dual Diagnosis Services
-                  <span class="extender">&#9662;</span>
-                </div>
-                <div
-                  className="collapsible-body"
-                  style={{
-                    display: `${
-                      props.dualDiagnosisServicesHover ? 'block' : 'none'
-                    }`,
-                    padding: 10
-                  }}
-                >
-                  <Link href="/Dual-Diagnosis-Services/HODDS">
-                    <a className="links">HODDS</a>
-                  </Link>
-                  <p className="divider" />
-                  <Link href="/Dual-Diagnosis-Services/CHOPS">
-                    <a className="links">CHOPS</a>
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </p>
-          <p>
-            <a href=".">Peer worker programs</a>
-          </p>
-          <p>
-            <a href=".">Outreach</a>
-          </p>
-          <p>
-            <a href=".">Medical recovery centre</a>
-          </p>
-          <p>
-            <a href="/resources">Resources</a>
-          </p>
-        </div>
-      </li>
+      <MobileHeaderLinks
+        hospitalProgramsHover={props.hospitalProgramsHover}
+        dualDiagnosisServicesHover={props.dualDiagnosisServicesHover}
+      ></MobileHeaderLinks>
     </ul>
     <li>
       <a
