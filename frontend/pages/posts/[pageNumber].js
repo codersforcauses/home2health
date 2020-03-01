@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import SEO from '../../components/SEO'
 import Router, { withRouter } from 'next/router'
 import React from 'react'
 import Loader from '../../components/Loader'
@@ -88,6 +89,7 @@ class Posts extends React.Component {
         <div>
           {this.state.loaded ? (
             <React.Fragment>
+              <SEO title={`Home2Health - Blog`}></SEO>
               <SearchBar
                 handleChange={this.handleChangeSearch}
                 handleSubmit={this.handleSubmitSearch}
