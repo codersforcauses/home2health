@@ -161,7 +161,6 @@ export default class Data {
   }
   async editComment(postID, commentID, comment) {
     try {
-      console.log()
       const response = await this.api(`post/${postID}/${commentID}`, 'PATCH', {
         content: comment
       })

@@ -29,7 +29,8 @@ class Posts extends React.Component {
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post?page=${pageNumber}&searchFilter=${this.state.searchFilter}`
     Axios.get(apiPath, {})
-      .then(response =>
+      .then(response => {
+        console.log(response.data.data)
         this.setState({
           currentCollection: pageNumber,
           posts: response.data.data,
@@ -37,7 +38,7 @@ class Posts extends React.Component {
           pages: response.data.numberOfPosts,
           loaded: true
         })
-      )
+      })
       .catch(err => console.log(err))
   }
 

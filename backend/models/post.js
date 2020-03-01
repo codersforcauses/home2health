@@ -32,9 +32,6 @@ let postSchema = mongoose.Schema(
     ],
     headerImageUrl: {
       type: String
-    },
-    authorName: {
-      type: String
     }
   },
   { collection: 'post', timestamps: { createdAt: 'datetime' } }

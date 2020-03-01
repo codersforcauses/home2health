@@ -9,9 +9,6 @@ let commentSchema = mongoose.Schema({
     ref: 'User',
     required: true
   },
-  authorName: {
-    type: String
-  },
   post: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Post',
