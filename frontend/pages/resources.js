@@ -8,7 +8,6 @@ class Resources extends Component {
     return (
       <Fragment>
         <SEO title={`Home2Health - Resources`}></SEO>
-        <div className="section" id="index-banner">
           <div className="container">
             <div className="row" style={{ marginBottom: 0 }}>
                 <a className="resourcesLink" href="research_papers/50_Lives_Infographic_June_2017.pdf">50 Lives Infographic June 2017</a>
