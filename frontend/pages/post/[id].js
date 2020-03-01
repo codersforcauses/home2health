@@ -1,8 +1,12 @@
 import React from 'react'
+import SEO from '../../components/SEO'
 import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
+import Form from '../../components/Form'
+import Comment from '../../components/Comment'
 import { useRouter, withRouter } from 'next/router'
+import Data from '../../Data'
 
 import './post.css'
 import Loader from '../../components/Loader'
@@ -186,6 +190,102 @@ const PostArticle = props => {
   )
 }
 
+// POST CONTENT COMPONENT
+class Comments extends React.Component {
+  static contextType = AppContext
+  state = {
+    comment: '',
+    errors: [],
+    comments: this.props.comments,
+    authenticatedUser: this.props.authenticatedUser
+  }
+  static getDerivedStateFromProps({ comments, authenticatedUser }) {
+    return { comments, authenticatedUser }
+  }
+  formValid = ({ formErrors, ...rest }) => {
+    let valid = true
+
+    // validate form errors being empty
+    // if val.length > 0 THEN EXECUTE valid=false
+    //THIS PART COULD BE IMPLEMENTED IN THE PHASE OF THE HANDLECHANGE BY USING MULTIPLE LOGICAL STATEMENTS
+    Object.values(formErrors).forEach(val => {
+      val.length > 0 && (valid = false)
+    })
+
+    // validate the form was filled out
+    //THIS IS NOT ALWAYS NEEDED
+    Object.values(rest).forEach(val => {
+      val === null && (valid = false)
+    })
+
+    return valid
+  }
+
+  render() {
+    const { comment } = this.state
+    return (
+      <React.Fragment>
+        {this.state.authenticatedUser ? (
+          <Form
+            submit={() => this.props.createComment(comment)}
+            submitButtonText="Create comment"
+            errors={this.state.errors}
+            elements={() => (
+              <React.Fragment>
+                <textarea
+                  id="comment"
+                  name="comment"
+                  type="text"
+                  value={comment}
+                  onChange={this.change}
+                  placeholder="Comment"
+                />
+              </React.Fragment>
+            )}
+          />
+        ) : (
+          <div>
+            <b>Please sign in</b>
+            <br />
+            <br />
+          </div>
+        )}
+
+        {this.state.comments.map(comment => (
+          <Comment
+            content={comment.content}
+            authorName={comment.authorName}
+            createdAt={comment.createdAt}
+            canEditOrDelete={
+              this.state.authenticatedUser &&
+              comment.author == this.state.authenticatedUser._id
+            }
+            deleteComment={() =>
+              this.props.deleteComment(this.props.postID, comment._id)
+            }
+            editComment={async editValue =>
+              await this.props.editComment(
+                this.props.postID,
+                comment._id,
+                editValue
+              )
+            }
+          ></Comment>
+        ))}
+      </React.Fragment>
+    )
+  }
+  change = event => {
+    const name = event.target.name
+    const value = event.target.value
+
+    this.setState(() => {
+      return {
+        [name]: value
+      }
+    })
+  }
+}
 //STATEFUL OBJECT FOR A POST
 class LongPost extends React.Component {
   state = {
@@ -289,7 +389,7 @@ class LongPost extends React.Component {
     }
   }
   createComment = comment => {
-    this.context.actions
+    new Data()
       .createComment({
         content: comment,
         author: this.state.authenticatedUser._id,
@@ -303,6 +403,44 @@ class LongPost extends React.Component {
         this.setState(prevState => ({
           comments: [...prevState.comments, response.data]
         }))
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+      })
+  }
+
+  deleteComment = (postID, commentID) => {
+    new Data()
+      .deleteComment(postID, commentID)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Deleted Comment',
+          classes: 'rounded green'
+        })
+        this.setState(prevState => ({
+          comments: prevState.comments.filter(
+            comment => comment._id != commentID
+          )
+        }))
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+      })
+  }
+  editComment = async (postID, commentID, comment) => {
+    await new Data()
+      .editComment(postID, commentID, comment)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Edited Comment',
+          classes: 'rounded green'
+        })
+        let comments = this.state.comments
+        const index = comments.findIndex(comment => comment._id == commentID)
+        comments[index].content = comment
+        this.setState({ comments: comments })
       })
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
@@ -325,6 +463,7 @@ class LongPost extends React.Component {
     })
     return this.state.loaded ? (
       <div>
+        <SEO title={`Home2Health - ${this.state.data.title}`}></SEO>
         {userId === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
           <React.Fragment>
             <PostLandingEdittable
@@ -352,7 +491,10 @@ class LongPost extends React.Component {
         <Comments
           comments={this.state.comments}
           createComment={this.createComment}
+          deleteComment={this.deleteComment}
+          editComment={this.editComment}
           authenticatedUser={this.state.authenticatedUser}
+          postID={this.state.id}
         ></Comments>
         <PostModalSetting
           postId={this.state.id}

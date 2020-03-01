@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Link from 'next/link'
+import SEO from '../components/SEO'
 
 import Contact from '../components/Contact'
 import Partners from '../components/Partners'
@@ -9,6 +10,7 @@ class Index extends Component {
   render() {
     return (
       <>
+        <SEO title="Home2Health"></SEO>
         <div className="container">
           <div className="section">
             <div className="row" style={{ marginBottom: 0 }}>

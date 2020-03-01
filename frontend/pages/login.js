@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SEO from "../components/SEO"
 import Link from 'next/link'
 import Form from '../components/Form'
 import AppContext, { Consumer } from '../Context'
@@ -45,6 +46,7 @@ export default class UserSignIn extends Component {
 
     return (
       <div className="bounds">
+        <SEO title={`Home2Health - Login `}></SEO>
         <div className="grid-33 centered signin">
           <h1>Sign In</h1>
           <Form
