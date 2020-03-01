@@ -27,9 +27,11 @@
     "js-cookie": "^2.2.1",
     "materialize-css": "^1.0.0",
     "next": "^9.1.3",
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-awesome-slider": "^2.2.1",
     "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
     "react-markdown": "^4.2.2",
     "react-router-dom": "^5.1.2"
   }
