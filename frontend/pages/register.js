@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import SEO from '../components/SEO'
 import Link from 'next/link'
 import Form from '../components/Form'
 import AppContext, { Consumer } from '../Context'
@@ -66,6 +67,7 @@ export default class UserSignUp extends Component {
           }
           return (
             <Fragment>
+            <SEO title={`Home2Health - Register`}></SEO>
               <div className="row">
                 <div className="col s8 m6 offset-m3 offset-s2">
                   <div
@@ -121,6 +123,7 @@ export default class UserSignUp extends Component {
                       to sign in!
                     </p>
                   </div>
+              
                 </div>
               </div>
             </Fragment>

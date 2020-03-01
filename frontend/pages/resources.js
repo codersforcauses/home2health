@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react'
+import SEO from "../components/SEO"
 import Link from 'next/link'
 import './resources.css'
-
 
 class Resources extends Component {
   render() {
     return (
       <Fragment>
-
+        <SEO title={`Home2Health - Resources`}></SEO>
         <div className="section" id="index-banner">
           <div className="container">
             <div className="row" style={{ marginBottom: 0 }}>
@@ -28,7 +28,6 @@ class Resources extends Component {
             </div>
           </div>
         </div>
-        
       </Fragment>
     )
   }
