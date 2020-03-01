@@ -13,6 +13,7 @@ import Loader from '../../components/Loader'
 import postCategoryConfig from '../../components/postCategoryConfig'
 import PostModalSetting from '../../components/PostModalSetting'
 import AppContext, { Consumer } from '../../Context'
+import { Comments } from '../../components/Comments'
 
 const config = {
   toolbar: ['undo', 'redo'],
@@ -285,7 +286,6 @@ class Comments extends React.Component {
     })
   }
 }
-
 //STATEFUL OBJECT FOR A POST
 class LongPost extends React.Component {
   state = {
