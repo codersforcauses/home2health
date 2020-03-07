@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
 
-
 class RoyalPerthHospital extends Component {
   render() {
     // document.addEventListener('DOMContentLoaded', function() {
@@ -57,12 +56,26 @@ class RoyalPerthHospital extends Component {
                 />
               </div> */}
             </div>
-            <div className="row">
-              <div>
-                <img
-                  alt="RPH Image"
-                  src="../public/images/hospitalPrograms/royalPerth/003_Homeless-Healthcare_160914.png"
-                ></img>
+            <div className="section">
+              <div className="row">
+                <div className="col left">
+                  <img
+                    alt="RPH Image"
+                    src="/images/hospitalPrograms/royalPerth/003_Homeless-Healthcare_160914.png"
+                    style={{ height: 400 }}
+                  ></img>
+                  <ul className="col right">
+                    <h4>Further Reading</h4>
+                    <li>
+                      <a href="https://rph.health.wa.gov.au/About-us/News/RPHs-Homeless-Team-is-a-WA-Health-Excellence-Awards-finalist">
+                        WA Excellence Award's Finalist
+                      </a>
+                    </li>
+                    <li>
+                      <a>RPH Homeless Team Report 1 (May 2018)</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
