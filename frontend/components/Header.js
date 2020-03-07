@@ -102,7 +102,7 @@ class Header extends Component {
 
                       <li>
                         <Link href="/gp-services">
-                        <a>GP services</a>
+                          <a>GP services</a>
                         </Link>
                       </li>
                       <li className="divider" />

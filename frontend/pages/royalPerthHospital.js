@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
-import Router from 'next/router'
+
 
 class RoyalPerthHospital extends Component {
   render() {
@@ -15,39 +15,59 @@ class RoyalPerthHospital extends Component {
       <Fragment>
         <div className="container">
           <div className="section">
-            <h4
-              style={{
-                marginBottom: 0,
-                textAlign: 'center',
-                color: '#424242' // offblack
-              }}
-            >
-              {''}
-              Royal Perth Hospital
-            </h4>
-            <p className="flow-text"> </p>
+            <div>
+              <h4
+                style={{
+                  marginBottom: 0,
+                  textAlign: 'center',
+                  color: '#424242' // offblack
+                }}
+              >
+                {''}
+                Royal Perth Hospital
+              </h4>
+              <p className="flow-text"> </p>
+            </div>
+            <div className="row">
+              <div>
+                <blockquote>
+                  Royal Perth Hospital is a major public teaching hospital
+                  located in the Perth CBD. In mid-2016, Homeless Healthcare
+                  established its first in-reach program in collaboration with
+                  Royal Perth Hospital. The in reach program is modelled on the
+                  internationally renowned and evidence based Pathway program
+                  that operates in 11 hospitals in the UK. The aim of RPH
+                  Homeless Team is to improve outcomes for homeless patients by
+                  providing support, improved discharge planning and continuity
+                  of care. GPs and nurses from Homeless Healthcare work
+                  alongside RPH Homeless Team staff.
+                </blockquote>
+              </div>
+              {/* <div className="col s6">
+                <img
+                  alt="RPH Work"
+                  style={{
+                    marginTop: '15px',
+                    marginBottom: 0,
+                    width: '1080x',
+                    height: '220px',
+                    color: '#424242' // offblack
+                  }}
+                  src="/images/hospitalPrograms/royalPerth/003_Homeless-Healthcare_160914.png"
+                />
+              </div> */}
+            </div>
+            <div className="row">
+              <div>
+                <img
+                  alt="RPH Image"
+                  src="../public/images/hospitalPrograms/royalPerth/003_Homeless-Healthcare_160914.png"
+                ></img>
+              </div>
+            </div>
           </div>
-          <div>
-            <blockquote>
-              *Royal Perth Hospital is a major public teaching hospital located
-              in the Perth CBD. In mid-2016, Homeless Healthcare established its
-              first in-reach program in collaboration with Royal Perth Hospital.
-              The in reach program is modelled on the internationally renowned
-              and evidence based Pathway program that operates in 11 hospitals
-              in the UK. The aim of RPH Homeless Team is to improve outcomes for
-              homeless patients by providing support, improved discharge
-              planning and continuity of care. GPs and nurses from Homeless
-              Healthcare work alongside RPH Homeless Team staff.
-            </blockquote>
-          </div>
-          <div>
-            <img
-              src="../public/images/hospitalPrograms/royalPerth/003_Homeless-Healthcare_160914.jpg"
-              alt="RPH Work"
-            />
-          </div>
-
-          {/* <div className="carousel" size="large">
+        </div>
+        {/* <div className="carousel" size="large">
           <a className="carousel-item" href="#one!">
             <img src="https://lorempixel.com/250/250/nature/1" />
           </a>
@@ -64,7 +84,6 @@ class RoyalPerthHospital extends Component {
             <img src="https://lorempixel.com/250/250/nature/5" />
           </a>
         </div> */}
-        </div>
       </Fragment>
 
       // add materialize carousel with images to link into subheadings for hospital programs...
