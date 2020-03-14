@@ -45,38 +45,51 @@ export default class UserSignIn extends Component {
     }
 
     return (
-      <div className="bounds">
-        <SEO title={`Home2Health - Login `}></SEO>
-        <div className="grid-33 centered signin">
-          <h1>Sign In</h1>
-          <Form
-            cancel={cancel}
-            errors={errors}
-            submit={submit}
-            submitButtonText="Sign In"
-            elements={() => (
-              <React.Fragment>
-                <input
-                  id="email"
-                  name="email"
-                  type="text"
-                  value={email}
-                  onChange={this.change}
-                  placeholder="User Name"
-                />
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={password}
-                  onChange={this.change}
-                  placeholder="Password"
-                />
-              </React.Fragment>
-            )}
-          />
+      <div className="row ">
+          <SEO title={`Home2Health - Login `}></SEO>
+        <div className="col s8 m6 offset-m3 offset-s2">
+          <div
+            className="grid-33 centered signin"
+            style={{ marginTop: '10rem' }}
+          >
+            <h4>Log In</h4>
+            <Form
+              cancel={cancel}
+              errors={errors}
+              submit={submit}
+              submitButtonText="Login"
+              elements={() => (
+                <React.Fragment>
+                  <div className="input-field">
+                    <input
+                      id="email"
+                      name="email"
+                      type="text"
+                      value={email}
+                      onChange={this.change}
+                    />
+                    <label for="email">Email</label>
+                  </div>
+                  <div className="input-field">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      value={password}
+                      onChange={this.change}
+                    />
+                    <label for="password">Password</label>
+                  </div>
+                </React.Fragment>
+              )}
+            />
+          </div>
+    
           <p>
-            Don't have a user account? <Link href="/register">Click here</Link>{' '}
+            Don't have a user account?
+            <Link href="/register">
+              <a> Click here </a>
+            </Link>
             to sign up!
           </p>
         </div>
