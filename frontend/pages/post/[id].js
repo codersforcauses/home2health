@@ -46,7 +46,7 @@ const PostLandingEdittable = props => {
     >
       <div className=""></div>
 
-      <div className="container white-text">
+      <div className="container ck-content white-text">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto">
             <div className="post-heading">
@@ -78,7 +78,9 @@ const PostLandingEdittable = props => {
                   }}
                 />
               </h1>
-              <span className="meta">{` Posted By: ${author} on ${date.toDateString()}`}</span>
+              <span className="meta">{` Posted By: ${
+                author.name
+              } on ${date.toDateString()}`}</span>
               <p>
                 <CKEditor
                   name="overview"
@@ -106,7 +108,7 @@ const PostArticleEdittable = props => {
   const { content, CKEditor, InlineEditor, ClassicEditor } = props
   return (
     <article>
-      <div className="container">
+      <div className="container ck-content">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto">
             <CKEditor
@@ -140,7 +142,7 @@ const PostLanding = props => {
       }}
     >
       <div className="overlay"></div>
-      <div className="container white-text">
+      <div className="container ck-content white-text">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto">
             <div className="post-heading">
@@ -156,7 +158,7 @@ const PostLanding = props => {
                 } on ${date.toDateString()}`}</span>
               ) : (
                 <span className="meta">
-                  {` Posted By: [deleted author] on ${date.toDateString()}`}
+                  {` Posted By: ${author.name} on ${date.toDateString()}`}
                 </span>
               )}
               <p>
@@ -178,7 +180,7 @@ const PostArticle = props => {
   const { content } = props
   return (
     <article>
-      <div className="container">
+      <div className="container ck-content">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto">
             <ReactMarkdown source={content} escapeHtml={false}></ReactMarkdown>
@@ -342,9 +344,14 @@ class LongPost extends React.Component {
 
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post/${id}`
+    const headers = {
+      authenticatedUser: this.state.authenticatedUser
+    }
 
     //SEND THE NEW CHANGE TO BACKEND
-    Axios.patch(apiPath, payload)
+    Axios.patch(apiPath, payload, {
+      headers
+    })
       .then(response =>
         M.toast({
           html: 'Successfully Editted',
@@ -366,7 +373,19 @@ class LongPost extends React.Component {
     }
 
     //Send Request To Server
-    this.sendUpdateToServer(payload)
+    new Data()
+      .updatePost(payload, this.state.id)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Created Comment',
+          classes: 'rounded green'
+        })
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+      })
+    // this.sendUpdateToServer(payload)
   }
 
   updateCategories = chipsObject => {
@@ -452,6 +471,7 @@ class LongPost extends React.Component {
   render() {
     let author
     let userId
+
     if (this.state.data.author) {
       author = this.state.data.author._id
     }
@@ -464,27 +484,31 @@ class LongPost extends React.Component {
     return this.state.loaded ? (
       <div>
         <SEO title={`Home2Health - ${this.state.data.title}`}></SEO>
-        {userId === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
+        {this.state.isEditorLoaded || (
           <React.Fragment>
-            <PostLandingEdittable
-              {...this.state.data}
-              CKEditor={this.CKEditor}
-              InlineEditor={this.InlineEditor}
-              directHandleChange={this.directHandleChange}
-            ></PostLandingEdittable>
-            <PostArticleEdittable
-              {...this.state.data}
-              CKEditor={this.CKEditor}
-              InlineEditor={this.InlineEditor}
-              directHandleChange={this.directHandleChange}
-              ClassicEditor={this.ClassicEditor}
-            ></PostArticleEdittable>
-          </React.Fragment>
-        ) : (
-          //VIEW-ONLY VERSION
-          <React.Fragment>
-            <PostLanding {...this.state.data}></PostLanding>
-            <PostArticle {...this.state.data}></PostArticle>
+            {userId === author ? ( //EDITTABLE VERSION
+              <React.Fragment>
+                <PostLandingEdittable
+                  {...this.state.data}
+                  CKEditor={this.CKEditor}
+                  InlineEditor={this.InlineEditor}
+                  directHandleChange={this.directHandleChange}
+                ></PostLandingEdittable>
+                <PostArticleEdittable
+                  {...this.state.data}
+                  CKEditor={this.CKEditor}
+                  InlineEditor={this.InlineEditor}
+                  directHandleChange={this.directHandleChange}
+                  ClassicEditor={this.ClassicEditor}
+                ></PostArticleEdittable>
+              </React.Fragment>
+            ) : (
+              //VIEW-ONLY VERSION
+              <React.Fragment>
+                <PostLanding {...this.state.data}></PostLanding>
+                <PostArticle {...this.state.data}></PostArticle>
+              </React.Fragment>
+            )}
           </React.Fragment>
         )}
 
