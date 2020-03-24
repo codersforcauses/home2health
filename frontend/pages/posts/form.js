@@ -140,19 +140,17 @@ class PostForm extends React.Component {
                   </label>
                 </div>
                 {/*File Attachment*/}
-                <div className="file-field input-field col s12">
-                  <div className="btn">
-                    <i className="material-icons left">attach_file</i>
-                    <span>File</span>
-                    <input type="file" name="headerImage" accept="image/*" />
-                  </div>
-                  <div className="file-path-wrapper">
-                    <input
-                      className="file-path validate"
-                      type="text"
-                      placeholder="Upload Header Background Image"
-                    />
-                  </div>
+                <div className="input-field col s12">
+                  <textarea
+                    id="headerImageUrl"
+                    name="headerImageUrl"
+                    className="materialize-textarea"
+                    onChange={this.handleChange}
+                    required
+                  ></textarea>
+                  <label className="active" for="overview">
+                    Header Image Path (Optional)
+                  </label>
                 </div>
                 {/*Content*/}
                 <div className="input-field col s12">

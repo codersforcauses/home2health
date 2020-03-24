@@ -115,6 +115,27 @@ export default class Data {
       return null
     }
   }
+  async updatePost(changes, postId) {
+    try {
+      const response = await this.api(`post/${postId}`, 'PATCH', changes)
+      if (response.status === 201) {
+        return response
+      } else if (response.status === 400) {
+        return response.json().then(data => {
+          return data.errors
+        })
+      } else {
+        throw new Error(response.message)
+      }
+    } catch (e) {
+      console.error(e)
+      if (e.response && e.response.data) {
+        return e.response.data.errors
+      }
+      return null
+    }
+  }
+
   async createComment(comment) {
     try {
       const response = await this.api('post/' + comment.post, 'POST', comment)
