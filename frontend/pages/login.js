@@ -8,7 +8,8 @@ export default class UserSignIn extends Component {
   state = {
     email: '',
     password: '',
-    errors: []
+    errors: [],
+    loading: false
   }
   static contextType = AppContext
   componentDidMount() {
@@ -22,6 +23,7 @@ export default class UserSignIn extends Component {
     const context = this.context
     const { email, password, errors } = this.state
     let submit = () => {
+      this.setState({loading: true})
       const { email, password } = this.state
       context.actions
         .signIn(email, password)
@@ -34,6 +36,8 @@ export default class UserSignIn extends Component {
             Router.push(context.from)
             console.log(`SUCCESS! ${email} is now signed in!`)
           }
+          this.setState({loading: false})
+
         })
         .catch(err => {
           console.log(err)
@@ -58,6 +62,7 @@ export default class UserSignIn extends Component {
               errors={errors}
               submit={submit}
               submitButtonText="Login"
+              loading={this.state.loading}
               elements={() => (
                 <React.Fragment>
                   <div className="input-field">

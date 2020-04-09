@@ -16,14 +16,14 @@ import AppContext, { Consumer } from '../../Context'
 
 const config = {
   toolbar: ['undo', 'redo'],
-  autoParagraph: false
+  autoParagraph: false,
 }
 
 //REGEX HTML STRIPPER FOR TITLE AND OVERVIEW EDIT
-const stripHTML = string => string.replace(/<[^>]*>?/gm, '')
+const stripHTML = (string) => string.replace(/<[^>]*>?/gm, '')
 
 //EDITTABLE VERSION OF POST LANDING COMPONENT
-const PostLandingEdittable = props => {
+const PostLandingEdittable = (props) => {
   const {
     title,
     author,
@@ -31,7 +31,7 @@ const PostLandingEdittable = props => {
     overview,
     headerImageUrl,
     CKEditor,
-    InlineEditor
+    InlineEditor,
   } = props
 
   let date = new Date(datetime)
@@ -41,7 +41,7 @@ const PostLandingEdittable = props => {
       style={{
         backgroundImage: `url(
         '${headerImageUrl}'
-      )`
+      )`,
       }}
     >
       <div className=""></div>
@@ -54,7 +54,7 @@ const PostLandingEdittable = props => {
               <a
                 class="waves-effect waves-light btn modal-trigger right"
                 href="#settingsModal"
-                onClick={e => {
+                onClick={(e) => {
                   let elems = document.querySelectorAll('.modal')
                   let instances = M.Modal.init(elems)
                   instances[0].open()
@@ -104,7 +104,7 @@ const PostLandingEdittable = props => {
   )
 }
 //EDITTABLE VERSION OF POST ARTICLE COMPONENT
-const PostArticleEdittable = props => {
+const PostArticleEdittable = (props) => {
   const { content, CKEditor, InlineEditor, ClassicEditor } = props
   return (
     <article>
@@ -128,7 +128,7 @@ const PostArticleEdittable = props => {
 }
 
 //POST HEADING COMPONENT
-const PostLanding = props => {
+const PostLanding = (props) => {
   const { title, author, datetime, overview, headerImageUrl } = props
   let date = new Date(datetime)
 
@@ -138,7 +138,7 @@ const PostLanding = props => {
       style={{
         backgroundImage: `url(
         '${headerImageUrl}'
-      )`
+      )`,
       }}
     >
       <div className="overlay"></div>
@@ -176,7 +176,7 @@ const PostLanding = props => {
 }
 
 // POST CONTENT COMPONENT
-const PostArticle = props => {
+const PostArticle = (props) => {
   const { content } = props
   return (
     <article>
@@ -198,7 +198,8 @@ class Comments extends React.Component {
     comment: '',
     errors: [],
     comments: this.props.comments,
-    authenticatedUser: this.props.authenticatedUser
+    authenticatedUser: this.props.authenticatedUser,
+    loading: false,
   }
   static getDerivedStateFromProps({ comments, authenticatedUser }) {
     return { comments, authenticatedUser }
@@ -209,13 +210,13 @@ class Comments extends React.Component {
     // validate form errors being empty
     // if val.length > 0 THEN EXECUTE valid=false
     //THIS PART COULD BE IMPLEMENTED IN THE PHASE OF THE HANDLECHANGE BY USING MULTIPLE LOGICAL STATEMENTS
-    Object.values(formErrors).forEach(val => {
+    Object.values(formErrors).forEach((val) => {
       val.length > 0 && (valid = false)
     })
 
     // validate the form was filled out
     //THIS IS NOT ALWAYS NEEDED
-    Object.values(rest).forEach(val => {
+    Object.values(rest).forEach((val) => {
       val === null && (valid = false)
     })
 
@@ -224,26 +225,35 @@ class Comments extends React.Component {
 
   render() {
     const { comment } = this.state
+
     return (
       <React.Fragment>
         {this.state.authenticatedUser ? (
-          <Form
-            submit={() => this.props.createComment(comment)}
-            submitButtonText="Create comment"
-            errors={this.state.errors}
-            elements={() => (
-              <React.Fragment>
-                <textarea
-                  id="comment"
-                  name="comment"
-                  type="text"
-                  value={comment}
-                  onChange={this.change}
-                  placeholder="Comment"
-                />
-              </React.Fragment>
-            )}
-          />
+          <div className="container">
+            <Form
+              submit={async () => {
+                this.setState({ loading: true })
+                await this.props.createComment(comment)
+                this.setState({ loading: false })
+              }}
+              submitButtonText="Create comment"
+              errors={this.state.errors}
+              loading={this.state.loading}
+              elements={() => (
+                <React.Fragment>
+                  <textarea
+                    id="comment"
+                    name="comment"
+                    type="text"
+                    value={comment}
+                    onChange={this.change}
+                    placeholder="Comment"
+                    className="materialize-textarea"
+                  />
+                </React.Fragment>
+              )}
+            />
+          </div>
         ) : (
           <div>
             <b>Please sign in</b>
@@ -252,37 +262,39 @@ class Comments extends React.Component {
           </div>
         )}
 
-        {this.state.comments.map(comment => (
-          <Comment
-            content={comment.content}
-            authorName={comment.authorName}
-            createdAt={comment.createdAt}
-            canEditOrDelete={
-              this.state.authenticatedUser &&
-              comment.author == this.state.authenticatedUser._id
-            }
-            deleteComment={() =>
-              this.props.deleteComment(this.props.postID, comment._id)
-            }
-            editComment={async editValue =>
-              await this.props.editComment(
-                this.props.postID,
-                comment._id,
-                editValue
-              )
-            }
-          ></Comment>
-        ))}
+        <div className="container">
+          {this.state.comments.map((comment) => (
+            <Comment
+              content={comment.content}
+              authorName={comment.authorName}
+              createdAt={comment.createdAt}
+              canEditOrDelete={
+                this.state.authenticatedUser &&
+                comment.author == this.state.authenticatedUser._id
+              }
+              deleteComment={() =>
+                this.props.deleteComment(this.props.postID, comment._id)
+              }
+              editComment={async (editValue) =>
+                await this.props.editComment(
+                  this.props.postID,
+                  comment._id,
+                  editValue
+                )
+              }
+            ></Comment>
+          ))}
+        </div>
       </React.Fragment>
     )
   }
-  change = event => {
+  change = (event) => {
     const name = event.target.name
     const value = event.target.value
 
     this.setState(() => {
       return {
-        [name]: value
+        [name]: value,
       }
     })
   }
@@ -295,7 +307,7 @@ class LongPost extends React.Component {
     loaded: false,
     isEditorLoaded: false,
     user: 'Author1',
-    id: 1
+    id: 1,
   }
   static contextType = AppContext
   componentDidMount() {
@@ -321,47 +333,47 @@ class LongPost extends React.Component {
     const apiPath = `${baseURL}/post/${id}`
 
     Axios.get(apiPath, {})
-      .then(response => {
+      .then((response) => {
         this.setState({
           data: response.data,
           comments: response.data.comments,
           id,
-          loaded: true
+          loaded: true,
         })
       })
-      .catch(err => {
+      .catch((err) => {
         M.toast({
           html: 'Oops, Something Went Wrong',
-          classes: 'rounded red'
+          classes: 'rounded red',
         })
         console.log(err)
       })
   }
 
   // General Updater to Server
-  sendUpdateToServer = payload => {
+  sendUpdateToServer = (payload) => {
     let id = this.state.id
 
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post/${id}`
     const headers = {
-      authenticatedUser: this.state.authenticatedUser
+      authenticatedUser: this.state.authenticatedUser,
     }
 
     //SEND THE NEW CHANGE TO BACKEND
     Axios.patch(apiPath, payload, {
-      headers
+      headers,
     })
-      .then(response =>
+      .then((response) =>
         M.toast({
           html: 'Successfully Editted',
-          classes: 'rounded green'
+          classes: 'rounded green',
         })
       )
-      .catch(err => {
+      .catch((err) => {
         M.toast({
           html: 'Oops, Something Went Wrong',
-          classes: 'rounded red'
+          classes: 'rounded red',
         })
         console.log(err)
       })
@@ -369,29 +381,29 @@ class LongPost extends React.Component {
   updatePost = (name, value) => {
     //PACKAGE THE NEW CHANGE
     let payload = {
-      [name]: value
+      [name]: value,
     }
 
     //Send Request To Server
     new Data()
       .updatePost(payload, this.state.id)
-      .then(response => {
+      .then((response) => {
         M.toast({
           html: 'Successfully Created Comment',
-          classes: 'rounded green'
+          classes: 'rounded green',
         })
       })
-      .catch(err => {
+      .catch((err) => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
         console.log(err)
       })
     // this.sendUpdateToServer(payload)
   }
 
-  updateCategories = chipsObject => {
-    let categories = chipsObject.chipsData.map(chip => chip.tag)
+  updateCategories = (chipsObject) => {
+    let categories = chipsObject.chipsData.map((chip) => chip.tag)
     let payload = {
-      categories
+      categories,
     }
     this.sendUpdateToServer(payload)
   }
@@ -401,29 +413,29 @@ class LongPost extends React.Component {
     if (this.state.data[name] !== value) {
       //SEND API ONLY IF THE CHANGE IS DIFFERENT
       // UPDATE STATE AND DATABASE
-      this.setState(prevState => ({
-        data: { ...prevState.data, [name]: value }
+      this.setState((prevState) => ({
+        data: { ...prevState.data, [name]: value },
       }))
       this.updatePost(name, value)
     }
   }
-  createComment = comment => {
+  createComment = (comment) => {
     new Data()
       .createComment({
         content: comment,
         author: this.state.authenticatedUser._id,
-        post: this.state.data._id
+        post: this.state.data._id,
       })
-      .then(response => {
+      .then((response) => {
         M.toast({
           html: 'Successfully Created Comment',
-          classes: 'rounded green'
+          classes: 'rounded green',
         })
-        this.setState(prevState => ({
-          comments: [...prevState.comments, response.data]
+        this.setState((prevState) => ({
+          comments: [...prevState.comments, response.data],
         }))
       })
-      .catch(err => {
+      .catch((err) => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
         console.log(err)
       })
@@ -432,18 +444,18 @@ class LongPost extends React.Component {
   deleteComment = (postID, commentID) => {
     new Data()
       .deleteComment(postID, commentID)
-      .then(response => {
+      .then((response) => {
         M.toast({
           html: 'Successfully Deleted Comment',
-          classes: 'rounded green'
+          classes: 'rounded green',
         })
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
           comments: prevState.comments.filter(
-            comment => comment._id != commentID
-          )
+            (comment) => comment._id != commentID
+          ),
         }))
       })
-      .catch(err => {
+      .catch((err) => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
         console.log(err)
       })
@@ -451,17 +463,17 @@ class LongPost extends React.Component {
   editComment = async (postID, commentID, comment) => {
     await new Data()
       .editComment(postID, commentID, comment)
-      .then(response => {
+      .then((response) => {
         M.toast({
           html: 'Successfully Edited Comment',
-          classes: 'rounded green'
+          classes: 'rounded green',
         })
         let comments = this.state.comments
-        const index = comments.findIndex(comment => comment._id == commentID)
+        const index = comments.findIndex((comment) => comment._id == commentID)
         comments[index].content = comment
         this.setState({ comments: comments })
       })
-      .catch(err => {
+      .catch((err) => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
         console.log(err)
         //(err)
@@ -478,7 +490,7 @@ class LongPost extends React.Component {
     if (this.state.authenticatedUser) {
       userId = this.state.authenticatedUser._id
     }
-    this.setState(prevState => {
+    this.setState((prevState) => {
       comments: this.state.data.comments
     })
     return this.state.loaded ? (
