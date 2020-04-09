@@ -229,7 +229,7 @@ class Comments extends React.Component {
     return (
       <React.Fragment>
         {this.state.authenticatedUser ? (
-          <div className="container">
+          <div className="container" style={{ marginBottom: 10 }}>
             <Form
               submit={async () => {
                 this.setState({ loading: true })
@@ -255,10 +255,8 @@ class Comments extends React.Component {
             />
           </div>
         ) : (
-          <div>
-            <b>Please sign in</b>
-            <br />
-            <br />
+          <div className="container" style={{ marginBottom: 10 }}>
+            <b>Please sign in to add comment</b>
           </div>
         )}
 
