@@ -14,7 +14,7 @@ class Index extends Component {
         <div className="container">
           <div className="section">
             <div className="row" style={{ marginBottom: 0 }}>
-              <div className="col s6">
+              <div className="col s12 m6">
                 <h3 style={{ marginBottom: 0 }}>
                   Let's talk about homelessness.
                 </h3>
@@ -28,7 +28,7 @@ class Index extends Component {
                   <Link href="/login">
                     <a
                       className="btn waves-effect waves-light"
-                      style={{ marginRight: '1rem' }}
+                      style={{ margin: '0 1rem 0 0' }}
                     >
                       Log in
                     </a>
@@ -38,7 +38,7 @@ class Index extends Component {
                   </Link>
                 </div>
               </div>
-              <div className="col s6 valign-wrapper">
+              <div className="col s12 m6 valign-wrapper">
                 <Slider />
               </div>
             </div>
