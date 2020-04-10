@@ -256,7 +256,13 @@ class Comments extends React.Component {
           </div>
         ) : (
           <div className="container" style={{ marginBottom: 10 }}>
-            <b>Please sign in to add comment</b>
+            <b>
+              Please{' '}
+              <Link href="/login">
+                <a>sign in</a>
+              </Link>{' '}
+              to add comment
+            </b>
           </div>
         )}
 

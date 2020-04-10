@@ -15,7 +15,6 @@ class Comment extends Component {
     }))
   }
   render() {
-    console.log(this.props)
     return (
       <React.Fragment>
         <div className="card">
@@ -55,11 +54,6 @@ class Comment extends Component {
                         <i className="material-icons">mode_edit</i>
                       </a>
                     </li>
-                    {/* <li>
-                    <a className="btn-floating yellow darken-1">
-                      <i className="material-icons">info</i>
-                    </a>
-                  </li> */}
                     <li>
                       <a
                         className="btn-floating red"
