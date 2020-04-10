@@ -1,24 +1,13 @@
 import React from 'react'
 
-const fbOnclick = (link) => {
-  FB.ui(
-    {
-      display: 'popup',
-      method: 'share',
-      href: link,
-      quote: 'quote here',
-    },
-    function (response) {}
-  )
-}
-
 const SocialShare = ({ link = 'https://home2health.org.au/' }) => {
   return (
     <div className="container">
       <strong>Share With</strong>
       <a
         className="btn-floating btn-small waves-effect waves-light light-blue darken-4"
-        onClick={() => fbOnclick(link)}
+        target="_blank"
+        href={`https://www.facebook.com/sharer/sharer.php?u=${link}`}
       >
         <i className="fab fa-facebook"></i>
       </a>

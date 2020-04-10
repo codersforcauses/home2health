@@ -35,12 +35,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
             rel="stylesheet"
           />
-          <script
-            async
-            defer
-            crossorigin="anonymous"
-            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"
-          ></script>
         </Head>
         <body>
           <Main />
