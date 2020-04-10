@@ -1,8 +1,10 @@
 import { LinkCards } from '../components/LinkCards'
+import SEO from '../components/SEO'
 
 const GpServices = () => {
   return (
     <>
+      <SEO title={`Home2Health - GP Services`}></SEO>
       {style}
       <div className="container">
         {/* <h1>GP Services</h1> */}

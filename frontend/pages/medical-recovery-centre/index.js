@@ -1,4 +1,5 @@
 import React from 'react'
+import SEO from '../../components/SEO'
 
 import { LinkCards } from '../../components/LinkCards'
 
@@ -19,6 +20,7 @@ const MedicalRecoveryCentre = () => {
 const TheCottage = () => {
   return (
     <>
+      <SEO title="Home2Health - Medical Recovery Centre"></SEO>
       <h2>The Cottage</h2>
       <p>
         The Cottage is a supportive, home like environment where Complex Care

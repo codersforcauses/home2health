@@ -8,7 +8,7 @@ const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-const port = process.env.PORT | 5000
+const port = process.env.PORT || 5000
 
 
 
@@ -70,7 +70,7 @@ app.use(function(err, req, res, next) {
   res.json(err)
 })
 // listen on port
-app.listen(port, function() {
+app.listen(port,  '0.0.0.0', function() {
   console.log('Express app listening on port ' + port)
 })
 

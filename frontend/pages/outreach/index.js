@@ -1,4 +1,5 @@
 import Reach from 'react'
+import SEO from '../../components/SEO'
 
 import { LinkCards } from '../../components/LinkCards'
 
@@ -18,6 +19,7 @@ const OutReachPage = () => {
 const StreetHealth = () => {
   return (
     <>
+      <SEO title="Home2Health - Outreach"></SEO>
       <h2>Street Health</h2>
       <blockquote>
         <p>

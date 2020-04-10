@@ -17,7 +17,7 @@ export const PostPreview = ({
   // Default Values
   _id = 0,
   title = 'Title Missing',
-  author = 'Author Missing',
+  authorName = 'Author Missing',
   datetime = 'datetime Missing',
   overview = 'Preview Details Missing',
   categories = ['#something1', 'Something2']
@@ -38,7 +38,7 @@ export const PostPreview = ({
             </span>
 
             <blockquote className="subtitle">
-              <p>{` Posted By: ${author} on ${date.toDateString()}`}</p>
+              <p>{` Posted By: ${authorName} on ${date.toDateString()}`}</p>
             </blockquote>
             <p>
               <ReactMarkdown

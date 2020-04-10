@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import SEO from '../components/SEO'
 import Link from 'next/link'
 import Form from '../components/Form'
 import AppContext, { Consumer } from '../Context'
@@ -66,50 +67,63 @@ export default class UserSignUp extends Component {
           }
           return (
             <Fragment>
-              <div className="bounds">
-                <div className="grid-33 centered signin">
-                  <h1>Sign Up</h1>
-                  <Form
-                    cancel={this.cancel}
-                    errors={errors}
-                    submit={submit}
-                    submitButtonText="Sign Up"
-                    elements={() => (
-                      <React.Fragment>
-                        <input
-                          id="name"
-                          name="name"
-                          type="text"
-                          value={name}
-                          onChange={this.change}
-                          placeholder="Name"
-                        />
-                        <input
-                          id="email"
-                          name="email"
-                          type="text"
-                          value={email}
-                          onChange={this.change}
-                          placeholder="User Name"
-                        />
-                        <input
-                          id="password"
-                          name="password"
-                          type="password"
-                          value={password}
-                          onChange={this.change}
-                          placeholder="Password"
-                        />
-                      </React.Fragment>
-                    )}
-                  />
-                  <p>
-                    Already have a user account?{' '}
-                    <Link href="/login">
-                      <a>Click here</a>
-                    </Link>{' '}
-                    to sign in!
-                  </p>
+            <SEO title={`Home2Health - Register`}></SEO>
+              <div className="row">
+                <div className="col s8 m6 offset-m3 offset-s2">
+                  <div
+                    className="grid-33 centered signin"
+                    style={{ marginTop: '10rem' }}
+                  >
+                    <h4>Sign Up</h4>
+                    <Form
+                      cancel={this.cancel}
+                      errors={errors}
+                      submit={submit}
+                      submitButtonText="Sign Up"
+                      elements={() => (
+                        <React.Fragment>
+                          <div className="input-field">
+                            <input
+                              id="name"
+                              name="name"
+                              type="text"
+                              value={name}
+                              onChange={this.change}
+                            />
+                            <label for="name">Name</label>
+                          </div>
+                          <div className="input-field">
+                            <input
+                              id="email"
+                              name="email"
+                              type="text"
+                              value={email}
+                              onChange={this.change}
+                            />
+                            <label for="email">Email</label>
+                          </div>
+                          <div className="input-field">
+                            <input
+                              id="password"
+                              name="password"
+                              type="password"
+                              value={password}
+                              onChange={this.change}
+                            />
+                            <label for="password">Password</label>
+                          </div>
+                        </React.Fragment>
+                      )}
+                    />
+                    <p>
+                      Already have a user account?{' '}
+                      <Link href="/login">
+                        <a>Click here</a>
+                      </Link>{' '}
+                      to sign in!
+                    </p>
+                  </div>
+              
                 </div>
               </div>
             </Fragment>

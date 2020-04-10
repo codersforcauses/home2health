@@ -1,4 +1,5 @@
 import Axios from 'axios'
+import SEO from '../../components/SEO'
 import Router, { withRouter } from 'next/router'
 import React from 'react'
 import Loader from '../../components/Loader'
@@ -29,7 +30,8 @@ class Posts extends React.Component {
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post?page=${pageNumber}&searchFilter=${this.state.searchFilter}`
     Axios.get(apiPath, {})
-      .then(response =>
+      .then(response => {
+        console.log(response.data.data)
         this.setState({
           currentCollection: pageNumber,
           posts: response.data.data,
@@ -37,7 +39,7 @@ class Posts extends React.Component {
           pages: response.data.numberOfPosts,
           loaded: true
         })
-      )
+      })
       .catch(err => console.log(err))
   }
 
@@ -88,6 +90,7 @@ class Posts extends React.Component {
         <div>
           {this.state.loaded ? (
             <React.Fragment>
+              <SEO title={`Home2Health - Blog`}></SEO>
               <SearchBar
                 handleChange={this.handleChangeSearch}
                 handleSubmit={this.handleSubmitSearch}

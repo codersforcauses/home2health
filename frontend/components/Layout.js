@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import Header from './Header'
-import Head from './Meta'
 import '../public/stylesheets/style.css'
 import Footer from './Footer'
 
@@ -9,7 +8,6 @@ class Layout extends Component {
     return (
       <Fragment>
         {style}
-        <Head />
         <Header />
         <main>{this.props.children}</main>
         <Footer />

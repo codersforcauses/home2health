@@ -1,9 +1,12 @@
 import React from 'react'
+import SEO from '../../components/SEO'
 import Axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import Form from '../../components/Form'
+import Comment from '../../components/Comment'
 import { useRouter, withRouter } from 'next/router'
+import Data from '../../Data'
 
 import './post.css'
 import Loader from '../../components/Loader'
@@ -43,7 +46,7 @@ const PostLandingEdittable = props => {
     >
       <div className=""></div>
 
-      <div className="container white-text">
+      <div className="container ck-content white-text">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto">
             <div className="post-heading">
@@ -75,7 +78,9 @@ const PostLandingEdittable = props => {
                   }}
                 />
               </h1>
-              <span className="meta">{` Posted By: ${author} on ${date.toDateString()}`}</span>
+              <span className="meta">{` Posted By: ${
+                author.name
+              } on ${date.toDateString()}`}</span>
               <p>
                 <CKEditor
                   name="overview"
@@ -103,7 +108,7 @@ const PostArticleEdittable = props => {
   const { content, CKEditor, InlineEditor, ClassicEditor } = props
   return (
     <article>
-      <div className="container">
+      <div className="container ck-content">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto">
             <CKEditor
@@ -137,7 +142,7 @@ const PostLanding = props => {
       }}
     >
       <div className="overlay"></div>
-      <div className="container white-text">
+      <div className="container ck-content white-text">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto">
             <div className="post-heading">
@@ -153,7 +158,7 @@ const PostLanding = props => {
                 } on ${date.toDateString()}`}</span>
               ) : (
                 <span className="meta">
-                  {` Posted By: [deleted author] on ${date.toDateString()}`}
+                  {` Posted By: ${author.name} on ${date.toDateString()}`}
                 </span>
               )}
               <p>
@@ -175,7 +180,7 @@ const PostArticle = props => {
   const { content } = props
   return (
     <article>
-      <div className="container">
+      <div className="container ck-content">
         <div className="row">
           <div className="col-md-10 col-lg-8 mx-auto">
             <ReactMarkdown source={content} escapeHtml={false}></ReactMarkdown>
@@ -248,15 +253,25 @@ class Comments extends React.Component {
         )}
 
         {this.state.comments.map(comment => (
-          <div>
-            {comment.content}
-            <br />
-            {comment.authorName}
-            <br />
-            {comment.createdAt}
-            <br />
-            <br />
-          </div>
+          <Comment
+            content={comment.content}
+            authorName={comment.authorName}
+            createdAt={comment.createdAt}
+            canEditOrDelete={
+              this.state.authenticatedUser &&
+              comment.author == this.state.authenticatedUser._id
+            }
+            deleteComment={() =>
+              this.props.deleteComment(this.props.postID, comment._id)
+            }
+            editComment={async editValue =>
+              await this.props.editComment(
+                this.props.postID,
+                comment._id,
+                editValue
+              )
+            }
+          ></Comment>
         ))}
       </React.Fragment>
     )
@@ -329,9 +344,14 @@ class LongPost extends React.Component {
 
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:3000'
     const apiPath = `${baseURL}/post/${id}`
+    const headers = {
+      authenticatedUser: this.state.authenticatedUser
+    }
 
     //SEND THE NEW CHANGE TO BACKEND
-    Axios.patch(apiPath, payload)
+    Axios.patch(apiPath, payload, {
+      headers
+    })
       .then(response =>
         M.toast({
           html: 'Successfully Editted',
@@ -353,7 +373,19 @@ class LongPost extends React.Component {
     }
 
     //Send Request To Server
-    this.sendUpdateToServer(payload)
+    new Data()
+      .updatePost(payload, this.state.id)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Created Comment',
+          classes: 'rounded green'
+        })
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+      })
+    // this.sendUpdateToServer(payload)
   }
 
   updateCategories = chipsObject => {
@@ -376,7 +408,7 @@ class LongPost extends React.Component {
     }
   }
   createComment = comment => {
-    this.context.actions
+    new Data()
       .createComment({
         content: comment,
         author: this.state.authenticatedUser._id,
@@ -394,6 +426,44 @@ class LongPost extends React.Component {
       .catch(err => {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
         console.log(err)
+      })
+  }
+
+  deleteComment = (postID, commentID) => {
+    new Data()
+      .deleteComment(postID, commentID)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Deleted Comment',
+          classes: 'rounded green'
+        })
+        this.setState(prevState => ({
+          comments: prevState.comments.filter(
+            comment => comment._id != commentID
+          )
+        }))
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
+      })
+  }
+  editComment = async (postID, commentID, comment) => {
+    await new Data()
+      .editComment(postID, commentID, comment)
+      .then(response => {
+        M.toast({
+          html: 'Successfully Edited Comment',
+          classes: 'rounded green'
+        })
+        let comments = this.state.comments
+        const index = comments.findIndex(comment => comment._id == commentID)
+        comments[index].content = comment
+        this.setState({ comments: comments })
+      })
+      .catch(err => {
+        M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
+        console.log(err)
         //(err)
       })
   }
@@ -401,6 +471,7 @@ class LongPost extends React.Component {
   render() {
     let author
     let userId
+
     if (this.state.data.author) {
       author = this.state.data.author._id
     }
@@ -412,34 +483,42 @@ class LongPost extends React.Component {
     })
     return this.state.loaded ? (
       <div>
-        {userId === author && this.state.isEditorLoaded ? ( //EDITTABLE VERSION
+        <SEO title={`Home2Health - ${this.state.data.title}`}></SEO>
+        {this.state.isEditorLoaded || (
           <React.Fragment>
-            <PostLandingEdittable
-              {...this.state.data}
-              CKEditor={this.CKEditor}
-              InlineEditor={this.InlineEditor}
-              directHandleChange={this.directHandleChange}
-            ></PostLandingEdittable>
-            <PostArticleEdittable
-              {...this.state.data}
-              CKEditor={this.CKEditor}
-              InlineEditor={this.InlineEditor}
-              directHandleChange={this.directHandleChange}
-              ClassicEditor={this.ClassicEditor}
-            ></PostArticleEdittable>
-          </React.Fragment>
-        ) : (
-          //VIEW-ONLY VERSION
-          <React.Fragment>
-            <PostLanding {...this.state.data}></PostLanding>
-            <PostArticle {...this.state.data}></PostArticle>
+            {userId === author ? ( //EDITTABLE VERSION
+              <React.Fragment>
+                <PostLandingEdittable
+                  {...this.state.data}
+                  CKEditor={this.CKEditor}
+                  InlineEditor={this.InlineEditor}
+                  directHandleChange={this.directHandleChange}
+                ></PostLandingEdittable>
+                <PostArticleEdittable
+                  {...this.state.data}
+                  CKEditor={this.CKEditor}
+                  InlineEditor={this.InlineEditor}
+                  directHandleChange={this.directHandleChange}
+                  ClassicEditor={this.ClassicEditor}
+                ></PostArticleEdittable>
+              </React.Fragment>
+            ) : (
+              //VIEW-ONLY VERSION
+              <React.Fragment>
+                <PostLanding {...this.state.data}></PostLanding>
+                <PostArticle {...this.state.data}></PostArticle>
+              </React.Fragment>
+            )}
           </React.Fragment>
         )}
 
         <Comments
           comments={this.state.comments}
           createComment={this.createComment}
+          deleteComment={this.deleteComment}
+          editComment={this.editComment}
           authenticatedUser={this.state.authenticatedUser}
+          postID={this.state.id}
         ></Comments>
         <PostModalSetting
           postId={this.state.id}

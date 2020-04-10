@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import SEO from '../components/SEO'
 import Link from 'next/link'
 
 class RoyalPerthHospital extends Component {
@@ -12,6 +13,7 @@ class RoyalPerthHospital extends Component {
 
     return (
       <Fragment>
+        <SEO title={`Home2Health - Royal Perth Hospital`}></SEO>
         <div className="container">
           <div className="section">
             <div>

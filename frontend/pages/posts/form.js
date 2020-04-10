@@ -1,8 +1,10 @@
 import React from 'react'
+import SEO from '../../components/SEO'
 import Router from 'next/router'
 import '../../components/post-form.css'
 import postCategoryConfig from '../../components/postCategoryConfig'
 import AppContext, { Consumer } from '../../Context'
+import Data from '../../Data'
 class PostForm extends React.Component {
   static contextType = AppContext
   state = {
@@ -81,8 +83,7 @@ class PostForm extends React.Component {
     let categorySelector = document.querySelector('.chips')
     let instance = M.Chips.getInstance(categorySelector)
     let categories = instance.chipsData.map(chip => chip.tag)
-
-    this.context.actions
+    new Data()
       .createPost({ ...this.state.form, categories })
       .then(response => {
         M.toast({ html: 'Successfully Created Post', classes: 'rounded green' })
@@ -99,6 +100,7 @@ class PostForm extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <SEO title={`Home2Health - Create a Post`}></SEO>
         <div className="card white darken-1 form">
           <div className="container" style={{ padding: 10 }}>
             <form className="col s12" onSubmit={this.submitHandler}>
@@ -138,19 +140,17 @@ class PostForm extends React.Component {
                   </label>
                 </div>
                 {/*File Attachment*/}
-                <div className="file-field input-field col s12">
-                  <div className="btn">
-                    <i className="material-icons left">attach_file</i>
-                    <span>File</span>
-                    <input type="file" name="headerImage" accept="image/*" />
-                  </div>
-                  <div className="file-path-wrapper">
-                    <input
-                      className="file-path validate"
-                      type="text"
-                      placeholder="Upload Header Background Image"
-                    />
-                  </div>
+                <div className="input-field col s12">
+                  <textarea
+                    id="headerImageUrl"
+                    name="headerImageUrl"
+                    className="materialize-textarea"
+                    onChange={this.handleChange}
+                    required
+                  ></textarea>
+                  <label className="active" for="overview">
+                    Header Image Path (Optional)
+                  </label>
                 </div>
                 {/*Content*/}
                 <div className="input-field col s12">

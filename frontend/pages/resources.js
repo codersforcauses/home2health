@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from 'react'
+import SEO from "../components/SEO"
 import Link from 'next/link'
 import './resources.css'
-
 
 class Resources extends Component {
   render() {
     return (
       <Fragment>
-
-        <div className="section" id="index-banner">
+        <SEO title={`Home2Health - Resources`}></SEO>
           <div className="container">
             <div className="row" style={{ marginBottom: 0 }}>
                 <a className="resourcesLink" href="research_papers/50_Lives_Infographic_June_2017.pdf">50 Lives Infographic June 2017</a>
@@ -27,8 +26,6 @@ class Resources extends Component {
                 <a className="resourcesLink" href="research_papers/Wood_et_al_2018_-_Hospital_Collaboration_with_a_Housing_First_program.pdf">Wood et al 2018 - Hospital Collaboration with a Housing First program</a>
             </div>
           </div>
-        </div>
-        
       </Fragment>
     )
   }
