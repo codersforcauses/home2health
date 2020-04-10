@@ -72,8 +72,11 @@ class RoyalPerthHospital extends Component {
                       </a>
                     </li>
                     <li>
-                      <a>RPH Homeless Team Report 1 (May 2018)</a>
+                      <a href="../public/research_papers/RPH_Homeless_Team_infographic_-_May_2018.pdf">
+                        RPH Homeless Team Inforgraphic (May 2018)
+                      </a>
                     </li>
+                    <li></li>
                   </ul>
                 </div>
               </div>
