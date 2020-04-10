@@ -1,6 +1,6 @@
 import React from 'react'
 
-const fbOnclick = (link = 'https://home2health.org.au/') => {
+const fbOnclick = (link) => {
   FB.ui(
     {
       display: 'popup',
@@ -12,20 +12,28 @@ const fbOnclick = (link = 'https://home2health.org.au/') => {
   )
 }
 
-const SocialShare = ({ linkFB, linkTwitter, linkLinkedIn }) => {
+const SocialShare = ({ link = 'https://home2health.org.au/' }) => {
   return (
     <div className="container">
       <strong>Share With</strong>
       <a
         className="btn-floating btn-small waves-effect waves-light light-blue darken-4"
-        onClick={() => fbOnclick(linkFB)}
+        onClick={() => fbOnclick(link)}
       >
         <i className="fab fa-facebook"></i>
       </a>
-      <a className="btn-floating btn-small waves-effect waves-light red light-blue lighten-2">
+      <a
+        className="btn-floating btn-small waves-effect waves-light red light-blue lighten-2"
+        target="_blank"
+        href={`https://twitter.com/intent/tweet?url=${link}`}
+      >
         <i className="fab fa-twitter"></i>
       </a>
-      <a className="btn-floating btn-small waves-effect waves-light red light-blue darken-3">
+      <a
+        className="btn-floating btn-small waves-effect waves-light red light-blue darken-3"
+        target="_blank"
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${link}`}
+      >
         <i className="fab fa-linkedin"></i>
       </a>
       <style jsx>{`
