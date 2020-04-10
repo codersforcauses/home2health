@@ -9,7 +9,7 @@ const SEO = ({
   meta,
   title = 'Home2Health',
   url = 'https://home2health.org.au',
-  image = '/images/landing/1.jpg',
+  image = 'https://home2health.org.au/images/landing/1.jpg',
 }) => {
   return (
     <Helmet

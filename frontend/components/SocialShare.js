@@ -1,27 +1,31 @@
 import React from 'react'
 
-const SocialShare = ({ link = 'https://home2health.org.au/' }) => {
+const SocialShare = ({
+  link = 'https://home2health.org.au/',
+  text = 'Home2Health Post',
+  title = text,
+}) => {
   return (
     <div className="container">
       <strong>Share With</strong>
       <a
         className="btn-floating btn-small waves-effect waves-light light-blue darken-4"
         target="_blank"
-        href={`https://www.facebook.com/sharer/sharer.php?u=${link}`}
+        href={`https://www.facebook.com/sharer/sharer.php?u=${link}&t=${text}`}
       >
         <i className="fab fa-facebook"></i>
       </a>
       <a
         className="btn-floating btn-small waves-effect waves-light red light-blue lighten-2"
         target="_blank"
-        href={`https://twitter.com/intent/tweet?url=${link}`}
+        href={`https://twitter.com/intent/tweet?url=${link}&text=${text}`}
       >
         <i className="fab fa-twitter"></i>
       </a>
       <a
         className="btn-floating btn-small waves-effect waves-light red light-blue darken-3"
         target="_blank"
-        href={`https://www.linkedin.com/sharing/share-offsite/?url=${link}`}
+        href={`http://www.linkedin.com/shareArticle?mini=true&url=${link}&title=${title}`}
       >
         <i className="fab fa-linkedin"></i>
       </a>
