@@ -3,6 +3,7 @@ import SEO from '../../components/SEO'
 import Link from 'next/link'
 import LinksCard from '../../components/LinkCards'
 import { LinkCards } from './../../components/LinkCards'
+import SocialShare from './../../components/SocialShare'
 
 export default () => {
   return (
@@ -30,10 +31,11 @@ export default () => {
               alt: '50 Lifes 50 Homes logo',
               src: '/images/Dual-Diagnosis-Services/CHOPS_Infographic_1.png',
               link: '/research_papers/SVHM_-_CHOPS_Infographic.pdf',
-              reportTitle: 'CHOPS Infographic'
-            }
+              reportTitle: 'CHOPS Infographic',
+            },
           ]}
         ></LinkCards>
+        <SocialShare></SocialShare>
       </div>
     </React.Fragment>
   )
