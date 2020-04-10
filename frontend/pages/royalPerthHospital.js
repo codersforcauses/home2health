@@ -4,13 +4,6 @@ import Link from 'next/link'
 
 class RoyalPerthHospital extends Component {
   render() {
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   var elems = document.querySelectorAll('.carousel')
-    //   var instances = M.Carousel.init(elems, options)
-    // });
-
-    //var instance = M.Carousel.getInstance(elem);
-
     return (
       <Fragment>
         <SEO title={`Home2Health - Royal Perth Hospital`}></SEO>
@@ -21,7 +14,7 @@ class RoyalPerthHospital extends Component {
                 style={{
                   marginBottom: 0,
                   textAlign: 'center',
-                  color: '#424242' // offblack
+                  color: '#424242', // offblack
                 }}
               >
                 {''}
@@ -44,19 +37,6 @@ class RoyalPerthHospital extends Component {
                   alongside RPH Homeless Team staff.
                 </blockquote>
               </div>
-              {/* <div className="col s6">
-                <img
-                  alt="RPH Work"
-                  style={{
-                    marginTop: '15px',
-                    marginBottom: 0,
-                    width: '1080x',
-                    height: '220px',
-                    color: '#424242' // offblack
-                  }}
-                  src="/images/hospitalPrograms/royalPerth/003_Homeless-Healthcare_160914.png"
-                />
-              </div> */}
             </div>
             <div className="section">
               <div className="row">
@@ -78,6 +58,16 @@ class RoyalPerthHospital extends Component {
                         RPH Homeless Team Inforgraphic (May 2018)
                       </a>
                     </li>
+                    <li>
+                      <a href="../public/research_papers/RPH Homeless Team Eval Summary 2 - Feb 2019.pdf">
+                        RPH Homeless Team Evaluation Summary (Feb 2019)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="../public/research_papers/RPH Homeless Team Report 2 - Feb 2019.pdf">
+                        RPH Homeless Team Report
+                      </a>
+                    </li>
                     <li></li>
                   </ul>
                 </div>
@@ -85,26 +75,7 @@ class RoyalPerthHospital extends Component {
             </div>
           </div>
         </div>
-        {/* <div className="carousel" size="large">
-          <a className="carousel-item" href="#one!">
-            <img src="https://lorempixel.com/250/250/nature/1" />
-          </a>
-          <a className="carousel-item" href="#two!">
-            <img src="https://lorempixel.com/250/250/nature/2" />
-          </a>
-          <a className="carousel-item" href="#three!">
-            <img src="https://lorempixel.com/250/250/nature/3" />
-          </a>
-          <a className="carousel-item" href="#four!">
-            <img src="https://lorempixel.com/250/250/nature/4" />
-          </a>
-          <a className="carousel-item" href="#five!">
-            <img src="https://lorempixel.com/250/250/nature/5" />
-          </a>
-        </div> */}
       </Fragment>
-
-      // add materialize carousel with images to link into subheadings for hospital programs...
     )
   }
 }
