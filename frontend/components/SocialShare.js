@@ -1,9 +1,13 @@
 import React from 'react'
 
 const SocialShare = ({
-  link = 'https://home2health.org.au/',
-  text = 'Home2Health Post',
-  title = text,
+  link = typeof window !== 'undefined'
+    ? window.location.href
+    : 'https://home2health.org.au/',
+  title = 'Home2Health',
+  text = typeof document !== 'undefined'
+    ? document.querySelector('.container h4 + p')
+    : title,
 }) => {
   return (
     <div className="container">

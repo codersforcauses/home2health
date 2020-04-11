@@ -175,7 +175,10 @@ const PostLanding = (props) => {
           </div>
         </div>
       </header>
-      <SocialShare></SocialShare>
+      <SocialShare
+        title={`Home2Health - ${title}`}
+        text={`${overview}`}
+      ></SocialShare>
     </React.Fragment>
   )
 }
