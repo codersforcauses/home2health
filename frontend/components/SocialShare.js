@@ -6,7 +6,7 @@ const SocialShare = ({
     : 'https://home2health.org.au/',
   title = 'Home2Health',
   text = typeof document !== 'undefined'
-    ? document.querySelector('.container h4 + p')
+    ? document.querySelector('.container h4 + p').innerText
     : title,
 }) => {
   return (
