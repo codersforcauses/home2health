@@ -22,7 +22,7 @@ const StreetHealth = () => {
   return (
     <>
       <SEO title="Home2Health - Outreach"></SEO>
-      <h2>Street Health</h2>
+      <h4>Street Health</h4>
       <blockquote>
         <p>
           Street Health is a service operated by Homeless Healthcare that
@@ -81,7 +81,7 @@ const style = (
     h1 {
       font-size: 3rem;
     }
-    h2 {
+    h4 {
       font-size: 2rem;
     }
   `}</style>

@@ -9,7 +9,7 @@ const GpServices = () => {
       {style}
       <div className="container">
         {/* <h1>GP Services</h1> */}
-        <h3>Homeless Healthcare</h3>
+        <h4>Homeless Healthcare</h4>
 
         <p>
           Homeless Healthcare is a primary health service for people
@@ -97,7 +97,7 @@ const GpServices = () => {
           ]}
         />
       </div>
-      <SocialShare></SocialShare>
+      <SocialShare title={`Home2Health - GP Services`}></SocialShare>
     </>
   )
 }

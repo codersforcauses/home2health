@@ -36,7 +36,7 @@ export default () => {
           ]}
         ></LinkCards>
       </div>
-      <SocialShare></SocialShare>
+      <SocialShare title="Home2Health - Dual Diagnosis Services - CHOPS"></SocialShare>
     </React.Fragment>
   )
 }

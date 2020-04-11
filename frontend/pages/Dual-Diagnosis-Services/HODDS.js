@@ -53,7 +53,7 @@ export default () => {
           ]}
         />
       </div>
-      <SocialShare></SocialShare>
+      <SocialShare title="Home2Health - Dual Diagnosis Services - HODDS"></SocialShare>
     </React.Fragment>
   )
 }

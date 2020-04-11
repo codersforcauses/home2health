@@ -48,7 +48,7 @@ class RoyalPerthHospital extends Component {
             </a>
           </div>
         </div>
-        <SocialShare></SocialShare>
+        <SocialShare title={`Home2Health - Royal Perth Hospital`}></SocialShare>
       </Fragment>
 
       // add materialize carousel with images to link into subheadings for hospital programs...

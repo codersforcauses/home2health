@@ -13,7 +13,7 @@ const MedicalRecoveryCentre = () => {
         <TierneyHouse />
         <TBAPerth />
       </div>
-      <SocialShare></SocialShare>
+      <SocialShare title="Home2Health - Medical Recovery Centre"></SocialShare>
     </>
   )
 }
@@ -22,7 +22,7 @@ const TheCottage = () => {
   return (
     <>
       <SEO title="Home2Health - Medical Recovery Centre"></SEO>
-      <h2>The Cottage</h2>
+      <h4>The Cottage</h4>
       <p>
         The Cottage is a supportive, home like environment where Complex Care
         Services and Hospital in the Home (HITH) services are provided to people
@@ -98,7 +98,7 @@ const style = (
     h1 {
       font-size: 3rem;
     }
-    h2 {
+    h4 {
       font-size: 2rem;
     }
   `}</style>

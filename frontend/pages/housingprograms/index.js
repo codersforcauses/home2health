@@ -2,7 +2,7 @@ import React from 'react'
 import SEO from '../../components/SEO'
 import Link from 'next/link'
 import { LinkCards } from '../../components/LinkCards'
-import SocialShare from './../../components/SocialShare';
+import SocialShare from './../../components/SocialShare'
 
 export default () => {
   const m0 = {
@@ -105,7 +105,7 @@ export default () => {
           to exiting homelessness. This project is due to commence in 2019.
         </p>
       </div>
-      <SocialShare></SocialShare>
+      <SocialShare title="Home2Health - Housing First Programs"></SocialShare>
     </React.Fragment>
   )
 }
