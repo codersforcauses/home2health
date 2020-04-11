@@ -2,12 +2,13 @@ import React from 'react'
 import SEO from '../../components/SEO'
 import Link from 'next/link'
 import { LinkCards } from '../../components/LinkCards'
+import SocialShare from './../../components/SocialShare';
 
 export default () => {
   const m0 = {
     marginLeft: 0,
     marginRight: 0,
-    marginTop: 50
+    marginTop: 50,
   }
 
   const cardDetails = [
@@ -15,39 +16,39 @@ export default () => {
       alt: '50 Lifes 50 Homes logo',
       src: '/50Homes50Lifes/logo2-50L.png',
       link: '/50Homes50Lifes/50_Lives_First_Report_June_2017.pdf',
-      reportTitle: '50 Lives 50 Homes Report 1 (June 2017)'
+      reportTitle: '50 Lives 50 Homes Report 1 (June 2017)',
     },
     {
       alt: '50 Lifes 50 Homes logo',
       src: '/50Homes50Lifes/InfoGraphics50H.png',
       link: '/50Homes50Lifes/50_Lives_Infographic_June_2017.pdf',
-      reportTitle: '50 Lives 50 Homes Infographic (June 2017)'
+      reportTitle: '50 Lives 50 Homes Infographic (June 2017)',
     },
     {
       alt: '50 Lifes 50 Homes logo',
       src: '/50Homes50Lifes/50HomesDoc.png',
       link: '/50Homes50Lifes/50_Lives_Snapshot_April_2018.pdf',
       reportTitle: '50 Lives 50 Homes Snapshot Report ',
-      date: 'Apr 2018'
+      date: 'Apr 2018',
     },
     {
       alt: '50 Lifes 50 Homes logo',
       src: '/50Homes50Lifes/logo2-50L.png',
       link: '/50Homes50Lifes/50_Lives_Second_Report_Sept_2018.pdf',
-      reportTitle: '50 Lives 50 Homes Report 2 (Sept 2018)'
+      reportTitle: '50 Lives 50 Homes Report 2 (Sept 2018)',
     },
     {
       alt: '50 Lifes 50 Homes logo',
       src: '/images/landing/9.jpg',
       link: 'Hospital Collaboration Paper (Wood et al 2018)',
-      reportTitle: 'Hospital Collaboration Paper (Wood et al 2018)'
+      reportTitle: 'Hospital Collaboration Paper (Wood et al 2018)',
     },
     {
       alt: '50 Lifes 50 Homes logo',
       src: '/50Homes50Lifes/fb_img.png',
       link: 'https://www.facebook.com/50Lives50HomesPerth/',
-      reportTitle: 'Our Facebook Page'
-    }
+      reportTitle: 'Our Facebook Page',
+    },
   ]
 
   return (
@@ -59,7 +60,7 @@ export default () => {
             margin: '50px auto 10px auto',
             maxHeight: '300px',
             maxWidth: '800px',
-            display: 'block'
+            display: 'block',
           }}
           alt="50 Lifes 50 Homes logo"
           src="/50Homes50Lifes/50life-logo.png"
@@ -104,6 +105,7 @@ export default () => {
           to exiting homelessness. This project is due to commence in 2019.
         </p>
       </div>
+      <SocialShare></SocialShare>
     </React.Fragment>
   )
 }

@@ -35,8 +35,8 @@ export default () => {
             },
           ]}
         ></LinkCards>
-        <SocialShare></SocialShare>
       </div>
+      <SocialShare></SocialShare>
     </React.Fragment>
   )
 }

@@ -504,7 +504,11 @@ class LongPost extends React.Component {
     })
     return this.state.loaded ? (
       <div>
-        <SEO title={`Home2Health - ${this.state.data.title}`}></SEO>
+        <SEO
+          title={`Home2Health - ${this.state.data.title}`}
+          metaDescription={`${this.state.data.overview}`}
+          image={`${this.state.data.headerImageUrl}`}
+        ></SEO>
         {this.state.isEditorLoaded || (
           <React.Fragment>
             {userId === author ? ( //EDITTABLE VERSION

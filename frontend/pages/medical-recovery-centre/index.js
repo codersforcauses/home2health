@@ -1,6 +1,6 @@
 import React from 'react'
 import SEO from '../../components/SEO'
-
+import SocialShare from '../../components/SocialShare'
 import { LinkCards } from '../../components/LinkCards'
 
 const MedicalRecoveryCentre = () => {
@@ -13,6 +13,7 @@ const MedicalRecoveryCentre = () => {
         <TierneyHouse />
         <TBAPerth />
       </div>
+      <SocialShare></SocialShare>
     </>
   )
 }
@@ -44,7 +45,7 @@ const TheCottage = () => {
             src: '/images/the-cottage-infographic-preview.png',
             link:
               'https://drive.google.com/open?id=1bNTOFku6OnhaZta7gEB9BE9ZQhGzcV3X',
-            reportTitle: 'The Cottage Infographic'
+            reportTitle: 'The Cottage Infographic',
           },
           {
             alt: 'The Cottage Gazey Preview Image',
@@ -52,8 +53,8 @@ const TheCottage = () => {
             link:
               'https://drive.google.com/open?id=1VhauhRFC6ftOIkMhGsXw6QUjGPOTyJQA',
             reportTitle:
-              'The Cottage: Providing Medical Respite Care (Gazey et al 2018)'
-          }
+              'The Cottage: Providing Medical Respite Care (Gazey et al 2018)',
+          },
         ]}
       />
     </>
@@ -89,7 +90,8 @@ const style = (
     }
     .card-margin {
       margin: 0 !important;
-    }
+    }import SocialShare from './../../components/SocialShare';
+
     main {
       flex: 1 0 auto;
     }
