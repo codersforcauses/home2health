@@ -8,7 +8,9 @@ const SEO = ({
   keywords = 'Home2Health',
   meta,
   title = 'Home2Health',
-  url = 'https://home2health.org.au',
+  url = typeof window !== 'undefined'
+    ? window.location.href
+    : 'https://home2health.org.au',
   image = 'https://home2health.org.au/images/landing/1.jpg',
 }) => {
   return (
