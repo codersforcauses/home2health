@@ -5,7 +5,7 @@ const SocialShare = ({
     ? window.location.href
     : 'https://home2health.org.au/',
   title = 'Home2Health',
-  text = typeof document !== 'undefined'
+  text = typeof window !== 'undefined'
     ? document.querySelector('.container h4 + p').innerText
     : title,
 }) => {
