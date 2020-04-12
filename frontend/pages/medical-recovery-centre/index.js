@@ -90,8 +90,7 @@ const style = (
     }
     .card-margin {
       margin: 0 !important;
-    }import SocialShare from './../../components/SocialShare';
-
+    }
     main {
       flex: 1 0 auto;
     }

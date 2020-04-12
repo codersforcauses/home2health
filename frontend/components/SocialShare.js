@@ -13,6 +13,7 @@ const SocialShare = ({
       <a
         className="btn-floating btn-small waves-effect waves-light light-blue darken-4"
         target="_blank"
+        rel="noopener noreferrer"
         href={`https://www.facebook.com/sharer/sharer.php?u=${link}&t=${text}`}
       >
         <i className="fab fa-facebook"></i>
@@ -20,6 +21,7 @@ const SocialShare = ({
       <a
         className="btn-floating btn-small waves-effect waves-light red light-blue lighten-2"
         target="_blank"
+        rel="noopener noreferrer"
         href={`https://twitter.com/intent/tweet?url=${link}&text=${text}`}
       >
         <i className="fab fa-twitter"></i>
@@ -27,6 +29,7 @@ const SocialShare = ({
       <a
         className="btn-floating btn-small waves-effect waves-light red light-blue darken-3"
         target="_blank"
+        rel="noopener noreferrer"
         href={`http://www.linkedin.com/shareArticle?mini=true&url=${link}&title=${title}`}
       >
         <i className="fab fa-linkedin"></i>
