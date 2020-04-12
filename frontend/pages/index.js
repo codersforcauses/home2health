@@ -5,8 +5,9 @@ import SEO from '../components/SEO'
 import Contact from '../components/Contact'
 import Partners from '../components/Partners'
 import Slider from '../components/Slider'
-
+import AppContext, { Consumer } from '../Context'
 class Index extends Component {
+  static contextType = AppContext
   render() {
     return (
       <>
@@ -25,17 +26,27 @@ class Index extends Component {
                   health in Australia.
                 </h5>
                 <div style={{ margin: '1rem 0 0' }}>
-                  <Link href="/login">
-                    <a
-                      className="btn waves-effect waves-light"
-                      style={{ margin: '0 1rem 0 0' }}
-                    >
-                      Log in
-                    </a>
-                  </Link>
-                  <Link href="/register">
-                    <a className="btn waves-effect waves-light">Sign up</a>
-                  </Link>
+                  {this.context.authenticatedUser == null ? (
+                    <div>
+                      <Link href="/login">
+                        <a
+                          className="btn waves-effect waves-light"
+                          style={{ margin: '0 1rem 0 0' }}
+                        >
+                          Log in
+                        </a>
+                      </Link>
+                      <Link href="/register">
+                        <a className="btn waves-effect waves-light">Sign up</a>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      <b>
+                        Welcome, {Object(this.context.authenticatedUser).name}!
+                      </b>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="col s12 m6 valign-wrapper">
