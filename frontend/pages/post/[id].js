@@ -12,6 +12,8 @@ import './post.css'
 import Loader from '../../components/Loader'
 import postCategoryConfig from '../../components/postCategoryConfig'
 import PostModalSetting from '../../components/PostModalSetting'
+import SocialShare from '../../components/SocialShare'
+
 import AppContext, { Consumer } from '../../Context'
 
 const config = {
@@ -133,45 +135,51 @@ const PostLanding = (props) => {
   let date = new Date(datetime)
 
   return (
-    <header
-      className="masthead"
-      style={{
-        backgroundImage: `url(
-        '${headerImageUrl}'
-      )`,
-      }}
-    >
-      <div className="overlay"></div>
-      <div className="container ck-content white-text">
-        <div className="row">
-          <div className="col-md-10 col-lg-8 mx-auto">
-            <div className="post-heading">
-              <h1>
-                <ReactMarkdown
-                  source={title}
-                  escapeHtml={false}
-                ></ReactMarkdown>
-              </h1>
-              {author ? (
-                <span className="meta">{` Posted By: ${
-                  author.name
-                } on ${date.toDateString()}`}</span>
-              ) : (
-                <span className="meta">
-                  {` Posted By: ${author.name} on ${date.toDateString()}`}
-                </span>
-              )}
-              <p>
-                <ReactMarkdown
-                  source={overview}
-                  escapeHtml={false}
-                ></ReactMarkdown>
-              </p>
+    <React.Fragment>
+      <header
+        className="masthead"
+        style={{
+          backgroundImage: `url(
+          '${headerImageUrl}'
+        )`,
+        }}
+      >
+        <div className="overlay"></div>
+        <div className="container ck-content white-text">
+          <div className="row">
+            <div className="col-md-10 col-lg-8 mx-auto">
+              <div className="post-heading">
+                <h1>
+                  <ReactMarkdown
+                    source={title}
+                    escapeHtml={false}
+                  ></ReactMarkdown>
+                </h1>
+                {author ? (
+                  <span className="meta">{` Posted By: ${
+                    author.name
+                  } on ${date.toDateString()}`}</span>
+                ) : (
+                  <span className="meta">
+                    {` Posted By: ${author.name} on ${date.toDateString()}`}
+                  </span>
+                )}
+                <p>
+                  <ReactMarkdown
+                    source={overview}
+                    escapeHtml={false}
+                  ></ReactMarkdown>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <SocialShare
+        title={`Home2Health - ${title}`}
+        text={`${overview}`}
+      ></SocialShare>
+    </React.Fragment>
   )
 }
 
@@ -499,7 +507,11 @@ class LongPost extends React.Component {
     })
     return this.state.loaded ? (
       <div>
-        <SEO title={`Home2Health - ${this.state.data.title}`}></SEO>
+        <SEO
+          title={`Home2Health - ${this.state.data.title}`}
+          metaDescription={`${this.state.data.overview}`}
+          image={`${this.state.data.headerImageUrl}`}
+        ></SEO>
         {this.state.isEditorLoaded || (
           <React.Fragment>
             {userId === author ? ( //EDITTABLE VERSION
@@ -549,7 +561,3 @@ class LongPost extends React.Component {
 }
 
 export default withRouter(LongPost)
-
-// if (typeof window !== 'undefined') {
-//   import
-// }

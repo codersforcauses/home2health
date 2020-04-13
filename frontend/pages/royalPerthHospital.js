@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import SEO from '../components/SEO'
 import Link from 'next/link'
 import Router from 'next/router'
+import SocialShare from './../components/SocialShare'
 
 class RoyalPerthHospital extends Component {
   render() {
@@ -21,7 +22,7 @@ class RoyalPerthHospital extends Component {
               style={{
                 marginBottom: 0,
                 textAlign: 'center',
-                color: '#424242' // offblack
+                color: '#424242', // offblack
               }}
             >
               {''}
@@ -47,6 +48,7 @@ class RoyalPerthHospital extends Component {
             </a>
           </div>
         </div>
+        <SocialShare title={`Home2Health - Royal Perth Hospital`}></SocialShare>
       </Fragment>
 
       // add materialize carousel with images to link into subheadings for hospital programs...
