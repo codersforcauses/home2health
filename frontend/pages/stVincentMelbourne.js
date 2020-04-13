@@ -4,13 +4,6 @@ import Link from 'next/link'
 
 class StVincentMelbourne extends Component {
   render() {
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   var elems = document.querySelectorAll('.carousel')
-    //   var instances = M.Carousel.init(elems, options)
-    // });
-
-    //var instance = M.Carousel.getInstance(elem);
-
     return (
       <Fragment>
         <SEO title={`Home2Health - St Vincent's Melbourne`}></SEO>
@@ -51,43 +44,57 @@ class StVincentMelbourne extends Component {
                   <ul>
                     <h4>Further Reading</h4>
                     <li>
-                      <a href="../public/research_papers/SVHM - ALERT Infographic.pdf">
-                        SVHM Homelessness Programs - ALERT Infographic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="../public/research_papers/SVHM - CHOPS Infographic.pdf">
-                        SVHM Homelessness Programs - CHOPS Infographic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="../public/research_papers/SVHM - CHOPS Infographic[1].pdf">
-                        SVHM Homelessness Programs - CHOPS Infographic 2
-                      </a>
-                    </li>
-                    <li>
-                      <a href="../public/research_papers/SVHM - Prague House  infographic.pdf">
-                        SVHM Homelessness Programs - Prague House Infographic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="../public/research_papers/SVHM - The Cottage Infographic.pdf">
-                        SVHM Homelessness Programs - The Cottage Infographic
-                      </a>
-                    </li>
-                    <li>
-                      <a href="../public/research_papers/SVHM Infographic.pdf">
+                      <a
+                        href="/research_papers/SVHMInfographic.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
                         SVHM Homelessness Programs Infographic
                       </a>
                     </li>
                     <li>
-                      <a href="../public/research_papers/SVHM Report - sept 2017.pdf">
-                        SVHM Homelessness Programs Report (Sep 2017)
+                      <a
+                        href="/research_papers/SVHM-ALERTInfographic.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
+                        SVHM Homelessness Programs - ALERT Infographic
                       </a>
                     </li>
                     <li>
-                      <a href="../public/research_papers/SVHM_-_CHOPS_Infographic.pdf">
+                      <a
+                        href="/research_papers/SVHM_CHOPS_Infographic.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
                         SVHM Homelessness Programs - CHOPS Infographic
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/research_papers/SVHM-PragueHouseinfographic.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
+                        SVHM Homelessness Programs - Prague House Infographic
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/research_papers/SVHM-TheCottageInfographic.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
+                        SVHM Homelessness Programs - The Cottage Infographic
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/research_papers/SVHMReport-sept2017.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
+                        SVHM Homelessness Programs Report (Sep 2017)
                       </a>
                     </li>
                   </ul>
@@ -97,8 +104,6 @@ class StVincentMelbourne extends Component {
           </div>
         </div>
       </Fragment>
-
-      // add materialize carousel with images to link into subheadings for hospital programs...
     )
   }
 }

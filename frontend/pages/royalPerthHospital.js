@@ -49,22 +49,38 @@ class RoyalPerthHospital extends Component {
                   <ul className="col right">
                     <h4>Further Reading</h4>
                     <li>
-                      <a href="https://rph.health.wa.gov.au/About-us/News/RPHs-Homeless-Team-is-a-WA-Health-Excellence-Awards-finalist">
+                      <a
+                        href="https://rph.health.wa.gov.au/About-us/News/RPHs-Homeless-Team-is-a-WA-Health-Excellence-Awards-finalist"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
                         WA Excellence Award's Finalist
                       </a>
                     </li>
                     <li>
-                      <a href="../public/research_papers/RPH_Homeless_Team_infographic_-_May_2018.pdf">
+                      <a
+                        href="/research_papers/RPH_Homeless_Team_infographic_-_May_2018.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
                         RPH Homeless Team Inforgraphic (May 2018)
                       </a>
                     </li>
                     <li>
-                      <a href="../public/research_papers/RPH Homeless Team Eval Summary 2 - Feb 2019.pdf">
+                      <a
+                        href="/research_papers/RPHHomelessTeamEvalSummary2-Feb2019.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
                         RPH Homeless Team Evaluation Summary (Feb 2019)
                       </a>
                     </li>
                     <li>
-                      <a href="../public/research_papers/RPH Homeless Team Report 2 - Feb 2019.pdf">
+                      <a
+                        href="/research_papers/RPHHomelessTeamReport2-Feb2019.pdf"
+                        target="_blank"
+                        ref="noopener noreferrer"
+                      >
                         RPH Homeless Team Report
                       </a>
                     </li>
