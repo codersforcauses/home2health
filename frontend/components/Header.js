@@ -161,7 +161,7 @@ const DesktopHeader = (props) => (
     <DesktopHeaderLinks {...props}></DesktopHeaderLinks>
     <li>
       <a className="dropdown-trigger" href="#" data-target="memberDropdown">
-        Members Area
+        Members Area (coming soon)
         <i className="material-icons right">arrow_drop_down</i>
       </a>
       <ul id="memberDropdown" className="dropdown-content">
@@ -199,7 +199,7 @@ const DesktopHeader = (props) => (
       </ul>
     </li>
     <li>
-      <a href="#">News</a>
+      <a href="#">News (coming soon)</a>
     </li>
     <li>
       {props.authUser ? (
@@ -321,7 +321,7 @@ const MobileHeader = (props) => (
         href="#"
         data-target="memberDropdownMobile"
       >
-        Members Area
+        Members Area (coming soon)
       </a>
       <ul id="memberDropdownMobile" className="dropdown-content">
         <li>
@@ -358,7 +358,7 @@ const MobileHeader = (props) => (
     </li>
     <li>
       <Link href="#">
-        <a className="navitem">News</a>
+        <a className="navitem">News (coming soon)</a>
       </Link>
     </li>
 

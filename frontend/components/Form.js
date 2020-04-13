@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default props => {
-  const { errors, submit, submitButtonText, elements } = props
+  const { errors, submit, submitButtonText, elements, loading } = props
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -19,7 +19,7 @@ export default props => {
       <form onSubmit={handleSubmit}>
         {elements()}
         <div className="pad-bottom">
-          <button className="  btn waves-effect waves-light" type="submit">
+          <button className="btn waves-effect waves-light" type="submit" disabled={loading}>
             {submitButtonText}
           </button>
         </div>

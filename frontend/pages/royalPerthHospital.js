@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import SEO from '../components/SEO'
 import Link from 'next/link'
+import Router from 'next/router'
+import SocialShare from './../components/SocialShare'
 
 class RoyalPerthHospital extends Component {
   render() {
@@ -91,6 +93,7 @@ class RoyalPerthHospital extends Component {
             </div>
           </div>
         </div>
+        <SocialShare title={`Home2Health - Royal Perth Hospital`}></SocialShare>
       </Fragment>
     )
   }

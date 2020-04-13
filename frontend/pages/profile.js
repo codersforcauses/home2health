@@ -21,13 +21,13 @@ export default class Profile extends Component {
             return (
               <React.Fragment>
                 <SEO title={`Home2Health - Profile`}></SEO>
-                <div className="bounds">
+                <div className="container">
                   <div className="grid-100">
                     <h1>
                       You are authenticated! {context.authenticatedUser.name}
                     </h1>
                     <Link href="/">
-                      <a>Go to home page</a>
+                      <a className="btn">Go to home page</a>
                     </Link>
                   </div>
                 </div>

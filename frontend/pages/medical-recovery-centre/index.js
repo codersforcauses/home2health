@@ -1,6 +1,6 @@
 import React from 'react'
 import SEO from '../../components/SEO'
-
+import SocialShare from '../../components/SocialShare'
 import { LinkCards } from '../../components/LinkCards'
 
 const MedicalRecoveryCentre = () => {
@@ -13,6 +13,7 @@ const MedicalRecoveryCentre = () => {
         <TierneyHouse />
         <TBAPerth />
       </div>
+      <SocialShare title="Home2Health - Medical Recovery Centre"></SocialShare>
     </>
   )
 }
@@ -21,7 +22,7 @@ const TheCottage = () => {
   return (
     <>
       <SEO title="Home2Health - Medical Recovery Centre"></SEO>
-      <h2>The Cottage</h2>
+      <h4>The Cottage</h4>
       <p>
         The Cottage is a supportive, home like environment where Complex Care
         Services and Hospital in the Home (HITH) services are provided to people
@@ -44,7 +45,7 @@ const TheCottage = () => {
             src: '/images/the-cottage-infographic-preview.png',
             link:
               'https://drive.google.com/open?id=1bNTOFku6OnhaZta7gEB9BE9ZQhGzcV3X',
-            reportTitle: 'The Cottage Infographic'
+            reportTitle: 'The Cottage Infographic',
           },
           {
             alt: 'The Cottage Gazey Preview Image',
@@ -52,8 +53,8 @@ const TheCottage = () => {
             link:
               'https://drive.google.com/open?id=1VhauhRFC6ftOIkMhGsXw6QUjGPOTyJQA',
             reportTitle:
-              'The Cottage: Providing Medical Respite Care (Gazey et al 2018)'
-          }
+              'The Cottage: Providing Medical Respite Care (Gazey et al 2018)',
+          },
         ]}
       />
     </>
@@ -96,7 +97,7 @@ const style = (
     h1 {
       font-size: 3rem;
     }
-    h2 {
+    h4 {
       font-size: 2rem;
     }
   `}</style>

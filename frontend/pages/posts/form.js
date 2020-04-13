@@ -11,7 +11,8 @@ class PostForm extends React.Component {
     form: {},
     isServer: true,
     UserID: 0,
-    IsAllowedToPost: true
+    IsAllowedToPost: true,
+    loading: false
   }
 
   componentDidMount() {
@@ -75,6 +76,7 @@ class PostForm extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
+    this.setState({loading: true})
     const baseURL = process.env.API_BACKEND_URL || 'http://localhost:5000'
 
     const apiPath = `${baseURL}/post`
@@ -95,6 +97,7 @@ class PostForm extends React.Component {
         M.toast({ html: 'Oops, Something Went Wrong', classes: 'rounded red' })
         //(err)
       })
+      .finally(() => this.setState({loading: false}))
   }
 
   render() {
@@ -194,6 +197,7 @@ class PostForm extends React.Component {
                   type="submit"
                   name="submit"
                   onClick={this.submitHandler}
+                  disabled={this.state.loading}
                 >
                   Submit
                   <i className="material-icons right">send</i>

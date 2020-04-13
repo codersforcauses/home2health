@@ -2,12 +2,13 @@ import React from 'react'
 import SEO from '../../components/SEO'
 import Link from 'next/link'
 import { LinkCards } from '../../components/LinkCards'
+import SocialShare from './../../components/SocialShare'
 
 export default () => {
   const m0 = {
     marginLeft: 0,
     marginRight: 0,
-    marginTop: 50
+    marginTop: 50,
   }
   return (
     <React.Fragment>
@@ -47,11 +48,12 @@ export default () => {
               src: '/images/Dual-Diagnosis-Services/HODDS_Snapshot.png',
               link:
                 '/research_papers/HODDS_snapshot_final_Jan_2020_electronic_version.pdf',
-              reportTitle: 'HODDS Snapshot Jan 2020'
-            }
+              reportTitle: 'HODDS Snapshot Jan 2020',
+            },
           ]}
         />
       </div>
+      <SocialShare title="Home2Health - Dual Diagnosis Services - HODDS"></SocialShare>
     </React.Fragment>
   )
 }

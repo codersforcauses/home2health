@@ -10,7 +10,8 @@ export default class UserSignUp extends Component {
     name: '',
     email: '',
     password: '',
-    errors: []
+    errors: [],
+    loading: false
   }
   static contextType = AppContext
   componentDidMount() {
@@ -26,6 +27,7 @@ export default class UserSignUp extends Component {
       <Consumer>
         {context => {
           let submit = () => {
+            this.setState({loading: true})
             const { name, email, password } = this.state
 
             // New user payload
@@ -51,6 +53,7 @@ export default class UserSignUp extends Component {
                         Router.push('/profile')
                         console.log(`SUCCESS! ${email} is now signed in!`)
                       }
+                      this.setState({loading: false})
                     })
                     .catch(err => {
                       console.log(err)
@@ -80,6 +83,7 @@ export default class UserSignUp extends Component {
                       errors={errors}
                       submit={submit}
                       submitButtonText="Sign Up"
+                      loading={this.state.loading}
                       elements={() => (
                         <React.Fragment>
                           <div className="input-field">

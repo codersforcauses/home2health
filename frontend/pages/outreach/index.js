@@ -1,5 +1,6 @@
 import Reach from 'react'
 import SEO from '../../components/SEO'
+import SocialShare from '../../components/SocialShare'
 
 import { LinkCards } from '../../components/LinkCards'
 
@@ -12,6 +13,7 @@ const OutReachPage = () => {
         <StreetHealth />
         <StreetDoctor />
       </div>
+      <SocialShare></SocialShare>
     </>
   )
 }
@@ -20,7 +22,7 @@ const StreetHealth = () => {
   return (
     <>
       <SEO title="Home2Health - Outreach"></SEO>
-      <h2>Street Health</h2>
+      <h4>Street Health</h4>
       <blockquote>
         <p>
           Street Health is a service operated by Homeless Healthcare that
@@ -35,7 +37,7 @@ const StreetHealth = () => {
             src: '/images/street-health-infographic-preview.png',
             link:
               'https://drive.google.com/open?id=1do43kATRBb8L4MbSx9F0WZowiC8W9aVn',
-            reportTitle: 'Street Health Infographic'
+            reportTitle: 'Street Health Infographic',
           },
           {
             alt: 'Street Health Infographic Preview Image',
@@ -44,8 +46,8 @@ const StreetHealth = () => {
             link:
               'https://thewest.com.au/news/perth/medics-for-homeless-in-funding-plea-ng-b88525248z',
             reportTitle:
-              'Medics for Homeless Funding Plea (The West Australian)'
-          }
+              'Medics for Homeless Funding Plea (The West Australian)',
+          },
         ]}
       />
     </>
@@ -71,14 +73,15 @@ const style = (
     }
     .card-margin {
       margin: 0 !important;
-    }
+    }import SocialShare from './../../components/SocialShare';
+
     main {
       flex: 1 0 auto;
     }
     h1 {
       font-size: 3rem;
     }
-    h2 {
+    h4 {
       font-size: 2rem;
     }
   `}</style>
