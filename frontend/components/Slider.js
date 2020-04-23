@@ -4,7 +4,6 @@ import withAutoplay from 'react-awesome-slider/dist/autoplay'
 import 'react-awesome-slider/dist/styles.css'
 import './Slider.css'
 
-
 const numImages = 10
 const Slider = props => {
   const AutoplaySlider = withAutoplay(AwesomeSlider)
