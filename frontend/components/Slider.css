@@ -13,13 +13,18 @@
   --organic-arrow-height: 20px;
   --organic-arrow-color: transparent;
   --control-button-background: transparent;
-  --control-bullet-color: #fafafa;
-  --control-bullet-active-color: #d5d5d5;
-  --loader-bar-color: #646464;
+  --control-bullet-color: #d5d5d5;
+  --control-bullet-active-color: #2bbbad;
+  --loader-bar-color: transparent;
   --loader-bar-height: 6px;
 }
 .awssld__bullets {
   height: 40px;
   background-color: transparent;
   border: 0 !important;
+}
+
+.awssld__timer {
+  position: absolute !important;
+  top: calc(100% - 6px)
 }
