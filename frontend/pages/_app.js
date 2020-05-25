@@ -31,7 +31,7 @@ class MyApp extends App {
     const elemDropdownMobile = document.querySelectorAll('.dropdownMobile')
     M.Dropdown.init(elemDropdownMobile, {
       constrainWidth: true,
-      coverTrigger: false
+      coverTrigger: false,
     })
   }
 

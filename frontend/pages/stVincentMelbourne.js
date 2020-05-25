@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import SEO from '../components/SEO'
 import Link from 'next/link'
+import SocialShare from './../components/SocialShare'
 
 class StVincentMelbourne extends Component {
   render() {
@@ -98,6 +99,9 @@ class StVincentMelbourne extends Component {
                       </a>
                     </li>
                   </ul>
+                  <SocialShare
+                    title={`Home2Health - St Vincent's Hospital Melbourne`}
+                  ></SocialShare>
                 </div>
               </div>
             </div>

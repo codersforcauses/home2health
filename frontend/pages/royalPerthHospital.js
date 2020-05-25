@@ -42,13 +42,15 @@ class RoyalPerthHospital extends Component {
             </div>
             <div className="section">
               <div className="row">
-                <div className="col left">
+                <div className="col s6">
                   <img
                     alt="RPH Image"
                     src="/images/hospitalPrograms/royalPerth/003_Homeless-Healthcare_160914.png"
-                    style={{ height: 400 }}
+                    style={{ position:'relative', width: '100%'}}
                   ></img>
-                  <ul className="col right">
+                </div>
+                <div className="col s6">
+                  <ul style={{position:'relative', bottom:'30px'}}>
                     <h4>Further Reading</h4>
                     <li>
                       <a
