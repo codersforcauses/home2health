@@ -13,7 +13,7 @@ class Covid extends Component {
         <div className="container">
           <div className="row" style={{ marginTop: '40px' }}>
             <img
-              src="/covid/covid-letter-head.png"
+              src="covid/covid-letter-head.PNG"
               alt="COVID19 Home2Health Letterhead"
             ></img>
           </div>

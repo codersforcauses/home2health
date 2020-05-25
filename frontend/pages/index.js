@@ -65,7 +65,7 @@ class Index extends Component {
               and please don't hesitate to reach out to healthcare providers.
             </p>
             <img
-              src="/covid/covid-letter-head.png"
+              src="covid/covid-letter-head.PNG"
               alt="COVID19 Home2Health Letterhead"
             ></img>
             <Link href="/covid19">
