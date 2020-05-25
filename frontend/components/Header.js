@@ -7,36 +7,36 @@ const links = {
   hospitalPrograms: [
     {
       link: '/RoyalPerthHospital',
-      name: 'Royal Perth Hospital'
+      name: 'Royal Perth Hospital',
+    },
+    {
+      link: '/StVincentMelbourne',
+      name: "St Vincent's Hospital Melbourne",
     },
     {
       link: '#',
-      name: "St Vincent's Hospital Melbourne"
+      name: "St Vincent's Hospital Sydney",
     },
     {
       link: '#',
-      name: "St Vincent's Hospital Sydney"
+      name: 'Katherine Hospital',
     },
-    {
-      link: '#',
-      name: 'Katherine Hospital'
-    }
   ],
   gpServices: '/gp-services',
   dualDiagnosisServices: [
     {
       link: '/Dual-Diagnosis-Services/HODDS',
-      name: 'HODDS'
+      name: 'HODDS',
     },
     {
       link: '/Dual-Diagnosis-Services/CHOPS',
-      name: 'CHOPS'
-    }
+      name: 'CHOPS',
+    },
   ],
   peerWorkerPrograms: '/peer-worker-programs',
   outreach: '/outreach',
   medicalRecoveryCentre: '/medical-recovery-centre',
-  resources: '/resources'
+  resources: '/resources',
 }
 
 const MultiLinks = ({ linkObjects }) => {
@@ -50,7 +50,7 @@ const MultiLinks = ({ linkObjects }) => {
   ))
 }
 
-const DesktopHeaderLinks = props => (
+const DesktopHeaderLinks = (props) => (
   <li>
     <a
       className="dropdown-trigger theHappening"
@@ -76,7 +76,7 @@ const DesktopHeaderLinks = props => (
             className="collapsible-header"
             id="hospitalPrograms"
             style={{
-              color: '#26a69a'
+              color: '#26a69a',
             }}
           >
             Hospital Programs
@@ -87,7 +87,7 @@ const DesktopHeaderLinks = props => (
             className="collapsible-body"
             style={{
               display: `${props.hospitalProgramsHover ? 'block' : 'none'}`,
-              padding: 10
+              padding: 10,
             }}
           >
             <MultiLinks linkObjects={links.hospitalPrograms}></MultiLinks>
@@ -111,7 +111,7 @@ const DesktopHeaderLinks = props => (
             className="collapsible-header"
             id="dual-diagnosis-services"
             style={{
-              color: '#26a69a'
+              color: '#26a69a',
             }}
           >
             Dual Diagnosis Services
@@ -121,7 +121,7 @@ const DesktopHeaderLinks = props => (
             className="collapsible-body"
             style={{
               display: `${props.dualDiagnosisServicesHover ? 'block' : 'none'}`,
-              padding: 10
+              padding: 10,
             }}
           >
             <MultiLinks linkObjects={links.dualDiagnosisServices}></MultiLinks>
@@ -156,7 +156,7 @@ const DesktopHeaderLinks = props => (
   </li>
 )
 
-const DesktopHeader = props => (
+const DesktopHeader = (props) => (
   <ul className="right hide-on-med-and-down">
     <DesktopHeaderLinks {...props}></DesktopHeaderLinks>
     <li>
@@ -215,7 +215,7 @@ const DesktopHeader = props => (
   </ul>
 )
 
-const MobileHeaderLinks = props => (
+const MobileHeaderLinks = (props) => (
   <li>
     <div class="collapsible-header">What's Happening In Australia</div>
     <div class="collapsible-body">
@@ -231,7 +231,7 @@ const MobileHeaderLinks = props => (
             className="collapsible-header"
             id="hospitalPrograms"
             style={{
-              color: '#26a69a'
+              color: '#26a69a',
             }}
           >
             Hospital Programs
@@ -242,7 +242,7 @@ const MobileHeaderLinks = props => (
             className="collapsible-body"
             style={{
               display: `${props.hospitalProgramsHover ? 'block' : 'none'}`,
-              padding: 10
+              padding: 10,
             }}
           >
             <MultiLinks linkObjects={links.hospitalPrograms}></MultiLinks>
@@ -261,7 +261,7 @@ const MobileHeaderLinks = props => (
               className="collapsible-header"
               id="dual-diagnosis-services"
               style={{
-                color: '#26a69a'
+                color: '#26a69a',
               }}
             >
               Dual Diagnosis Services
@@ -273,7 +273,7 @@ const MobileHeaderLinks = props => (
                 display: `${
                   props.dualDiagnosisServicesHover ? 'block' : 'none'
                 }`,
-                padding: 10
+                padding: 10,
               }}
             >
               <MultiLinks
@@ -307,7 +307,7 @@ const MobileHeaderLinks = props => (
   </li>
 )
 
-const MobileHeader = props => (
+const MobileHeader = (props) => (
   <ul id="nav-mobile" className="sidenav">
     <ul class="collapsible">
       <MobileHeaderLinks
@@ -381,23 +381,23 @@ const MobileHeader = props => (
 class Header extends Component {
   state = {
     hospitalProgramsHover: false,
-    dualDiagnosisServicesHover: false
+    dualDiagnosisServicesHover: false,
   }
-  handleEnterHover = hoverName => {
+  handleEnterHover = (hoverName) => {
     this.setState({
-      [hoverName + 'Hover']: true
+      [hoverName + 'Hover']: true,
     })
   }
-  handleLeaveHover = hoverName => {
+  handleLeaveHover = (hoverName) => {
     this.setState({
-      [hoverName + 'Hover']: false
+      [hoverName + 'Hover']: false,
     })
   }
 
   render() {
     return (
       <Consumer>
-        {context => {
+        {(context) => {
           const authUser = context.authenticatedUser
           return (
             <nav className="lighten-1 white" id="header">
