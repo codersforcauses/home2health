@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import SEO from '../components/SEO'
-
 import Layout from '../components/Layout'
 
 export default function About() {

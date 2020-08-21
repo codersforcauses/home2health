@@ -3,8 +3,10 @@ import React from 'react'
 const Partners = () => (
   <>
     {style}
-    <div className="section white lighten-1">
-      <h4 className="center">Our partners</h4>
+    <div className="section white lighten-1" style={{ fontSize: '0' }}>
+      <h4 className="center" style={{ position: 'relative', top: '80px' }}>
+        Our partners
+      </h4>
       <div className="row partner-row partner-row-background">
         <img
           alt="Royal Perth Hospital logo"

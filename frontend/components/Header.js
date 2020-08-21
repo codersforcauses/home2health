@@ -199,7 +199,9 @@ const DesktopHeader = (props) => (
       </ul>
     </li>
     <li>
-      <a href="#">News (coming soon)</a>
+      <Link href="/covid19">
+        <a className="navitem">Covid-19</a>
+      </Link>
     </li>
     <li>
       {props.authUser ? (
@@ -357,8 +359,8 @@ const MobileHeader = (props) => (
       </ul>
     </li>
     <li>
-      <Link href="#">
-        <a className="navitem">News (coming soon)</a>
+      <Link href="/covid19">
+        <a className="navitem">Covid-19</a>
       </Link>
     </li>
 

@@ -27,6 +27,9 @@ class MyApp extends App {
     const elemHappening = document.querySelector('.theHappening')
     M.Dropdown.init(elemHappening, { coverTrigger: false })
 
+    var fxBtnElems = document.querySelectorAll('.fixed-action-btn')
+    var fxBtnInstances = M.FloatingActionButton.init(fxBtnElems)
+
     /* Mobile */
     const elemDropdownMobile = document.querySelectorAll('.dropdownMobile')
     M.Dropdown.init(elemDropdownMobile, {
