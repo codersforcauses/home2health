@@ -13,28 +13,28 @@ export default () => {
 
   const cardDetails = [
     {
-      alt: '50 Lifes 50 Homes logo',
-      src: '/50Homes50Lifes/logo2-50L.png',
-      link: '/50Homes50Lifes/50_Lives_First_Report_June_2017.pdf',
+      alt: '50 Lives 50 Homes logo',
+      src: '/50Homes50Lives/logo2-50L.png',
+      link: '/50Homes50Lives/50_Lives_First_Report_June_2017.pdf',
       reportTitle: '50 Lives 50 Homes Report 1 (June 2017)',
     },
     {
-      alt: '50 Lifes 50 Homes logo',
-      src: '/50Homes50Lifes/InfoGraphics50H.png',
-      link: '/50Homes50Lifes/50_Lives_Infographic_June_2017.pdf',
+      alt: '50 Lives 50 Homes logo',
+      src: '/50Homes50Lives/InfoGraphics50H.png',
+      link: '/50Homes50Lives/50_Lives_Infographic_June_2017.pdf',
       reportTitle: '50 Lives 50 Homes Infographic (June 2017)',
     },
     {
       alt: '50 Lifes 50 Homes logo',
-      src: '/50Homes50Lifes/50HomesDoc.png',
-      link: '/50Homes50Lifes/50_Lives_Snapshot_April_2018.pdf',
+      src: '/50Homes50Lives/50HomesDoc.png',
+      link: '/50Homes50Lives/50_Lives_Snapshot_April_2018.pdf',
       reportTitle: '50 Lives 50 Homes Snapshot Report ',
       date: 'Apr 2018',
     },
     {
       alt: '50 Lifes 50 Homes logo',
-      src: '/50Homes50Lifes/logo2-50L.png',
-      link: '/50Homes50Lifes/50_Lives_Second_Report_Sept_2018.pdf',
+      src: '/50Homes50Lives/logo2-50L.png',
+      link: '/50Homes50Lives/50_Lives_Second_Report_Sept_2018.pdf',
       reportTitle: '50 Lives 50 Homes Report 2 (Sept 2018)',
     },
     {
@@ -45,7 +45,7 @@ export default () => {
     },
     {
       alt: '50 Lifes 50 Homes logo',
-      src: '/50Homes50Lifes/fb_img.png',
+      src: '/50Homes50Lives/fb_img.png',
       link: 'https://www.facebook.com/50Lives50HomesPerth/',
       reportTitle: 'Our Facebook Page',
     },
@@ -63,9 +63,9 @@ export default () => {
             display: 'block',
           }}
           alt="50 Lifes 50 Homes logo"
-          src="/50Homes50Lifes/50life-logo.png"
+          src="/50Homes50Lives/50life-logo.png"
         />
-        <h4 style={{ marginBottom: 0 }}>About 50 Lifes 50 Homes</h4>
+        <h4 style={{ marginBottom: 0 }}>About 50 Lives 50 Homes</h4>
         <p>
           The 50 Lives 50 Homes project is the first Housing First program in
           Western Australia, and one of the first in Australia. 50 Lives is a
